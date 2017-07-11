@@ -11,12 +11,12 @@ using SpotifyAPI.Local;
 
 namespace Smallify
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         SpotifyLocalAPI _spotify = new SpotifyLocalAPI();
         bool isPlaying = false;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             _spotify.Connect();

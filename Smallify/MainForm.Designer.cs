@@ -1,6 +1,6 @@
 ﻿namespace Smallify
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.pbtnPrevious = new System.Windows.Forms.PictureBox();
@@ -93,7 +94,7 @@
             this.pbtnSkip.MouseEnter += new System.EventHandler(this.pbtnSkip_MouseHover);
             this.pbtnSkip.MouseLeave += new System.EventHandler(this.pbtnSkip_MouseLeave);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,8 +105,9 @@
             this.Controls.Add(this.pbtnSkip);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "MainForm";
+            this.Text = "Smallify";
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).EndInit();
