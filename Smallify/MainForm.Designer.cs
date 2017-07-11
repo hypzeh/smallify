@@ -29,24 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTrack = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.pbtnPrevious = new System.Windows.Forms.PictureBox();
             this.pbtnPause = new System.Windows.Forms.PictureBox();
             this.pbtnSkip = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTrack
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(118, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.lblTrack.AutoSize = true;
+            this.lblTrack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrack.ForeColor = System.Drawing.Color.White;
+            this.lblTrack.Location = new System.Drawing.Point(96, 145);
+            this.lblTrack.Name = "lblTrack";
+            this.lblTrack.Size = new System.Drawing.Size(53, 20);
+            this.lblTrack.TabIndex = 1;
+            this.lblTrack.Text = "Track";
+            this.lblTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnUpdate
             // 
@@ -61,7 +67,7 @@
             // pbtnPrevious
             // 
             this.pbtnPrevious.Image = global::Smallify.Properties.Resources.previous_default;
-            this.pbtnPrevious.Location = new System.Drawing.Point(12, 71);
+            this.pbtnPrevious.Location = new System.Drawing.Point(521, 161);
             this.pbtnPrevious.Name = "pbtnPrevious";
             this.pbtnPrevious.Size = new System.Drawing.Size(32, 32);
             this.pbtnPrevious.TabIndex = 3;
@@ -73,7 +79,7 @@
             // pbtnPause
             // 
             this.pbtnPause.Image = global::Smallify.Properties.Resources.pause_default;
-            this.pbtnPause.Location = new System.Drawing.Point(78, 62);
+            this.pbtnPause.Location = new System.Drawing.Point(559, 145);
             this.pbtnPause.Name = "pbtnPause";
             this.pbtnPause.Size = new System.Drawing.Size(48, 48);
             this.pbtnPause.TabIndex = 3;
@@ -85,7 +91,7 @@
             // pbtnSkip
             // 
             this.pbtnSkip.Image = global::Smallify.Properties.Resources.skip_default;
-            this.pbtnSkip.Location = new System.Drawing.Point(161, 71);
+            this.pbtnSkip.Location = new System.Drawing.Point(613, 161);
             this.pbtnSkip.Name = "pbtnSkip";
             this.pbtnSkip.Size = new System.Drawing.Size(32, 32);
             this.pbtnSkip.TabIndex = 3;
@@ -94,34 +100,61 @@
             this.pbtnSkip.MouseEnter += new System.EventHandler(this.pbtnSkip_MouseHover);
             this.pbtnSkip.MouseLeave += new System.EventHandler(this.pbtnSkip_MouseLeave);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Smallify.Properties.Resources.icon_smallify;
+            this.pictureBox1.Location = new System.Drawing.Point(26, 145);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblArtist
+            // 
+            this.lblArtist.AutoSize = true;
+            this.lblArtist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArtist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.lblArtist.Location = new System.Drawing.Point(96, 173);
+            this.lblArtist.Name = "lblArtist";
+            this.lblArtist.Size = new System.Drawing.Size(46, 20);
+            this.lblArtist.TabIndex = 1;
+            this.lblArtist.Text = "Artist";
+            this.lblArtist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(949, 261);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pbtnPrevious);
             this.Controls.Add(this.pbtnPause);
             this.Controls.Add(this.pbtnSkip);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblArtist);
+            this.Controls.Add(this.lblTrack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Smallify";
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTrack;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox pbtnSkip;
         private System.Windows.Forms.PictureBox pbtnPrevious;
         private System.Windows.Forms.PictureBox pbtnPause;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblArtist;
     }
 }
 

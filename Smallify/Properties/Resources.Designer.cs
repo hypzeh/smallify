@@ -63,6 +63,16 @@ namespace Smallify.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_smallify {
+            get {
+                object obj = ResourceManager.GetObject("icon_smallify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pause_default {
             get {
                 object obj = ResourceManager.GetObject("pause_default", resourceCulture);

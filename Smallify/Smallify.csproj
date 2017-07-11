@@ -116,5 +116,8 @@
   <ItemGroup>
     <None Include="Resources\Smallify_Icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_smallify.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

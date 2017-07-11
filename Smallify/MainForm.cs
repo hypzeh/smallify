@@ -24,15 +24,20 @@ namespace Smallify
             var model = _spotify.GetStatus();
             isPlaying = model.Playing ? true : false;
 
-            label1.Text = model.Track.TrackResource.Name + " - " + model.Track.ArtistResource.Name;
+            lblTrack.Text = model.Track.TrackResource.Name;
+            lblArtist.Text = model.Track.ArtistResource.Name;
+            pictureBox1.Image = model.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             var model = _spotify.GetStatus();
 
-            label1.Text = model.Track.TrackResource.Name + " - " + model.Track.ArtistResource.Name;
+            lblTrack.Text = model.Track.TrackResource.Name;
+            lblArtist.Text = model.Track.ArtistResource.Name;
             isPlaying = model.Playing ? true : false;
+
+            pictureBox1.Image = model.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void pbtnSkip_MouseHover(object sender, EventArgs e)
