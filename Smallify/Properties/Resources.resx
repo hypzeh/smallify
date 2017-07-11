@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,55 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="previous_default" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAA8UlEQVRYR+3TrRHCQBDF8WBQ
+        eBqgAhrA0QM9UARFUEAcRSDogAqoAIvCcLxk8pjskDnuY/fOIH4zAXHvb7ZxzlX1+Wjb1g26b0sbuNQI
+        6Ieh3ykZIIapRMDkMFkGeIfJIiBomDQDooZJIyBpmHICsoYpJUBlmGICVIcpJMBkmHwBpsPkCyjiH+AL
+        2MJ19NuEL6D7nsEObsN/6n4F0Bz2cAfxQK7QAFrAAR4gHkoVG0BLOMITxIOxUgNoBSd4gXg4VG4AreEM
+        4vEQWgEUfbraAZ2o07UIoKDTtQwg7+mWCKDJ0y0ZQOJ0awRQf7pfAXW45g2KeDSK35F5iQAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="previous_hover" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABHElEQVRYR+2TQWqDQBiFJevu
+        e4ncorfoIbrvOXIB1zlFjiAjKoIgRXCjJYIQpGKnJswDoVM7M/7/ZJMP3mLU4X0IL5BS3jXLw40wDAPO
+        pGn61rbtea7yK7AoBn4ENMWAV2ClGPAIGBQDWgGLYkAj4FAMtglsKAZuAgTFwE6AsBiYCTAUg3UBxmKg
+        F/BQDPQCHnkI6AWyLHvvuu6ijpzoBa4LiKJol+f5oe/7L/WYg78FkFnkqSiK4zAMk3pNyf8CiBDiuSzL
+        0ziO3+ozCswFkFlkX1WVmCaSH2IvgMRx/FLX9Ye64oq7AJIkyWvTNJ/qqi3bBRDH6dIJXOMwXVoBxGK6
+        PAKIwXR5BZCV6foRQDTT9SuALKb7S+AOkcEP7o9s2L0pdSYAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="skip_default" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABDklEQVRYR+3Tuw3CMBSF4dBQ
+        0bMAE7AAHTuwA0MwBAOkYwgKNmACJqClosGcHOlGwYpj+8aPhuKT8rCv/8aNMaaq/qFt2xvsoHvOyXTG
+        AvgDcod4A3KHBAeI1CGcGxMgUoVwniZAzA3hnDkBQhvC/SkCRGwI96UMEKEhXJ8jQPhCuC5ngHCF8H+J
+        AGGH8HvJACEhfK8R8OMfUCPgDnt5LxnwgAMsoD+nRMATjrCEbr7g/5wBLzjBCoYHC67LEfCGM6zBPnSI
+        61MGfOACG7APG8N9qQKusAX7kCncOzdArpQ9PARnaAPsK6XBWbEBriulwZmhAb4rpcHZvoDQK6UxGRB7
+        pTScAZorpTEeUIdpvuXANIpcRek/AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="skip_hover" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABTElEQVRYR+2TT0qHUBSFpXHz
+        NtEu2kWLaN462oDjVtESRFERBAnBiUaCEJKYeeDcSHmmPn3vN+mDA/55755vcp1hGC6an4eqqt6jKHpw
+        XdcxmbFLmArgCzAtwhqgFhBMiXA8+FtAOFuEY8E2AeEsEY4D+wSEoyIcA/QEBF0RXgfHBIS9IrwGzhEQ
+        torwODhXQFgT4TFgRkBYEuFvYFZAmIvwM7AjIIgIX4FdAQX/AnYF6rr+iOP4ka/AjkDTNJ9Jkjx5nndl
+        dQvatu3TNH0ei69lBa0IdF33lWXZi+/7N7+LjQv0fT/keT72+reqYgmPg/MEiqJ4DYLgTlU4D6+A4wJl
+        Wb6FYXivKloKrwJ9AVkpVcFaOALsF5ivlE44CmwXWFopnXAkWBdYWymdcDRYFti6UjphBVAL7FkpnbAG
+        TAV0VkonaCZTgctkcL4BXFVs2MSHX5AAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
