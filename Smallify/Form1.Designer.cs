@@ -30,10 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.pbtnSkip = new System.Windows.Forms.PictureBox();
             this.pbtnPrevious = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).BeginInit();
+            this.pbtnPause = new System.Windows.Forms.PictureBox();
+            this.pbtnSkip = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -55,29 +57,41 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // pbtnSkip
-            // 
-            this.pbtnSkip.Image = global::Smallify.Properties.Resources.skip_default;
-            this.pbtnSkip.Location = new System.Drawing.Point(648, 82);
-            this.pbtnSkip.Name = "pbtnSkip";
-            this.pbtnSkip.Size = new System.Drawing.Size(32, 32);
-            this.pbtnSkip.TabIndex = 3;
-            this.pbtnSkip.TabStop = false;
-            this.pbtnSkip.Click += new System.EventHandler(this.pbtnSkip_Click);
-            this.pbtnSkip.MouseLeave += new System.EventHandler(this.pbtnSkip_MouseLeave);
-            this.pbtnSkip.MouseHover += new System.EventHandler(this.pbtnSkip_MouseHover);
-            // 
             // pbtnPrevious
             // 
             this.pbtnPrevious.Image = global::Smallify.Properties.Resources.previous_default;
-            this.pbtnPrevious.Location = new System.Drawing.Point(512, 82);
+            this.pbtnPrevious.Location = new System.Drawing.Point(12, 71);
             this.pbtnPrevious.Name = "pbtnPrevious";
             this.pbtnPrevious.Size = new System.Drawing.Size(32, 32);
             this.pbtnPrevious.TabIndex = 3;
             this.pbtnPrevious.TabStop = false;
             this.pbtnPrevious.Click += new System.EventHandler(this.pbtnPrevious_Click);
+            this.pbtnPrevious.MouseEnter += new System.EventHandler(this.pbtnPrevious_MouseHover);
             this.pbtnPrevious.MouseLeave += new System.EventHandler(this.pbtnPrevious_MouseLeave);
-            this.pbtnPrevious.MouseHover += new System.EventHandler(this.pbtnPrevious_MouseHover);
+            // 
+            // pbtnPause
+            // 
+            this.pbtnPause.Image = global::Smallify.Properties.Resources.pause_default;
+            this.pbtnPause.Location = new System.Drawing.Point(78, 62);
+            this.pbtnPause.Name = "pbtnPause";
+            this.pbtnPause.Size = new System.Drawing.Size(48, 48);
+            this.pbtnPause.TabIndex = 3;
+            this.pbtnPause.TabStop = false;
+            this.pbtnPause.Click += new System.EventHandler(this.pbtnPause_Click);
+            this.pbtnPause.MouseEnter += new System.EventHandler(this.pbtnPause_MouseHover);
+            this.pbtnPause.MouseLeave += new System.EventHandler(this.pbtnPause_MouseLeave);
+            // 
+            // pbtnSkip
+            // 
+            this.pbtnSkip.Image = global::Smallify.Properties.Resources.skip_default;
+            this.pbtnSkip.Location = new System.Drawing.Point(161, 71);
+            this.pbtnSkip.Name = "pbtnSkip";
+            this.pbtnSkip.Size = new System.Drawing.Size(32, 32);
+            this.pbtnSkip.TabIndex = 3;
+            this.pbtnSkip.TabStop = false;
+            this.pbtnSkip.Click += new System.EventHandler(this.pbtnSkip_Click);
+            this.pbtnSkip.MouseEnter += new System.EventHandler(this.pbtnSkip_MouseHover);
+            this.pbtnSkip.MouseLeave += new System.EventHandler(this.pbtnSkip_MouseLeave);
             // 
             // Form1
             // 
@@ -86,13 +100,15 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(949, 261);
             this.Controls.Add(this.pbtnPrevious);
+            this.Controls.Add(this.pbtnPause);
             this.Controls.Add(this.pbtnSkip);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,6 +119,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox pbtnSkip;
         private System.Windows.Forms.PictureBox pbtnPrevious;
+        private System.Windows.Forms.PictureBox pbtnPause;
     }
 }
 

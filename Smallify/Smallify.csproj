@@ -98,5 +98,17 @@
   <ItemGroup>
     <None Include="Resources\previous_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
