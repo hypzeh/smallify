@@ -120,5 +120,11 @@
   <ItemGroup>
     <None Include="Resources\icon_smallify.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

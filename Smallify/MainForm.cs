@@ -30,6 +30,22 @@ namespace Smallify
             tUpdate.Start();
         }
 
+        private void pbtnClose_MouseHover(object sender, EventArgs e)
+        {
+            pbtnClose.Image = Properties.Resources.close_hover;
+        }
+
+        private void pbtnClose_MouseLeave(object sender, EventArgs e)
+        {
+            pbtnClose.Image = Properties.Resources.close_default;
+        }
+
+        private void pbtnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            
+        }
+
         private void pbtnSkip_MouseHover(object sender, EventArgs e)
         {
             pbtnSkip.Image = Properties.Resources.skip_hover;
@@ -91,6 +107,7 @@ namespace Smallify
         {
             _spotifyStatus = _spotify.GetStatus();
             UpdateTrackInfo();
+            
 
             int trackLength = _spotifyStatus.Track.Length;
             int trackPosition = (int)_spotifyStatus.PlayingPosition;

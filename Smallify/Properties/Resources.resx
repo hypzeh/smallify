@@ -258,6 +258,24 @@
         vgFcVWzYxIdfkAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="close_default" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAlUlEQVQ4T52TwQ2AIBAErcRI
+        I2qp158fS5A1rDlkIaePibLcDvpgMjMwl+cX7g5eUubIrAiCYBadxGArQUTC8o6134hIqjJ4D4wkTRn4
+        AaIksgyqhcNLumXQBA5IzoIsAxkWcDIFkKmZrsB/Nn9HSpogo/65K6kWGZbVaVLiB0Zl0ki4ESmTSoJg
+        8UEQSp7L9PM623QBOw0GqPCATy0AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="close_hover" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAlUlEQVQ4T52TwQ2AIBAErcRI
+        I2r/rfixA2QNa+5kIaePibLcDvpgyjmDuT6/cHfwkgpHYUUQBLPoJAZbDSISlnes7UZE4srgPTCSNGVg
+        B4iSyDJwC4OVdMugCQyQnBVZBjKs4GQKIFMzXYH9bP6OlDRBQf1zV+IWBZbVaVJiB0Zl0ki4ESkTJ0Gw
+        2CAIJc9l+nmd83QB03ojt+OIGmMAAAAASUVORK5CYII=
+</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="icon_smallify" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_smallify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
