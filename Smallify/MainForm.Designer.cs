@@ -36,10 +36,12 @@
             this.pbtnSkip = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblArtist = new System.Windows.Forms.Label();
+            this.pBoxPlayBar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPlayBar)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTrack
@@ -122,12 +124,22 @@
             this.lblArtist.Text = "Artist";
             this.lblArtist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pBoxPlayBar
+            // 
+            this.pBoxPlayBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(215)))), ((int)(((byte)(96)))));
+            this.pBoxPlayBar.Location = new System.Drawing.Point(270, 12);
+            this.pBoxPlayBar.Name = "pBoxPlayBar";
+            this.pBoxPlayBar.Size = new System.Drawing.Size(632, 20);
+            this.pBoxPlayBar.TabIndex = 6;
+            this.pBoxPlayBar.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(949, 261);
+            this.Controls.Add(this.pBoxPlayBar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pbtnPrevious);
             this.Controls.Add(this.pbtnPause);
@@ -142,6 +154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPlayBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,6 +168,7 @@
         private System.Windows.Forms.PictureBox pbtnPause;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblArtist;
+        private System.Windows.Forms.PictureBox pBoxPlayBar;
     }
 }
 

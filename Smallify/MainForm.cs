@@ -38,6 +38,14 @@ namespace Smallify
             isPlaying = model.Playing ? true : false;
 
             pictureBox1.Image = model.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
+
+            int trackLength = model.Track.Length;
+            int trackPosition = (int)model.PlayingPosition;
+            float trackStep = (float)632 / trackLength;
+            float barWidth = trackPosition * trackStep;
+
+            pBoxPlayBar.Width = (int)barWidth;
+
         }
 
         private void pbtnSkip_MouseHover(object sender, EventArgs e)
