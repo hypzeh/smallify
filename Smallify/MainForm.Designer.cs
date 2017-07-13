@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblTrack = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.pbtnPrevious = new System.Windows.Forms.PictureBox();
             this.pbtnPause = new System.Windows.Forms.PictureBox();
             this.pbtnSkip = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblArtist = new System.Windows.Forms.Label();
             this.pBoxPlayBar = new System.Windows.Forms.PictureBox();
+            this.tUpdate = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnSkip)).BeginInit();
@@ -55,16 +56,6 @@
             this.lblTrack.TabIndex = 1;
             this.lblTrack.Text = "Track";
             this.lblTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(418, 206);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // pbtnPrevious
             // 
@@ -127,11 +118,15 @@
             // pBoxPlayBar
             // 
             this.pBoxPlayBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(215)))), ((int)(((byte)(96)))));
-            this.pBoxPlayBar.Location = new System.Drawing.Point(270, 12);
+            this.pBoxPlayBar.Location = new System.Drawing.Point(0, 50);
             this.pBoxPlayBar.Name = "pBoxPlayBar";
             this.pBoxPlayBar.Size = new System.Drawing.Size(632, 20);
             this.pBoxPlayBar.TabIndex = 6;
             this.pBoxPlayBar.TabStop = false;
+            // 
+            // tUpdate
+            // 
+            this.tUpdate.Tick += new System.EventHandler(this.tUpdate_Tick);
             // 
             // MainForm
             // 
@@ -144,7 +139,6 @@
             this.Controls.Add(this.pbtnPrevious);
             this.Controls.Add(this.pbtnPause);
             this.Controls.Add(this.pbtnSkip);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblArtist);
             this.Controls.Add(this.lblTrack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -162,13 +156,13 @@
 
         #endregion
         private System.Windows.Forms.Label lblTrack;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox pbtnSkip;
         private System.Windows.Forms.PictureBox pbtnPrevious;
         private System.Windows.Forms.PictureBox pbtnPause;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblArtist;
         private System.Windows.Forms.PictureBox pBoxPlayBar;
+        private System.Windows.Forms.Timer tUpdate;
     }
 }
 

@@ -14,38 +14,22 @@ namespace Smallify
     public partial class MainForm : Form
     {
         SpotifyLocalAPI _spotify = new SpotifyLocalAPI();
+        SpotifyAPI.Local.Models.StatusResponse _spotifyStatus = new SpotifyAPI.Local.Models.StatusResponse();
         bool isPlaying = false;
 
         public MainForm()
         {
             InitializeComponent();
             _spotify.Connect();
+            _spotifyStatus = _spotify.GetStatus();
 
-            var model = _spotify.GetStatus();
-            isPlaying = model.Playing ? true : false;
+            isPlaying = _spotifyStatus.Playing ? true : false;
 
-            lblTrack.Text = model.Track.TrackResource.Name;
-            lblArtist.Text = model.Track.ArtistResource.Name;
-            pictureBox1.Image = model.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
-        }
+            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
+            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
+            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            var model = _spotify.GetStatus();
-
-            lblTrack.Text = model.Track.TrackResource.Name;
-            lblArtist.Text = model.Track.ArtistResource.Name;
-            isPlaying = model.Playing ? true : false;
-
-            pictureBox1.Image = model.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
-
-            int trackLength = model.Track.Length;
-            int trackPosition = (int)model.PlayingPosition;
-            float trackStep = (float)632 / trackLength;
-            float barWidth = trackPosition * trackStep;
-
-            pBoxPlayBar.Width = (int)barWidth;
-
+            tUpdate.Start();
         }
 
         private void pbtnSkip_MouseHover(object sender, EventArgs e)
@@ -61,8 +45,15 @@ namespace Smallify
         private void pbtnSkip_Click(object sender, EventArgs e)
         {
             _spotify.Skip();
+            _spotifyStatus = _spotify.GetStatus();
+
+            isPlaying = _spotifyStatus.Playing ? true : false;
+
+            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
+            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
+            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
-   
+
         private void pbtnPrevious_MouseHover(object sender, EventArgs e)
         {
             pbtnPrevious.Image = Properties.Resources.previous_hover;
@@ -76,6 +67,13 @@ namespace Smallify
         private void pbtnPrevious_Click(object sender, EventArgs e)
         {
             _spotify.Previous();
+            _spotifyStatus = _spotify.GetStatus();
+
+            isPlaying = _spotifyStatus.Playing ? true : false;
+
+            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
+            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
+            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void pbtnPause_MouseHover(object sender, EventArgs e)
@@ -103,6 +101,28 @@ namespace Smallify
                 isPlaying = true;
             }
             pbtnPause.Image = isPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
+
+            _spotifyStatus = _spotify.GetStatus();
+
+            isPlaying = _spotifyStatus.Playing ? true : false;
+
+            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
+            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
+            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
+        }
+
+        private void tUpdate_Tick(object sender, EventArgs e)
+        {
+            _spotifyStatus = _spotify.GetStatus();
+
+            int trackLength = _spotifyStatus.Track.Length;
+            int trackPosition = (int)_spotifyStatus.PlayingPosition;
+            float trackStep = (float)MainForm.ActiveForm.Width / trackLength;
+            float barWidth = trackPosition * trackStep;
+
+            pBoxPlayBar.Width = (int)barWidth;
+
+
         }
     }
 }
