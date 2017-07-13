@@ -153,9 +153,9 @@ namespace Smallify.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon Smallify_Icon {
+        internal static System.Drawing.Icon smallify_icon {
             get {
-                object obj = ResourceManager.GetObject("Smallify_Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("smallify_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

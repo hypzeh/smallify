@@ -16,6 +16,7 @@ namespace Smallify
         SpotifyLocalAPI _spotify = new SpotifyLocalAPI();
         SpotifyAPI.Local.Models.StatusResponse _spotifyStatus = new SpotifyAPI.Local.Models.StatusResponse();
         bool isPlaying = false;
+        string nowPlayingName = null;
 
         public MainForm()
         {
@@ -24,10 +25,7 @@ namespace Smallify
             _spotifyStatus = _spotify.GetStatus();
 
             isPlaying = _spotifyStatus.Playing ? true : false;
-
-            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
-            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
-            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
+            UpdateTrackInfo();
 
             tUpdate.Start();
         }
@@ -45,13 +43,6 @@ namespace Smallify
         private void pbtnSkip_Click(object sender, EventArgs e)
         {
             _spotify.Skip();
-            _spotifyStatus = _spotify.GetStatus();
-
-            isPlaying = _spotifyStatus.Playing ? true : false;
-
-            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
-            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
-            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void pbtnPrevious_MouseHover(object sender, EventArgs e)
@@ -67,13 +58,6 @@ namespace Smallify
         private void pbtnPrevious_Click(object sender, EventArgs e)
         {
             _spotify.Previous();
-            _spotifyStatus = _spotify.GetStatus();
-
-            isPlaying = _spotifyStatus.Playing ? true : false;
-
-            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
-            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
-            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void pbtnPause_MouseHover(object sender, EventArgs e)
@@ -101,28 +85,33 @@ namespace Smallify
                 isPlaying = true;
             }
             pbtnPause.Image = isPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
-
-            _spotifyStatus = _spotify.GetStatus();
-
-            isPlaying = _spotifyStatus.Playing ? true : false;
-
-            lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
-            lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
-            pictureBox1.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
         }
 
         private void tUpdate_Tick(object sender, EventArgs e)
         {
             _spotifyStatus = _spotify.GetStatus();
+            UpdateTrackInfo();
 
             int trackLength = _spotifyStatus.Track.Length;
             int trackPosition = (int)_spotifyStatus.PlayingPosition;
-            float trackStep = (float)MainForm.ActiveForm.Width / trackLength;
+            float trackStep = (float)this.Width / trackLength;
             float barWidth = trackPosition * trackStep;
 
             pBoxPlayBar.Width = (int)barWidth;
+        }
 
+        private void UpdateTrackInfo()
+        {
+            _spotifyStatus = _spotify.GetStatus();
 
+            if (nowPlayingName != _spotifyStatus.Track.TrackResource.Name)
+            {
+                lblTrack.Text = _spotifyStatus.Track.TrackResource.Name;
+                lblArtist.Text = _spotifyStatus.Track.ArtistResource.Name;
+                pBoxAlbumArt.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
+
+                nowPlayingName = _spotifyStatus.Track.TrackResource.Name;
+            }
         }
     }
 }
