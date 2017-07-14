@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.tUpdate = new System.Windows.Forms.Timer(this.components);
+            this.tlpMainContent = new System.Windows.Forms.TableLayoutPanel();
+            this.flpTrackInfo = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTrack = new System.Windows.Forms.Label();
             this.lblArtist = new System.Windows.Forms.Label();
-            this.tUpdate = new System.Windows.Forms.Timer(this.components);
-            this.flpTrackInfo = new System.Windows.Forms.FlowLayoutPanel();
-            this.tlpMainContent = new System.Windows.Forms.TableLayoutPanel();
             this.pBoxAlbumArt = new System.Windows.Forms.PictureBox();
             this.pbtnPrevious = new System.Windows.Forms.PictureBox();
             this.pbtnPause = new System.Windows.Forms.PictureBox();
@@ -42,8 +42,8 @@
             this.pbtnClose = new System.Windows.Forms.PictureBox();
             this.flpTimePlayBar = new System.Windows.Forms.FlowLayoutPanel();
             this.pBoxPlayBar = new System.Windows.Forms.PictureBox();
-            this.flpTrackInfo.SuspendLayout();
             this.tlpMainContent.SuspendLayout();
+            this.flpTrackInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAlbumArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).BeginInit();
@@ -52,6 +52,55 @@
             this.flpTimePlayBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxPlayBar)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tUpdate
+            // 
+            this.tUpdate.Tick += new System.EventHandler(this.tUpdate_Tick);
+            // 
+            // tlpMainContent
+            // 
+            this.tlpMainContent.AutoSize = true;
+            this.tlpMainContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tlpMainContent.ColumnCount = 7;
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMainContent.Controls.Add(this.flpTrackInfo, 0, 0);
+            this.tlpMainContent.Controls.Add(this.pBoxAlbumArt, 0, 0);
+            this.tlpMainContent.Controls.Add(this.pbtnPrevious, 2, 0);
+            this.tlpMainContent.Controls.Add(this.pbtnPause, 3, 0);
+            this.tlpMainContent.Controls.Add(this.pbtnSkip, 4, 0);
+            this.tlpMainContent.Controls.Add(this.pbtnClose, 5, 0);
+            this.tlpMainContent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpMainContent.Location = new System.Drawing.Point(0, 0);
+            this.tlpMainContent.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpMainContent.Name = "tlpMainContent";
+            this.tlpMainContent.RowCount = 1;
+            this.tlpMainContent.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpMainContent.Size = new System.Drawing.Size(500, 64);
+            this.tlpMainContent.TabIndex = 8;
+            this.tlpMainContent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.tlpMainContent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            this.tlpMainContent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
+            // 
+            // flpTrackInfo
+            // 
+            this.flpTrackInfo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flpTrackInfo.AutoSize = true;
+            this.flpTrackInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flpTrackInfo.Controls.Add(this.lblTrack);
+            this.flpTrackInfo.Controls.Add(this.lblArtist);
+            this.flpTrackInfo.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpTrackInfo.Location = new System.Drawing.Point(64, 12);
+            this.flpTrackInfo.Margin = new System.Windows.Forms.Padding(0);
+            this.flpTrackInfo.Name = "flpTrackInfo";
+            this.flpTrackInfo.Size = new System.Drawing.Size(59, 40);
+            this.flpTrackInfo.TabIndex = 7;
+            this.flpTrackInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
             // lblTrack
             // 
@@ -79,53 +128,6 @@
             this.lblArtist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblArtist.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
-            // tUpdate
-            // 
-            this.tUpdate.Tick += new System.EventHandler(this.tUpdate_Tick);
-            // 
-            // flpTrackInfo
-            // 
-            this.flpTrackInfo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flpTrackInfo.AutoSize = true;
-            this.flpTrackInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flpTrackInfo.Controls.Add(this.lblTrack);
-            this.flpTrackInfo.Controls.Add(this.lblArtist);
-            this.flpTrackInfo.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpTrackInfo.Location = new System.Drawing.Point(64, 12);
-            this.flpTrackInfo.Margin = new System.Windows.Forms.Padding(0);
-            this.flpTrackInfo.Name = "flpTrackInfo";
-            this.flpTrackInfo.Size = new System.Drawing.Size(59, 40);
-            this.flpTrackInfo.TabIndex = 7;
-            this.flpTrackInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            // 
-            // tlpMainContent
-            // 
-            this.tlpMainContent.AutoSize = true;
-            this.tlpMainContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tlpMainContent.ColumnCount = 7;
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMainContent.Controls.Add(this.pBoxAlbumArt, 0, 0);
-            this.tlpMainContent.Controls.Add(this.flpTrackInfo, 1, 0);
-            this.tlpMainContent.Controls.Add(this.pbtnPrevious, 2, 0);
-            this.tlpMainContent.Controls.Add(this.pbtnPause, 3, 0);
-            this.tlpMainContent.Controls.Add(this.pbtnSkip, 4, 0);
-            this.tlpMainContent.Controls.Add(this.pbtnClose, 5, 0);
-            this.tlpMainContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpMainContent.Location = new System.Drawing.Point(0, 0);
-            this.tlpMainContent.Margin = new System.Windows.Forms.Padding(0);
-            this.tlpMainContent.Name = "tlpMainContent";
-            this.tlpMainContent.RowCount = 1;
-            this.tlpMainContent.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMainContent.Size = new System.Drawing.Size(510, 64);
-            this.tlpMainContent.TabIndex = 8;
-            this.tlpMainContent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            // 
             // pBoxAlbumArt
             // 
             this.pBoxAlbumArt.Image = ((System.Drawing.Image)(resources.GetObject("pBoxAlbumArt.Image")));
@@ -142,7 +144,7 @@
             // 
             this.pbtnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pbtnPrevious.Image = global::Smallify.Properties.Resources.previous_default;
-            this.pbtnPrevious.Location = new System.Drawing.Point(349, 16);
+            this.pbtnPrevious.Location = new System.Drawing.Point(339, 16);
             this.pbtnPrevious.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.pbtnPrevious.Name = "pbtnPrevious";
             this.pbtnPrevious.Size = new System.Drawing.Size(32, 32);
@@ -157,7 +159,7 @@
             // 
             this.pbtnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pbtnPause.Image = global::Smallify.Properties.Resources.pause_default;
-            this.pbtnPause.Location = new System.Drawing.Point(391, 8);
+            this.pbtnPause.Location = new System.Drawing.Point(381, 8);
             this.pbtnPause.Margin = new System.Windows.Forms.Padding(0);
             this.pbtnPause.Name = "pbtnPause";
             this.pbtnPause.Size = new System.Drawing.Size(48, 48);
@@ -172,7 +174,7 @@
             // 
             this.pbtnSkip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbtnSkip.Image = global::Smallify.Properties.Resources.skip_default;
-            this.pbtnSkip.Location = new System.Drawing.Point(449, 16);
+            this.pbtnSkip.Location = new System.Drawing.Point(439, 16);
             this.pbtnSkip.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbtnSkip.Name = "pbtnSkip";
             this.pbtnSkip.Size = new System.Drawing.Size(32, 32);
@@ -187,7 +189,7 @@
             // 
             this.pbtnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbtnClose.Image = global::Smallify.Properties.Resources.close_default;
-            this.pbtnClose.Location = new System.Drawing.Point(491, 3);
+            this.pbtnClose.Location = new System.Drawing.Point(481, 3);
             this.pbtnClose.Margin = new System.Windows.Forms.Padding(0, 3, 3, 0);
             this.pbtnClose.Name = "pbtnClose";
             this.pbtnClose.Size = new System.Drawing.Size(16, 16);
@@ -206,7 +208,7 @@
             this.flpTimePlayBar.Location = new System.Drawing.Point(0, 64);
             this.flpTimePlayBar.Margin = new System.Windows.Forms.Padding(0);
             this.flpTimePlayBar.Name = "flpTimePlayBar";
-            this.flpTimePlayBar.Size = new System.Drawing.Size(510, 5);
+            this.flpTimePlayBar.Size = new System.Drawing.Size(500, 5);
             this.flpTimePlayBar.TabIndex = 9;
             // 
             // pBoxPlayBar
@@ -223,20 +225,25 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(510, 68);
+            this.ClientSize = new System.Drawing.Size(500, 68);
+            this.ControlBox = false;
             this.Controls.Add(this.flpTimePlayBar);
             this.Controls.Add(this.tlpMainContent);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(510, 68);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(5000, 68);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 68);
             this.Name = "MainForm";
             this.Text = "Smallify";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            this.flpTrackInfo.ResumeLayout(false);
-            this.flpTrackInfo.PerformLayout();
             this.tlpMainContent.ResumeLayout(false);
             this.tlpMainContent.PerformLayout();
+            this.flpTrackInfo.ResumeLayout(false);
+            this.flpTrackInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAlbumArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnPause)).EndInit();
@@ -250,18 +257,18 @@
         }
 
         #endregion
+        private System.Windows.Forms.Timer tUpdate;
+        private System.Windows.Forms.TableLayoutPanel tlpMainContent;
+        private System.Windows.Forms.FlowLayoutPanel flpTrackInfo;
         private System.Windows.Forms.Label lblTrack;
+        private System.Windows.Forms.Label lblArtist;
+        private System.Windows.Forms.PictureBox pBoxAlbumArt;
         private System.Windows.Forms.PictureBox pbtnPrevious;
         private System.Windows.Forms.PictureBox pbtnPause;
-        private System.Windows.Forms.PictureBox pBoxAlbumArt;
-        private System.Windows.Forms.Label lblArtist;
-        private System.Windows.Forms.PictureBox pBoxPlayBar;
-        private System.Windows.Forms.Timer tUpdate;
-        private System.Windows.Forms.FlowLayoutPanel flpTrackInfo;
-        private System.Windows.Forms.TableLayoutPanel tlpMainContent;
         private System.Windows.Forms.PictureBox pbtnSkip;
-        private System.Windows.Forms.FlowLayoutPanel flpTimePlayBar;
         private System.Windows.Forms.PictureBox pbtnClose;
+        private System.Windows.Forms.FlowLayoutPanel flpTimePlayBar;
+        private System.Windows.Forms.PictureBox pBoxPlayBar;
     }
 }
 
