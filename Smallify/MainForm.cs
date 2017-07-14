@@ -21,12 +21,18 @@ namespace Smallify
         public MainForm()
         {
             InitializeComponent();
+            LaunchSettings();
+
+            // Spotify connection setup
             _spotify.Connect();
             _spotifyStatus = _spotify.GetStatus();
 
+            // Spotify track status and informaiton
             isPlaying = _spotifyStatus.Playing ? true : false;
+            pbtnPause.Image = isPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
             UpdateTrackInfo();
 
+            // Start information update timer
             tUpdate.Start();
         }
 
@@ -86,6 +92,20 @@ namespace Smallify
                 }
 
                 clickPoint = e.Location;
+            }
+        }
+
+        // GET SETTINGS FOR LAUNCH
+        private void LaunchSettings()
+        {
+            // Check 'Always on top' option
+            if (cMenuItem1.Checked)
+            {
+                this.TopMost = true;
+            }
+            else
+            {
+                this.TopMost = false;
             }
         }
 
@@ -207,6 +227,19 @@ namespace Smallify
                 pBoxAlbumArt.Image = _spotifyStatus.Track.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
 
                 nowPlayingName = _spotifyStatus.Track.TrackResource.Name;
+            }
+        }
+
+        private void cMenuItem1_Click(object sender, EventArgs e)
+        {
+            //
+            if (cMenuItem1.Checked)
+            {
+                this.TopMost = true;
+            }
+            else
+            {
+                this.TopMost = false;
             }
         }
     }

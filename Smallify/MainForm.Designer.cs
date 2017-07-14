@@ -42,6 +42,8 @@
             this.pbtnClose = new System.Windows.Forms.PictureBox();
             this.flpTimePlayBar = new System.Windows.Forms.FlowLayoutPanel();
             this.pBoxPlayBar = new System.Windows.Forms.PictureBox();
+            this.cMenuMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpMainContent.SuspendLayout();
             this.flpTrackInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAlbumArt)).BeginInit();
@@ -51,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbtnClose)).BeginInit();
             this.flpTimePlayBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxPlayBar)).BeginInit();
+            this.cMenuMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tUpdate
@@ -221,6 +224,23 @@
             this.pBoxPlayBar.TabIndex = 6;
             this.pBoxPlayBar.TabStop = false;
             // 
+            // cMenuMain
+            // 
+            this.cMenuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cMenuItem1});
+            this.cMenuMain.Name = "cMenuMain";
+            this.cMenuMain.Size = new System.Drawing.Size(150, 26);
+            // 
+            // cMenuItem1
+            // 
+            this.cMenuItem1.Checked = true;
+            this.cMenuItem1.CheckOnClick = true;
+            this.cMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cMenuItem1.Name = "cMenuItem1";
+            this.cMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.cMenuItem1.Text = "Always on top";
+            this.cMenuItem1.Click += new System.EventHandler(this.cMenuItem1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +248,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(500, 68);
+            this.ContextMenuStrip = this.cMenuMain;
             this.ControlBox = false;
             this.Controls.Add(this.flpTimePlayBar);
             this.Controls.Add(this.tlpMainContent);
@@ -251,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbtnClose)).EndInit();
             this.flpTimePlayBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBoxPlayBar)).EndInit();
+            this.cMenuMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +291,8 @@
         private System.Windows.Forms.PictureBox pbtnClose;
         private System.Windows.Forms.FlowLayoutPanel flpTimePlayBar;
         private System.Windows.Forms.PictureBox pBoxPlayBar;
+        private System.Windows.Forms.ContextMenuStrip cMenuMain;
+        private System.Windows.Forms.ToolStripMenuItem cMenuItem1;
     }
 }
 
