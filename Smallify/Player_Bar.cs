@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace Smallify
 {
-
-
     public partial class Player_Bar : Form
     {
         // Override Window Processes
@@ -70,9 +68,20 @@ namespace Smallify
                 m.Result = (IntPtr)HTCAPTION;
         }
 
+
+
+        SmallifyManager sManager;
+
         public Player_Bar()
         {
             InitializeComponent();
+
+            sManager = new SmallifyManager();
+        }
+
+        private void UpdateTick_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

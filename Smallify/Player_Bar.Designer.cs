@@ -28,13 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.UpdateTick = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // UpdateTick
+            // 
+            this.UpdateTick.Tick += new System.EventHandler(this.UpdateTick_Tick);
             // 
             // Player_Bar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 261);
+            this.ClientSize = new System.Drawing.Size(665, 181);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Player_Bar";
             this.Text = "Smallify";
@@ -43,5 +49,6 @@
         }
 
         #endregion
+        private System.Windows.Forms.Timer UpdateTick;
     }
 }
