@@ -64,7 +64,37 @@ namespace Smallify
             }
 
             // Get Spotify status
-            _spotifyStatus = _spotify.GetStatus(); 
+            _spotifyStatus = _spotify.GetStatus();
+            currentTrack = _spotifyStatus.Track;
+            currentAlbumArt = _spotifyStatus.Track.GetAlbumArt(AlbumArtSize.Size640);
+
+            UpdateTrack();
+        }
+
+        public void PlayPause()
+        {
+            if (isTrackPlaying)
+            {
+                isTrackPlaying = false;
+                _spotify.Pause();
+            }
+            else
+            {
+                isTrackPlaying = true;
+                _spotify.Play();
+            }
+        }
+
+        public void Next()
+        {
+            isTrackPlaying = true;
+            _spotify.Skip();
+        }
+
+        public void Previous()
+        {
+            isTrackPlaying = true;
+            _spotify.Previous();
         }
 
         public async void UpdateTrack()
@@ -81,6 +111,8 @@ namespace Smallify
             {
                 isAdPlaying = false;
             }
+
+            isTrackPlaying = _spotifyStatus.Playing ? true : false;
             
             // Get Track information and album art
             currentTrack = _spotifyStatus.Track;
