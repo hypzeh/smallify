@@ -97,10 +97,21 @@ namespace Smallify
             _spotify.Previous();
         }
 
+        public int TimeToPixels(int maxWidth)
+        {
+            int trackLength = currentTrack.Length;
+            int trackPosition = (int)_spotifyStatus.PlayingPosition;
+            float trackStep = (float)maxWidth / trackLength;
+            float barWidth = trackPosition * trackStep;
+
+            return (int)barWidth;
+        }
+
         public async void UpdateTrack()
         {
             // Get Spotify status as response
             _spotifyStatus = _spotify.GetStatus();
+
             if (_spotifyStatus == null || _spotifyStatus.Track == null)
             {
                 // IF status or track is null then assume an advert is playing
@@ -113,10 +124,13 @@ namespace Smallify
             }
 
             isTrackPlaying = _spotifyStatus.Playing ? true : false;
-            
-            // Get Track information and album art
-            currentTrack = _spotifyStatus.Track;
-            currentAlbumArt = await currentTrack.GetAlbumArtAsync(AlbumArtSize.Size640);
+
+            if (currentTrack.TrackResource.Name != _spotifyStatus.Track.TrackResource.Name)
+            {
+                // Get Track information and album art
+                currentTrack = _spotifyStatus.Track;
+                currentAlbumArt = await currentTrack.GetAlbumArtAsync(AlbumArtSize.Size640);
+            }
         }
     }
 }

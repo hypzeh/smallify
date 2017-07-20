@@ -147,6 +147,7 @@ namespace Smallify
         public Player_Bar()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.smallify_icon;
 
             // Initialise Smallify Manager
             sManager = new SmallifyManager();
@@ -155,9 +156,7 @@ namespace Smallify
             Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
 
             // Initialise Track information and album art
-            Label_Track.Text = sManager.currentTrack.TrackResource.Name;
-            Label_Artist.Text = sManager.currentTrack.ArtistResource.Name;
-            PB_AlbumArt.Image = sManager.currentAlbumArt;
+            SetTrackInformaiton();
 
             Timer_Update.Start();
         }
@@ -165,9 +164,22 @@ namespace Smallify
         // Update Timer
         private void Timer_Update_Tick(object sender, EventArgs e)
         {
-            // Update Play|Pause button image depending if there is a track currently playing
-            Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
+            sManager.UpdateTrack();
 
+            // IF PLAYING, get current times of Track and update now playing time bar
+            if (sManager.isTrackPlaying)
+            {
+                SetTrackInformaiton();
+            }
+
+        }
+
+        private void SetTrackInformaiton()
+        {
+            Label_Track.Text = sManager.currentTrack.TrackResource.Name;
+            Label_Artist.Text = sManager.currentTrack.ArtistResource.Name;
+            PB_AlbumArt.Image = sManager.currentAlbumArt;
+            PB_ProgressBar.Width = sManager.TimeToPixels(this.Width);
         }
 
         // PLAY|PAUSE : Mouse "Enter" state
@@ -243,6 +255,23 @@ namespace Smallify
         private void Btn_Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Player_Bar_Resize(object sender, EventArgs e)
+        {
+            PB_AlbumArt.Width = PB_AlbumArt.Height;
+        }
+
+        private void CMenu_Item1_Click(object sender, EventArgs e)
+        {
+            if (CMenu_Item1.Checked)
+            {
+                this.TopMost = true;
+            }
+            else
+            {
+                this.TopMost = false;
+            }
         }
     }
 }
