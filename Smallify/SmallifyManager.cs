@@ -74,6 +74,8 @@ namespace Smallify
 
             // Get Spotify status & Set Spotify Events
             _spotifyStatus = _spotify.GetStatus();
+            isTrackPlaying = _spotifyStatus.Playing;
+
             _spotify.OnTrackChange += _spotify_OnTrackChange;
             _spotify.OnPlayStateChange += _spotify_OnPlayStateChange;
             _spotify.OnTrackTimeChange += _spotify_OnTrackTimeChange;
@@ -151,7 +153,6 @@ namespace Smallify
             if (spotifyStatus == null || spotifyStatus.Track == null)
             {
                 // Assume an Advert is playing
-                //_currentTrack = null;
                 _isAdPlaying = true;
                 return;
             }
