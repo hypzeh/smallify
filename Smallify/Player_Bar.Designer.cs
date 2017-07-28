@@ -39,7 +39,7 @@
             this.FLP_MediaControls = new System.Windows.Forms.FlowLayoutPanel();
             this.Btn_Previous = new System.Windows.Forms.PictureBox();
             this.Btn_PlayPause = new System.Windows.Forms.PictureBox();
-            this.Btn_Next = new System.Windows.Forms.PictureBox();
+            this.Btn_Skip = new System.Windows.Forms.PictureBox();
             this.FLP_ProgressBar = new System.Windows.Forms.FlowLayoutPanel();
             this.PB_ProgressBar = new System.Windows.Forms.PictureBox();
             this.Context_Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -51,7 +51,7 @@
             this.FLP_MediaControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_PlayPause)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Next)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Skip)).BeginInit();
             this.FLP_ProgressBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_ProgressBar)).BeginInit();
             this.Context_Menu.SuspendLayout();
@@ -59,6 +59,7 @@
             // 
             // Timer_Update
             // 
+            this.Timer_Update.Interval = 1000;
             this.Timer_Update.Tick += new System.EventHandler(this.Timer_Update_Tick);
             // 
             // TLP_TrackBar
@@ -145,6 +146,7 @@
             // 
             this.PB_AlbumArt.Dock = System.Windows.Forms.DockStyle.Left;
             this.PB_AlbumArt.Image = global::Smallify.Properties.Resources.icon_smallify;
+            this.PB_AlbumArt.InitialImage = global::Smallify.Properties.Resources.icon_smallify;
             this.PB_AlbumArt.Location = new System.Drawing.Point(0, 0);
             this.PB_AlbumArt.Margin = new System.Windows.Forms.Padding(0);
             this.PB_AlbumArt.Name = "PB_AlbumArt";
@@ -161,7 +163,7 @@
             this.FLP_MediaControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FLP_MediaControls.Controls.Add(this.Btn_Previous);
             this.FLP_MediaControls.Controls.Add(this.Btn_PlayPause);
-            this.FLP_MediaControls.Controls.Add(this.Btn_Next);
+            this.FLP_MediaControls.Controls.Add(this.Btn_Skip);
             this.FLP_MediaControls.Location = new System.Drawing.Point(363, 3);
             this.FLP_MediaControls.Name = "FLP_MediaControls";
             this.FLP_MediaControls.Size = new System.Drawing.Size(134, 47);
@@ -197,20 +199,20 @@
             this.Btn_PlayPause.MouseEnter += new System.EventHandler(this.Btn_PlayPause_MouseEnter);
             this.Btn_PlayPause.MouseLeave += new System.EventHandler(this.Btn_PlayPause_MouseLeave);
             // 
-            // Btn_Next
+            // Btn_Skip
             // 
-            this.Btn_Next.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Btn_Next.Image = global::Smallify.Properties.Resources.skip_default;
-            this.Btn_Next.Location = new System.Drawing.Point(100, 0);
-            this.Btn_Next.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.Btn_Next.Name = "Btn_Next";
-            this.Btn_Next.Size = new System.Drawing.Size(32, 48);
-            this.Btn_Next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Btn_Next.TabIndex = 6;
-            this.Btn_Next.TabStop = false;
-            this.Btn_Next.Click += new System.EventHandler(this.Btn_Next_Click);
-            this.Btn_Next.MouseEnter += new System.EventHandler(this.Btn_Next_MouseEnter);
-            this.Btn_Next.MouseLeave += new System.EventHandler(this.Btn_Next_MouseLeave);
+            this.Btn_Skip.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Btn_Skip.Image = global::Smallify.Properties.Resources.skip_default;
+            this.Btn_Skip.Location = new System.Drawing.Point(100, 0);
+            this.Btn_Skip.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.Btn_Skip.Name = "Btn_Skip";
+            this.Btn_Skip.Size = new System.Drawing.Size(32, 48);
+            this.Btn_Skip.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Btn_Skip.TabIndex = 6;
+            this.Btn_Skip.TabStop = false;
+            this.Btn_Skip.Click += new System.EventHandler(this.Btn_Skip_Click);
+            this.Btn_Skip.MouseEnter += new System.EventHandler(this.Btn_Skip_MouseEnter);
+            this.Btn_Skip.MouseLeave += new System.EventHandler(this.Btn_Skip_MouseLeave);
             // 
             // FLP_ProgressBar
             // 
@@ -247,7 +249,7 @@
             this.CMenu_Item1.CheckOnClick = true;
             this.CMenu_Item1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CMenu_Item1.Name = "CMenu_Item1";
-            this.CMenu_Item1.Size = new System.Drawing.Size(152, 22);
+            this.CMenu_Item1.Size = new System.Drawing.Size(149, 22);
             this.CMenu_Item1.Text = "Always on top";
             this.CMenu_Item1.Click += new System.EventHandler(this.CMenu_Item1_Click);
             // 
@@ -269,6 +271,7 @@
             this.Name = "Player_Bar";
             this.Text = "Smallify";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.Player_Bar_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveForm_MouseDown);
             this.Resize += new System.EventHandler(this.Player_Bar_Resize);
             this.TLP_TrackBar.ResumeLayout(false);
@@ -280,7 +283,7 @@
             this.FLP_MediaControls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Previous)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_PlayPause)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Next)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Skip)).EndInit();
             this.FLP_ProgressBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PB_ProgressBar)).EndInit();
             this.Context_Menu.ResumeLayout(false);
@@ -295,7 +298,7 @@
         private System.Windows.Forms.PictureBox PB_AlbumArt;
         private System.Windows.Forms.PictureBox Btn_Previous;
         private System.Windows.Forms.PictureBox Btn_PlayPause;
-        private System.Windows.Forms.PictureBox Btn_Next;
+        private System.Windows.Forms.PictureBox Btn_Skip;
         private System.Windows.Forms.FlowLayoutPanel FLP_MediaControls;
         private System.Windows.Forms.FlowLayoutPanel FLP_TrackInformation;
         private System.Windows.Forms.Label Label_Track;

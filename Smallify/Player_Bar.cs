@@ -16,7 +16,7 @@ namespace Smallify
 
     public partial class Player_Bar : Form
     {
-        SmallifyManager sManager;
+        private static SmallifyManager _smallifyManger;
 
         // Border size to resize the form
         const int edge = 5;
@@ -148,15 +148,20 @@ namespace Smallify
         {
             InitializeComponent();
             this.Icon = Properties.Resources.smallify_icon;
+        }
 
+        private void Player_Bar_Load(object sender, EventArgs e)
+        {
             // Initialise Smallify Manager
-            sManager = new SmallifyManager();
+            _smallifyManger = new SmallifyManager();
 
             // Initialise Play|Pause Media control state
-            Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
 
             // Initialise Track information and album art
-            SetTrackInformaiton();
+            Label_Track.Text = _smallifyManger.currentTrackName;
+            Label_Artist.Text = _smallifyManger.currentArtistName;
+            PB_AlbumArt.Image = _smallifyManger.currentLargeCover;
 
             Timer_Update.Start();
         }
@@ -164,61 +169,54 @@ namespace Smallify
         // Update Timer
         private void Timer_Update_Tick(object sender, EventArgs e)
         {
-            sManager.UpdateTrack();
+            // Update Track information
+            Label_Track.Text = _smallifyManger.currentTrackName;
+            Label_Artist.Text = _smallifyManger.currentArtistName;
+            PB_AlbumArt.Image = _smallifyManger.currentLargeCover;
 
-            // IF PLAYING, get current times of Track and update now playing time bar
-            if (sManager.isTrackPlaying)
-            {
-                SetTrackInformaiton();
-            }
-
-        }
-
-        private void SetTrackInformaiton()
-        {
-            Label_Track.Text = sManager.currentTrack.TrackResource.Name;
-            Label_Artist.Text = sManager.currentTrack.ArtistResource.Name;
-            PB_AlbumArt.Image = sManager.currentAlbumArt;
-            PB_ProgressBar.Width = sManager.TimeToPixels(this.Width);
+            // Calculate progress bar width
+            float trackStep = (float)this.Width / _smallifyManger.currentTrackLength;
+            float barWidth = _smallifyManger.currentTrackPosition * trackStep;
+            PB_ProgressBar.Width = (int)barWidth;
         }
 
         // PLAY|PAUSE : Mouse "Enter" state
         private void Btn_PlayPause_MouseEnter(object sender, EventArgs e)
         {
-            Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
         }
 
         // PLAY|PAUSE : Mouse "Leave" state
         private void Btn_PlayPause_MouseLeave(object sender, EventArgs e)
         {
-            Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
         }
 
         // PLAY|PAUSE : Mouse "Click"
         private void Btn_PlayPause_Click(object sender, EventArgs e)
         {
-            sManager.PlayPause();
+            _smallifyManger.PlayPause();
 
             // Change image to the opposite of the current playing state (eg. If playing show pause button...)
-            Btn_PlayPause.Image = sManager.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
         }
 
         // NEXT : Mouse "Enter" state
-        private void Btn_Next_MouseEnter(object sender, EventArgs e)
+        private void Btn_Skip_MouseEnter(object sender, EventArgs e)
         {
-            Btn_Next.Image = Properties.Resources.skip_hover;
+            Btn_Skip.Image = Properties.Resources.skip_hover;
         }
 
         // NEXT : Mouse "Leave" state
-        private void Btn_Next_MouseLeave(object sender, EventArgs e)
+        private void Btn_Skip_MouseLeave(object sender, EventArgs e)
         {
-            Btn_Next.Image = Properties.Resources.skip_default;
+            Btn_Skip.Image = Properties.Resources.skip_default;
         }
 
         // NEXT : Mouse "Click"
-        private void Btn_Next_Click(object sender, EventArgs e)
+        private void Btn_Skip_Click(object sender, EventArgs e)
         {
-            sManager.Next();
+            _smallifyManger.Skip();
         }
 
         // PREVIOUS : Mouse "Enter" state
@@ -236,7 +234,7 @@ namespace Smallify
         // PREVIOUS : Mouse "Click"
         private void Btn_Previous_Click(object sender, EventArgs e)
         {
-            sManager.Previous();
+            _smallifyManger.Previous();
         }
 
         // EXIT APPLICATON : Mouse "Enter" state

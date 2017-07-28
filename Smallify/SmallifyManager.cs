@@ -14,26 +14,35 @@ namespace Smallify
 {
     public class SmallifyManager
     {
-        public Track currentTrack;
-        public Bitmap currentAlbumArt;
-        public bool isAdPlaying;
+        public string currentTrackName;
+        public string currentArtistName;
+        public Bitmap currentLargeCover;
+        public int currentTrackPosition;
+        public int currentTrackLength;
         public bool isTrackPlaying;
 
 
         private static SpotifyLocalAPI _spotify;
         private static StatusResponse _spotifyStatus;
+        private Track _currentTrack;
+        private bool _isAdPlaying;
 
-        // Smallify Manager
+
         public SmallifyManager()
         {
             _spotify = new SpotifyLocalAPI();
             _spotifyStatus = new StatusResponse();
 
+            // Initialise default values for Track informaiton
+            currentTrackName = "Track";
+            currentArtistName = "Artist";
+            currentLargeCover = Properties.Resources.icon_smallify;
+
             // IF Spotify is NOT running, run Spotify
             if (!SpotifyLocalAPI.IsSpotifyRunning())
             {
                 SpotifyLocalAPI.RunSpotify();
-                Thread.Sleep(5000);
+                Thread.Sleep(TimeSpan.FromSeconds(5));
             }
 
             // Attempt to connect with Spotify
@@ -52,22 +61,26 @@ namespace Smallify
                         {
                             // IF connected with Spotify move on, else loop back round
                             break;
-                        }  
+                        }
                     }
                     else
                     {
                         // User refused to retry, close application
                         Application.Exit();
                         return;
-                    }  
+                    }
                 }
             }
 
-            // Get Spotify status
+            // Get Spotify status & Set Spotify Events
             _spotifyStatus = _spotify.GetStatus();
-            currentTrack = _spotifyStatus.Track;
-            currentAlbumArt = _spotifyStatus.Track.GetAlbumArt(AlbumArtSize.Size640);
+            _spotify.OnTrackChange += _spotify_OnTrackChange;
+            _spotify.OnPlayStateChange += _spotify_OnPlayStateChange;
+            _spotify.OnTrackTimeChange += _spotify_OnTrackTimeChange;
 
+            _spotify.ListenForEvents = true;
+
+            // Update Track Information
             UpdateTrack();
         }
 
@@ -85,7 +98,7 @@ namespace Smallify
             }
         }
 
-        public void Next()
+        public void Skip()
         {
             isTrackPlaying = true;
             _spotify.Skip();
@@ -97,6 +110,73 @@ namespace Smallify
             _spotify.Previous();
         }
 
+        private void _spotify_OnTrackChange(object sender, TrackChangeEventArgs e)
+        {
+            if (_isAdPlaying)
+            {
+                return;
+            }
+
+            UpdateTrack();
+        }
+
+        private void _spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
+        {
+            if (_isAdPlaying)
+            {
+                return;
+            }
+
+            isTrackPlaying = e.Playing;
+
+            UpdateTrack();
+        }
+
+        private void _spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
+        {
+            if (_isAdPlaying)
+            {
+                return;
+            }
+
+            currentTrackPosition = (int)e.TrackTime;
+        }
+
+        private async void UpdateTrack()
+        {
+            // Get Spotify status as response
+            StatusResponse spotifyStatus = _spotify.GetStatus();
+
+            // IF status or track is null
+            if (spotifyStatus == null || spotifyStatus.Track == null)
+            {
+                // Assume an Advert is playing
+                //_currentTrack = null;
+                _isAdPlaying = true;
+                return;
+            }
+            else
+            {
+                // ELSE make sure to update "isAdPlaying" status in the case track is resumed after an advert
+                _isAdPlaying = false;
+            }
+
+            // Update current Track & get Track album cover art
+            _currentTrack = spotifyStatus.Track;
+            currentLargeCover = await _currentTrack.GetAlbumArtAsync(AlbumArtSize.Size640);
+
+            // IF the updated Track is not null
+            if (_currentTrack != null)
+            {
+                // Save Track information
+                currentTrackName = _currentTrack.TrackResource.Name;
+                currentArtistName = _currentTrack.ArtistResource.Name;
+                currentTrackLength = _currentTrack.Length;
+                currentTrackPosition = (int)spotifyStatus.PlayingPosition;
+            }
+        }
+
+        /*
         public int TimeToPixels(int maxWidth)
         {
             int trackLength = currentTrack.Length;
@@ -106,31 +186,7 @@ namespace Smallify
 
             return (int)barWidth;
         }
+        */
 
-        public async void UpdateTrack()
-        {
-            // Get Spotify status as response
-            _spotifyStatus = _spotify.GetStatus();
-
-            if (_spotifyStatus == null || _spotifyStatus.Track == null)
-            {
-                // IF status or track is null then assume an advert is playing
-                isAdPlaying = true;
-                return;
-            }
-            else
-            {
-                isAdPlaying = false;
-            }
-
-            isTrackPlaying = _spotifyStatus.Playing ? true : false;
-
-            if (currentTrack.TrackResource.Name != _spotifyStatus.Track.TrackResource.Name)
-            {
-                // Get Track information and album art
-                currentTrack = _spotifyStatus.Track;
-                currentAlbumArt = await currentTrack.GetAlbumArtAsync(AlbumArtSize.Size640);
-            }
-        }
     }
 }
