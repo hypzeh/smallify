@@ -43,7 +43,10 @@
             this.FLP_ProgressBar = new System.Windows.Forms.FlowLayoutPanel();
             this.PB_ProgressBar = new System.Windows.Forms.PictureBox();
             this.Context_Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CMenu_Item1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TLP_TrackBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Exit)).BeginInit();
             this.FLP_TrackInformation.SuspendLayout();
@@ -239,19 +242,46 @@
             // Context_Menu
             // 
             this.Context_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CMenu_Item1});
+            this.aotToolStripMenuItem,
+            this.playerToolStripMenuItem});
             this.Context_Menu.Name = "cMenuMain";
-            this.Context_Menu.Size = new System.Drawing.Size(150, 26);
+            this.Context_Menu.Size = new System.Drawing.Size(150, 48);
             // 
-            // CMenu_Item1
+            // aotToolStripMenuItem
             // 
-            this.CMenu_Item1.Checked = true;
-            this.CMenu_Item1.CheckOnClick = true;
-            this.CMenu_Item1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CMenu_Item1.Name = "CMenu_Item1";
-            this.CMenu_Item1.Size = new System.Drawing.Size(149, 22);
-            this.CMenu_Item1.Text = "Always on top";
-            this.CMenu_Item1.Click += new System.EventHandler(this.CMenu_Item1_Click);
+            this.aotToolStripMenuItem.Checked = true;
+            this.aotToolStripMenuItem.CheckOnClick = true;
+            this.aotToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.aotToolStripMenuItem.Name = "aotToolStripMenuItem";
+            this.aotToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aotToolStripMenuItem.Text = "Always on top";
+            this.aotToolStripMenuItem.Click += new System.EventHandler(this.aotToolStripMenuItem_Click);
+            // 
+            // playerToolStripMenuItem
+            // 
+            this.playerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.barToolStripMenuItem,
+            this.albumToolStripMenuItem});
+            this.playerToolStripMenuItem.Name = "playerToolStripMenuItem";
+            this.playerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.playerToolStripMenuItem.Text = "Player";
+            // 
+            // barToolStripMenuItem
+            // 
+            this.barToolStripMenuItem.Checked = true;
+            this.barToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.barToolStripMenuItem.Enabled = false;
+            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.barToolStripMenuItem.Text = "Bar";
+            // 
+            // albumToolStripMenuItem
+            // 
+            this.albumToolStripMenuItem.CheckOnClick = true;
+            this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.albumToolStripMenuItem.Text = "Album";
+            this.albumToolStripMenuItem.Click += new System.EventHandler(this.albumToolStripMenuItem_Click);
             // 
             // Player_Bar
             // 
@@ -307,6 +337,9 @@
         private System.Windows.Forms.FlowLayoutPanel FLP_ProgressBar;
         private System.Windows.Forms.PictureBox PB_ProgressBar;
         private System.Windows.Forms.ContextMenuStrip Context_Menu;
-        private System.Windows.Forms.ToolStripMenuItem CMenu_Item1;
+        private System.Windows.Forms.ToolStripMenuItem aotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem barToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem albumToolStripMenuItem;
     }
 }

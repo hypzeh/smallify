@@ -1,20 +1,16 @@
-﻿using SpotifyAPI.Local.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Smallify
 {
-
-
-    public partial class Player_Bar : Form
+    public partial class Player_Album : Form
     {
         private static SmallifyManager _smallifyManger;
 
@@ -128,7 +124,7 @@ namespace Smallify
         // Click & Drag the form to move
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-  
+
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
@@ -143,36 +139,31 @@ namespace Smallify
             }
         }
 
-        // SMALLIFY - PLAYER BAR
-        public Player_Bar()
+        public Player_Album()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.smallify_icon;
         }
 
-        private void Player_Bar_Load(object sender, EventArgs e)
+        // FORM LOAD
+        private void Player_Album_Load(object sender, EventArgs e)
         {
             // Initialise Smallify Manager
             _smallifyManger = new SmallifyManager();
 
             // Initialise Play|Pause Media control state
-            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
+            //Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
 
-            // Initialise Track information and album art
-            Label_Track.Text = _smallifyManger.currentTrackName;
-            Label_Artist.Text = _smallifyManger.currentArtistName;
-            PB_AlbumArt.Image = _smallifyManger.currentLargeCover;
+            // Initialise Album art
+            this.BackgroundImage = _smallifyManger.currentLargeCover;
 
             Timer_Update.Start();
         }
 
-        // Update Timer
         private void Timer_Update_Tick(object sender, EventArgs e)
         {
-            // Update Track information
-            Label_Track.Text = _smallifyManger.currentTrackName;
-            Label_Artist.Text = _smallifyManger.currentArtistName;
-            PB_AlbumArt.Image = _smallifyManger.currentLargeCover;
+            // Update Album Art
+            this.BackgroundImage = _smallifyManger.currentLargeCover;
 
             // Calculate progress bar width
             float trackStep = (float)this.Width / _smallifyManger.currentTrackLength;
@@ -180,84 +171,9 @@ namespace Smallify
             PB_ProgressBar.Width = (int)barWidth;
         }
 
-        // PLAY|PAUSE : Mouse "Enter" state
-        private void Btn_PlayPause_MouseEnter(object sender, EventArgs e)
+        private void Player_Album_Resize(object sender, EventArgs e)
         {
-            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
-        }
 
-        // PLAY|PAUSE : Mouse "Leave" state
-        private void Btn_PlayPause_MouseLeave(object sender, EventArgs e)
-        {
-            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
-        }
-
-        // PLAY|PAUSE : Mouse "Click"
-        private void Btn_PlayPause_Click(object sender, EventArgs e)
-        {
-            _smallifyManger.PlayPause();
-
-            // Change image to the opposite of the current playing state (eg. If playing show pause button...)
-            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
-        }
-
-        // NEXT : Mouse "Enter" state
-        private void Btn_Skip_MouseEnter(object sender, EventArgs e)
-        {
-            Btn_Skip.Image = Properties.Resources.skip_hover;
-        }
-
-        // NEXT : Mouse "Leave" state
-        private void Btn_Skip_MouseLeave(object sender, EventArgs e)
-        {
-            Btn_Skip.Image = Properties.Resources.skip_default;
-        }
-
-        // NEXT : Mouse "Click"
-        private void Btn_Skip_Click(object sender, EventArgs e)
-        {
-            _smallifyManger.Skip();
-        }
-
-        // PREVIOUS : Mouse "Enter" state
-        private void Btn_Previous_MouseEnter(object sender, EventArgs e)
-        {
-            Btn_Previous.Image = Properties.Resources.previous_hover;
-        }
-
-        // PREVIOUS : Mouse "Leave" state
-        private void Btn_Previous_MouseLeave(object sender, EventArgs e)
-        {
-            Btn_Previous.Image = Properties.Resources.previous_default;
-        }
-
-        // PREVIOUS : Mouse "Click"
-        private void Btn_Previous_Click(object sender, EventArgs e)
-        {
-            _smallifyManger.Previous();
-        }
-
-        // EXIT APPLICATON : Mouse "Enter" state
-        private void Btn_Exit_MouseEnter(object sender, EventArgs e)
-        {
-            Btn_Exit.Image = Properties.Resources.close_hover;
-        }
-
-        // EXIT APPLICATON : Mouse "Leave" state
-        private void Btn_Exit_MouseLeave(object sender, EventArgs e)
-        {
-            Btn_Exit.Image = Properties.Resources.close_default;
-        }
-
-        // EXIT APPLICATON : Mouse "Click"
-        private void Btn_Exit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void Player_Bar_Resize(object sender, EventArgs e)
-        {
-            PB_AlbumArt.Width = PB_AlbumArt.Height;
         }
 
         private void aotToolStripMenuItem_Click(object sender, EventArgs e)
@@ -272,10 +188,10 @@ namespace Smallify
             }
         }
 
-        private void albumToolStripMenuItem_Click(object sender, EventArgs e)
+        private void barToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new Player_Album()).Show();
-
+            (new Player_Bar()).Show();
+            
             this.Hide();
         }
     }

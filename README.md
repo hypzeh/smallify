@@ -8,7 +8,7 @@ This project aims to provide a mini spotify player for windows. I find that Spot
 Since [maximilian-krauss's "Winfy"](https://github.com/maximilian-krauss/Winfy) and [Eltoncezar's "Spofy"](https://github.com/eltoncezar/Spofy) do not function on my device(s), I decided to make my own as a personal project, this is not intended to compete with, nor succeed their work.
 
 - This is **NOT** a replacement for Spotify and will require Spotify to be running.
-- This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for Sptofy interaction.
+- This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for Spotify interaction.
 - This Application uses [Squirrel.Windows](https://github.com/Squirrel/Squirrel.Windows) for installation and updating management; checks carried out from my personal website at http://nicksmirnoff.co.uk/projects/smallify.html.
 
 ### Install
