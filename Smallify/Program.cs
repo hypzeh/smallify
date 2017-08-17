@@ -56,7 +56,7 @@ namespace Smallify
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Player_Bar());
+            Application.Run(new Player_Album());
         }
     }
 }

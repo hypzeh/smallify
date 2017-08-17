@@ -150,6 +150,7 @@ namespace Smallify
             this.Icon = Properties.Resources.smallify_icon;
         }
 
+        // PLAYER LOAD
         private void Player_Bar_Load(object sender, EventArgs e)
         {
             // Initialise Smallify Manager
@@ -260,6 +261,7 @@ namespace Smallify
             PB_AlbumArt.Width = PB_AlbumArt.Height;
         }
 
+        // CONTEXT MENU : Always on top
         private void aotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aotToolStripMenuItem.Checked)
@@ -272,6 +274,7 @@ namespace Smallify
             }
         }
 
+        // CONTEXT MENU : Switch player
         private void albumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new Player_Album()).Show();

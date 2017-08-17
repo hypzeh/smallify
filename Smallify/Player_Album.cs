@@ -162,6 +162,14 @@ namespace Smallify
 
         private void Timer_Update_Tick(object sender, EventArgs e)
         {
+            // If Mouse is not within the form - hide media controls
+            if (!this.DesktopBounds.Contains(Cursor.Position))
+            {
+                Btn_PlayPause.Visible = false;
+                Btn_Previous.Visible = false;
+                Btn_Skip.Visible = false;
+            }
+
             // Update Album Art
             this.BackgroundImage = _smallifyManger.currentLargeCover;
 
@@ -176,6 +184,72 @@ namespace Smallify
 
         }
 
+        // MOUSE ENTER EVENT : Show media controls
+        private void Player_Album_MouseEnter(object sender, EventArgs e)
+        {
+            Btn_PlayPause.Visible = true;
+            Btn_Previous.Visible = true;
+            Btn_Skip.Visible = true;
+        }
+
+        // PLAY|PAUSE : Mouse "Enter" state
+        private void Btn_PlayPause_MouseEnter(object sender, EventArgs e)
+        {
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
+        }
+
+        // PLAY|PAUSE : Mouse "Leave" state
+        private void Btn_PlayPause_MouseLeave(object sender, EventArgs e)
+        {
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_default : Properties.Resources.play_default;
+        }
+
+        // PLAY|PAUSE : Mouse "Click"
+        private void Btn_PlayPause_Click(object sender, EventArgs e)
+        {
+            _smallifyManger.PlayPause();
+
+            // Change image to the opposite of the current playing state (eg. If playing show pause button...)
+            Btn_PlayPause.Image = _smallifyManger.isTrackPlaying ? Properties.Resources.pause_hover : Properties.Resources.play_hover;
+        }
+
+        // NEXT : Mouse "Enter" state
+        private void Btn_Skip_MouseEnter(object sender, EventArgs e)
+        {
+            Btn_Skip.Image = Properties.Resources.skip_hover;
+        }
+
+        // NEXT : Mouse "Leave" state
+        private void Btn_Skip_MouseLeave(object sender, EventArgs e)
+        {
+            Btn_Skip.Image = Properties.Resources.skip_default;
+        }
+
+        // NEXT : Mouse "Click"
+        private void Btn_Skip_Click(object sender, EventArgs e)
+        {
+            _smallifyManger.Skip();
+        }
+
+        // PREVIOUS : Mouse "Enter" state
+        private void Btn_Previous_MouseEnter(object sender, EventArgs e)
+        {
+            Btn_Previous.Image = Properties.Resources.previous_hover;
+        }
+
+        // PREVIOUS : Mouse "Leave" state
+        private void Btn_Previous_MouseLeave(object sender, EventArgs e)
+        {
+            Btn_Previous.Image = Properties.Resources.previous_default;
+        }
+
+        // PREVIOUS : Mouse "Click"
+        private void Btn_Previous_Click(object sender, EventArgs e)
+        {
+            _smallifyManger.Previous();
+        }
+
+        // CONTEXT MENU : Always on top
         private void aotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aotToolStripMenuItem.Checked)
@@ -188,11 +262,18 @@ namespace Smallify
             }
         }
 
+        // CONTEXT MENU : Switch Player
         private void barToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new Player_Bar()).Show();
             
             this.Hide();
+        }
+
+        // CONTEXT MENU : Exit application
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
