@@ -151,8 +151,10 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\ITrack.cs" />
+    <Compile Include="Interfaces\IUpdater.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
+    <Compile Include="Models\UpdaterModel.cs" />
     <Compile Include="ViewModels\SmallifyViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="Views\AlbumView.xaml.cs">

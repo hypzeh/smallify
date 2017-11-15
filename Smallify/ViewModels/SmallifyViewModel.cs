@@ -3,8 +3,10 @@ using Microsoft.Practices.Prism.Mvvm;
 using Smallify.Enums;
 using Smallify.Interfaces;
 using Smallify.Models;
+using Squirrel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Smallify.ViewModels

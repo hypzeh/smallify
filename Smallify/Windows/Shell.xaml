@@ -11,7 +11,6 @@
         Height="{Binding Path=Height, Mode=TwoWay}"
         MinWidth="{Binding Path=Player.MinWidth}"
         MinHeight="{Binding Path=Player.MinHeight}"
-        Loaded="Shell_Loaded"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         mc:Ignorable="d">

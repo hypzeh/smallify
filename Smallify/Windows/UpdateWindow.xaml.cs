@@ -12,9 +12,9 @@ namespace Smallify.Windows
     {
 		private UpdateViewModel _updateViewModel;
 
-        public UpdateWindow(UpdateManager updateManager, UpdateInfo updateInfo)
+        public UpdateWindow(UpdateViewModel updateViewModel, UpdateManager updateManager, UpdateInfo updateInfo)
         {
-			this._updateViewModel = new UpdateViewModel(updateManager, updateInfo);
+			this._updateViewModel = updateViewModel;
 			this._updateViewModel.CloseUpdateWindow += this.Close;
 
             this.InitializeComponent();
