@@ -166,7 +166,7 @@
 		        Background="#1DB954" />
 
 		<!--  DEBUG  -->
-		<StackPanel HorizontalAlignment="Left"
+		<!--<StackPanel HorizontalAlignment="Left"
 		            VerticalAlignment="Top"
 		            Style="{StaticResource Expandable}">
 			<TextBlock FontWeight="Bold"
@@ -181,6 +181,6 @@
 					</MultiBinding>
 				</TextBlock.Text>
 			</TextBlock>
-		</StackPanel>
+		</StackPanel>-->
 	</Grid>
 </UserControl>
