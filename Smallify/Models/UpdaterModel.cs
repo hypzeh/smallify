@@ -1,4 +1,5 @@
-﻿using Smallify.Interfaces;
+﻿using NLog;
+using Smallify.Interfaces;
 using Squirrel;
 using System;
 using System.Collections.Generic;
@@ -8,58 +9,103 @@ using System.Threading.Tasks;
 
 namespace Smallify.Models
 {
-	public class UpdaterModel : IUpdater
+	public static class UpdaterModel
 	{
-		private string _updateVersion;
+		private const string UpdateURL = @"https://github.com/Hypzeh/Smallify";
+		private static Logger GetLogger = LogManager.GetCurrentClassLogger();
 
-
-
-
-		public string UpdateVersion
+		public static async void Setup()
 		{
-			get
+			try
 			{
-				return this._updateVersion;
-			}
-
-			private set
-			{
-				this._updateVersion = value;
-			}
-		}
-
-		public bool CheckForUpdates()
-		{
-			using (var updateManager = GetUpdateManager())
-			{
-				var updates = updateManager.CheckForUpdate().Result;
-				this.UpdateVersion = updates.FutureReleaseEntry.Version.ToString();
-
-				if (updates.ReleasesToApply.Any())
+				using (var updateManager = await UpdateManager.GitHubUpdateManager(UpdateURL))
 				{
-					return true;
+					SquirrelAwareApp.HandleEvents(
+						onInitialInstall: v => updateManager.CreateShortcutForThisExe(),
+						onAppUpdate: v => updateManager.CreateShortcutForThisExe(),
+						onAppUninstall: v => updateManager.RemoveShortcutForThisExe());
 				}
 			}
-			return false;
-		}
-
-		public static void PerformUpdate()
-		{
-			using (var updateManager = GetUpdateManager())
+			catch (Exception ex)
 			{
-				var updates = updateManager.CheckForUpdate().Result;
+				GetLogger.Error(ex, "Update setup failed with Error: {0}", ex.Message);
 
-				if (updates.ReleasesToApply.Any())
-				{
-					updateManager.DownloadReleases(updates.ReleasesToApply);
-					updateManager.ApplyReleases(updates);
-				}
 			}
 		}
 
-		private static UpdateManager GetUpdateManager()
+		public static async Task<string> GetUpdateVersion()
 		{
-			return UpdateManager.GitHubUpdateManager("https://github.com/Hypzeh/Smallify").Result;
+			try
+			{
+				using (var updateManager = await UpdateManager.GitHubUpdateManager(UpdateURL))
+				{
+					var updateInfo = await updateManager.CheckForUpdate();
+
+					if (updateInfo.ReleasesToApply.Any())
+					{
+						return updateInfo.FutureReleaseEntry.Version.ToString();
+					}
+
+					return "No Updates";
+				}
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "Getting update version failed with Error: {0}", ex.Message);
+				return "Failed to retrieve";
+			}
+		}
+
+		public static async Task<bool> CheckForUpdate()
+		{
+			try
+			{
+				using (var updateManager = await UpdateManager.GitHubUpdateManager(UpdateURL))
+				{
+					var updateInfo = await updateManager.CheckForUpdate();
+
+					if (updateInfo.ReleasesToApply.Any())
+					{
+						updateManager.Dispose();
+						return true;
+					}
+
+					updateManager.Dispose();
+
+					return false;
+				}
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "Check for updates failed with Error: {0}", ex.Message);
+				return false;
+			}
+		}
+
+		public static async void ApplyUpdate()
+		{
+			try
+			{
+				using (var updateManager = await UpdateManager.GitHubUpdateManager(UpdateURL))
+				{
+					var updateInfo = await updateManager.CheckForUpdate();
+
+					if (updateInfo.ReleasesToApply.Any())
+					{
+						var update = await updateManager.UpdateApp();
+
+						if (update != null)
+						{
+							updateManager.Dispose();
+							UpdateManager.RestartApp();
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "Applying update failed with Error: {0}", ex.Message);
+			}
 		}
 	}
 }

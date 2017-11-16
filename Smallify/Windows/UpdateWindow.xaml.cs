@@ -1,7 +1,9 @@
 ﻿using Smallify.ViewModels;
 using Squirrel;
+using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Smallify.Windows
 {
@@ -10,17 +12,27 @@ namespace Smallify.Windows
 	/// </summary>
 	public partial class UpdateWindow : Window
     {
-		private UpdateViewModel _updateViewModel;
-
-        public UpdateWindow(UpdateViewModel updateViewModel, UpdateManager updateManager, UpdateInfo updateInfo)
+        public UpdateWindow()
         {
-			this._updateViewModel = updateViewModel;
-			this._updateViewModel.CloseUpdateWindow += this.Close;
+			var updateVM = new UpdateViewModel();
+			updateVM.CloseUpdateWindow += this.Close;
+			updateVM.ShowUpdateWindow += this.UpdateView_ShowUpdateWindow;
 
             this.InitializeComponent();
-			this.DataContext = this._updateViewModel;
 			this.MouseDown += this.UpdateWindow_MouseDown;
-        }
+			this.DataContext = updateVM;
+		}
+
+		private void UpdateView_ShowUpdateWindow()
+		{
+			this.Dispatcher.Invoke(() =>
+			{
+				this.Show();
+				this.Activate();
+			}, DispatcherPriority.Normal);
+			
+			
+		}
 
 		private void UpdateWindow_MouseDown(object sender, MouseButtonEventArgs e)
 		{

@@ -19,6 +19,12 @@ namespace Smallify
 		{
 			this.InitializeComponent();
 			this.MouseDown += this.Shell_MouseDown;
+			this.Loaded += this.Shell_Loaded;
+		}
+
+		private void Shell_Loaded(object sender, RoutedEventArgs e)
+		{
+			new UpdateWindow();
 		}
 
 		private void Shell_MouseDown(object sender, MouseButtonEventArgs e)

@@ -22,7 +22,8 @@
 	<Window.Resources>
 		<Style x:Key="RoundedButtonStyle"
 		       TargetType="{x:Type Button}">
-			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Foreground"
+			        Value="White" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type Button}">
@@ -38,8 +39,10 @@
 				</Setter.Value>
 			</Setter>
 			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+				<Trigger Property="IsMouseOver"
+				         Value="True">
+					<Setter Property="RenderTransformOrigin"
+					        Value="0.5, 0.5" />
 					<Setter Property="RenderTransform">
 						<Setter.Value>
 							<ScaleTransform ScaleX="1.1"
@@ -47,9 +50,12 @@
 						</Setter.Value>
 					</Setter>
 				</Trigger>
-				<Trigger Property="IsPressed" Value="True">
-					<Setter Property="Foreground" Value="Gray" />
-					<Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+				<Trigger Property="IsPressed"
+				         Value="True">
+					<Setter Property="Foreground"
+					        Value="Gray" />
+					<Setter Property="RenderTransformOrigin"
+					        Value="0.5, 0.5" />
 					<Setter Property="RenderTransform">
 						<Setter.Value>
 							<ScaleTransform ScaleX="1.0"
@@ -117,10 +123,18 @@
 		            Grid.Column="0">
 			<TextBlock HorizontalAlignment="Center"
 			           Foreground="White"
-			           Text="{Binding Path=Version, StringFormat='{}Current Version:{0}'}" />
+			           Text="{Binding Path=Version, StringFormat='{}Current Version: {0}'}" />
 			<TextBlock HorizontalAlignment="Center"
 			           Foreground="White"
-			           Text="{Binding Path=NewVersion, StringFormat='{}New Version:{0}'}" />
+			           Text="{Binding Path=NewVersion, StringFormat='{}New Version: {0}'}" />
+			<TextBlock Margin="0,20,0,0"
+			           HorizontalAlignment="Center"
+			           Foreground="White">
+				<Hyperlink Command="{Binding Path=WhatsNewCommand}"
+				           NavigateUri="https://github.com/Hypzeh/Smallify/releases/latest/">
+					<Run Text="What's New?" />
+				</Hyperlink>
+			</TextBlock>
 		</StackPanel>
 
 		<!--  Update/Cancel Buttons  -->

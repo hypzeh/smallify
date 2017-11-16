@@ -1,40 +1,65 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Smallify.Interfaces;
+using Smallify.Models;
 using Smallify.Windows;
 using Squirrel;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Smallify.ViewModels
 {
 	public class UpdateViewModel : BindableBase
 	{
-		private UpdateManager _updateManager;
-		private UpdateInfo _updateInfo;
+		private readonly DelegateCommand _acceptUpdateCommand;
+		private readonly DelegateCommand _exitUpdateCommand;
+		private readonly DelegateCommand _whatsNewCommand;
+
+		private string _updateVersion;
 
 		public UpdateViewModel()
 		{
 			// Package Manager Console> Squirrel --releasify smallify.1.0.0.nupkg --setupIcon D:\Development\Projects\Smallify\Smallify\Resources\Icon\Smallify_Default.ico --no-msi
-			// Check for Squirrel application update
-			//this._updateManager = UpdateManager.GitHubUpdateManager("https://github.com/Hypzeh/Smallify").Result;
-			//this._updateInfo = null;
 
-			//SquirrelAwareApp.HandleEvents(
-			//	onInitialInstall: v => this._updateManager.CreateShortcutForThisExe(),
-			//	onAppUpdate: v => this._updateManager.CreateShortcutForThisExe(),
-			//	onAppUninstall: v => this._updateManager.RemoveShortcutForThisExe());
+			UpdaterModel.Setup();
+			this.UpdateCheck().ContinueWith(x => FoundUpdates(x.Result));
 
-			//this.UpdateCheck();
-
-			//this.AcceptUpdateCommand = new DelegateCommand(() => this.AcceptUpdateCommand_Execute());
-			//this.ExitUpdateCommand = new DelegateCommand(() => this.ExitUpdateCommand_Execute());
+			this._acceptUpdateCommand = new DelegateCommand(() => this.AcceptUpdateCommand_Execute());
+			this._exitUpdateCommand = new DelegateCommand(() => this.ExitUpdateCommand_Execute());
+			this._whatsNewCommand = new DelegateCommand(() => this.WhatsNewCommand_Execute());
 		}
 
-		public ICommand AcceptUpdateCommand { get; private set; }
+		public event Action CloseUpdateWindow;
 
-		public ICommand ExitUpdateCommand { get; private set; }
+		public event Action ShowUpdateWindow;
+
+		public ICommand AcceptUpdateCommand
+		{
+			get
+			{
+				return this._acceptUpdateCommand;
+			}
+		}
+
+		public ICommand ExitUpdateCommand
+		{
+			get
+			{
+				return this._exitUpdateCommand;
+			}
+		}
+
+		public ICommand WhatsNewCommand
+		{
+			get
+			{
+				return this._whatsNewCommand;
+			}
+		}
 
 		public string Version
 		{
@@ -51,24 +76,40 @@ namespace Smallify.ViewModels
 		{
 			get
 			{
-				return this._updateInfo.FutureReleaseEntry.Version.ToString();
+				return this._updateVersion;
+			}
+
+			set
+			{
+				this.SetProperty<string>(ref this._updateVersion, value);
+				this.OnPropertyChanged(nameof(this.NewVersion));
 			}
 		}
 
-		public event Action CloseUpdateWindow;
-
-		private async void AcceptUpdateCommand_Execute()
+		private async Task<bool> UpdateCheck()
 		{
-			//using (this._updateManager)
-			//{
-			//	this.ExitUpdateCommand_Execute();
-			//	var release = await this._updateManager.UpdateApp();
-			//	if (release != null)
-			//	{
-			//		this._updateManager.Dispose();
-			//		UpdateManager.RestartApp();
-			//	}
-			//}
+			var updateCheck = await UpdaterModel.CheckForUpdate();
+			if (updateCheck)
+			{
+				this.NewVersion = await UpdaterModel.GetUpdateVersion();
+				return true;
+			}
+
+			return false;
+		}
+
+		private void FoundUpdates(bool foundUpdates)
+		{
+			if (foundUpdates)
+			{
+				this.ShowUpdateWindow?.Invoke();
+			}
+		}
+
+		private void AcceptUpdateCommand_Execute()
+		{
+			this.ExitUpdateCommand_Execute();
+			UpdaterModel.ApplyUpdate();
 		}
 
 		private void ExitUpdateCommand_Execute()
@@ -76,18 +117,9 @@ namespace Smallify.ViewModels
 			this.CloseUpdateWindow?.Invoke();
 		}
 
-		//private async void UpdateCheck()
-		//{
-		//	// Check for updates
-		//	this._updateInfo = await this._updateManager.CheckForUpdate(true, x => Console.WriteLine(x));
-
-		//	// IF Updates found open update window
-		//	if (this._updateInfo.ReleasesToApply.Any())
-		//	{
-		//		var updateWindow = new UpdateWindow(this, this._updateManager, this._updateInfo);
-		//		updateWindow.Show();
-		//		updateWindow.Activate();
-		//	}
-		//}
+		private void WhatsNewCommand_Execute()
+		{
+			Process.Start(@"https://github.com/Hypzeh/Smallify/releases/latest");
+		}
 	}
 }
