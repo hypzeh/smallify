@@ -30,8 +30,6 @@ namespace Smallify.Windows
 				this.Show();
 				this.Activate();
 			}, DispatcherPriority.Normal);
-			
-			
 		}
 
 		private void UpdateWindow_MouseDown(object sender, MouseButtonEventArgs e)

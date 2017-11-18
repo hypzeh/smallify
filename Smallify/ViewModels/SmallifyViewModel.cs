@@ -55,9 +55,9 @@ namespace Smallify.ViewModels
 			this._albumPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.Album), () => this.Player.PlayerType != PlayerType.Album);
 
 			// Media commands
-			this._playPauseCommand = new DelegateCommand(this.Track.PlayPause);
-			this._skipCommand = new DelegateCommand(this.Track.Skip);
-			this._previousCommand = new DelegateCommand(this.Track.Previous);
+			this._playPauseCommand = new DelegateCommand(this.PlayPauseCommand_Execute, () => this.Track.CanExecute);
+			this._skipCommand = new DelegateCommand(this.SkipCommand_Execute, () => this.Track.CanExecute);
+			this._previousCommand = new DelegateCommand(this.PreviousCommand_Execute, () => this.Track.CanExecute);
 		}
 
 		public ICommand ExitApplicationCommand
@@ -188,6 +188,24 @@ namespace Smallify.ViewModels
 			{
 				return (this.Track.TrackProgression * this.Width) / this.Track.Length;
 			}
+		}
+
+		private void PlayPauseCommand_Execute()
+		{
+			((DelegateCommand)this.PlayPauseCommand).RaiseCanExecuteChanged();
+			this.Track.PlayPause();
+		}
+
+		private void SkipCommand_Execute()
+		{
+			((DelegateCommand)this.SkipCommand).RaiseCanExecuteChanged();
+			this.Track.Skip();
+		}
+
+		private void PreviousCommand_Execute()
+		{
+			((DelegateCommand)this.PreviousCommand).RaiseCanExecuteChanged();
+			this.Track.Previous();
 		}
 
 		private void SwitchPlayerTo(PlayerType playerType)

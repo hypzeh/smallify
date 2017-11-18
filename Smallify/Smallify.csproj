@@ -152,6 +152,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Extensions\ListExtention.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\ITrack.cs" />
     <Compile Include="Models\PlayerModel.cs" />

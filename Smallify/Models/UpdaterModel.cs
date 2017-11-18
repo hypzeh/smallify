@@ -14,7 +14,7 @@ namespace Smallify.Models
 		private const string UpdateURL = @"https://github.com/Hypzeh/Smallify";
 		private static Logger GetLogger = LogManager.GetCurrentClassLogger();
 
-		public static async void Setup()
+		public static async Task Setup()
 		{
 			try
 			{
@@ -28,8 +28,7 @@ namespace Smallify.Models
 			}
 			catch (Exception ex)
 			{
-				GetLogger.Error(ex, "Update setup failed with Error: {0}", ex.Message);
-
+				GetLogger.Error(ex, "[UPDATER] Failed to setup: {0}", ex.Message);
 			}
 		}
 
@@ -51,7 +50,7 @@ namespace Smallify.Models
 			}
 			catch (Exception ex)
 			{
-				GetLogger.Error(ex, "Getting update version failed with Error: {0}", ex.Message);
+				GetLogger.Error(ex, "[UPDATER] Failed to get update version: {0}", ex.Message);
 				return "Failed to retrieve";
 			}
 		}
@@ -66,23 +65,20 @@ namespace Smallify.Models
 
 					if (updateInfo.ReleasesToApply.Any())
 					{
-						updateManager.Dispose();
 						return true;
 					}
-
-					updateManager.Dispose();
-
+					
 					return false;
 				}
 			}
 			catch (Exception ex)
 			{
-				GetLogger.Error(ex, "Check for updates failed with Error: {0}", ex.Message);
+				GetLogger.Error(ex, "[UPDATER] Failed to check for update(s): {0}", ex.Message);
 				return false;
 			}
 		}
 
-		public static async void ApplyUpdate()
+		public static async Task ApplyUpdate()
 		{
 			try
 			{
@@ -92,19 +88,15 @@ namespace Smallify.Models
 
 					if (updateInfo.ReleasesToApply.Any())
 					{
-						var update = await updateManager.UpdateApp();
-
-						if (update != null)
-						{
-							updateManager.Dispose();
-							UpdateManager.RestartApp();
-						}
+						await updateManager.UpdateApp();
 					}
 				}
+
+				UpdateManager.RestartApp();
 			}
 			catch (Exception ex)
 			{
-				GetLogger.Error(ex, "Applying update failed with Error: {0}", ex.Message);
+				GetLogger.Error(ex, "[UPDATER] Failed to apply update(s): {0}", ex.Message);
 			}
 		}
 	}

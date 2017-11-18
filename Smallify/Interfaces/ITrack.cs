@@ -19,6 +19,8 @@ namespace Smallify.Interfaces
 
 		bool IsPlaying { get; }
 
+		bool CanExecute { get; }
+
 		void PlayPause();
 
 		void Skip();

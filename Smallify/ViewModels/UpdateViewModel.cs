@@ -25,8 +25,7 @@ namespace Smallify.ViewModels
 		{
 			// Package Manager Console> Squirrel --releasify smallify.1.0.0.nupkg --setupIcon D:\Development\Projects\Smallify\Smallify\Resources\Icon\Smallify_Default.ico --no-msi
 
-			UpdaterModel.Setup();
-			this.UpdateCheck().ContinueWith(x => FoundUpdates(x.Result));
+			Task.Run(this.UpdateProcess);
 
 			this._acceptUpdateCommand = new DelegateCommand(() => this.AcceptUpdateCommand_Execute());
 			this._exitUpdateCommand = new DelegateCommand(() => this.ExitUpdateCommand_Execute());
@@ -86,30 +85,10 @@ namespace Smallify.ViewModels
 			}
 		}
 
-		private async Task<bool> UpdateCheck()
-		{
-			var updateCheck = await UpdaterModel.CheckForUpdate();
-			if (updateCheck)
-			{
-				this.NewVersion = await UpdaterModel.GetUpdateVersion();
-				return true;
-			}
-
-			return false;
-		}
-
-		private void FoundUpdates(bool foundUpdates)
-		{
-			if (foundUpdates)
-			{
-				this.ShowUpdateWindow?.Invoke();
-			}
-		}
-
 		private void AcceptUpdateCommand_Execute()
 		{
 			this.ExitUpdateCommand_Execute();
-			UpdaterModel.ApplyUpdate();
+			Task.Run(UpdaterModel.ApplyUpdate);
 		}
 
 		private void ExitUpdateCommand_Execute()
@@ -120,6 +99,21 @@ namespace Smallify.ViewModels
 		private void WhatsNewCommand_Execute()
 		{
 			Process.Start(@"https://github.com/Hypzeh/Smallify/releases/latest");
+		}
+
+		private async Task FoundUpdates(bool foundUpdates)
+		{
+			if (foundUpdates)
+			{
+				this.NewVersion = await UpdaterModel.GetUpdateVersion();
+				this.ShowUpdateWindow?.Invoke();
+			}
+		}
+
+		private async Task UpdateProcess()
+		{
+			await UpdaterModel.Setup();
+			await UpdaterModel.CheckForUpdate().ContinueWith(x => this.FoundUpdates(x.Result));
 		}
 	}
 }
