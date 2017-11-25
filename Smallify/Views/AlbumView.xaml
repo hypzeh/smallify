@@ -4,14 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Smallify.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewmodel="clr-namespace:Smallify.ViewModels"
+             xmlns:viewmodels="clr-namespace:Smallify.ViewModels"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
 
 	<UserControl.Resources>
 		<Style x:Key="Expandable"
-		       TargetType="StackPanel">
+		       TargetType="{x:Type Grid}">
 			<Setter Property="Visibility"
 			        Value="Collapsed" />
 			<Style.Triggers>
@@ -25,8 +25,18 @@
 	</UserControl.Resources>
 
 	<Grid Background="Transparent">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="70*" />
+			<RowDefinition Height="30*" />
+			<RowDefinition Height="5" />
+		</Grid.RowDefinitions>
+
 		<!--  Album Art - Smallify icon underlayer  -->
-		<Viewbox Margin="6,6,6,6"
+		<Viewbox Grid.Row="0"
+		         Grid.RowSpan="3"
+		         Grid.Column="0"
+		         Margin="6,6,6,6"
 		         HorizontalAlignment="Center"
 		         VerticalAlignment="Center">
 			<Grid>
@@ -56,85 +66,90 @@
 
 		<!--  Album Art  -->
 		<Image Grid.Row="0"
+		       Grid.RowSpan="3"
 		       Grid.Column="0"
 		       HorizontalAlignment="Center"
 		       VerticalAlignment="Center"
-		       Source="{Binding Path=Track.AlbumArt}" />
+		       Source="{Binding Path=Smallify.AlbumArt}" />
 
-		<!--  Media Control buttons  -->
-		<StackPanel Grid.Row="0"
-		            Grid.Column="0"
-		            Margin="5,15,15,15"
-		            HorizontalAlignment="Center"
-		            VerticalAlignment="Bottom"
-		            Orientation="Horizontal"
-		            Style="{StaticResource Expandable}">
+		<!--  Player Control Buttons  -->
+		<Grid Grid.Row="1"
+		      Grid.Column="0"
+		      MaxWidth="200"
+		      Margin="5,5,20,5"
+		      Style="{StaticResource Expandable}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="20*" />
+				<ColumnDefinition Width="60*" />
+				<ColumnDefinition Width="20*" />
+			</Grid.ColumnDefinitions>
 
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20*" />
+				<RowDefinition Height="60*" />
+				<RowDefinition Height="20*" />
+			</Grid.RowDefinitions>
 			<!--  Previous  -->
-			<Button Margin="5,0,5,0"
-			        HorizontalAlignment="Center"
-			        VerticalAlignment="Center"
-			        Background="Transparent"
-			        Command="{Binding Path=PreviousCommand}">
-				<Path HorizontalAlignment="Center"
-				      VerticalAlignment="Center"
-				      Data="M 30 25 L 30 50 L 30 75 L 35 75 L 35 52.777344 L 75 75 L 75 25 L 35 47.222656 L 35 25 L 30 25 z "
-				      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-				      Stretch="Uniform" />
+			<Button Grid.Row="1"
+			        Grid.Column="0"
+			        Padding="5"
+			        Command="{Binding Path=Smallify.PreviousCommand}">
+				<Viewbox>
+					<Path Data="M 30 25 L 30 50 L 30 75 L 35 75 L 35 52.777344 L 75 75 L 75 25 L 35 47.222656 L 35 25 L 30 25 z "
+					      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+					      Stretch="Fill" />
+				</Viewbox>
 			</Button>
-
 			<!--  Play/Pause  -->
-			<Button HorizontalAlignment="Center"
-			        VerticalAlignment="Center"
-			        Background="Transparent"
-			        Command="{Binding Path=PlayPauseCommand}">
-				<Path HorizontalAlignment="Center"
-				      VerticalAlignment="Center"
-				      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-				      Stretch="Uniform">
-					<Path.Style>
-						<Style TargetType="Path">
-							<Setter Property="Data"
-							        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 75 50 L 30 25 z " />
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding Path=Track.IsPlaying}"
-								             Value="True">
-									<Setter Property="Data"
-									        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 40 75 L 40 25 L 30 25 z M 60 25 L 60 75 L 70 75 L 70 25 L 60 25 z " />
-								</DataTrigger>
-								<DataTrigger Binding="{Binding Path=Track.IsPlaying}"
-								             Value="False">
-									<Setter Property="Data"
-									        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 75 50 L 30 25 z " />
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
+			<Button Grid.Row="0"
+			        Grid.RowSpan="3"
+			        Grid.Column="1"
+			        Margin="15,0"
+			        Padding="5"
+			        Command="{Binding Path=Smallify.PlayPauseCommand}">
+				<Viewbox>
+					<Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+					      Stretch="Fill">
+						<Path.Style>
+							<Style TargetType="Path">
+								<Setter Property="Data"
+								        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 75 50 L 30 25 z " />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding Path=Smallify.IsPlaying}"
+									             Value="True">
+										<Setter Property="Data"
+										        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 40 75 L 40 25 L 30 25 z M 60 25 L 60 75 L 70 75 L 70 25 L 60 25 z " />
+									</DataTrigger>
+									<DataTrigger Binding="{Binding Path=Smallify.IsPlaying}"
+									             Value="False">
+										<Setter Property="Data"
+										        Value="M 49.998047 0 C 22.39542 0 0 22.39542 0 49.998047 C 0 77.60067 22.39542 100.00195 49.998047 100.00195 C 77.60067 100.00195 100.00195 77.60067 100.00195 49.998047 C 100.00195 22.39542 77.60067 0 49.998047 0 z M 49.998047 1.9628906 C 76.540985 1.9628906 98.039062 23.455107 98.039062 49.998047 C 98.039062 76.540985 76.540985 98.039062 49.998047 98.039062 C 23.455107 98.039062 1.9628906 76.540985 1.9628906 49.998047 C 1.9628906 23.455107 23.455107 1.9628906 49.998047 1.9628906 z M 30 25 L 30 75 L 75 50 L 30 25 z " />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
 
-					</Path.Style>
-				</Path>
+						</Path.Style>
+					</Path>
+				</Viewbox>
 			</Button>
-
 			<!--  Skip  -->
-			<Button Margin="5,0,5,0"
-			        HorizontalAlignment="Center"
-			        VerticalAlignment="Center"
-			        Background="Transparent"
-			        Command="{Binding Path=SkipCommand}">
-				<Path HorizontalAlignment="Center"
-				      VerticalAlignment="Center"
-				      Data="M 30 25 L 30 75 L 70 52.777344 L 70 75 L 75 75 L 75 50 L 75 25 L 70 25 L 70 47.222656 L 30 25 z "
-				      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-				      Stretch="Uniform" />
+			<Button Grid.Row="1"
+			        Grid.Column="2"
+			        Padding="5"
+			        Command="{Binding Path=Smallify.SkipCommand}">
+				<Viewbox>
+					<Path Data="M 30 25 L 30 75 L 70 52.777344 L 70 75 L 75 75 L 75 50 L 75 25 L 70 25 L 70 47.222656 L 30 25 z "
+					      Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+					      Stretch="Fill" />
+				</Viewbox>
 			</Button>
-		</StackPanel>
+		</Grid>
 
-		<!--  Time bar  -->
-		<Border Grid.Row="0"
+		<!--  Track Progression bar  -->
+		<Border Grid.Row="2"
 		        Grid.Column="0"
-		        Width="{Binding Path=TrackProgressionToWidth}"
-		        Height="5"
+		        Width="{Binding Path=TrackProgression}"
 		        HorizontalAlignment="Left"
-		        VerticalAlignment="Bottom"
 		        Background="#1DB954" />
 
 		<!--  DEBUG  -->

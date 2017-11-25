@@ -152,12 +152,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Extensions\ListExtention.cs" />
+    <Compile Include="Interfaces\ILayoutManger.cs" />
+    <Compile Include="Models\UISettings.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utility\LayoutManager.cs" />
+    <Compile Include="Utility\ListExtention.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
-    <Compile Include="Interfaces\ITrack.cs" />
     <Compile Include="Models\PlayerModel.cs" />
-    <Compile Include="Models\TrackModel.cs" />
-    <Compile Include="Models\UpdaterModel.cs" />
+    <Compile Include="Utility\Retry.cs" />
+    <Compile Include="Utility\Updater.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\SmallifyViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="Views\AlbumView.xaml.cs">
@@ -227,7 +231,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

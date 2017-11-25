@@ -15,12 +15,20 @@ namespace Smallify.Windows
         public UpdateWindow()
         {
 			var updateVM = new UpdateViewModel();
-			updateVM.CloseUpdateWindow += this.Close;
+			updateVM.CloseUpdateWindow += this.UpdateVM_CloseUpdateWindow;
 			updateVM.ShowUpdateWindow += this.UpdateView_ShowUpdateWindow;
 
-            this.InitializeComponent();
-			this.MouseDown += this.UpdateWindow_MouseDown;
 			this.DataContext = updateVM;
+            this.InitializeComponent();
+
+			this.MouseDown += this.UpdateWindow_MouseDown;
+		}
+		private void UpdateVM_CloseUpdateWindow()
+		{
+			this.Dispatcher.Invoke(() =>
+			{
+				this.Close();
+			}, DispatcherPriority.Normal);
 		}
 
 		private void UpdateView_ShowUpdateWindow()

@@ -1,15 +1,12 @@
 ﻿using NLog;
-using Smallify.Interfaces;
 using Squirrel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Smallify.Models
+namespace Smallify.Utility
 {
-	public static class UpdaterModel
+	public static class Updater
 	{
 		private const string UpdateURL = @"https://github.com/Hypzeh/Smallify";
 		private static Logger GetLogger = LogManager.GetCurrentClassLogger();
@@ -67,7 +64,7 @@ namespace Smallify.Models
 					{
 						return true;
 					}
-					
+
 					return false;
 				}
 			}

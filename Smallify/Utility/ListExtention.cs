@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Smallify.Extensions
+namespace Smallify.Utility
 {
 	public static class ListExtention
 	{

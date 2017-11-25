@@ -1,12 +1,8 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Smallify.Interfaces;
-using Smallify.Models;
-using Smallify.Windows;
-using Squirrel;
+using Smallify.Utility;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -88,7 +84,7 @@ namespace Smallify.ViewModels
 		private void AcceptUpdateCommand_Execute()
 		{
 			this.ExitUpdateCommand_Execute();
-			Task.Run(UpdaterModel.ApplyUpdate);
+			Task.Run(Updater.ApplyUpdate);
 		}
 
 		private void ExitUpdateCommand_Execute()
@@ -105,15 +101,19 @@ namespace Smallify.ViewModels
 		{
 			if (foundUpdates)
 			{
-				this.NewVersion = await UpdaterModel.GetUpdateVersion();
+				this.NewVersion = await Updater.GetUpdateVersion();
 				this.ShowUpdateWindow?.Invoke();
+			}
+			else
+			{
+				this.CloseUpdateWindow?.Invoke();
 			}
 		}
 
 		private async Task UpdateProcess()
 		{
-			await UpdaterModel.Setup();
-			await UpdaterModel.CheckForUpdate().ContinueWith(x => this.FoundUpdates(x.Result));
+			await Updater.Setup();
+			await Updater.CheckForUpdate().ContinueWith(x => this.FoundUpdates(x.Result));
 		}
 	}
 }

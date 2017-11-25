@@ -1,232 +1,305 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Smallify.Enums;
-using Smallify.Interfaces;
-using Smallify.Models;
-using Squirrel;
+using NLog;
+using Smallify.Utility;
+using SpotifyAPI.Local;
+using SpotifyAPI.Local.Enums;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Smallify.ViewModels
 {
 	public class SmallifyViewModel : BindableBase
 	{
-		private readonly DelegateCommand _exitApplicationCommand;
-		private readonly DelegateCommand _alwaysOnTopCommand;
-		private readonly DelegateCommand _barPlayerCommand;
-		private readonly DelegateCommand _albumPlayerCommand;
-		private readonly DelegateCommand _playPauseCommand;
-		private readonly DelegateCommand _skipCommand;
-		private readonly DelegateCommand _previousCommand;
+		private static Logger GetLogger = LogManager.GetCurrentClassLogger();
 
-		private int _width;
-		private int _height;
-		private List<IPlayer> _playerList;
-		private IPlayer _player;
-		private ITrack _track;
+		private readonly SpotifyLocalAPI _spotify;
+
+		private string _name;
+		private string _artist;
+		private string _album;
+		private BitmapSource _albumArt;
+		private int _length;
+		private double _trackProgression;
+		private bool _isPlaying;
 
 		public SmallifyViewModel()
 		{
-			// Define all Players
-			this._playerList = new List<IPlayer>
+			this._spotify = new SpotifyLocalAPI();
+
+			var dummyStringList = new List<string>
 			{
-				new PlayerModel(PlayerType.Bar, 600, 100, 200, 50),
-				new PlayerModel(PlayerType.Album, 600, 600, 100, 100)
+				@"Wherefore art thou Spotify? >:(",
+				@"¯\_(ツ)_/¯",
 			};
 
-			// Set active player out of the player list & set the Shell size to the player
-			this._player = this._playerList.FirstOrDefault<IPlayer>(x => x.PlayerType == PlayerType.Bar);
-			this._width = this._player.Width;
-			this._height = this._player.Height;
+			this.Name = "Smallify";
+			this.Artist = dummyStringList.PickRandom();
 
-			this._track = new TrackModel();
-			this._track.PropertyChanged += this.Track_PropertyChanged;
+			Task.Run(() =>
+			{
+				this.LaunchSpotify();
+				this.LaunchSpotifyWebHelper();
+				this.GetSpotifyTrack();
+			});
 
-			App.Current.MainWindow.Topmost = true;
+			this._spotify.OnTrackChange += this.Spotify_OnTrackChange;
+			this._spotify.OnTrackTimeChange += this.Spotify_OnTrackTimeChange;
+			this._spotify.OnPlayStateChange += this.Spotify_OnPlayStateChange;
 
-			// Application command
-			this._exitApplicationCommand = new DelegateCommand(() => App.Current.Shutdown());
-			this._alwaysOnTopCommand = new DelegateCommand(() => this.IsAlwaysOnTop = !App.Current.MainWindow.Topmost);
+			this._spotify.ListenForEvents = true;
 
-			// Player switch commands
-			this._barPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.Bar), () => this.Player.PlayerType != PlayerType.Bar);
-			this._albumPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.Album), () => this.Player.PlayerType != PlayerType.Album);
-
-			// Media commands
-			this._playPauseCommand = new DelegateCommand(this.PlayPauseCommand_Execute, () => this.Track.CanExecute);
-			this._skipCommand = new DelegateCommand(this.SkipCommand_Execute, () => this.Track.CanExecute);
-			this._previousCommand = new DelegateCommand(this.PreviousCommand_Execute, () => this.Track.CanExecute);
+			this.PlayPauseCommand = new DelegateCommand(this.PlayPauseCommand_Execute);
+			this.SkipCommand = new DelegateCommand(this.SkipCommand_Execute);
+			this.PreviousCommand = new DelegateCommand(this.PreviousCommand_Execute);
 		}
 
-		public ICommand ExitApplicationCommand
+		public ICommand PlayPauseCommand { get; private set; }
+
+		public ICommand SkipCommand { get; private set; }
+
+		public ICommand PreviousCommand { get; private set; }
+
+		public string Name
 		{
 			get
 			{
-				return this._exitApplicationCommand;
-			}
-		}
-
-		public ICommand AlwaysOnTopCommand
-		{
-			get
-			{
-				return this._alwaysOnTopCommand;
-			}
-		}
-
-		public ICommand BarPlayerCommand
-		{
-			get
-			{
-				return this._barPlayerCommand;
-			}
-		}
-
-		public ICommand AlbumPlayerCommand
-		{
-			get
-			{
-				return this._albumPlayerCommand;
-			}
-		}
-
-		public ICommand PlayPauseCommand
-		{
-			get
-			{
-				return this._playPauseCommand;
-			}
-		}
-
-		public ICommand SkipCommand
-		{
-			get
-			{
-				return this._skipCommand;
-			}
-		}
-
-		public ICommand PreviousCommand
-		{
-			get
-			{
-				return this._previousCommand;
-			}
-		}
-
-		public int Width
-		{
-			get
-			{
-				return this._width;
+				return this._name;
 			}
 
 			set
 			{
-				this.SetProperty<int>(ref this._width, value);
-				this.OnPropertyChanged(nameof(this.Width));
+				this.SetProperty<string>(ref this._name, value);
+				this.OnPropertyChanged(nameof(this.Name));
 			}
 		}
 
-		public int Height
+		public string Artist
 		{
 			get
 			{
-				return this._height;
+				return this._artist;
 			}
 
 			set
 			{
-				this.SetProperty<int>(ref this._height, value);
-				this.OnPropertyChanged(nameof(this.Height));
+				this.SetProperty<string>(ref this._artist, value);
+				this.OnPropertyChanged(nameof(this.Artist));
 			}
 		}
 
-		public bool IsAlwaysOnTop
+		public string Album
 		{
 			get
 			{
-				return App.Current.MainWindow.Topmost;
+				return this._album;
 			}
 
 			set
 			{
-				App.Current.MainWindow.Topmost = value;
-				this.OnPropertyChanged(nameof(this.IsAlwaysOnTop));
+				this.SetProperty<string>(ref this._album, value);
+				this.OnPropertyChanged(nameof(this.Album));
 			}
 		}
 
-		public IPlayer Player
+		public BitmapSource AlbumArt
 		{
 			get
 			{
-				return this._player;
+				return this._albumArt;
 			}
 
 			set
 			{
-				this.SetProperty<IPlayer>(ref this._player, value);
-				this.OnPropertyChanged(nameof(this.Player));
-				this._barPlayerCommand.RaiseCanExecuteChanged();
-				this._albumPlayerCommand.RaiseCanExecuteChanged();
+				this.SetProperty<BitmapSource>(ref this._albumArt, value);
+				this.OnPropertyChanged(nameof(this.AlbumArt));
 			}
 		}
 
-		public ITrack Track
+		public int Length
 		{
 			get
 			{
-				return this._track;
+				return this._length;
+			}
+
+			set
+			{
+				this.SetProperty<int>(ref this._length, value);
+				this.OnPropertyChanged(nameof(this.Length));
 			}
 		}
 
-		public double TrackProgressionToWidth
+		public double TrackProgression
 		{
 			get
 			{
-				return (this.Track.TrackProgression * this.Width) / this.Track.Length;
+				return this._trackProgression;
+			}
+
+			set
+			{
+				this.SetProperty<double>(ref this._trackProgression, value);
+				this.OnPropertyChanged(nameof(this.TrackProgression));
 			}
 		}
 
-		private void PlayPauseCommand_Execute()
+		public bool IsPlaying
 		{
-			((DelegateCommand)this.PlayPauseCommand).RaiseCanExecuteChanged();
-			this.Track.PlayPause();
+			get
+			{
+				return this._isPlaying;
+			}
+
+			set
+			{
+				this.SetProperty<bool>(ref this._isPlaying, value);
+				this.OnPropertyChanged(nameof(this.IsPlaying));
+			}
 		}
 
-		private void SkipCommand_Execute()
+		public void PlayPauseCommand_Execute()
 		{
-			((DelegateCommand)this.SkipCommand).RaiseCanExecuteChanged();
-			this.Track.Skip();
+			try
+			{
+				if (this._spotify.GetStatus().PlayEnabled)
+				{
+					if (this.IsPlaying)
+					{
+						this._spotify.Pause();
+					}
+					else
+					{
+						this._spotify.Play();
+					}
+
+					this.IsPlaying = !this.IsPlaying;
+				}
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Play/Pause' command: {0}", ex.Message);
+			}
 		}
 
-		private void PreviousCommand_Execute()
+		public void SkipCommand_Execute()
 		{
-			((DelegateCommand)this.PreviousCommand).RaiseCanExecuteChanged();
-			this.Track.Previous();
+			try
+			{
+				if (this._spotify.GetStatus().NextEnabled)
+				{
+					this._spotify.Skip();
+				}
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Skip' command: {0}", ex.Message);
+			}
 		}
 
-		private void SwitchPlayerTo(PlayerType playerType)
+		public void PreviousCommand_Execute()
 		{
-			// Save current Shell size to current player and save it against the player list
-			this.Player.Width = this.Width;
-			this.Player.Height = this.Height;
-			this._playerList[this._playerList.FindIndex(x => x.PlayerType == this.Player.PlayerType)] = this.Player;
+			try
+			{
+				if (this._spotify.GetStatus().PrevEnabled)
+				{
+					this._spotify.Previous();
+				}
+			}
+			catch (Exception ex)
+			{
 
-			// Change Player
-			this.Player = this._playerList.FirstOrDefault(x => x.PlayerType == playerType);
-
-			// Set Shell size to player
-			this.Width = this.Player.Width;
-			this.Height = this.Player.Height;
+				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Previous' command: {0}", ex.Message);
+			}
 		}
 
-		private void Track_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void Spotify_OnTrackChange(object sender, TrackChangeEventArgs e)
 		{
-			this.OnPropertyChanged(nameof(this.Track));
-			this.OnPropertyChanged(nameof(this.TrackProgressionToWidth));
+			try
+			{
+				this.Name = e.NewTrack.TrackResource.Name;
+				this.Artist = e.NewTrack.ArtistResource.Name;
+				this.Album = e.NewTrack.AlbumResource.Name;
+				this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(e.NewTrack.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
+				this.Length = e.NewTrack.Length;
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to update on track change event: {0}", ex.Message);
+			}
+		}
+
+		private void Spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
+		{
+			try
+			{
+				this.TrackProgression = e.TrackTime;
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to update on track time change event: {0}", ex.Message);
+			}
+		}
+
+		private void Spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
+		{
+			try
+			{
+				this.IsPlaying = e.Playing;
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to update on play state change event: {0}", ex.Message);
+			}
+		}
+
+		private void GetSpotifyTrack()
+		{
+			try
+			{
+				Retry.AttemptWithRetries<Exception>(5, TimeSpan.FromSeconds(10), () =>
+				{
+					if (this._spotify.Connect())
+					{
+						this.Name = this._spotify.GetStatus().Track.TrackResource.Name;
+						this.Artist = this._spotify.GetStatus().Track.ArtistResource.Name;
+						this.Album = this._spotify.GetStatus().Track.AlbumResource.Name;
+						this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(this._spotify.GetStatus().Track.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
+						this.Length = this._spotify.GetStatus().Track.Length;
+						this.IsPlaying = this._spotify.GetStatus().Playing;
+					}
+					else
+					{
+						throw new Exception("Failed to connect to Spotify");
+					}
+				});
+			}
+			catch (Exception ex)
+			{
+				GetLogger.Error(ex, "[SPOTIFY] Failed to get Spotify track: {0}", ex.Message);
+			}
+		}
+
+		private async void LaunchSpotify()
+		{
+			if (!SpotifyLocalAPI.IsSpotifyRunning())
+			{
+				SpotifyLocalAPI.RunSpotify();
+				await Task.Delay(TimeSpan.FromSeconds(5));
+			}
+		}
+
+		private async void LaunchSpotifyWebHelper()
+		{
+			if (!SpotifyLocalAPI.IsSpotifyWebHelperRunning())
+			{
+				SpotifyLocalAPI.RunSpotifyWebHelper();
+				await Task.Delay(TimeSpan.FromSeconds(5));
+			}
 		}
 	}
 }

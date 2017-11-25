@@ -16,12 +16,12 @@ namespace Smallify.Models
 
 		public PlayerType PlayerType { get; }
 
-		public int Width { get; set; }
+		public double Width { get; set; }
 
-		public int Height { get; set; }
+		public double Height { get; set; }
 
-		public int MinWidth { get; private set; }
+		public double MinWidth { get; }
 
-		public int MinHeight { get; private set; }
+		public double MinHeight { get; }
 	}
 }

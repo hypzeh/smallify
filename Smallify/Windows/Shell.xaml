@@ -5,19 +5,19 @@
         xmlns:local="clr-namespace:Smallify"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:Smallify.Views"
-        xmlns:viewmodel="clr-namespace:Smallify.ViewModels"
+        xmlns:viewmodels="clr-namespace:Smallify.ViewModels"
         Title="Smallify"
-        Width="{Binding Path=Width, Mode=TwoWay}"
-        Height="{Binding Path=Height, Mode=TwoWay}"
-        MinWidth="{Binding Path=Player.MinWidth}"
-        MinHeight="{Binding Path=Player.MinHeight}"
-        WindowStartupLocation="CenterScreen"
+        Width="{Binding Path=ShellWidth, Mode=TwoWay, Delay=250}"
+        Height="{Binding Path=ShellHeight, Mode=TwoWay, Delay=250}"
+        MinWidth="{Binding Path=Player.MinWidth, Mode=OneWay}"
+        MinHeight="{Binding Path=Player.MinHeight, Mode=OneWay}"
+        d:DesignHeight="100"
+        d:DesignWidth="600"
+        Left="{Binding Path=ShellLeft, Mode=TwoWay, Delay=250}"
+        SnapsToDevicePixels="True"
+        Top="{Binding Path=ShellTop, Mode=TwoWay, Delay=250}"
         WindowStyle="None"
         mc:Ignorable="d">
-
-	<Window.DataContext>
-		<viewmodel:SmallifyViewModel />
-	</Window.DataContext>
 
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="0"
@@ -29,17 +29,18 @@
 	<Window.Resources>
 		<!--  Player Views  -->
 		<DataTemplate x:Key="BarView"
-		              DataType="{x:Type viewmodel:SmallifyViewModel}">
+		              DataType="{x:Type viewmodels:SmallifyViewModel}">
 			<view:BarView />
 		</DataTemplate>
 		<DataTemplate x:Key="AlbumView"
-		              DataType="{x:Type viewmodel:SmallifyViewModel}">
+		              DataType="{x:Type viewmodels:SmallifyViewModel}">
 			<view:AlbumView />
 		</DataTemplate>
+
 		<!--  Button Style  -->
 		<Style TargetType="{x:Type Button}">
 			<Setter Property="Background"
-			        Value="Green" />
+			        Value="Transparent" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type Button}">
@@ -63,6 +64,7 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+
 		<!--  Context Menu Style  -->
 		<Style TargetType="{x:Type ContextMenu}">
 			<Setter Property="SnapsToDevicePixels"

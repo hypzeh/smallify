@@ -6,12 +6,12 @@ namespace Smallify.Interfaces
 	{
 		PlayerType PlayerType { get; }
 
-		int Width { get; set; }
+		double Width { get; set; }
 
-		int Height { get; set; }
+		double Height { get; set; }
 
-		int MinWidth { get; }
+		double MinWidth { get; }
 
-		int MinHeight { get; }
+		double MinHeight { get; }
 	}
 }

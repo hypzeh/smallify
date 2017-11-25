@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Smallify.ViewModels;
+using System.Windows.Controls;
 
 namespace Smallify.Views
 {

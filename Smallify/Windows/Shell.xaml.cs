@@ -17,14 +17,10 @@ namespace Smallify
 	{
 		public Shell()
 		{
+			this.DataContext = new ShellViewModel();
 			this.InitializeComponent();
-			this.MouseDown += this.Shell_MouseDown;
-			this.Loaded += this.Shell_Loaded;
-		}
 
-		private void Shell_Loaded(object sender, RoutedEventArgs e)
-		{
-			new UpdateWindow();
+			this.MouseDown += this.Shell_MouseDown;
 		}
 
 		private void Shell_MouseDown(object sender, MouseButtonEventArgs e)
