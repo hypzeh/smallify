@@ -6,6 +6,7 @@ using SpotifyAPI.Local;
 using SpotifyAPI.Local.Enums;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -26,19 +27,22 @@ namespace Smallify.ViewModels
 		private int _length;
 		private double _trackProgression;
 		private bool _isPlaying;
+		private bool _isAdvert;
+
+		private List<string> dummyStringList;
 
 		public SmallifyViewModel()
 		{
 			this._spotify = new SpotifyLocalAPI();
 
-			var dummyStringList = new List<string>
+			this.dummyStringList = new List<string>
 			{
 				@"Wherefore art thou Spotify? >:(",
 				@"¯\_(ツ)_/¯",
 			};
 
 			this.Name = "Smallify";
-			this.Artist = dummyStringList.PickRandom();
+			this.Artist = this.dummyStringList.PickRandom();
 
 			Task.Run(() =>
 			{
@@ -162,6 +166,20 @@ namespace Smallify.ViewModels
 			}
 		}
 
+		public bool IsAdvert
+		{
+			get
+			{
+				return this._isAdvert;
+			}
+
+			set
+			{
+				this.SetProperty<bool>(ref this._isAdvert, value);
+				this.OnPropertyChanged(nameof(this.IsAdvert));
+			}
+		}
+
 		public void PlayPauseCommand_Execute()
 		{
 			try
@@ -183,6 +201,7 @@ namespace Smallify.ViewModels
 			catch (Exception ex)
 			{
 				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Play/Pause' command: {0}", ex.Message);
+				this.UpdateInfoWithSpotifyConnection();
 			}
 		}
 
@@ -198,6 +217,7 @@ namespace Smallify.ViewModels
 			catch (Exception ex)
 			{
 				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Skip' command: {0}", ex.Message);
+				this.UpdateInfoWithSpotifyConnection();
 			}
 		}
 
@@ -212,8 +232,8 @@ namespace Smallify.ViewModels
 			}
 			catch (Exception ex)
 			{
-
 				GetLogger.Error(ex, "[SPOTIFY] Failed to execute 'Previous' command: {0}", ex.Message);
+				this.UpdateInfoWithSpotifyConnection();
 			}
 		}
 
@@ -221,11 +241,20 @@ namespace Smallify.ViewModels
 		{
 			try
 			{
-				this.Name = e.NewTrack.TrackResource.Name;
-				this.Artist = e.NewTrack.ArtistResource.Name;
-				this.Album = e.NewTrack.AlbumResource.Name;
-				this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(e.NewTrack.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
-				this.Length = e.NewTrack.Length;
+				this.IsAdvert = e.NewTrack.IsAd();
+
+				if (!this.IsAdvert)
+				{
+					this.Name = e.NewTrack.TrackResource.Name;
+					this.Artist = e.NewTrack.ArtistResource.Name;
+					this.Album = e.NewTrack.AlbumResource.Name;
+					this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(e.NewTrack.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
+					this.Length = e.NewTrack.Length;
+				}
+				else
+				{
+					this.GetSpotifyTrack();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -265,12 +294,27 @@ namespace Smallify.ViewModels
 				{
 					if (this._spotify.Connect())
 					{
-						this.Name = this._spotify.GetStatus().Track.TrackResource.Name;
-						this.Artist = this._spotify.GetStatus().Track.ArtistResource.Name;
-						this.Album = this._spotify.GetStatus().Track.AlbumResource.Name;
-						this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(this._spotify.GetStatus().Track.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
-						this.Length = this._spotify.GetStatus().Track.Length;
-						this.IsPlaying = this._spotify.GetStatus().Playing;
+						if (!this._spotify.GetStatus().Track.IsAd())
+						{
+							this.Name = this._spotify.GetStatus().Track.TrackResource.Name;
+							this.Artist = this._spotify.GetStatus().Track.ArtistResource.Name;
+							this.Album = this._spotify.GetStatus().Track.AlbumResource.Name;
+							this.AlbumArt = (BitmapSource)new ImageSourceConverter().ConvertFrom(this._spotify.GetStatus().Track.GetAlbumArtAsByteArray(AlbumArtSize.Size640));
+							this.Length = this._spotify.GetStatus().Track.Length;
+							this.IsPlaying = this._spotify.GetStatus().Playing;
+							this.IsAdvert = false;
+						}
+						else
+						{
+							this.Name = @"Advertisment";
+							this.Artist = @"¯\_(ツ)_/¯";
+							this.Album = @"¯\_(ツ)_/¯";
+							this.AlbumArt = null;
+							this.Length = 0;
+							this.TrackProgression = 0;
+							this.IsPlaying = this._spotify.GetStatus().Playing;
+							this.IsAdvert = true;
+						}
 					}
 					else
 					{
@@ -281,6 +325,21 @@ namespace Smallify.ViewModels
 			catch (Exception ex)
 			{
 				GetLogger.Error(ex, "[SPOTIFY] Failed to get Spotify track: {0}", ex.Message);
+			}
+		}
+
+		private void UpdateInfoWithSpotifyConnection()
+		{
+			if (!this._spotify.Connect())
+			{
+				this.Name = "Smallify";
+				this.Artist = this.dummyStringList.PickRandom();
+				this.Album = "No connection";
+				this.AlbumArt = null;
+				this.TrackProgression = 0;
+				this.Length = 0;
+				this.IsPlaying = false;
+				this.IsAdvert = false;
 			}
 		}
 

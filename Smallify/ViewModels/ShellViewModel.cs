@@ -6,6 +6,7 @@ using Smallify.Models;
 using Smallify.Utility;
 using Smallify.Windows;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -15,6 +16,7 @@ namespace Smallify.ViewModels
 	{
 		private readonly ILayoutManger _layoutManager;
 
+		private string _title;
 		private double _shellWidth;
 		private double _shellHeight;
 		private double _shellTop;
@@ -27,6 +29,8 @@ namespace Smallify.ViewModels
 
 		public ShellViewModel()
 		{
+			this.Title = "Smallify";
+
 			this.Smallify = new SmallifyViewModel();
 			this.Smallify.PropertyChanged += this.Smallify_PropertyChanged;
 
@@ -34,7 +38,8 @@ namespace Smallify.ViewModels
 			this._playerList = new List<IPlayer>
 			{
 				new PlayerModel(PlayerType.Bar, 600, 100, 300, 50),
-				new PlayerModel(PlayerType.Album, 600, 600, 100, 100)
+				new PlayerModel(PlayerType.Album, 600, 600, 100, 100),
+				new PlayerModel(PlayerType.MediaControl, 200, 100, 200, 50)
 			};
 
 			// Load settings
@@ -49,6 +54,7 @@ namespace Smallify.ViewModels
 			// Player switch commands
 			this.BarPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.Bar), () => this.Player.PlayerType != PlayerType.Bar);
 			this.AlbumPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.Album), () => this.Player.PlayerType != PlayerType.Album);
+			this.MediaControlPlayerCommand = new DelegateCommand(() => this.SwitchPlayerTo(PlayerType.MediaControl), () => this.Player.PlayerType != PlayerType.MediaControl);
 
 			this.UpdateWindowCommand.Execute(null);
 		}
@@ -63,7 +69,23 @@ namespace Smallify.ViewModels
 
 		public ICommand AlbumPlayerCommand { get; private set; }
 
+		public ICommand MediaControlPlayerCommand { get; private set; }
+
 		public SmallifyViewModel Smallify { get; }
+
+		public string Title
+		{
+			get
+			{
+				return this._title;
+			}
+
+			set
+			{
+				this.SetProperty<string>(ref this._title, value);
+				this.OnPropertyChanged(nameof(this.Title));
+			}
+		}
 
 		public double ShellWidth
 		{
@@ -169,7 +191,7 @@ namespace Smallify.ViewModels
 			{
 				if (this.Player.PlayerType == PlayerType.Bar)
 				{
-					return ((this.Smallify.TrackProgression * this.ShellWidth) - this.ShellHeight) / this.Smallify.Length;
+					return (this.Smallify.TrackProgression * (this.ShellWidth - this.ShellHeight)) / this.Smallify.Length;
 				}
 
 				return (this.Smallify.TrackProgression * this.ShellWidth) / this.Smallify.Length;
@@ -204,6 +226,7 @@ namespace Smallify.ViewModels
 			this.Player = this._playerList.FirstOrDefault(x => x.PlayerType == playerType);
 			((DelegateCommand)this.BarPlayerCommand).RaiseCanExecuteChanged();
 			((DelegateCommand)this.AlbumPlayerCommand).RaiseCanExecuteChanged();
+			((DelegateCommand)this.MediaControlPlayerCommand).RaiseCanExecuteChanged();
 
 			// Set Shell size to player
 			this.ShellWidth = this.Player.Width;
@@ -236,9 +259,25 @@ namespace Smallify.ViewModels
 			this._layoutManager.SavePreferences(this.IsAlwaysOnTop);
 		}
 
-		private void Smallify_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void Smallify_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			this.OnPropertyChanged(nameof(this.TrackProgression));
+			if (e.PropertyName == "TrackProgression")
+			{
+				this.OnPropertyChanged(nameof(this.TrackProgression));
+			}
+
+			if (this.Smallify.IsPlaying 
+				&& !this.Smallify.IsAdvert
+				&& e.PropertyName == "IsPlaying"
+				|| e.PropertyName == "Name"
+				|| e.PropertyName == "Artist")
+			{
+				this.Title = string.Format("{0} - {1}", this.Smallify.Artist, this.Smallify.Name);
+			}
+			else if (!this.Smallify.IsPlaying || this.Smallify.IsAdvert)
+			{
+				this.Title = "Smallify";
+			}
 		}
 	}
 }

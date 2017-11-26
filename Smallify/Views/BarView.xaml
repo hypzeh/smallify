@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Smallify.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodels="clr-namespace:Smallify.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ShellViewModel}"
              d:DesignHeight="100"
              d:DesignWidth="600"
              mc:Ignorable="d">

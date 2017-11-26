@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Smallify.Enums
+﻿namespace Smallify.Enums
 {
-    public enum PlayerType
+	public enum PlayerType
     {
 		Bar = 1,
-		Album = 2
+		Album = 2,
+		MediaControl = 3
     }
 }
