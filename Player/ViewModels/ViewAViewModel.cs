@@ -1,34 +1,46 @@
-﻿using GUI.Shared.CompositeCommands;
-using GUI.Shared.Interfaces;
-using Prism.Commands;
+﻿using Player.Models;
 using Prism.Mvvm;
-using System.Windows.Input;
+using System.ComponentModel;
 
 namespace Player.ViewModels
 {
 	public class ViewAViewModel : BindableBase
 	{
-		private string _message;
+		private readonly PlayerModel _player;
 
-		public ViewAViewModel(ICompositeCommandAggregator compositeCommand)
+		private bool _isConnected;
+
+		public ViewAViewModel(PlayerModel player)
 		{
-			this.Message = "View A from your Prism Module";
+			this._player = player;
 
-			this.UpdaterWindowCommand = compositeCommand.Get<UpdaterInitialiseCommand>();
+			this._player.ConnectToSpotify();
+
+			this._isConnected = this._player.IsConnected;
+
+			this._player.PropertyChanged += this.Player_PropertyChanged;
 		}
 
-		public ICommand UpdaterWindowCommand { get; private set; }
-
-		public string Message
+		public bool IsConnected
 		{
 			get
 			{
-				return this._message;
+				return this._isConnected;
 			}
 
 			set
 			{
-				this.SetProperty(ref _message, value);
+				this.SetProperty(ref this._isConnected, value);
+			}
+		}
+
+		private void Player_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			switch (e.PropertyName)
+			{
+				case nameof(this._player.IsConnected):
+					this.IsConnected = this._player.IsConnected;
+					break;
 			}
 		}
 	}

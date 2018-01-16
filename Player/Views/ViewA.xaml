@@ -9,13 +9,32 @@
              d:DesignWidth="300"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
-    <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="{Binding Message}" />
-        <Button Width="200"
-                Height="50"
-                Command="{Binding Path=UpdaterWindowCommand}"
-                Content="Updater Window" />
+
+    <Grid Background="{DynamicResource MainBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Width="25"
+                Height="25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <Ellipse Stroke="Black"
+                     StrokeThickness="2">
+                <Ellipse.Style>
+                    <Style TargetType="Ellipse">
+                        <Setter Property="Fill" Value="{DynamicResource WarningRedBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsConnected}"
+                                         Value="True">
+                                <Setter Property="Fill" Value="{DynamicResource SpotifyGreenBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
+        </Border>
     </Grid>
 </UserControl>
