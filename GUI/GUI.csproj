@@ -110,6 +110,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GUI.Shared\GUI.Shared.csproj">
+      <Project>{B6DBC431-3978-406D-A5FF-52B915D8E540}</Project>
+      <Name>GUI.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Player\Player.csproj">
       <Project>{25D079E9-C1C8-4052-9C44-7C2E43AD5466}</Project>
       <Name>Player</Name>

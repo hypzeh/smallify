@@ -1,28 +1,37 @@
-﻿using GUI.Views;
-using System.Windows;
-using Prism.Modularity;
+﻿using GUI.Shared.Interfaces;
+using GUI.Shared.Utilities;
+using GUI.Views;
 using Microsoft.Practices.Unity;
-using Prism.Unity;
 using Player;
+using Prism.Modularity;
+using Prism.Unity;
+using System.Windows;
 
 namespace GUI
 {
-    class Bootstrapper : UnityBootstrapper
-    {
-        protected override DependencyObject CreateShell()
-        {
-            return this.Container.Resolve<Shell>();
-        }
+	internal class Bootstrapper : UnityBootstrapper
+	{
+		protected override void ConfigureContainer()
+		{
+			base.ConfigureContainer();
 
-        protected override void InitializeShell()
-        {
-            Application.Current.MainWindow.Show();
-        }
+			this.Container.RegisterType<ICompositeCommandAggregator, CompositeCommandAggregator>(new ContainerControlledLifetimeManager());
+		}
 
-        protected override void ConfigureModuleCatalog()
-        {
-            var moduleCatalog = this.ModuleCatalog as ModuleCatalog;
-            moduleCatalog.AddModule(typeof(PlayerModule));
-        }
-    }
+		protected override void ConfigureModuleCatalog()
+		{
+			var moduleCatalog = this.ModuleCatalog as ModuleCatalog;
+			moduleCatalog.AddModule(typeof(PlayerModule));
+		}
+
+		protected override DependencyObject CreateShell()
+		{
+			return this.Container.Resolve<Shell>();
+		}
+
+		protected override void InitializeShell()
+		{
+			Application.Current.MainWindow.Show();
+		}
+	}
 }
