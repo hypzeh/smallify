@@ -10,7 +10,7 @@ namespace GUI
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return this.Container.Resolve<Shell>();
         }
 
         protected override void InitializeShell()
@@ -20,7 +20,7 @@ namespace GUI
 
         protected override void ConfigureModuleCatalog()
         {
-            var moduleCatalog = (ModuleCatalog)ModuleCatalog;
+            var moduleCatalog = this.ModuleCatalog as ModuleCatalog;
             //moduleCatalog.AddModule(typeof(YOUR_MODULE));
         }
     }
