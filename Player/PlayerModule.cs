@@ -4,6 +4,8 @@ using Prism.Regions;
 using System;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
+using Player.ViewModels;
+using Player.Models;
 
 namespace Player
 {
@@ -28,12 +30,12 @@ namespace Player
 
 		public void RegisterModels()
 		{
-
+			this._container.RegisterType<PlayerModel>();
 		}
 
 		public void RegisterViewModels()
 		{
-
+			this._container.RegisterType<ViewAViewModel>();
 		}
 
 		public void RegisterViews()
