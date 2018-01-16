@@ -26,6 +26,7 @@ namespace Updater
 
 		public void RegisterViewModels()
 		{
+			this._container.RegisterType<UpdaterWindow>("UpdaterWindow");
 			this._container.RegisterType<ViewAViewModel>();
 		}
 
