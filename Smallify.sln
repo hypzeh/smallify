@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI.Shared", "GUI.Shared\GUI.Shared.csproj", "{B6DBC431-3978-406D-A5FF-52B915D8E540}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player", "Player\Player.csproj", "{25D079E9-C1C8-4052-9C44-7C2E43AD5466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B6DBC431-3978-406D-A5FF-52B915D8E540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6DBC431-3978-406D-A5FF-52B915D8E540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6DBC431-3978-406D-A5FF-52B915D8E540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D079E9-C1C8-4052-9C44-7C2E43AD5466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D079E9-C1C8-4052-9C44-7C2E43AD5466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D079E9-C1C8-4052-9C44-7C2E43AD5466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D079E9-C1C8-4052-9C44-7C2E43AD5466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

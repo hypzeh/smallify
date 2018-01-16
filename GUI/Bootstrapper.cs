@@ -3,6 +3,7 @@ using System.Windows;
 using Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
+using Player;
 
 namespace GUI
 {
@@ -21,7 +22,7 @@ namespace GUI
         protected override void ConfigureModuleCatalog()
         {
             var moduleCatalog = this.ModuleCatalog as ModuleCatalog;
-            //moduleCatalog.AddModule(typeof(YOUR_MODULE));
+            moduleCatalog.AddModule(typeof(PlayerModule));
         }
     }
 }
