@@ -6,6 +6,7 @@ using Player;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
+using Updater;
 
 namespace GUI
 {
@@ -22,6 +23,7 @@ namespace GUI
 		{
 			var moduleCatalog = this.ModuleCatalog as ModuleCatalog;
 			moduleCatalog.AddModule(typeof(PlayerModule));
+			moduleCatalog.AddModule(typeof(UpdaterModule));
 		}
 
 		protected override DependencyObject CreateShell()
