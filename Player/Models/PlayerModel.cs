@@ -31,6 +31,10 @@ namespace Player.Models
 
 			this._heartbeatTimer.Tick += this.HeartbeatTimer_Tick;
 			this._heartbeatTimer.Start();
+
+			this._spotify.OnTrackChange += this.Spotify_OnTrackChange;
+			this._spotify.OnTrackTimeChange += this.Spotify_OnTrackTimeChange;
+			this._spotify.ListenForEvents = true;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -135,6 +139,8 @@ namespace Player.Models
 			if (disposing)
 			{
 				this._spotify.Dispose();
+				this._spotify.OnTrackChange -= this.Spotify_OnTrackChange;
+				this._spotify.OnTrackTimeChange -= this.Spotify_OnTrackTimeChange;
 
 				this._heartbeatTimer.Stop();
 				this._heartbeatTimer.Tick -= this.HeartbeatTimer_Tick;
@@ -149,6 +155,16 @@ namespace Player.Models
 		private void HeartbeatTimer_Tick(object sender, EventArgs e)
 		{
 			this.ConnectToSpotify();
+		}
+
+		private void Spotify_OnTrackChange(object sender, TrackChangeEventArgs e)
+		{
+			this.CurrentTrack = e.NewTrack;
+		}
+
+		private void Spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
+		{
+			this.TrackTime = e.TrackTime;
 		}
 	}
 }
