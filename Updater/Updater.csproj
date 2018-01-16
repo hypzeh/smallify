@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\UpdaterHandler.cs" />
     <Compile Include="UpdaterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -80,7 +81,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GUI.Shared\GUI.Shared.csproj">
+      <Project>{B6DBC431-3978-406D-A5FF-52B915D8E540}</Project>
+      <Name>GUI.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\UpdaterWindow.xaml">
       <SubType>Designer</SubType>

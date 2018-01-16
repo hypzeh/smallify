@@ -13,5 +13,9 @@
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text="{Binding Message}" />
+        <Button Width="200"
+                Height="50"
+                Command="{Binding Path=UpdaterWindowCommand}"
+                Content="Updater Window" />
     </Grid>
 </UserControl>
