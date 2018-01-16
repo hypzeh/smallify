@@ -12,7 +12,10 @@ namespace Player.Models
 	{
 		private readonly DispatcherTimer _heartbeatTimer;
 		private readonly SpotifyLocalAPI _spotify;
+
+		private Track _currentTrack;
 		private bool _isConnected;
+		private double _trackTime;
 
 		public PlayerModel()
 		{
@@ -22,6 +25,8 @@ namespace Player.Models
 				Interval = TimeSpan.FromSeconds(10d)
 			};
 
+			this._currentTrack = new Track();
+			this._trackTime = 0d;
 			this._isConnected = false;
 
 			this._heartbeatTimer.Tick += this.HeartbeatTimer_Tick;
@@ -29,6 +34,23 @@ namespace Player.Models
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		public Track CurrentTrack
+		{
+			get
+			{
+				return this._currentTrack;
+			}
+
+			private set
+			{
+				if (value != this._currentTrack)
+				{
+					this._currentTrack = value;
+					this.NotifyPropertyChanged(nameof(this.CurrentTrack));
+				}
+			}
+		}
 
 		public bool IsConnected
 		{
@@ -43,6 +65,22 @@ namespace Player.Models
 				{
 					this._isConnected = value;
 					this.NotifyPropertyChanged(nameof(this.IsConnected));
+				}
+			}
+		}
+
+		public double TrackTime
+		{
+			get
+			{
+				return this._trackTime;
+			}
+
+			private set
+			{
+				if (value != this._trackTime)
+				{
+					this._trackTime = value;
 				}
 			}
 		}
