@@ -1,16 +1,17 @@
 ﻿using SpotifyAPI.Local;
+using SpotifyAPI.Local.Models;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Player.Models
 {
 	public class PlayerModel : IDisposable, INotifyPropertyChanged
 	{
-		private readonly SpotifyLocalAPI _spotify;
 		private readonly DispatcherTimer _heartbeatTimer;
-
+		private readonly SpotifyLocalAPI _spotify;
 		private bool _isConnected;
 
 		public PlayerModel()
@@ -25,11 +26,6 @@ namespace Player.Models
 
 			this._heartbeatTimer.Tick += this.HeartbeatTimer_Tick;
 			this._heartbeatTimer.Start();
-		}
-
-		private void HeartbeatTimer_Tick(object sender, EventArgs e)
-		{
-			this.ConnectToSpotify();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -71,6 +67,31 @@ namespace Player.Models
 			GC.SuppressFinalize(this);
 		}
 
+		public StatusResponse GetClientStatus()
+		{
+			return this._spotify.GetStatus();
+		}
+
+		public async Task Pause()
+		{
+			await this._spotify.Pause();
+		}
+
+		public async Task Play()
+		{
+			await this._spotify.Play();
+		}
+
+		public void Previous()
+		{
+			this._spotify.Previous();
+		}
+
+		public void Skip()
+		{
+			this._spotify.Skip();
+		}
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -85,6 +106,11 @@ namespace Player.Models
 		protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
 		{
 			this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		private void HeartbeatTimer_Tick(object sender, EventArgs e)
+		{
+			this.ConnectToSpotify();
 		}
 	}
 }
