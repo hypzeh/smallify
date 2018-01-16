@@ -2,20 +2,34 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Threading;
 
 namespace Player.Models
 {
 	public class PlayerModel : IDisposable, INotifyPropertyChanged
 	{
 		private readonly SpotifyLocalAPI _spotify;
+		private readonly DispatcherTimer _heartbeatTimer;
 
 		private bool _isConnected;
 
 		public PlayerModel()
 		{
 			this._spotify = new SpotifyLocalAPI();
+			this._heartbeatTimer = new DispatcherTimer(DispatcherPriority.DataBind)
+			{
+				Interval = TimeSpan.FromSeconds(10d)
+			};
 
 			this._isConnected = false;
+
+			this._heartbeatTimer.Tick += this.HeartbeatTimer_Tick;
+			this._heartbeatTimer.Start();
+		}
+
+		private void HeartbeatTimer_Tick(object sender, EventArgs e)
+		{
+			this.ConnectToSpotify();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -62,6 +76,9 @@ namespace Player.Models
 			if (disposing)
 			{
 				this._spotify.Dispose();
+
+				this._heartbeatTimer.Stop();
+				this._heartbeatTimer.Tick -= this.HeartbeatTimer_Tick;
 			}
 		}
 
