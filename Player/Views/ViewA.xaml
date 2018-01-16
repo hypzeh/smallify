@@ -10,8 +10,105 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="SliderRepeatButton"
+               TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border Height="5"
+                                VerticalAlignment="Center"
+                                Background="#424242"
+                                CornerRadius="2" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderRepeatButton1"
+               TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border Height="5"
+                                VerticalAlignment="Center"
+                                Background="#B0B0B0"
+                                CornerRadius="2"
+                                SnapsToDevicePixels="True" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb"
+               TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Ellipse Width="10"
+                                 Height="10"
+                                 Fill="#FFFFFF"
+                                 Visibility="Collapsed" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"
+                         x:Name="Slider"
+                         TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                                   MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track x:Name="PART_Track"
+                       Grid.Row="1">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="Slider.DecreaseLarge"
+                                      Style="{StaticResource SliderRepeatButton1}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="Slider.IncreaseLarge"
+                                      Style="{StaticResource SliderRepeatButton}" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Horizontal_Slider"
+               TargetType="Slider">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="21" />
+                    <Setter Property="MinWidth" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="{DynamicResource MainBackgroundBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -36,5 +133,102 @@
                 </Ellipse.Style>
             </Ellipse>
         </Border>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Foreground="{DynamicResource TextBrush}"
+                       Text="{Binding Path=TrackName}" />
+            <TextBlock Foreground="{DynamicResource TextBrush}"
+                       Text="{Binding Path=ArtistName}" />
+            <TextBlock Foreground="{DynamicResource TextBrush}"
+                       Text="{Binding Path=AlbumName}" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0"
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="5,0"
+                    Background="{DynamicResource ControlBackgroundBrush}"
+                    Command="{Binding Path=PreviousCommand}"
+                    Content="Previous"
+                    Foreground="{DynamicResource TextBrush}" />
+            <Button Grid.Column="1"
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="5,0"
+                    Background="{DynamicResource ControlBackgroundBrush}"
+                    Command="{Binding Path=PlayCommand}"
+                    Content="Play"
+                    Foreground="{DynamicResource TextBrush}" />
+            <Button Grid.Column="2"
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="5,0"
+                    Background="{DynamicResource ControlBackgroundBrush}"
+                    Command="{Binding Path=PauseCommand}"
+                    Content="Pause"
+                    Foreground="{DynamicResource TextBrush}" />
+            <Button Grid.Column="3"
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="5,0"
+                    Background="{DynamicResource ControlBackgroundBrush}"
+                    Command="{Binding Path=SkipCommand}"
+                    Content="Skip"
+                    Foreground="{DynamicResource TextBrush}" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Margin="0,0,5,0"
+                       Foreground="#FFFFFF"
+                       Text="{Binding Path=TrackTime, StringFormat={}{0:m\\:ss}}" />
+
+            <Slider Grid.Column="1"
+                    VerticalAlignment="Center"
+                    IsEnabled="False"
+                    Maximum="{Binding Path=TrackLength.TotalSeconds}"
+                    Minimum="0"
+                    Style="{StaticResource Horizontal_Slider}"
+                    Value="{Binding Path=TrackTime.TotalSeconds, Mode=OneWay}" />
+
+            <TextBlock Grid.Column="2"
+                       Margin="5,0,0,0"
+                       Foreground="#FFFFFF"
+                       Text="{Binding Path=TrackLength, StringFormat={}{0:m\\:ss}}" />
+        </Grid>
+
+        <Grid x:Name="AlbumArt"
+              Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{Binding Path=Height, ElementName=AlbumArt}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Height="{Binding Path=Height, ElementName=AlbumArt}"
+                   Source="{Binding Path=AlbumArtURL}" />
+        </Grid>
     </Grid>
 </UserControl>
