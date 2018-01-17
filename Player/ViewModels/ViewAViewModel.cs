@@ -36,7 +36,7 @@ namespace Player.ViewModels
 			this._trackName = this._player?.CurrentTrack?.TrackResource?.Name ?? string.Empty;
 			this._artistName = this._player?.CurrentTrack?.ArtistResource?.Name ?? string.Empty;
 			this._albumName = this._player?.CurrentTrack?.AlbumResource?.Name ?? string.Empty;
-			this._albumArtURL = string.Empty;
+			this._albumArtURL = this._player?.GetClientStatus()?.Track?.GetAlbumArtUrl(AlbumArtSize.Size640) ?? string.Empty;
 			this._trackLength = TimeSpan.FromSeconds(this._player?.CurrentTrack?.Length ?? 0);
 			this._trackTime = TimeSpan.FromSeconds(this._player.TrackTime);
 

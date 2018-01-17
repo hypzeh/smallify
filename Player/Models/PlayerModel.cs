@@ -95,10 +95,12 @@ namespace Player.Models
 			{
 				var status = this._spotify.GetStatus();
 
+				this.CurrentTrack = status.Track;
 				this.IsConnected = status.Online;
 			}
 			else
 			{
+				this.CurrentTrack = new Track();
 				this.IsConnected = false;
 			}
 		}

@@ -136,11 +136,11 @@
 
         <StackPanel Grid.Row="1">
             <TextBlock Foreground="{DynamicResource TextBrush}"
-                       Text="{Binding Path=TrackName}" />
+                       Text="{Binding Path=TrackName, FallbackValue='TrackName'}" />
             <TextBlock Foreground="{DynamicResource TextBrush}"
-                       Text="{Binding Path=ArtistName}" />
+                       Text="{Binding Path=ArtistName, FallbackValue='ArtistName'}" />
             <TextBlock Foreground="{DynamicResource TextBrush}"
-                       Text="{Binding Path=AlbumName}" />
+                       Text="{Binding Path=AlbumName, FallbackValue='AlbumName'}" />
         </StackPanel>
 
         <Grid Grid.Row="2">
