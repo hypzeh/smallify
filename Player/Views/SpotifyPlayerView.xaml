@@ -200,50 +200,6 @@
                             Foreground="{DynamicResource TextBrush}" />
                 </Grid>
             </Grid>
-            <!--
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="1"
-                        Width="50"
-                        Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                        Background="{DynamicResource ControlBackgroundBrush}"
-                        Command="{Binding Path=PreviousCommand}"
-                        Content="Previous"
-                        Foreground="{DynamicResource TextBrush}" />
-
-                <Button Grid.Column="2"
-                        Width="50"
-                        Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                        Background="{DynamicResource ControlBackgroundBrush}"
-                        Command="{Binding Path=PlayCommand}"
-                        Content="Play"
-                        Foreground="{DynamicResource TextBrush}" />
-
-                <Button Grid.Column="3"
-                        Width="50"
-                        Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                        Background="{DynamicResource ControlBackgroundBrush}"
-                        Command="{Binding Path=PauseCommand}"
-                        Content="Pause"
-                        Foreground="{DynamicResource TextBrush}" />
-
-                <Button Grid.Column="4"
-                        Width="50"
-                        Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                        Background="{DynamicResource ControlBackgroundBrush}"
-                        Command="{Binding Path=SkipCommand}"
-                        Content="Skip"
-                        Foreground="{DynamicResource TextBrush}" />
-            </Grid>
-            -->
 
             <Grid Grid.Row="1"
                   Margin="5">

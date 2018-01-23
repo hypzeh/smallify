@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:regions="clr-namespace:GUI.Shared.Constants;assembly=GUI.Shared"
         Title="{Binding Title}"
         Width="600"
         Height="200"
         prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <ContentControl prism:RegionManager.RegionName="{x:Static regions:RegionNames.SpotifyPlayerRegion}" />
     </Grid>
 </Window>

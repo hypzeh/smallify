@@ -65,6 +65,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="Views\BarPlayerView.xaml.cs">
+      <DependentUpon>BarPlayerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpotifyPlayerView.xaml.cs">
       <DependentUpon>SpotifyPlayerView.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\BarPlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SpotifyPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

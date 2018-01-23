@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositeCommands\UpdaterInitialiseCommand.cs" />
+    <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Interfaces\ICompositeCommandAggregator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,6 +99,8 @@
       <Version>4.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

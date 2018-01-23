@@ -6,6 +6,7 @@ using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Player.ViewModels;
 using Player.Models;
+using GUI.Shared.Constants;
 
 namespace Player
 {
@@ -41,9 +42,11 @@ namespace Player
 		public void RegisterViews()
 		{
 			this._container.RegisterTypeForNavigation<SpotifyPlayerView>();
+			this._container.RegisterTypeForNavigation<BarPlayerView>();
 
 			// Region register
-			this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(SpotifyPlayerView));
+			this._regionManager.RegisterViewWithRegion(RegionNames.SpotifyPlayerRegion, typeof(SpotifyPlayerView));
+			this._regionManager.RegisterViewWithRegion(RegionNames.BarPlayerRegion, typeof(BarPlayerView));
 		}
 	}
 }
