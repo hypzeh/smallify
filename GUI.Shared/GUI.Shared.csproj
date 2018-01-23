@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositeCommands\UpdaterInitialiseCommand.cs" />
+    <Compile Include="Constants\PlayerNames.cs" />
     <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Interfaces\ICompositeCommandAggregator.cs" />

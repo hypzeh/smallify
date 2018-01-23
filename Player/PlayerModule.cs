@@ -41,12 +41,12 @@ namespace Player
 
 		public void RegisterViews()
 		{
-			this._container.RegisterTypeForNavigation<SpotifyPlayerView>();
-			this._container.RegisterTypeForNavigation<BarPlayerView>();
+			this._container.RegisterTypeForNavigation<SpotifyPlayerView>(PlayerNames.Spotify);
+			this._container.RegisterTypeForNavigation<BarPlayerView>(PlayerNames.Bar);
 
 			// Region register
-			this._regionManager.RegisterViewWithRegion(RegionNames.SpotifyPlayerRegion, typeof(SpotifyPlayerView));
-			this._regionManager.RegisterViewWithRegion(RegionNames.BarPlayerRegion, typeof(BarPlayerView));
+			this._regionManager.RegisterViewWithRegion(RegionNames.PlayerRegion, typeof(SpotifyPlayerView));
+			this._regionManager.RegisterViewWithRegion(RegionNames.PlayerRegion, typeof(BarPlayerView));
 		}
 	}
 }
