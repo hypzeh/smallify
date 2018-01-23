@@ -40,10 +40,10 @@ namespace Player
 
 		public void RegisterViews()
 		{
-			this._container.RegisterTypeForNavigation<ViewA>();
+			this._container.RegisterTypeForNavigation<SpotifyPlayerView>();
 
 			// Region register
-			this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
+			this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(SpotifyPlayerView));
 		}
 	}
 }

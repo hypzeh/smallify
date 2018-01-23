@@ -4,11 +4,11 @@ using System.Windows.Controls;
 namespace Player.Views
 {
 	/// <summary>
-	/// Interaction logic for ViewA.xaml
+	/// Interaction logic for SpotifyPlayerView.xaml
 	/// </summary>
-	public partial class ViewA : UserControl
+	public partial class SpotifyPlayerView : UserControl
 	{
-		public ViewA(PlayerViewModel viewModel)
+		public SpotifyPlayerView(PlayerViewModel viewModel)
 		{
 			this.DataContext = viewModel;
 			this.InitializeComponent();
