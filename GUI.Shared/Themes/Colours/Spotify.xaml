@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:GUI.Shared.Themes.Colours">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--  Region Colours  -->
     <Color x:Key="MainBackground">
@@ -11,6 +10,9 @@
     </Color>
     <Color x:Key="Text">
         #FFFFFF
+    </Color>
+    <Color x:Key="SecondaryText">
+        #ABABAB
     </Color>
     <Color x:Key="SpotifyGreen">
         #00D66E
@@ -27,6 +29,8 @@
                      Color="{StaticResource ControlBackground}" />
     <SolidColorBrush x:Key="TextBrush"
                      Color="{StaticResource Text}" />
+    <SolidColorBrush x:Key="SecondaryTextBrush"
+                     Color="{StaticResource SecondaryText}" />
     <SolidColorBrush x:Key="SpotifyGreenBrush"
                      Color="{StaticResource SpotifyGreen}" />
     <SolidColorBrush x:Key="WarningRedBrush"

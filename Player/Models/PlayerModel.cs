@@ -15,6 +15,7 @@ namespace Player.Models
 
 		private Track _currentTrack;
 		private bool _isConnected;
+		private bool _isPlaying;
 		private double _trackTime;
 
 		public PlayerModel()
@@ -28,12 +29,14 @@ namespace Player.Models
 			this._currentTrack = new Track();
 			this._trackTime = 0d;
 			this._isConnected = false;
+			this._isPlaying = false;
 
 			this._heartbeatTimer.Tick += this.HeartbeatTimer_Tick;
 			this._heartbeatTimer.Start();
 
 			this._spotify.OnTrackChange += this.Spotify_OnTrackChange;
 			this._spotify.OnTrackTimeChange += this.Spotify_OnTrackTimeChange;
+			this._spotify.OnPlayStateChange += this.Spotify_OnPlayStateChange;
 			this._spotify.ListenForEvents = true;
 		}
 
@@ -73,6 +76,23 @@ namespace Player.Models
 			}
 		}
 
+		public bool IsPlaying
+		{
+			get
+			{
+				return this._isPlaying;
+			}
+
+			private set
+			{
+				if (value != this._isPlaying)
+				{
+					this._isPlaying = value;
+					this.NotifyPropertyChanged(nameof(this.IsPlaying));
+				}
+			}
+		}
+
 		public double TrackTime
 		{
 			get
@@ -97,11 +117,13 @@ namespace Player.Models
 
 				this.CurrentTrack = status.Track;
 				this.IsConnected = status.Online;
+				this.IsPlaying = status.Playing;
 			}
 			else
 			{
 				this.CurrentTrack = new Track();
 				this.IsConnected = false;
+				this.IsPlaying = false;
 			}
 		}
 
@@ -143,6 +165,7 @@ namespace Player.Models
 				this._spotify.Dispose();
 				this._spotify.OnTrackChange -= this.Spotify_OnTrackChange;
 				this._spotify.OnTrackTimeChange -= this.Spotify_OnTrackTimeChange;
+				this._spotify.OnPlayStateChange -= this.Spotify_OnPlayStateChange;
 
 				this._heartbeatTimer.Stop();
 				this._heartbeatTimer.Tick -= this.HeartbeatTimer_Tick;
@@ -167,6 +190,11 @@ namespace Player.Models
 		private void Spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
 		{
 			this.TrackTime = e.TrackTime;
+		}
+
+		private void Spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
+		{
+			this.IsPlaying = e.Playing;
 		}
 	}
 }

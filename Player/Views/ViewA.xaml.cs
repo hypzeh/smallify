@@ -8,7 +8,7 @@ namespace Player.Views
 	/// </summary>
 	public partial class ViewA : UserControl
 	{
-		public ViewA(ViewAViewModel viewModel)
+		public ViewA(PlayerViewModel viewModel)
 		{
 			this.DataContext = viewModel;
 			this.InitializeComponent();

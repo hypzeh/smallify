@@ -9,7 +9,7 @@ using System.Windows.Threading;
 
 namespace Player.ViewModels
 {
-	public class ViewAViewModel : BindableBase
+	public class PlayerViewModel : BindableBase
 	{
 		private readonly PlayerModel _player;
 		private readonly DispatcherTimer _trackTimer;
@@ -18,11 +18,12 @@ namespace Player.ViewModels
 		private string _albumName;
 		private string _artistName;
 		private bool _isConnected;
+		private bool _isPlaying;
 		private TimeSpan _trackLength;
 		private string _trackName;
 		private TimeSpan _trackTime;
 
-		public ViewAViewModel(PlayerModel player)
+		public PlayerViewModel(PlayerModel player)
 		{
 			this._player = player;
 			this._trackTimer = new DispatcherTimer(DispatcherPriority.DataBind)
@@ -32,7 +33,8 @@ namespace Player.ViewModels
 
 			this._player.ConnectToSpotify();
 
-			this._isConnected = player.IsConnected;
+			this._isConnected = this._player.IsConnected;
+			this._isPlaying = this._player.IsPlaying;
 			this._trackName = this._player?.CurrentTrack?.TrackResource?.Name ?? string.Empty;
 			this._artistName = this._player?.CurrentTrack?.ArtistResource?.Name ?? string.Empty;
 			this._albumName = this._player?.CurrentTrack?.AlbumResource?.Name ?? string.Empty;
@@ -114,6 +116,19 @@ namespace Player.ViewModels
 			}
 		}
 
+		public bool IsPlaying
+		{
+			get
+			{
+				return this._isPlaying;
+			}
+
+			set
+			{
+				this.SetProperty(ref this._isPlaying, value);
+			}
+		}
+
 		public ICommand PauseCommand { get; private set; }
 
 		public ICommand PlayCommand { get; private set; }
@@ -172,6 +187,10 @@ namespace Player.ViewModels
 			{
 				case nameof(this._player.IsConnected):
 					this.IsConnected = this._player.IsConnected;
+					break;
+
+				case nameof(this._player.IsPlaying):
+					this.IsPlaying = this._player.IsPlaying;
 					break;
 
 				case nameof(this._player.CurrentTrack):

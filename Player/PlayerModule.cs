@@ -35,7 +35,7 @@ namespace Player
 
 		public void RegisterViewModels()
 		{
-			this._container.RegisterType<ViewAViewModel>();
+			this._container.RegisterType<PlayerViewModel>();
 		}
 
 		public void RegisterViews()
