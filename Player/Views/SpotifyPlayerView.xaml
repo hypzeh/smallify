@@ -18,97 +18,64 @@
         <converter:BooleanToVisibilityConverter x:Key="BoolToVisibilityInverted"
                                                 False="Collapsed"
                                                 True="Visible" />
-
-        <Style x:Key="SliderRepeatButton"
-               TargetType="RepeatButton">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="IsTabStop" Value="false" />
-            <Setter Property="Focusable" Value="false" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RepeatButton">
-                        <Border Height="5"
-                                VerticalAlignment="Center"
-                                Background="#424242"
-                                CornerRadius="2" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="SliderRepeatButton1"
-               TargetType="RepeatButton">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RepeatButton">
-                        <Border Height="5"
-                                VerticalAlignment="Center"
-                                Background="#B0B0B0"
-                                CornerRadius="2"
-                                SnapsToDevicePixels="True" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="SliderThumb"
-               TargetType="Thumb">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Thumb">
-                        <Ellipse Width="10"
-                                 Height="10"
-                                 Fill="#FFFFFF"
-                                 Visibility="Collapsed" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <ControlTemplate x:Key="Slider"
-                         x:Name="Slider"
-                         TargetType="Slider">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto"
-                                   MinHeight="{TemplateBinding MinHeight}" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Track x:Name="PART_Track"
-                       Grid.Row="1">
-                    <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="Slider.DecreaseLarge"
-                                      Style="{StaticResource SliderRepeatButton1}" />
-                    </Track.DecreaseRepeatButton>
-                    <Track.Thumb>
-                        <Thumb Style="{StaticResource SliderThumb}" />
-                    </Track.Thumb>
-                    <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="Slider.IncreaseLarge"
-                                      Style="{StaticResource SliderRepeatButton}" />
-                    </Track.IncreaseRepeatButton>
-                </Track>
-            </Grid>
-        </ControlTemplate>
-
-        <Style x:Key="Horizontal_Slider"
+        <Style x:Key="SliderStyle"
                TargetType="Slider">
             <Setter Property="Focusable" Value="False" />
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Style.Triggers>
-                <Trigger Property="Orientation" Value="Horizontal">
-                    <Setter Property="MinHeight" Value="21" />
-                    <Setter Property="MinWidth" Value="104" />
-                    <Setter Property="Template" Value="{StaticResource Slider}" />
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="MinHeight" Value="5" />
+            <Setter Property="IsEnabled" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"
+                                               MinHeight="{TemplateBinding MinHeight}" />
+                            </Grid.RowDefinitions>
+                            <Border Background="#424242"
+                                    CornerRadius="2">
+                                <Track x:Name="PART_Track"
+                                       Grid.Row="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton>
+                                            <RepeatButton.Template>
+                                                <ControlTemplate TargetType="RepeatButton">
+                                                    <Border Height="5"
+                                                            Background="{DynamicResource SpotifyGreenBrush}"
+                                                            CornerRadius="2" />
+                                                </ControlTemplate>
+                                            </RepeatButton.Template>
+                                        </RepeatButton>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb OverridesDefaultStyle="True"
+                                               SnapsToDevicePixels="True">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Ellipse Width="10"
+                                                             Height="10"
+                                                             Visibility="Collapsed" />
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton>
+                                            <RepeatButton.Template>
+                                                <ControlTemplate TargetType="RepeatButton">
+                                                    <Border Background="Transparent"
+                                                            CornerRadius="2" />
+                                                </ControlTemplate>
+                                            </RepeatButton.Template>
+                                        </RepeatButton>
+                                    </Track.IncreaseRepeatButton>
+                                </Track>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
@@ -123,7 +90,7 @@
                 Padding="10">
             <Image Grid.Row="0"
                    Grid.Column="1"
-                   Height="{Binding Path=Height, ElementName=AlbumArt}"
+                   Width="{Binding Path=Height, RelativeSource={RelativeSource Self}}"
                    Source="{Binding Path=AlbumArtURL}" />
         </Border>
 
@@ -171,7 +138,8 @@
                             Background="{DynamicResource ControlBackgroundBrush}"
                             Command="{Binding Path=PreviousCommand}"
                             Content="Previous"
-                            Foreground="{DynamicResource TextBrush}" />
+                            Foreground="{DynamicResource TextBrush}"
+                            IsTabStop="False" />
 
                     <Button Grid.Column="1"
                             Width="50"
@@ -180,6 +148,7 @@
                             Command="{Binding Path=PlayCommand}"
                             Content="Play"
                             Foreground="{DynamicResource TextBrush}"
+                            IsTabStop="False"
                             Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}" />
 
                     <Button Grid.Column="1"
@@ -189,6 +158,7 @@
                             Command="{Binding Path=PauseCommand}"
                             Content="Pause"
                             Foreground="{DynamicResource TextBrush}"
+                            IsTabStop="False"
                             Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibilityInverted}}" />
 
                     <Button Grid.Column="2"
@@ -197,7 +167,8 @@
                             Background="{DynamicResource ControlBackgroundBrush}"
                             Command="{Binding Path=SkipCommand}"
                             Content="Skip"
-                            Foreground="{DynamicResource TextBrush}" />
+                            Foreground="{DynamicResource TextBrush}"
+                            IsTabStop="False" />
                 </Grid>
             </Grid>
 
@@ -216,10 +187,9 @@
 
                 <Slider Grid.Column="1"
                         VerticalAlignment="Center"
-                        IsEnabled="False"
                         Maximum="{Binding Path=TrackLength.TotalSeconds}"
                         Minimum="0"
-                        Style="{StaticResource Horizontal_Slider}"
+                        Style="{StaticResource SliderStyle}"
                         Value="{Binding Path=TrackTime.TotalSeconds, Mode=OneWay}" />
 
                 <TextBlock Grid.Column="2"
