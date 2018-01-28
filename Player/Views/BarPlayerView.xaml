@@ -121,6 +121,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0"
+                            Margin="10,0,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Vertical">

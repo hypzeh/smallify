@@ -147,7 +147,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1"
+                      Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -163,7 +164,7 @@
                             Style="{StaticResource ButtonStyle}">
                         <Path Data="{DynamicResource PreviousIconData}"
                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                              Stretch="UniformToFill" />
+                              Stretch="Uniform" />
                     </Button>
 
                     <Button Grid.Column="1"
@@ -175,7 +176,7 @@
                             Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}">
                         <Path Data="{DynamicResource PlayIconData}"
                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                              Stretch="UniformToFill" />
+                              Stretch="Uniform" />
                     </Button>
 
                     <Button Grid.Column="1"
@@ -187,7 +188,7 @@
                             Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibilityInverted}}">
                         <Path Data="{DynamicResource PauseIconData}"
                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                              Stretch="UniformToFill" />
+                              Stretch="Uniform" />
                     </Button>
 
                     <Button Grid.Column="2"
@@ -199,7 +200,7 @@
                             Style="{StaticResource ButtonStyle}">
                         <Path Data="{DynamicResource SkipIconData}"
                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                              Stretch="UniformToFill" />
+                              Stretch="Uniform" />
                     </Button>
                 </Grid>
             </Grid>
