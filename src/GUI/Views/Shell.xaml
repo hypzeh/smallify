@@ -1,0 +1,88 @@
+﻿<Window x:Class="GUI.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:constant="clr-namespace:GUI.Shared.Constants;assembly=GUI.Shared"
+        xmlns:prism="http://prismlibrary.com/"
+        Title="{Binding Title}"
+        Width="600"
+        Height="200"
+        prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Window.Resources>
+        <!--  Context Menu Style  -->
+        <Style x:Key="ContextMenuStyle"
+               TargetType="{x:Type ContextMenu}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <Border x:Name="Border"
+                                Background="{DynamicResource MainBackgroundBrush}"
+                                BorderThickness="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="Black" />
+                            </Border.BorderBrush>
+                            <StackPanel IsItemsHost="True"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasDropShadow" Value="true">
+                                <Setter TargetName="Border" Property="Padding" Value="0,3,0,3" />
+                                <Setter TargetName="Border" Property="CornerRadius" Value="4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.ContextMenu>
+        <ContextMenu Foreground="White"
+                     Style="{StaticResource ContextMenuStyle}">
+            <MenuItem Background="{DynamicResource MainBackgroundBrush}"
+                      Command="{Binding Path=SwitchPlayerCommand, Mode=OneWay}"
+                      CommandParameter="{x:Static constant:PlayerNames.Spotify}"
+                      Header="Spotify" />
+            <MenuItem Background="{DynamicResource MainBackgroundBrush}"
+                      Command="{Binding Path=SwitchPlayerCommand, Mode=OneWay}"
+                      CommandParameter="{x:Static constant:PlayerNames.Bar}"
+                      Header="Bar" />
+        </ContextMenu>
+    </Window.ContextMenu>
+
+    <Grid Background="{DynamicResource MainBackgroundBrush}">
+        <Viewbox Grid.Row="0"
+                 Grid.RowSpan="3"
+                 Grid.Column="0"
+                 Margin="6,6,6,6"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center">
+            <Grid>
+                <Path Margin="0,0,4,6"
+                      Data="m -114.76116,43.844801 c -12.23672,0 -22.157,9.92002 -22.157,22.15674 0,12.23724 9.92028,22.15647 22.157,22.15647 12.23803,0 22.157263,-9.91923 22.157263,-22.15647 0,-12.23593 -9.919233,-22.15568 -22.157533,-22.15568 z"
+                      Fill="#1ed760"
+                      Stretch="Uniform" />
+                <Path Margin="12,0,18,4"
+                      Data="m -97.448646,72.664195 c -0.204288,0.335035 -0.642826,0.441262 -0.977859,0.235613 -2.677805,-1.635664 -6.048835,-2.006108 -10.018835,-1.099072 -0.38256,0.08717 -0.7639,-0.152533 -0.85106,-0.535233 -0.0876,-0.3827 0.15117,-0.764036 0.53469,-0.851198 4.34452,-0.992571 8.07115,-0.565196 11.077452,1.27203 0.335032,0.205655 0.441262,0.64283 0.235612,0.97786 z m 1.395969,-3.105452 c -0.257403,0.418382 -0.804895,0.55049 -1.223005,0.293089 -3.065688,-1.884356 -7.738838,-2.430075 -11.364958,-1.329372 -0.47027,0.142048 -0.96696,-0.122982 -1.10969,-0.592437 -0.14164,-0.470268 0.12353,-0.96601 0.59298,-1.109011 4.14201,-1.256783 9.291295,-0.648003 12.81186,1.51541 0.418109,0.257402 0.550216,0.804896 0.292813,1.22246 z m 0.119848,-3.233741 c -3.675823,-2.183297 -9.740421,-2.383944 -13.249991,-1.318887 -0.56353,0.171018 -1.15954,-0.147221 -1.33032,-0.710786 -0.17079,-0.563832 0.14709,-1.159404 0.71106,-1.330731 4.02869,-1.223005 10.584631,-0.781109 14.816663,1.731227 0,0 0.79375,0.264583 0.514474,1.256144 -0.159636,0.566784 -0.956068,0.674018 -1.46134,0.373033 z"
+                      Fill="Black"
+                      Stretch="Uniform"
+                      StrokeEndLineCap="Round"
+                      StrokeLineJoin="Round"
+                      StrokeStartLineCap="Round"
+                      StrokeThickness="3" />
+                <Path Margin="7,8,0,0"
+                      Data="m -92.802112,77.88612 a 14.155941,14.155941 0 1 0 -0.185044,0.185045 l 15.728822,15.728827 m -8.419546,-10.825134 10.177476,10.177474 -2.405586,2.40558 -10.177474,-10.177468"
+                      Fill="Transparent"
+                      Stretch="Uniform"
+                      Stroke="Black"
+                      StrokeEndLineCap="Round"
+                      StrokeLineJoin="Round"
+                      StrokeStartLineCap="Round"
+                      StrokeThickness="3" />
+            </Grid>
+        </Viewbox>
+
+        <ContentControl prism:RegionManager.RegionName="{x:Static constant:RegionNames.PlayerRegion}" />
+    </Grid>
+</Window>

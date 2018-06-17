@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Region Colours  -->
+    <Color x:Key="MainBackground">
+        #2C2C2D
+    </Color>
+    <Color x:Key="ControlBackground">
+        #252525
+    </Color>
+    <Color x:Key="Text">
+        #FFFFFF
+    </Color>
+    <Color x:Key="SecondaryText">
+        #ABABAB
+    </Color>
+    <Color x:Key="SpotifyGreen">
+        #00D66E
+    </Color>
+    <Color x:Key="WarningRed">
+        #E9233C
+    </Color>
+    <!--  EndRegion  -->
+
+    <!--  Region Brushes  -->
+    <SolidColorBrush x:Key="MainBackgroundBrush"
+                     Color="{StaticResource MainBackground}" />
+    <SolidColorBrush x:Key="ControlBackgroundBrush"
+                     Color="{StaticResource ControlBackground}" />
+    <SolidColorBrush x:Key="TextBrush"
+                     Color="{StaticResource Text}" />
+    <SolidColorBrush x:Key="SecondaryTextBrush"
+                     Color="{StaticResource SecondaryText}" />
+    <SolidColorBrush x:Key="SpotifyGreenBrush"
+                     Color="{StaticResource SpotifyGreen}" />
+    <SolidColorBrush x:Key="WarningRedBrush"
+                     Color="{StaticResource WarningRed}" />
+    <!--  EndRegion  -->
+</ResourceDictionary>
