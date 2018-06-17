@@ -12,7 +12,7 @@ Since [maximilian-krauss's "Winfy"](https://github.com/maximilian-krauss/Winfy) 
 - This Application uses [Squirrel.Windows](https://github.com/Squirrel/Squirrel.Windows) for installation and updating management; checks carried out from my personal website at http://nicksmirnoff.co.uk/projects/smallify.html.
 
 ### Install
-- [GitHub Latest Release](https://github.com/Hypzeh/Smallify/releases/latest)
+- [GitHub Latest Release](https://github.com/hypzeh/smallify/releases/latest)
 
 ### Screenshots
 ![Example Screenshot #1](https://i.imgur.com/B3XZzXj.png)
