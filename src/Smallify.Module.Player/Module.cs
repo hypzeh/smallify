@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using Smallify.Module.Core.Constants;
 using Smallify.Module.Player.Views;
 
 namespace Smallify.Module.Player
@@ -10,7 +11,7 @@ namespace Smallify.Module.Player
 		public void OnInitialized(IContainerProvider containerProvider)
 		{
 			var regionManager = containerProvider.Resolve<IRegionManager>();
-			regionManager.RegisterViewWithRegion("MainContentRegion", typeof(PlayerView));
+			regionManager.RegisterViewWithRegion(RegionNames.PLAYER_REGION, typeof(PlayerView));
 		}
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
