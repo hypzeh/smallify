@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Smallify.GUI
+namespace Smallify.GUI.Views
 {
     public partial class Shell : Window
     {
