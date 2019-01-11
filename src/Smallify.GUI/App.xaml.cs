@@ -20,7 +20,7 @@ namespace Smallify.GUI
 
 		protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
 		{
-
+			moduleCatalog.AddModule<Module.Player.Module>();
 		}
 	}
 }
