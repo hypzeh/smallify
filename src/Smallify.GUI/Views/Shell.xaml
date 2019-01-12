@@ -9,6 +9,8 @@
         Title="Smallify"
         Width="800"
         Height="150"
+        MinWidth="350"
+        MinHeight="100"
         mc:Ignorable="d">
 
     <Border Background="{DynamicResource MainBackgroundBrush}">
