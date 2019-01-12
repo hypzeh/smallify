@@ -15,7 +15,7 @@ namespace Smallify.Module.Player.ViewModels
 
 		public PlayerViewModel()
 		{
-			_trackName = string.Empty;
+			_trackName = "Smallify";
 			_trackArtist = string.Empty;
 			_trackAlbumName = string.Empty;
 			_trackAlbumArtURL = string.Empty;
