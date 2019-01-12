@@ -33,7 +33,7 @@ namespace Smallify.Module.Player.Samples
 
 		public string TrackAlbumArtURL
 		{
-			get => "http://placekitten.com/200/200";
+			get => "http://placekitten.com/150/150";
 			set => throw new System.NotImplementedException();
 		}
 

@@ -7,7 +7,7 @@
              xmlns:samples="clr-namespace:Smallify.Module.Player.Samples"
              d:DataContext="{d:DesignInstance Type=samples:PlayerViewModelData,
                                               IsDesignTimeCreatable=True}"
-             d:DesignHeight="200"
+             d:DesignHeight="150"
              d:DesignWidth="800"
              mc:Ignorable="d">
 
@@ -17,7 +17,7 @@
         <Style x:Key="ButtonStyle"
                BasedOn="{StaticResource {x:Type Button}}"
                TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonBrush}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -31,7 +31,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="Green" />
+                    <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonHoverBrush}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -59,15 +59,19 @@
 
             <Border x:Name="TrackDetails"
                     Grid.Column="1">
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock FontSize="28"
-                               Foreground="White"
+                <StackPanel Margin="5,0,0,0"
+                            VerticalAlignment="Center">
+                    <TextBlock FontSize="14"
+                               FontWeight="Normal"
+                               Foreground="{DynamicResource PrimaryTextBrush}"
                                Text="{Binding Path=TrackName, Mode=OneWay, FallbackValue='...'}" />
-                    <TextBlock FontSize="28"
-                               Foreground="White"
+                    <TextBlock FontSize="12"
+                               FontWeight="Light"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
                                Text="{Binding Path=TrackArtist, Mode=OneWay, FallbackValue='...'}" />
-                    <TextBlock FontSize="28"
-                               Foreground="White"
+                    <TextBlock FontSize="12"
+                               FontWeight="Light"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
                                Text="{Binding Path=TrackAlbumName, Mode=OneWay, FallbackValue='...'}" />
                 </StackPanel>
             </Border>
@@ -77,10 +81,10 @@
                     MinHeight="50"
                     MaxHeight="100">
                 <UniformGrid Columns="3">
-                    <Button Margin="20"
-                            Command="{Binding Path=PreviousCommand, Mode=OneWay}"
+                    <Button Command="{Binding Path=PreviousCommand, Mode=OneWay}"
                             Style="{StaticResource ButtonStyle}">
-                        <Path Data="{StaticResource Previous}"
+                        <Path Margin="20"
+                              Data="{StaticResource Previous}"
                               Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                               Stretch="UniformToFill" />
                     </Button>
@@ -101,10 +105,10 @@
                         </Button>
                     </Grid>
 
-                    <Button Margin="20"
-                            Command="{Binding Path=SkipCommand, Mode=OneWay}"
+                    <Button Command="{Binding Path=SkipCommand, Mode=OneWay}"
                             Style="{StaticResource ButtonStyle}">
-                        <Path Data="{StaticResource Skip}"
+                        <Path Margin="20"
+                              Data="{StaticResource Skip}"
                               Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                               Stretch="UniformToFill" />
                     </Button>
