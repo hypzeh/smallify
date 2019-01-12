@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Smallify.Module.Player.ViewModels;
+using System.Windows.Controls;
 
 namespace Smallify.Module.Player.Views
 {
@@ -7,6 +8,7 @@ namespace Smallify.Module.Player.Views
 		public PlayerView()
 		{
 			InitializeComponent();
+			DataContext = new PlayerViewModel();
 		}
 	}
 }

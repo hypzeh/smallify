@@ -48,10 +48,18 @@
                     MaxHeight="100">
                 <UniformGrid Columns="3">
                     <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Content="Text" />
+                            Command="{Binding Path=PreviousCommand, Mode=OneWay}"
+                            Content="Previous" />
+                    <Grid>
+                        <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                                Command="{Binding Path=PlayCommand, Mode=OneWay}"
+                                Content="Play" />
+                        <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                                Command="{Binding Path=PauseCommand, Mode=OneWay}"
+                                Content="Pause" />
+                    </Grid>
                     <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Content="Text" />
-                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                            Command="{Binding Path=SkipCommand, Mode=OneWay}"
                             Content="Text" />
                 </UniformGrid>
             </Border>
