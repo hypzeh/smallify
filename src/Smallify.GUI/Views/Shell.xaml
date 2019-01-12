@@ -51,7 +51,7 @@
                 </Grid>
             </Border>
 
-            <Border x:Name="Content"
+            <Border x:Name="MainContent"
                     Grid.Row="1">
                 <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.PLAYER_REGION}" />
             </Border>
