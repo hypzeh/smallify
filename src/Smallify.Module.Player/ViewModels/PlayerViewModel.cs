@@ -10,6 +10,7 @@ namespace Smallify.Module.Player.ViewModels
 		private string _trackName;
 		private string _trackArtist;
 		private string _trackAlbumName;
+		private string _trackAlbumArtURL;
 		private bool _isPlaying;
 
 		public PlayerViewModel()
@@ -17,6 +18,7 @@ namespace Smallify.Module.Player.ViewModels
 			_trackName = string.Empty;
 			_trackArtist = string.Empty;
 			_trackAlbumName = string.Empty;
+			_trackAlbumArtURL = string.Empty;
 			_isPlaying = false;
 
 			PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
@@ -49,6 +51,12 @@ namespace Smallify.Module.Player.ViewModels
 		{
 			get => _trackAlbumName;
 			set => SetProperty(ref _trackAlbumName, value);
+		}
+
+		public string TrackAlbumArtURL
+		{
+			get => _trackAlbumArtURL;
+			set => SetProperty(ref _trackAlbumArtURL, value);
 		}
 
 		public bool IsPlaying
