@@ -45,13 +45,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5" />
-            </Grid.RowDefinitions>
-
             <Border x:Name="AlbumArt"
-                    Grid.RowSpan="2"
                     Grid.Column="0"
                     Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
                 <Grid>
@@ -136,13 +130,6 @@
                         </Viewbox>
                     </Button>
                 </UniformGrid>
-            </Border>
-
-            <Border x:Name="TrackLength"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2">
-                <Border Background="{DynamicResource ControlHighlightBrush}" />
             </Border>
         </Grid>
     </Border>

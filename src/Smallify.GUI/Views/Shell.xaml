@@ -7,9 +7,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         Title="Smallify"
-        Width="800"
-        Height="150"
-        MinWidth="350"
+        Width="600"
+        Height="100"
+        MinWidth="285"
         MinHeight="100"
         WindowStyle="None"
         mc:Ignorable="d">
@@ -33,7 +33,7 @@
 
             <Border x:Name="TitleBar"
                     Grid.Row="0"
-                    BorderBrush="{DynamicResource PrimaryTextBrush}"
+                    BorderBrush="LightGray"
                     BorderThickness="0,0,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -42,12 +42,22 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Padding="5,0,0,0"
-                               VerticalAlignment="Center"
-                               FontWeight="Bold"
-                               Foreground="{DynamicResource PrimaryTextBrush}"
-                               Text="Smallify" />
+                    <Border Grid.Column="0">
+                        <TextBlock Padding="5,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"
+                                   Text="Smallify" />
+                    </Border>
+
+                    <Border Grid.Column="2">
+                        <UniformGrid Columns="2">
+                            <Button Width="50"
+                                    Content="_" />
+                            <Button Width="50"
+                                    Content="x" />
+                        </UniformGrid>
+                    </Border>
                 </Grid>
             </Border>
 
