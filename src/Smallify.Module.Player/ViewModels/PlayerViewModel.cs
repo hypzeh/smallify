@@ -10,12 +10,14 @@ namespace Smallify.Module.Player.ViewModels
 		private string _trackName;
 		private string _trackArtist;
 		private string _trackAlbumName;
+		private bool _isPlaying;
 
 		public PlayerViewModel()
 		{
 			_trackName = string.Empty;
 			_trackArtist = string.Empty;
 			_trackAlbumName = string.Empty;
+			_isPlaying = false;
 
 			PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
@@ -49,6 +51,12 @@ namespace Smallify.Module.Player.ViewModels
 			set => SetProperty(ref _trackAlbumName, value);
 		}
 
+		public bool IsPlaying
+		{
+			get => _isPlaying;
+			set => SetProperty(ref _isPlaying, value);
+		}
+
 		private void PreviousCommand_Execute()
 		{
 			throw new NotImplementedException();
@@ -56,12 +64,12 @@ namespace Smallify.Module.Player.ViewModels
 
 		private void PlayCommand_Execute()
 		{
-			throw new NotImplementedException();
+			IsPlaying = true;
 		}
 
 		private void PauseCommand_Execute()
 		{
-			throw new NotImplementedException();
+			IsPlaying = false;
 		}
 
 		private void SkipCommand_Execute()
