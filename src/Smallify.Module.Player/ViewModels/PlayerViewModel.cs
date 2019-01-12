@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Smallify.Module.Core.Constants;
 using System;
 using System.Windows.Input;
 
@@ -16,7 +17,7 @@ namespace Smallify.Module.Player.ViewModels
 		public PlayerViewModel()
 		{
 			_trackName = "Smallify";
-			_trackArtist = string.Empty;
+			_trackArtist = WelcomeMessage.GetRandom();
 			_trackAlbumName = string.Empty;
 			_trackAlbumArtURL = string.Empty;
 			_isPlaying = false;
