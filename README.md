@@ -1,7 +1,6 @@
 [![Nick Smirnoff](./docs/assets/ns-logo-full.png)](https://nicksmirnoff.co.uk/)
 [![Smallify](./docs/assets/project-title.png)](#)
-[![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=feature/smallify-standalone-client)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=feature/smallify-standalone-client)
-
+[![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=master)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=master)
 ---
 
 ## Smallify
