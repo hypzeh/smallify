@@ -32,13 +32,13 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock FontSize="28"
                                Foreground="White"
-                               Text="Some Song.." />
+                               Text="{Binding Path=TrackName, Mode=OneWay, FallbackValue='...'}" />
                     <TextBlock FontSize="28"
                                Foreground="White"
-                               Text="Some Artist.." />
+                               Text="{Binding Path=TrackArtist, Mode=OneWay, FallbackValue='...'}" />
                     <TextBlock FontSize="28"
                                Foreground="White"
-                               Text="Some Album.." />
+                               Text="{Binding Path=TrackAlbumName, Mode=OneWay, FallbackValue='...'}" />
                 </StackPanel>
             </Border>
 
