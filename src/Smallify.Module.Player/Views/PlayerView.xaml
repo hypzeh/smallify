@@ -13,6 +13,28 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+        <Style x:Key="ButtonStyle"
+               BasedOn="{StaticResource {x:Type Button}}"
+               TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                                Background="{DynamicResource MainBackgroundBrush}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Green" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Border>
@@ -55,33 +77,35 @@
                     MinHeight="50"
                     MaxHeight="100">
                 <UniformGrid Columns="3">
-                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Padding="20"
-                            Command="{Binding Path=PreviousCommand, Mode=OneWay}">
+                    <Button Margin="20"
+                            Command="{Binding Path=PreviousCommand, Mode=OneWay}"
+                            Style="{StaticResource ButtonStyle}">
                         <Path Data="{StaticResource Previous}"
-                              Fill="Red"
+                              Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                               Stretch="UniformToFill" />
                     </Button>
+
                     <Grid>
-                        <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                                Command="{Binding Path=PlayCommand, Mode=OneWay}">
+                        <Button Command="{Binding Path=PlayCommand, Mode=OneWay}"
+                                Style="{StaticResource ButtonStyle}">
                             <Path Data="{StaticResource Play}"
-                                  Fill="Red"
+                                  Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                                   Stretch="UniformToFill" />
                         </Button>
-                        <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                                Command="{Binding Path=PauseCommand, Mode=OneWay}"
+                        <Button Command="{Binding Path=PauseCommand, Mode=OneWay}"
+                                Style="{StaticResource ButtonStyle}"
                                 Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}">
                             <Path Data="{StaticResource Pause}"
-                                  Fill="Red"
+                                  Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                                   Stretch="UniformToFill" />
                         </Button>
                     </Grid>
-                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Padding="20"
-                            Command="{Binding Path=SkipCommand, Mode=OneWay}">
+
+                    <Button Margin="20"
+                            Command="{Binding Path=SkipCommand, Mode=OneWay}"
+                            Style="{StaticResource ButtonStyle}">
                         <Path Data="{StaticResource Skip}"
-                              Fill="Red"
+                              Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, Path=Foreground}"
                               Stretch="UniformToFill" />
                     </Button>
                 </UniformGrid>
