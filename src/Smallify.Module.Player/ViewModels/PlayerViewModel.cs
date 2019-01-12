@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
-	public class PlayerViewModel : BindableBase
+	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
 		private string _trackName;
 		private string _trackArtist;
