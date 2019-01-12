@@ -4,6 +4,10 @@
         #2C2C2D
     </Color>
 
+    <Color x:Key="ControlHighlight">
+        #00D66E
+    </Color>
+
     <Color x:Key="PrimaryText">
         #FFFFFF
     </Color>
@@ -22,6 +26,9 @@
 
     <SolidColorBrush x:Key="MainBackgroundBrush"
                      Color="{StaticResource MainBackground}" />
+
+    <SolidColorBrush x:Key="ControlHighlightBrush"
+                     Color="{StaticResource ControlHighlight}" />
 
     <SolidColorBrush x:Key="PrimaryTextBrush"
                      Color="{StaticResource PrimaryText}" />
