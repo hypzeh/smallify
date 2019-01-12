@@ -56,20 +56,34 @@
                     MaxHeight="100">
                 <UniformGrid Columns="3">
                     <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Command="{Binding Path=PreviousCommand, Mode=OneWay}"
-                            Content="Previous" />
+                            Padding="20"
+                            Command="{Binding Path=PreviousCommand, Mode=OneWay}">
+                        <Path Data="{StaticResource Previous}"
+                              Fill="Red"
+                              Stretch="UniformToFill" />
+                    </Button>
                     <Grid>
                         <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                                Command="{Binding Path=PlayCommand, Mode=OneWay}"
-                                Content="Play" />
+                                Command="{Binding Path=PlayCommand, Mode=OneWay}">
+                            <Path Data="{StaticResource Play}"
+                                  Fill="Red"
+                                  Stretch="UniformToFill" />
+                        </Button>
                         <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
                                 Command="{Binding Path=PauseCommand, Mode=OneWay}"
-                                Content="Pause"
-                                Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}" />
+                                Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}">
+                            <Path Data="{StaticResource Pause}"
+                                  Fill="Red"
+                                  Stretch="UniformToFill" />
+                        </Button>
                     </Grid>
                     <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                            Command="{Binding Path=SkipCommand, Mode=OneWay}"
-                            Content="Next" />
+                            Padding="20"
+                            Command="{Binding Path=SkipCommand, Mode=OneWay}">
+                        <Path Data="{StaticResource Skip}"
+                              Fill="Red"
+                              Stretch="UniformToFill" />
+                    </Button>
                 </UniformGrid>
             </Border>
 
