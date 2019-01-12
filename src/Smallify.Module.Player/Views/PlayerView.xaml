@@ -4,11 +4,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Smallify.Module.Player.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="450"
+             d:DesignHeight="200"
              d:DesignWidth="800"
              mc:Ignorable="d">
-    <Grid>
-        <TextBlock FontSize="28"
-                   Text="Player Module" />
-    </Grid>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+            </Grid.RowDefinitions>
+
+            <Border x:Name="AlbumArt"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+                <Image Source="http://placekitten.com/200/200" />
+            </Border>
+
+            <Border x:Name="TrackDetails"
+                    Grid.Column="1">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock FontSize="28"
+                               Foreground="White"
+                               Text="Some Song.." />
+                    <TextBlock FontSize="28"
+                               Foreground="White"
+                               Text="Some Artist.." />
+                    <TextBlock FontSize="28"
+                               Foreground="White"
+                               Text="Some Album.." />
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="PlayerControls"
+                    Grid.Column="2"
+                    MinHeight="50"
+                    MaxHeight="100">
+                <UniformGrid Columns="3">
+                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                            Content="Text" />
+                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                            Content="Text" />
+                    <Button Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                            Content="Text" />
+                </UniformGrid>
+            </Border>
+
+            <Border x:Name="TrackLength"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+                <Border Background="Green" />
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>

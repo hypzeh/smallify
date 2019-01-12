@@ -8,9 +8,9 @@
         xmlns:prism="http://prismlibrary.com/"
         Title="Smallify"
         Width="800"
-        Height="450"
+        Height="300"
         mc:Ignorable="d">
-    <Grid Background="{DynamicResource MainBackgroundBrush}">
+    <Border Background="{DynamicResource MainBackgroundBrush}">
         <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.PLAYER_REGION}" />
-    </Grid>
+    </Border>
 </Window>
