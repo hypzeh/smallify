@@ -11,9 +11,50 @@
         Height="150"
         MinWidth="350"
         MinHeight="100"
+        WindowStyle="None"
         mc:Ignorable="d">
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="{Binding ElementName=TitleRow, Path=ActualHeight}"
+                      CornerRadius="0"
+                      GlassFrameThickness="0"
+                      NonClientFrameEdges="None"
+                      ResizeBorderThickness="10"
+                      UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+
     <Border Background="{DynamicResource MainBackgroundBrush}">
-        <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.PLAYER_REGION}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="TitleRow"
+                               Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border x:Name="TitleBar"
+                    Grid.Row="0"
+                    BorderBrush="{DynamicResource PrimaryTextBrush}"
+                    BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Padding="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryTextBrush}"
+                               Text="Smallify" />
+                </Grid>
+            </Border>
+
+            <Border x:Name="Content"
+                    Grid.Row="1">
+                <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.PLAYER_REGION}" />
+            </Border>
+        </Grid>
     </Border>
 </Window>
