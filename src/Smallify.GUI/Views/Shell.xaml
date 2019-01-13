@@ -53,11 +53,13 @@
                     <Border Grid.Column="2"
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="2">
-                            <Button Style="{StaticResource TitleBarButtonStyle}">
+                            <Button Command="{Binding Path=MinimiseCommand, Mode=OneWay}"
+                                    Style="{StaticResource TitleBarButtonStyle}">
                                 <TextBlock FontWeight="SemiBold"
                                            Text="🗕" />
                             </Button>
-                            <Button Style="{StaticResource TitleBarExitButtonStyle}">
+                            <Button Command="{Binding Path=ExitCommand, Mode=OneWay}"
+                                    Style="{StaticResource TitleBarExitButtonStyle}">
                                 <TextBlock FontWeight="SemiBold"
                                            Text="🗙" />
                             </Button>
