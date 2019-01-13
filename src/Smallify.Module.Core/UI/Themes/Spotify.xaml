@@ -4,6 +4,41 @@
         #2C2C2D
     </Color>
 
+    <Color x:Key="ControlHighlight">
+        #00D66E
+    </Color>
+
+    <Color x:Key="PrimaryText">
+        #FFFFFF
+    </Color>
+
+    <Color x:Key="SecondaryText">
+        #ABABAB
+    </Color>
+
+    <Color x:Key="PlaybackButton">
+        #FFFFFF
+    </Color>
+
+    <Color x:Key="PlaybackButtonHover">
+        #808080
+    </Color>
+
     <SolidColorBrush x:Key="MainBackgroundBrush"
                      Color="{StaticResource MainBackground}" />
+
+    <SolidColorBrush x:Key="ControlHighlightBrush"
+                     Color="{StaticResource ControlHighlight}" />
+
+    <SolidColorBrush x:Key="PrimaryTextBrush"
+                     Color="{StaticResource PrimaryText}" />
+
+    <SolidColorBrush x:Key="SecondaryTextBrush"
+                     Color="{StaticResource SecondaryText}" />
+
+    <SolidColorBrush x:Key="PlaybackButtonBrush"
+                     Color="{StaticResource PlaybackButton}" />
+
+    <SolidColorBrush x:Key="PlaybackButtonHoverBrush"
+                     Color="{StaticResource PlaybackButtonHover}" />
 </ResourceDictionary>

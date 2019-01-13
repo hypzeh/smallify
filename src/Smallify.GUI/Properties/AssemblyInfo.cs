@@ -5,11 +5,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Smallify.GUI")]
+[assembly: AssemblyTitle("Smallify")]
 [assembly: AssemblyDescription("Mini Spotify player")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Smiosoft")]
-[assembly: AssemblyProduct("Smallify.GUI")]
+[assembly: AssemblyProduct("Smallify")]
 [assembly: AssemblyCopyright("Copyright © Nick Smirnoff 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
