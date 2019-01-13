@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Player", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Core", "src\Smallify.Module.Core\Smallify.Module.Core.csproj", "{5F8C2791-3D5F-420F-9AB7-4874E2CB5C77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Notifications", "src\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj", "{519018FC-B512-4CCF-AE34-809524E9DF85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{5F8C2791-3D5F-420F-9AB7-4874E2CB5C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8C2791-3D5F-420F-9AB7-4874E2CB5C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F8C2791-3D5F-420F-9AB7-4874E2CB5C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519018FC-B512-4CCF-AE34-809524E9DF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519018FC-B512-4CCF-AE34-809524E9DF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519018FC-B512-4CCF-AE34-809524E9DF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519018FC-B512-4CCF-AE34-809524E9DF85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{03065F69-11F8-423D-9E67-0259127D36AE} = {E3F7BEFD-5048-4056-A38D-F2A38C3CFE53}
 		{162BD37B-7BF9-43E0-AF85-2D8B9C5ABD1C} = {E3F7BEFD-5048-4056-A38D-F2A38C3CFE53}
 		{5F8C2791-3D5F-420F-9AB7-4874E2CB5C77} = {E3F7BEFD-5048-4056-A38D-F2A38C3CFE53}
+		{519018FC-B512-4CCF-AE34-809524E9DF85} = {E3F7BEFD-5048-4056-A38D-F2A38C3CFE53}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F0DB0EE-6F81-4007-AF03-CB550E87ACB9}
