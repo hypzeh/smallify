@@ -50,12 +50,17 @@
                                    Text="Smallify" />
                     </Border>
 
-                    <Border Grid.Column="2">
+                    <Border Grid.Column="2"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="2">
-                            <Button Width="50"
-                                    Content="_" />
-                            <Button Width="50"
-                                    Content="x" />
+                            <Button Style="{StaticResource TitleBarButtonStyle}">
+                                <TextBlock FontWeight="SemiBold"
+                                           Text="🗕" />
+                            </Button>
+                            <Button Style="{StaticResource TitleBarExitButtonStyle}">
+                                <TextBlock FontWeight="SemiBold"
+                                           Text="🗙" />
+                            </Button>
                         </UniformGrid>
                     </Border>
                 </Grid>
