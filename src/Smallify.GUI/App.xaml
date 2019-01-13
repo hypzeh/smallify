@@ -6,7 +6,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Themes/Spotify.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Icons/PlayerButtons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Icons/PlaybackButtons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Icons/Smallify.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

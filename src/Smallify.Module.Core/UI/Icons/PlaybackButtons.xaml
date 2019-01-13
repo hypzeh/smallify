@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                    <Border Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
                             Background="{DynamicResource MainBackgroundBrush}">
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center" />
