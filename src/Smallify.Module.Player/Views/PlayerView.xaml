@@ -13,28 +13,6 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
-
-        <Style x:Key="ButtonStyle"
-               BasedOn="{StaticResource {x:Type Button}}"
-               TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonBrush}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
-                                Background="{DynamicResource MainBackgroundBrush}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonHoverBrush}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
     </UserControl.Resources>
 
     <Border>
@@ -93,7 +71,7 @@
                     MaxHeight="100">
                 <UniformGrid Columns="3">
                     <Button Command="{Binding Path=PreviousCommand, Mode=OneWay}"
-                            Style="{StaticResource ButtonStyle}">
+                            Style="{StaticResource PlaybackButtonStyle}">
                         <Viewbox>
                             <Path Margin="200"
                                   Data="{StaticResource Previous}"
@@ -103,7 +81,7 @@
 
                     <Grid>
                         <Button Command="{Binding Path=PlayCommand, Mode=OneWay}"
-                                Style="{StaticResource ButtonStyle}">
+                                Style="{StaticResource PlaybackButtonStyle}">
                             <Viewbox>
                                 <Path Margin="20"
                                       Data="{StaticResource Play}"
@@ -111,7 +89,7 @@
                             </Viewbox>
                         </Button>
                         <Button Command="{Binding Path=PauseCommand, Mode=OneWay}"
-                                Style="{StaticResource ButtonStyle}"
+                                Style="{StaticResource PlaybackButtonStyle}"
                                 Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}">
                             <Viewbox>
                                 <Path Margin="20"
@@ -122,7 +100,7 @@
                     </Grid>
 
                     <Button Command="{Binding Path=SkipCommand, Mode=OneWay}"
-                            Style="{StaticResource ButtonStyle}">
+                            Style="{StaticResource PlaybackButtonStyle}">
                         <Viewbox>
                             <Path Margin="200"
                                   Data="{StaticResource Skip}"
