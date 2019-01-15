@@ -6,7 +6,7 @@ using Smallify.Module.Player.Views;
 
 namespace Smallify.Module.Player
 {
-	public class Module : IModule
+	public class PlayerModule : IModule
 	{
 		public void OnInitialized(IContainerProvider containerProvider)
 		{

@@ -130,6 +130,10 @@
       <Project>{5f8c2791-3d5f-420f-9ab7-4874e2cb5c77}</Project>
       <Name>Smallify.Module.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj">
+      <Project>{519018fc-b512-4ccf-ae34-809524e9df85}</Project>
+      <Name>Smallify.Module.Notifications</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smallify.Module.Player\Smallify.Module.Player.csproj">
       <Project>{162bd37b-7bf9-43e0-af85-2d8b9c5abd1c}</Project>
       <Name>Smallify.Module.Player</Name>
