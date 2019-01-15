@@ -8,7 +8,12 @@
              d:DesignWidth="40"
              mc:Ignorable="d">
 
-    <Button Style="{StaticResource TitleBarButtonStyle}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+    </UserControl.Resources>
+
+    <Button Style="{StaticResource TitleBarButtonStyle}"
+            Visibility="{Binding Path=IsButtonEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
         <Path Margin="0,3"
               Data="M763,446 L763,456 L773,451 L763,446 Z M761,466 L761,445 L761.977778,445 L761.977778,466 L761,466 Z"
               Fill="{DynamicResource PrimaryTextBrush}"

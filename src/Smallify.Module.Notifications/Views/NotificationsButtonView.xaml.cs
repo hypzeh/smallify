@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Smallify.Module.Notifications.ViewModels;
+using System.Windows.Controls;
 
 namespace Smallify.Module.Notifications.Views
 {
@@ -7,6 +8,7 @@ namespace Smallify.Module.Notifications.Views
 		public NotificationsButtonView()
 		{
 			InitializeComponent();
+			DataContext = new NotificationsButtonViewModel();
 		}
 	}
 }
