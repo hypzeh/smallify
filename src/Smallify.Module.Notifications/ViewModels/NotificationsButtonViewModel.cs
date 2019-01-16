@@ -7,10 +7,13 @@ namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsButtonViewModel : BindableBase
 	{
+		private readonly NotificationsShellViewModel _notificationsShellViewModel;
+
 		private bool _isButtonEnabled;
 
-		public NotificationsButtonViewModel()
+		public NotificationsButtonViewModel(NotificationsShellViewModel notificationsShellViewModel)
 		{
+			_notificationsShellViewModel = notificationsShellViewModel;
 			_isButtonEnabled = true;
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
@@ -26,7 +29,7 @@ namespace Smallify.Module.Notifications.ViewModels
 
 		private void ShowNotificationsWindowCommand_Execute()
 		{
-			var shell = new NotificationsShell();
+			var shell = new NotificationsShell(_notificationsShellViewModel);
 			shell.ShowDialog();
 		}
 	}

@@ -5,10 +5,10 @@ namespace Smallify.Module.Notifications.Views
 {
 	public partial class NotificationsButtonView : UserControl
 	{
-		public NotificationsButtonView()
+		public NotificationsButtonView(NotificationsButtonViewModel notificationsButtonViewModel)
 		{
 			InitializeComponent();
-			DataContext = new NotificationsButtonViewModel();
+			DataContext = notificationsButtonViewModel;
 		}
 	}
 }
