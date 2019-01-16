@@ -75,6 +75,9 @@
     <Compile Include="Views\NotificationsButtonView.xaml.cs">
       <DependentUpon>NotificationsButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotificationsShell.xaml.cs">
+      <DependentUpon>NotificationsShell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -82,6 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\NotificationsButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationsShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

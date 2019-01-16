@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using System;
+using Smallify.Module.Notifications.Views;
 using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
@@ -26,7 +26,8 @@ namespace Smallify.Module.Notifications.ViewModels
 
 		private void ShowNotificationsWindowCommand_Execute()
 		{
-			throw new NotImplementedException();
+			var shell = new NotificationsShell();
+			shell.Show();
 		}
 	}
 }
