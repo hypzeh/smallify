@@ -72,6 +72,7 @@
     <Compile Include="NotificationsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NotificationsButtonViewModel.cs" />
+    <Compile Include="ViewModels\NotificationsShellViewModel.cs" />
     <Compile Include="Views\NotificationsButtonView.xaml.cs">
       <DependentUpon>NotificationsButtonView.xaml</DependentUpon>
     </Compile>

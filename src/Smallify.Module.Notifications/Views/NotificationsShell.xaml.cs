@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Smallify.Module.Notifications.ViewModels;
+using System.Windows;
 
 namespace Smallify.Module.Notifications.Views
 {
@@ -7,8 +8,7 @@ namespace Smallify.Module.Notifications.Views
 		public NotificationsShell()
 		{
 			InitializeComponent();
-
-			ShowInTaskbar = false;
+			DataContext = new NotificationsShellViewModel();
 		}
 	}
 }
