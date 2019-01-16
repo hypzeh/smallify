@@ -27,7 +27,7 @@ namespace Smallify.Module.Notifications.ViewModels
 		private void ShowNotificationsWindowCommand_Execute()
 		{
 			var shell = new NotificationsShell();
-			shell.Show();
+			shell.ShowDialog();
 		}
 	}
 }
