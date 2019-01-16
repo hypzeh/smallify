@@ -48,7 +48,12 @@
 
                     <Border Grid.Column="2"
                             WindowChrome.IsHitTestVisibleInChrome="True">
-                        <UniformGrid Columns="1">
+                        <UniformGrid Columns="2">
+                            <Button Command="{Binding Path=AddNotificationCommand, Mode=OneWay}"
+                                    Style="{StaticResource TitleBarButtonStyle}">
+                                <TextBlock FontWeight="SemiBold"
+                                           Text="+" />
+                            </Button>
                             <Button Command="{Binding Path=ExitCommand, Mode=OneWay}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                     Style="{StaticResource TitleBarExitButtonStyle}">
@@ -58,6 +63,17 @@
                         </UniformGrid>
                     </Border>
                 </Grid>
+            </Border>
+
+            <Border x:Name="ContentRegion"
+                    Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Path=Notifications}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="123" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Border>
         </Grid>
     </Border>
