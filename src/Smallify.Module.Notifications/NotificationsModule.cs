@@ -17,8 +17,8 @@ namespace Smallify.Module.Notifications
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			containerRegistry.Register<NotificationsButtonViewModel>();
-			containerRegistry.Register<NotificationsShellViewModel>();
+			containerRegistry.Register<INotificationsButtonViewModel, NotificationsButtonViewModel>();
+			containerRegistry.Register<INotificationsShellViewModel, NotificationsShellViewModel>();
 		}
 	}
 }

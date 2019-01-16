@@ -8,19 +8,13 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
-	public class NotificationsShellViewModel : BindableBase
+	public class NotificationsShellViewModel : BindableBase, INotificationsShellViewModel
 	{
 		public NotificationsShellViewModel(IEventAggregator eventAggregator)
 		{
+			Notifications = new ObservableCollection<string>();
+
 			ExitCommand = new DelegateCommand<Window>((window) => window.Close());
-
-			Notifications = new ObservableCollection<string>()
-			{
-				"123",
-				"456",
-				"789"
-			};
-
 
 			eventAggregator.GetEvent<NewNotificationEvent>().Subscribe(NewNotificationReceived);
 		}

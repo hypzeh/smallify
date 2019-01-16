@@ -5,7 +5,7 @@ namespace Smallify.Module.Notifications.Views
 {
 	public partial class NotificationsShell : Window
 	{
-		public NotificationsShell(NotificationsShellViewModel notificationsShellViewModel)
+		public NotificationsShell(INotificationsShellViewModel notificationsShellViewModel)
 		{
 			InitializeComponent();
 			DataContext = notificationsShellViewModel;

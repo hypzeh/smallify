@@ -5,13 +5,13 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
-	public class NotificationsButtonViewModel : BindableBase
+	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
 	{
-		private readonly NotificationsShellViewModel _notificationsShellViewModel;
+		private readonly INotificationsShellViewModel _notificationsShellViewModel;
 
 		private bool _isButtonEnabled;
 
-		public NotificationsButtonViewModel(NotificationsShellViewModel notificationsShellViewModel)
+		public NotificationsButtonViewModel(INotificationsShellViewModel notificationsShellViewModel)
 		{
 			_notificationsShellViewModel = notificationsShellViewModel;
 			_isButtonEnabled = true;
