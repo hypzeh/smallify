@@ -68,7 +68,7 @@
                 <ItemsControl ItemsSource="{Binding Path=Notifications}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="123" />
+                            <TextBlock Text="{Binding Path=.}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
