@@ -65,13 +65,7 @@
 
             <Border x:Name="ContentRegion"
                     Grid.Row="1">
-                <ItemsControl ItemsSource="{Binding Path=Notifications}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=.}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <local:NotificationsView DataContext="{Binding Path=NotificationsViewModel, Mode=OneWay}" />
             </Border>
         </Grid>
     </Border>

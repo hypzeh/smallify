@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
@@ -7,6 +6,6 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		ICommand ExitCommand { get; }
 
-		ObservableCollection<string> Notifications { get; set; }
+		INotificationsViewModel NotificationsViewModel { get; }
 	}
 }
