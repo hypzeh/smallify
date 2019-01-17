@@ -2,6 +2,7 @@
 using Prism.Modularity;
 using Prism.Regions;
 using Smallify.Module.Core.Constants;
+using Smallify.Module.Player.ViewModels;
 using Smallify.Module.Player.Views;
 
 namespace Smallify.Module.Player
@@ -16,7 +17,7 @@ namespace Smallify.Module.Player
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-
+			containerRegistry.Register<IPlayerViewModel, PlayerViewModel>();
 		}
 	}
 }

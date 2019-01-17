@@ -5,10 +5,10 @@ namespace Smallify.Module.Player.Views
 {
 	public partial class PlayerView : UserControl
 	{
-		public PlayerView()
+		public PlayerView(IPlayerViewModel playerViewModel)
 		{
 			InitializeComponent();
-			DataContext = new PlayerViewModel();
+			DataContext = playerViewModel;
 		}
 	}
 }
