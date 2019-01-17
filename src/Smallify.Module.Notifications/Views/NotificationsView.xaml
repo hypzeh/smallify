@@ -24,6 +24,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="20" />
                                 </Grid.ColumnDefinitions>
 
                                 <Border Grid.Column="0">
@@ -32,6 +33,12 @@
 
                                 <Border Grid.Column="1">
                                     <TextBlock Text="{Binding Path=TimeStamp.LocalDateTime, Mode=OneWay}" />
+                                </Border>
+
+                                <Border Grid.Column="2">
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.DismissNotificationCommand, Mode=OneWay}"
+                                            CommandParameter="{Binding Path=., Mode=OneWay}"
+                                            Content="🗙" />
                                 </Border>
                             </Grid>
                         </Border>

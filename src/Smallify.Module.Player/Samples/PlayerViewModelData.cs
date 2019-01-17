@@ -5,13 +5,13 @@ namespace Smallify.Module.Player.Samples
 {
 	public class PlayerViewModelData : IPlayerViewModel
 	{
-		public ICommand PreviousCommand => throw new System.NotImplementedException();
+		public ICommand PreviousCommand { get; }
 
-		public ICommand PlayCommand => throw new System.NotImplementedException();
+		public ICommand PlayCommand { get; }
 
-		public ICommand PauseCommand => throw new System.NotImplementedException();
+		public ICommand PauseCommand { get; }
 
-		public ICommand SkipCommand => throw new System.NotImplementedException();
+		public ICommand SkipCommand { get; }
 
 		public string TrackName
 		{

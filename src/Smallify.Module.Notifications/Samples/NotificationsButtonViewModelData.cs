@@ -8,7 +8,7 @@ namespace Smallify.Module.Notifications.Samples
 {
 	public class NotificationsButtonViewModelData : INotificationsButtonViewModel
 	{
-		public ICommand ShowNotificationsWindowCommand => throw new NotImplementedException();
+		public ICommand ShowNotificationsWindowCommand { get; }
 
 		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
 		{

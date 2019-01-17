@@ -1,11 +1,14 @@
 ﻿using Smallify.Module.Notifications.Models;
 using Smallify.Module.Notifications.ViewModels;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.Samples
 {
 	public class NotificationsViewModelData : INotificationsViewModel
 	{
+		public ICommand DismissNotificationCommand { get; }
+
 		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
 		{
 			new Notification("fake notification #1"),

@@ -15,12 +15,24 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
     </UserControl.Resources>
 
-    <Button Command="{Binding Path=ShowNotificationsWindowCommand, Mode=OneWay}"
-            Style="{StaticResource TitleBarButtonStyle}"
-            Visibility="{Binding Path=IsButtonEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-        <Path Margin="0,3"
-              Data="M763,446 L763,456 L773,451 L763,446 Z M761,466 L761,445 L761.977778,445 L761.977778,466 L761,466 Z"
-              Fill="{DynamicResource PrimaryTextBrush}"
-              Stretch="Uniform" />
-    </Button>
+    <Grid>
+        <Button Command="{Binding Path=ShowNotificationsWindowCommand, Mode=OneWay}"
+                Style="{StaticResource TitleBarButtonStyle}"
+                Visibility="{Binding Path=IsButtonEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+            <Path Margin="0,3"
+                  Data="M763,446 L763,456 L773,451 L763,446 Z M761,466 L761,445 L761.977778,445 L761.977778,466 L761,466 Z"
+                  Fill="{DynamicResource PrimaryTextBrush}"
+                  Stretch="Uniform" />
+        </Button>
+
+        <Border Margin="0,0,1,2"
+                Padding="3,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource ControlHighlightBrush}"
+                CornerRadius="5"
+                IsHitTestVisible="False">
+            <TextBlock Text="{Binding Path=Notifications.Count}" />
+        </Border>
+    </Grid>
 </UserControl>

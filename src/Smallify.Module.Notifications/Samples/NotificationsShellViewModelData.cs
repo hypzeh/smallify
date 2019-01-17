@@ -5,7 +5,7 @@ namespace Smallify.Module.Notifications.Samples
 {
 	public class NotificationsShellViewModelData : INotificationsShellViewModel
 	{
-		public ICommand ExitCommand => throw new System.NotImplementedException();
+		public ICommand ExitCommand { get; }
 
 		public INotificationsViewModel NotificationsViewModel => new NotificationsViewModelData();
 	}
