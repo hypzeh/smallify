@@ -5,17 +5,13 @@ namespace Smallify.Module.Notifications.Samples
 {
 	public class NotificationsViewModelData : INotificationsViewModel
 	{
-		public ObservableCollection<string> Notifications
+		public ObservableCollection<string> Notifications => new ObservableCollection<string>
 		{
-			get => new ObservableCollection<string>()
-			{
-				"Fake Notification #1",
-				"Fake Notitication #2",
-				"Fake Notitication #3",
-				"Fake Notitication #4",
-				"Fake Notitication #5"
-			};
-			set => throw new System.NotImplementedException();
-		}
+			"fake notification #1",
+			"fake notification #2",
+			"fake notification #3",
+			"fake notification #4",
+			"fake notification #5"
+		};
 	}
 }

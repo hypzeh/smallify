@@ -1,24 +1,15 @@
-﻿using Prism.Events;
-using Prism.Mvvm;
-using Smallify.Module.Core.Events.Notifications;
+﻿using Prism.Mvvm;
 using System.Collections.ObjectModel;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsViewModel : BindableBase, INotificationsViewModel
 	{
-		public NotificationsViewModel(IEventAggregator eventAggregator)
+		public NotificationsViewModel(ObservableCollection<string> notifications)
 		{
-			eventAggregator.GetEvent<NewNotificationEvent>().Subscribe(NewNotificationReceived);
-
-			Notifications = new ObservableCollection<string>();
+			Notifications = notifications;
 		}
 
-		public ObservableCollection<string> Notifications { get; set; }
-
-		private void NewNotificationReceived(string notification)
-		{
-			Notifications.Add(notification);
-		}
+		public ObservableCollection<string> Notifications { get; }
 	}
 }
