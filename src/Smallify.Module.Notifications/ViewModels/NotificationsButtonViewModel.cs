@@ -2,6 +2,7 @@
 using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Module.Core.Events.Notifications;
+using Smallify.Module.Notifications.Models;
 using Smallify.Module.Notifications.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -16,7 +17,7 @@ namespace Smallify.Module.Notifications.ViewModels
 		{
 			_isButtonEnabled = true;
 
-			Notifications = new ObservableCollection<string>();
+			Notifications = new ObservableCollection<INotification>();
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
 
@@ -25,7 +26,7 @@ namespace Smallify.Module.Notifications.ViewModels
 
 		public ICommand ShowNotificationsWindowCommand { get; }
 
-		public ObservableCollection<string> Notifications { get; }
+		public ObservableCollection<INotification> Notifications { get; }
 
 		public bool IsButtonEnabled
 		{
@@ -39,9 +40,9 @@ namespace Smallify.Module.Notifications.ViewModels
 			shell.Show();
 		}
 
-		private void NewNotificationReceived(string notification)
+		private void NewNotificationReceived(string message)
 		{
-			Notifications.Add(notification);
+			Notifications.Add(new Notification(message));
 		}
 	}
 }

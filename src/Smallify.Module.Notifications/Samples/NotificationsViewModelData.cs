@@ -1,17 +1,18 @@
-﻿using Smallify.Module.Notifications.ViewModels;
+﻿using Smallify.Module.Notifications.Models;
+using Smallify.Module.Notifications.ViewModels;
 using System.Collections.ObjectModel;
 
 namespace Smallify.Module.Notifications.Samples
 {
 	public class NotificationsViewModelData : INotificationsViewModel
 	{
-		public ObservableCollection<string> Notifications => new ObservableCollection<string>
+		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
 		{
-			"fake notification #1",
-			"fake notification #2",
-			"fake notification #3",
-			"fake notification #4",
-			"fake notification #5"
+			new Notification("fake notification #1"),
+			new Notification("fake notification #2"),
+			new Notification("fake notification #3"),
+			new Notification("fake notification #4"),
+			new Notification("fake notification #5")
 		};
 	}
 }

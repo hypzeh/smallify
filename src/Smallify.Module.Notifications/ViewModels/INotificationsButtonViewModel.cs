@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Smallify.Module.Notifications.Models;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
@@ -7,7 +8,7 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		ICommand ShowNotificationsWindowCommand { get; }
 
-		ObservableCollection<string> Notifications { get; }
+		ObservableCollection<INotification> Notifications { get; }
 
 		bool IsButtonEnabled { get; set; }
 	}
