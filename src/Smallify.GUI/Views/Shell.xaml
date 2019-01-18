@@ -11,6 +11,7 @@
         Height="100"
         MinWidth="285"
         MinHeight="100"
+        ResizeMode="NoResize"
         WindowStyle="None"
         mc:Ignorable="d">
 

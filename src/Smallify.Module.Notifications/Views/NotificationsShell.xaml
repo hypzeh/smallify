@@ -5,10 +5,11 @@
         xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
+        Width="600"
+        Height="300"
         d:DataContext="{d:DesignInstance Type=samples:NotificationsShellViewModelData,
                                          IsDesignTimeCreatable=True}"
-        d:DesignHeight="300"
-        d:DesignWidth="400"
+        ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStyle="None"
         mc:Ignorable="d">
@@ -18,7 +19,7 @@
                       CornerRadius="0"
                       GlassFrameThickness="0"
                       NonClientFrameEdges="None"
-                      ResizeBorderThickness="10"
+                      ResizeBorderThickness="0"
                       UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
 
