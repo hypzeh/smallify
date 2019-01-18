@@ -32,6 +32,17 @@
                 Background="{DynamicResource ControlHighlightBrush}"
                 CornerRadius="5"
                 IsHitTestVisible="False">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Notifications.Count, Mode=OneWay}"
+                                     Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
             <TextBlock Text="{Binding Path=Notifications.Count}" />
         </Border>
     </Grid>

@@ -37,7 +37,7 @@ namespace Smallify.Module.Notifications.ViewModels
 		private void ShowNotificationsWindowCommand_Execute()
 		{
 			var shell = new NotificationsShell(new NotificationsShellViewModel(Notifications));
-			shell.Show();
+			shell.ShowDialog();
 		}
 
 		private void NewNotificationReceived(string message)
