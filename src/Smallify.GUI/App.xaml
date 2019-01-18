@@ -8,6 +8,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Themes/Spotify.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Icons/PlaybackButtons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Icons/Smallify.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Elements/Buttons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Smallify.Module.Core;component/UI/Elements/ContentControl.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -28,7 +28,8 @@
                     Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
                 <Grid>
                     <ContentControl Style="{StaticResource SmallifyIconControlStyle}" />
-                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}" />
+                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}"
+                           Visibility="Collapsed" />
                 </Grid>
             </Border>
 
@@ -76,7 +77,7 @@
                         </Button>
                         <Button Command="{Binding Path=PauseCommand, Mode=OneWay}"
                                 Style="{StaticResource PlaybackButtonStyle}"
-                                Visibility="{Binding Path=IsPlaying, Converter={StaticResource BoolToVisibility}}">
+                                Visibility="{Binding Path=IsPlaying, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                             <Viewbox>
                                 <Path Margin="20"
                                       Data="{StaticResource Pause}"

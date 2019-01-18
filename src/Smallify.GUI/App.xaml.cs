@@ -2,6 +2,8 @@
 using Prism.Modularity;
 using Prism.Unity;
 using Smallify.GUI.Views;
+using Smallify.Module.Notifications;
+using Smallify.Module.Player;
 using System.Windows;
 
 namespace Smallify.GUI
@@ -20,7 +22,8 @@ namespace Smallify.GUI
 
 		protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
 		{
-			moduleCatalog.AddModule<Module.Player.Module>();
+			moduleCatalog.AddModule<PlayerModule>();
+			moduleCatalog.AddModule<NotificationsModule>();
 		}
 	}
 }
