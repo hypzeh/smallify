@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     <Style x:Key="SmallifyIconControlStyle"
            BasedOn="{StaticResource {x:Type ContentControl}}"
            TargetType="{x:Type ContentControl}">
@@ -24,38 +23,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style x:Key="TitleBarButtonStyle"
-           BasedOn="{StaticResource {x:Type Button}}"
-           TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="40"
-                            Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="DarkGray" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="TitleBarExitButtonStyle"
-           BasedOn="{StaticResource TitleBarButtonStyle}"
-           TargetType="{x:Type Button}">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Red" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

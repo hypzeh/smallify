@@ -10,6 +10,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
+
     <Border>
         <Grid>
             <Grid.RowDefinitions>
@@ -62,8 +63,9 @@
                     Padding="5">
                 <UniformGrid Columns="5"
                              FlowDirection="RightToLeft">
-                    <Button Command="{Binding Path=ClearNotificationsCommand, Mode=OneWay}"
-                            Content="Clear All" />
+                    <Button Command="{Binding Path=ClearNotificationsCommand, Mode=OneWay}">
+                        <TextBlock Text="Clear All" />
+                    </Button>
                 </UniformGrid>
             </Border>
         </Grid>
