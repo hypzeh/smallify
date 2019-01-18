@@ -11,6 +11,7 @@
                                          IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
+        Topmost="True"
         WindowStyle="None"
         mc:Ignorable="d">
 

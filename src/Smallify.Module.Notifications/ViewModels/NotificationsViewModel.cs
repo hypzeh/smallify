@@ -13,15 +13,23 @@ namespace Smallify.Module.Notifications.ViewModels
 			Notifications = notifications;
 
 			DismissNotificationCommand = new DelegateCommand<INotification>(DismissNotificationCommand_Execute);
+			ClearNotificationsCommand = new DelegateCommand(ClearNotificationsCommand_Execute);
 		}
 
 		public ICommand DismissNotificationCommand { get; }
+
+		public ICommand ClearNotificationsCommand { get; }
 
 		public ObservableCollection<INotification> Notifications { get; }
 
 		private void DismissNotificationCommand_Execute(INotification notification)
 		{
 			Notifications.Remove(notification);
+		}
+
+		private void ClearNotificationsCommand_Execute()
+		{
+			Notifications.Clear();
 		}
 	}
 }

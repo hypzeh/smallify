@@ -11,12 +11,8 @@ namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
 	{
-		private bool _isButtonEnabled;
-
 		public NotificationsButtonViewModel(IEventAggregator eventAggregator)
 		{
-			_isButtonEnabled = true;
-
 			Notifications = new ObservableCollection<INotification>();
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
@@ -27,12 +23,6 @@ namespace Smallify.Module.Notifications.ViewModels
 		public ICommand ShowNotificationsWindowCommand { get; }
 
 		public ObservableCollection<INotification> Notifications { get; }
-
-		public bool IsButtonEnabled
-		{
-			get => _isButtonEnabled;
-			set => SetProperty(ref _isButtonEnabled, value);
-		}
 
 		private void ShowNotificationsWindowCommand_Execute()
 		{

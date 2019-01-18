@@ -8,6 +8,8 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		ICommand DismissNotificationCommand { get; }
 
+		ICommand ClearNotificationsCommand { get; }
+
 		ObservableCollection<INotification> Notifications { get; }
 	}
 }

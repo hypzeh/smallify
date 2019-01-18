@@ -9,6 +9,8 @@ namespace Smallify.Module.Notifications.Samples
 	{
 		public ICommand DismissNotificationCommand { get; }
 
+		public ICommand ClearNotificationsCommand { get; }
+
 		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
 		{
 			new Notification("fake notification #1"),

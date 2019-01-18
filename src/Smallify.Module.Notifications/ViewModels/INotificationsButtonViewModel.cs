@@ -9,7 +9,5 @@ namespace Smallify.Module.Notifications.ViewModels
 		ICommand ShowNotificationsWindowCommand { get; }
 
 		ObservableCollection<INotification> Notifications { get; }
-
-		bool IsButtonEnabled { get; set; }
 	}
 }
