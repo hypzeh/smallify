@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Smallify.Module.Core;
 using Smallify.Module.Core.Events.Notifications;
 using Smallify.Module.Notifications.Models;
 using Smallify.Module.Notifications.Views;
@@ -11,9 +12,12 @@ namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
 	{
-		public NotificationsButtonViewModel(IEventAggregator eventAggregator)
+		public NotificationsButtonViewModel(
+			IEventAggregator eventAggregator,
+			IConfiguration configuration)
 		{
 			Notifications = new ObservableCollection<INotification>();
+			NewNotificationReceived(configuration.ClientID);
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
 

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Events\Notifications\NewNotificationEvent.cs" />
+    <Compile Include="IConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
