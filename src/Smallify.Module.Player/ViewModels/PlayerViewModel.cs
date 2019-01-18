@@ -1,25 +1,20 @@
 ﻿using Prism.Commands;
-using Prism.Events;
 using Prism.Mvvm;
-using Smallify.Module.Core.Events.Notifications;
+using System;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
-		private readonly IEventAggregator _eventAggregator;
-
 		private string _trackName;
 		private string _trackArtist;
 		private string _trackAlbumName;
 		private string _trackAlbumArtURL;
 		private bool _isPlaying;
 
-		public PlayerViewModel(IEventAggregator eventAggregator)
+		public PlayerViewModel()
 		{
-			_eventAggregator = eventAggregator;
-
 			_trackName = "Track Name";
 			_trackArtist = "Artist Name";
 			_trackAlbumName = "Album Name";
@@ -72,24 +67,22 @@ namespace Smallify.Module.Player.ViewModels
 
 		private void PreviousCommand_Execute()
 		{
-			_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(nameof(PreviousCommand_Execute));
+			throw new NotImplementedException();
 		}
 
 		private void PlayCommand_Execute()
 		{
 			IsPlaying = true;
-			_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(nameof(PlayCommand_Execute));
 		}
 
 		private void PauseCommand_Execute()
 		{
 			IsPlaying = false;
-			_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(nameof(PauseCommand_Execute));
 		}
 
 		private void SkipCommand_Execute()
 		{
-			_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(nameof(SkipCommand_Execute));
+			throw new NotImplementedException();
 		}
 	}
 }
