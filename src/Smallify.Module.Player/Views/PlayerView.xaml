@@ -28,7 +28,8 @@
                     Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
                 <Grid>
                     <ContentControl Style="{StaticResource SmallifyIconControlStyle}" />
-                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}" />
+                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}"
+                           Visibility="Collapsed" />
                 </Grid>
             </Border>
 

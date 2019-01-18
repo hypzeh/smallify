@@ -7,7 +7,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border Width="40"
                             Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="Center"
@@ -39,7 +39,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
                             Background="{DynamicResource MainBackgroundBrush}">
                         <ContentPresenter HorizontalAlignment="Center"
@@ -55,20 +55,25 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Name="WarningButtonStyle"
+    <Style x:Key="WarningButtonStyle"
+           BasedOn="{StaticResource {x:Type Button}}"
            TargetType="{x:Type Button}">
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Height="25"
-                            Background="Red"
-                            CornerRadius="15">
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{DynamicResource MainBackgroundBrush}"
+                            CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonHoverBrush}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

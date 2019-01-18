@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Icons\Smallify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Themes\Spotify.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
