@@ -63,8 +63,7 @@
                     Padding="5">
                 <UniformGrid Columns="5"
                              FlowDirection="RightToLeft">
-                    <Button Command="{Binding Path=ClearNotificationsCommand, Mode=OneWay}"
-                            Style="{StaticResource WarningButtonStyle}">
+                    <Button Command="{Binding Path=ClearNotificationsCommand, Mode=OneWay}">
                         <TextBlock Text="Clear All" />
                     </Button>
                 </UniformGrid>
