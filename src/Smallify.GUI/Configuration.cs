@@ -1,13 +1,18 @@
-﻿using Smallify.GUI.Properties;
+﻿using Prism.Events;
+using Smallify.GUI.Properties;
 using Smallify.Module.Core;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using Smallify.Module.Core.Events.Configuration;
 
 namespace Smallify.GUI
 {
 	public class Configuration : IConfiguration
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
+		private readonly IEventAggregator _eventAggregator;
+
+		public Configuration(IEventAggregator eventAggregator)
+		{
+			_eventAggregator = eventAggregator;
+		}
 
 		public string ClientID => Settings.Default.ClientID;
 
@@ -20,14 +25,9 @@ namespace Smallify.GUI
 				{
 					Settings.Default.AccessToken = value;
 					Settings.Default.Save();
-					NotifyPropertyChanged();
+					_eventAggregator.GetEvent<NewAccessTokenEvent>()?.Publish(value);
 				}
 			}
-		}
-
-		private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

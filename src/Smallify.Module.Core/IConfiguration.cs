@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace Smallify.Module.Core
+﻿namespace Smallify.Module.Core
 {
-	public interface IConfiguration : INotifyPropertyChanged
+	public interface IConfiguration
 	{
 		string ClientID { get; }
 
