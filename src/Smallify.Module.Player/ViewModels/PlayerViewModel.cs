@@ -1,14 +1,13 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Smallify.Module.Player.Services;
-using System;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
-		private readonly SpotifyService _spotifyService;
+		private readonly ISpotifyService _spotifyService;
 
 		private string _trackName;
 		private string _trackArtist;
@@ -16,7 +15,7 @@ namespace Smallify.Module.Player.ViewModels
 		private string _trackAlbumArtURL;
 		private bool _isPlaying;
 
-		public PlayerViewModel(SpotifyService spotifyService)
+		public PlayerViewModel(ISpotifyService spotifyService)
 		{
 			_spotifyService = spotifyService;
 
@@ -70,24 +69,26 @@ namespace Smallify.Module.Player.ViewModels
 			set => SetProperty(ref _isPlaying, value);
 		}
 
-		private void PreviousCommand_Execute()
+		private async void PreviousCommand_Execute()
 		{
-			throw new NotImplementedException();
+			await _spotifyService.PreviousAsync();
 		}
 
-		private void PlayCommand_Execute()
+		private async void PlayCommand_Execute()
 		{
 			IsPlaying = true;
+			await _spotifyService.PlayAsync();
 		}
 
-		private void PauseCommand_Execute()
+		private async void PauseCommand_Execute()
 		{
 			IsPlaying = false;
+			await _spotifyService.PauseAsync();
 		}
 
-		private void SkipCommand_Execute()
+		private async void SkipCommand_Execute()
 		{
-			throw new NotImplementedException();
+			await _spotifyService.SkipAsync();
 		}
 	}
 }
