@@ -18,7 +18,7 @@ namespace Smallify.Module.Player
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			containerRegistry.Register<SpotifyService>();
+			containerRegistry.Register<ISpotifyService, SpotifyService>();
 
 			containerRegistry.Register<IPlayerViewModel, PlayerViewModel>();
 		}
