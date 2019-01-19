@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Smallify.Module.Player.Services;
 using System;
 using System.Windows.Input;
 
@@ -7,14 +8,18 @@ namespace Smallify.Module.Player.ViewModels
 {
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
+		private readonly SpotifyService _spotifyService;
+
 		private string _trackName;
 		private string _trackArtist;
 		private string _trackAlbumName;
 		private string _trackAlbumArtURL;
 		private bool _isPlaying;
 
-		public PlayerViewModel()
+		public PlayerViewModel(SpotifyService spotifyService)
 		{
+			_spotifyService = spotifyService;
+
 			_trackName = "Track Name";
 			_trackArtist = "Artist Name";
 			_trackAlbumName = "Album Name";
