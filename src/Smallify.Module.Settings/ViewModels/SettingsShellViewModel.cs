@@ -7,9 +7,9 @@ namespace Smallify.Module.Settings.ViewModels
 {
 	public class SettingsShellViewModel : BindableBase, ISettingsShellViewModel
 	{
-		public SettingsShellViewModel()
+		public SettingsShellViewModel(ISettingsViewModel settingsViewModel)
 		{
-			SettingsViewModel = new SettingsViewModel();
+			SettingsViewModel = settingsViewModel;
 
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 		}

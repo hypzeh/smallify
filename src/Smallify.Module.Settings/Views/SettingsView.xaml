@@ -15,7 +15,22 @@
             </Grid.RowDefinitions>
 
             <Border x:Name="Settings"
-                    Grid.Row="0" />
+                    Grid.Row="0">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
+                                       Text="Access Token" />
+                            <TextBox Text="{Binding Path=AccessToken, Mode=TwoWay, Delay=250}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
 
             <Border x:Name="Actions"
                     Grid.Row="1"

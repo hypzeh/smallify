@@ -7,8 +7,12 @@ namespace Smallify.Module.Settings.ViewModels
 {
 	public class SettingsButtonViewModel : BindableBase, ISettingsButtonViewModel
 	{
-		public SettingsButtonViewModel()
+		private readonly ISettingsShellViewModel _settingsShellViewModel;
+
+		public SettingsButtonViewModel(ISettingsShellViewModel settingsShellViewModel)
 		{
+			_settingsShellViewModel = settingsShellViewModel;
+
 			ShowSettingsWindowCommand = new DelegateCommand(ShowSettingsWindowCommand_Execute);
 		}
 
@@ -16,7 +20,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var settingsShell = new SettingsShell(new SettingsShellViewModel());
+			var settingsShell = new SettingsShell(_settingsShellViewModel);
 			settingsShell.ShowDialog();
 		}
 	}
