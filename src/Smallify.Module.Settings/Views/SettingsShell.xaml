@@ -1,14 +1,14 @@
-﻿<Window x:Class="Smallify.Module.Notifications.Views.NotificationsShell"
+﻿<Window x:Class="Smallify.Module.Settings.Views.SettingsShell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
+        xmlns:local="clr-namespace:Smallify.Module.Settings.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
-        Title="Notifications"
+        xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
+        Title="Settings"
         Width="600"
         Height="300"
-        d:DataContext="{d:DesignInstance Type=samples:NotificationsShellViewModelData,
+        d:DataContext="{d:DesignInstance Type=samples:SettingsShellViewModelData,
                                          IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
@@ -24,6 +24,7 @@
                       ResizeBorderThickness="0"
                       UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
+
 
     <Border Background="{DynamicResource MainBackgroundBrush}">
         <Grid>
@@ -49,7 +50,7 @@
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                   Text="Notifications" />
+                                   Text="Settings" />
                     </Border>
 
                     <Border Grid.Column="2"
@@ -66,9 +67,9 @@
                 </Grid>
             </Border>
 
-            <Border x:Name="NotificationsRegion"
+            <Border x:Name="SettingsContent"
                     Grid.Row="1">
-                <local:NotificationsView DataContext="{Binding Path=NotificationsViewModel, Mode=OneWay}" />
+                <local:SettingsView DataContext="{Binding Path=SettingsViewModel, Mode=OneWay}" />
             </Border>
         </Grid>
     </Border>

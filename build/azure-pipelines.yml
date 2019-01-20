@@ -37,6 +37,15 @@ steps:
     PublishSymbols: false
   continueOnError: true
 
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in **/*.config'
+  inputs:
+    rootDirectory: '$(build.sourcesdirectory)'
+    targetFiles: '**/*.config'
+    keepToken: true
+    tokenPrefix: '#{'
+    tokenSuffix: '}'
+
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:

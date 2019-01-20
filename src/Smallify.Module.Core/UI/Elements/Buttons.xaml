@@ -37,11 +37,12 @@
            BasedOn="{StaticResource {x:Type Button}}"
            TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
-                            Background="{DynamicResource MainBackgroundBrush}">
+                            Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center" />
                     </Border>
@@ -51,6 +52,18 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource PlaybackButtonHoverBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RefreshButtonStyle"
+           BasedOn="{StaticResource PlaybackButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Opacity" Value="0" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="100" />
             </Trigger>
         </Style.Triggers>
     </Style>

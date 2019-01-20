@@ -11,12 +11,12 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		public NotificationsShellViewModel(ObservableCollection<INotification> notifications)
 		{
-			ExitCommand = new DelegateCommand<Window>((window) => window.Close());
+			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 
 			NotificationsViewModel = new NotificationsViewModel(notifications);
 		}
 
-		public ICommand ExitCommand { get; private set; }
+		public ICommand ExitCommand { get; }
 
 		public INotificationsViewModel NotificationsViewModel { get; }
 	}

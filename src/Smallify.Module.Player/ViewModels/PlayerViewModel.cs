@@ -1,20 +1,27 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Smallify.Module.Player.Services;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
+		private readonly ISpotifyService _spotifyService;
+
 		private string _trackName;
 		private string _trackArtist;
 		private string _trackAlbumName;
 		private string _trackAlbumArtURL;
 		private bool _isPlaying;
 
-		public PlayerViewModel()
+		public PlayerViewModel(ISpotifyService spotifyService)
 		{
+			_spotifyService = spotifyService;
+
 			_trackName = "Track Name";
 			_trackArtist = "Artist Name";
 			_trackAlbumName = "Album Name";
@@ -25,6 +32,9 @@ namespace Smallify.Module.Player.ViewModels
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
+			RefreshCommand = new DelegateCommand<TimeSpan?>(RefreshCommand_Execute);
+
+			RefreshCommand.Execute(null);
 		}
 
 		public ICommand PreviousCommand { get; private set; }
@@ -34,6 +44,8 @@ namespace Smallify.Module.Player.ViewModels
 		public ICommand PauseCommand { get; private set; }
 
 		public ICommand SkipCommand { get; private set; }
+
+		public ICommand RefreshCommand { get; private set; }
 
 		public string TrackName
 		{
@@ -65,24 +77,57 @@ namespace Smallify.Module.Player.ViewModels
 			set => SetProperty(ref _isPlaying, value);
 		}
 
-		private void PreviousCommand_Execute()
+		private async void PreviousCommand_Execute()
 		{
-			throw new NotImplementedException();
+			await _spotifyService.PreviousAsync();
+			if (!IsPlaying)
+			{
+				IsPlaying = true;
+			}
+
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
-		private void PlayCommand_Execute()
+		private async void PlayCommand_Execute()
 		{
+			await _spotifyService.PlayAsync();
 			IsPlaying = true;
 		}
 
-		private void PauseCommand_Execute()
+		private async void PauseCommand_Execute()
 		{
+			await _spotifyService.PauseAsync();
 			IsPlaying = false;
 		}
 
-		private void SkipCommand_Execute()
+		private async void SkipCommand_Execute()
 		{
-			throw new NotImplementedException();
+			await _spotifyService.SkipAsync();
+			if (!IsPlaying)
+			{
+				IsPlaying = true;
+			}
+
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
+		}
+
+		private async void RefreshCommand_Execute(TimeSpan? delay = null)
+		{
+			if (delay.HasValue)
+			{
+				await Task.Delay(delay.Value);
+			}
+
+			var track = await _spotifyService.GetPlaybackStateAsync();
+			if (track == null)
+			{
+				return;
+			}
+
+			TrackName = track.Name;
+			TrackArtist = string.Join(", ", track.Artists.Select(artist => artist.Name));
+			TrackAlbumName = track.Album.Name;
+			TrackAlbumArtURL = track.Album.Images.LastOrDefault()?.Url;
 		}
 	}
 }

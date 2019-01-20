@@ -7,8 +7,8 @@
              xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
              d:DataContext="{d:DesignInstance Type=samples:NotificationsViewModelData,
                                               IsDesignTimeCreatable=True}"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
              mc:Ignorable="d">
 
     <Border>
@@ -18,7 +18,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0">
+            <Border x:Name="Notifications"
+                    Grid.Row="0">
                 <ScrollViewer Padding="0,2.5"
                               VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding Path=Notifications}">
@@ -59,7 +60,8 @@
                 </ScrollViewer>
             </Border>
 
-            <Border Grid.Row="1"
+            <Border x:Name="Actions"
+                    Grid.Row="1"
                     Padding="5">
                 <UniformGrid Columns="5"
                              FlowDirection="RightToLeft">
