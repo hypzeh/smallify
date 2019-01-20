@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Smallify.Module.Settings.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
         Title="Settings"
         Width="600"
         Height="300"
+        d:DataContext="{d:DesignInstance Type=samples:SettingsShellViewModelData,
+                                         IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         Topmost="True"
@@ -66,7 +69,7 @@
 
             <Border x:Name="SettingsContent"
                     Grid.Row="1">
-                <local:SettingsView DataContext="{Binding Path=SettingsViewModel, Mode=OneWay}"/>
+                <local:SettingsView DataContext="{Binding Path=SettingsViewModel, Mode=OneWay}" />
             </Border>
         </Grid>
     </Border>
