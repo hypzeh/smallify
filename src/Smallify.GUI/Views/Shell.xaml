@@ -55,7 +55,9 @@
 
                     <Border Grid.Column="2"
                             WindowChrome.IsHitTestVisibleInChrome="True">
-                        <UniformGrid Columns="1">
+                        <UniformGrid Columns="2"
+                                     FlowDirection="RightToLeft">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.SETTINGS_BUTTON_REGION}" />
                             <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.NOTIFICATIONS_BUTTON_REGION}" />
                         </UniformGrid>
                     </Border>

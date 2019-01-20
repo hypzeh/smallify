@@ -139,6 +139,10 @@
       <Project>{162bd37b-7bf9-43e0-af85-2d8b9c5abd1c}</Project>
       <Name>Smallify.Module.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smallify.Module.Settings\Smallify.Module.Settings.csproj">
+      <Project>{167A71C7-F26F-4B84-8BE8-78149BE03FA4}</Project>
+      <Name>Smallify.Module.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon.ico" />
