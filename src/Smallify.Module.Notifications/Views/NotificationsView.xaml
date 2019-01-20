@@ -18,7 +18,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0">
+            <Border x:Name="Notifications"
+                    Grid.Row="0">
                 <ScrollViewer Padding="0,2.5"
                               VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding Path=Notifications}">
@@ -59,7 +60,8 @@
                 </ScrollViewer>
             </Border>
 
-            <Border Grid.Row="1"
+            <Border x:Name="Actions"
+                    Grid.Row="1"
                     Padding="5">
                 <UniformGrid Columns="5"
                              FlowDirection="RightToLeft">

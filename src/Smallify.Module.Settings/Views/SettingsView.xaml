@@ -7,5 +7,26 @@
              d:DesignHeight="300"
              d:DesignWidth="600"
              mc:Ignorable="d">
-    <Grid />
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border x:Name="Settings"
+                    Grid.Row="0" />
+
+            <Border x:Name="Actions"
+                    Grid.Row="1"
+                    Padding="5">
+                <UniformGrid Columns="5"
+                             FlowDirection="RightToLeft">
+                    <Button>
+                        <TextBlock Text="Save" />
+                    </Button>
+                </UniformGrid>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>
