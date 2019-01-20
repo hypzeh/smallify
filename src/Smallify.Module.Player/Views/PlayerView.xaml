@@ -28,8 +28,16 @@
                     Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
                 <Grid>
                     <ContentControl Style="{StaticResource SmallifyIconControlStyle}" />
-                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}"
-                           Visibility="Collapsed" />
+                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}" />
+                    <Button Command="{Binding Path=RefreshCommand, Mode=OneWay}"
+                            Style="{StaticResource RefreshButtonStyle}">
+                        <Path Margin="20"
+                              Data="{StaticResource Refresh}"
+                              Fill="White"
+                              Stretch="Uniform"
+                              Stroke="Black"
+                              StrokeThickness="2" />
+                    </Button>
                 </Grid>
             </Border>
 
