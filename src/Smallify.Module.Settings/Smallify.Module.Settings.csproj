@@ -70,6 +70,7 @@
     <Compile Include="SettingsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SettingsButtonViewModel.cs" />
+    <Compile Include="ViewModels\SettingsShellViewModel.cs" />
     <Compile Include="Views\SettingsButtonView.xaml.cs">
       <DependentUpon>SettingsButtonView.xaml</DependentUpon>
     </Compile>

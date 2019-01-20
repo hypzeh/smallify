@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Smallify.Module.Settings.ViewModels;
+using System.Windows;
 
 namespace Smallify.Module.Settings.Views
 {
@@ -7,6 +8,7 @@ namespace Smallify.Module.Settings.Views
 		public SettingsShell()
 		{
 			InitializeComponent();
+			DataContext = new SettingsShellViewModel();
 		}
 	}
 }

@@ -53,7 +53,9 @@
                     <Border Grid.Column="2"
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="1">
-                            <Button Style="{StaticResource TitleBarExitButtonStyle}">
+                            <Button Command="{Binding Path=ExitCommand, Mode=OneWay}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                    Style="{StaticResource TitleBarExitButtonStyle}">
                                 <TextBlock FontWeight="SemiBold"
                                            Text="🗙" />
                             </Button>
