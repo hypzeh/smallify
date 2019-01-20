@@ -1,7 +1,9 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Smallify.Module.Player.Services;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
@@ -30,7 +32,7 @@ namespace Smallify.Module.Player.ViewModels
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
-			RefreshCommand = new DelegateCommand(RefreshCommand_Execute);
+			RefreshCommand = new DelegateCommand<TimeSpan?>(RefreshCommand_Execute);
 
 			RefreshCommand.Execute(null);
 		}
@@ -83,7 +85,7 @@ namespace Smallify.Module.Player.ViewModels
 				IsPlaying = true;
 			}
 
-			RefreshCommand.Execute(null);
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
 		private async void PlayCommand_Execute()
@@ -106,11 +108,16 @@ namespace Smallify.Module.Player.ViewModels
 				IsPlaying = true;
 			}
 
-			RefreshCommand.Execute(null);
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
-		private async void RefreshCommand_Execute()
+		private async void RefreshCommand_Execute(TimeSpan? delay = null)
 		{
+			if (delay.HasValue)
+			{
+				await Task.Delay(delay.Value);
+			}
+
 			var track = await _spotifyService.GetPlaybackStateAsync();
 			if (track == null)
 			{
