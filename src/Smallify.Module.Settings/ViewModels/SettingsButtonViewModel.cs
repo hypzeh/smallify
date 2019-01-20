@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsButtonViewModel : BindableBase
+	public class SettingsButtonViewModel : BindableBase, ISettingsButtonViewModel
 	{
 		public SettingsButtonViewModel()
 		{
@@ -16,7 +16,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var settingsShell = new SettingsShell();
+			var settingsShell = new SettingsShell(new SettingsShellViewModel());
 			settingsShell.ShowDialog();
 		}
 	}

@@ -5,10 +5,10 @@ namespace Smallify.Module.Settings.Views
 {
 	public partial class SettingsShell : Window
 	{
-		public SettingsShell()
+		public SettingsShell(ISettingsShellViewModel settingsShellViewModel)
 		{
 			InitializeComponent();
-			DataContext = new SettingsShellViewModel();
+			DataContext = settingsShellViewModel;
 		}
 	}
 }

@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsViewModel : BindableBase
+	public class SettingsViewModel : BindableBase, ISettingsViewModel
 	{
 		public SettingsViewModel()
 		{

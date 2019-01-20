@@ -5,10 +5,10 @@ namespace Smallify.Module.Settings.Views
 {
 	public partial class SettingsButtonView : UserControl
 	{
-		public SettingsButtonView()
+		public SettingsButtonView(ISettingsButtonViewModel settingsButtonViewModel)
 		{
 			InitializeComponent();
-			DataContext = new SettingsButtonViewModel();
+			DataContext = settingsButtonViewModel;
 		}
 	}
 }

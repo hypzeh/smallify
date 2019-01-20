@@ -66,7 +66,7 @@
 
             <Border x:Name="SettingsContent"
                     Grid.Row="1">
-                <local:SettingsView />
+                <local:SettingsView DataContext="{Binding Path=SettingsViewModel, Mode=OneWay}"/>
             </Border>
         </Grid>
     </Border>
