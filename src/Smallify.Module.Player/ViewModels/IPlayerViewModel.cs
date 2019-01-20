@@ -12,6 +12,8 @@ namespace Smallify.Module.Player.ViewModels
 
 		ICommand SkipCommand { get; }
 
+		ICommand RefreshCommand { get; }
+
 		string TrackName { get; set; }
 
 		string TrackArtist { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Smallify.Module.Player.Services;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
@@ -29,6 +30,7 @@ namespace Smallify.Module.Player.ViewModels
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
+			RefreshCommand = new DelegateCommand(RefreshCommand_Execute);
 		}
 
 		public ICommand PreviousCommand { get; private set; }
@@ -38,6 +40,8 @@ namespace Smallify.Module.Player.ViewModels
 		public ICommand PauseCommand { get; private set; }
 
 		public ICommand SkipCommand { get; private set; }
+
+		public ICommand RefreshCommand { get; private set; }
 
 		public string TrackName
 		{
@@ -72,23 +76,44 @@ namespace Smallify.Module.Player.ViewModels
 		private async void PreviousCommand_Execute()
 		{
 			await _spotifyService.PreviousAsync();
+			if (!IsPlaying)
+			{
+				IsPlaying = true;
+			}
+
+			RefreshCommand.Execute(null);
 		}
 
 		private async void PlayCommand_Execute()
 		{
-			IsPlaying = true;
 			await _spotifyService.PlayAsync();
+			IsPlaying = true;
 		}
 
 		private async void PauseCommand_Execute()
 		{
-			IsPlaying = false;
 			await _spotifyService.PauseAsync();
+			IsPlaying = false;
 		}
 
 		private async void SkipCommand_Execute()
 		{
 			await _spotifyService.SkipAsync();
+			if (!IsPlaying)
+			{
+				IsPlaying = true;
+			}
+
+			RefreshCommand.Execute(null);
+		}
+
+		private async void RefreshCommand_Execute()
+		{
+			var track = await _spotifyService.GetPlaybackStateAsync();
+			TrackName = track.Name;
+			TrackArtist = string.Join(", ", track.Artists.Select(artist => artist.Name));
+			TrackAlbumName = track.Album.Name;
+			TrackAlbumArtURL = track.Album.Images.LastOrDefault()?.Url;
 		}
 	}
 }

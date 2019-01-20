@@ -13,6 +13,8 @@ namespace Smallify.Module.Player.Samples
 
 		public ICommand SkipCommand { get; }
 
+		public ICommand RefreshCommand { get; }
+
 		public string TrackName
 		{
 			get => "Track Name";
