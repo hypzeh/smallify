@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using System;
+using Smallify.Module.Settings.Views;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
@@ -16,7 +16,8 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			throw new NotImplementedException();
+			var settingsShell = new SettingsShell();
+			settingsShell.ShowDialog();
 		}
 	}
 }
