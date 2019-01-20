@@ -31,6 +31,8 @@ namespace Smallify.Module.Player.ViewModels
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
 			RefreshCommand = new DelegateCommand(RefreshCommand_Execute);
+
+			RefreshCommand.Execute(null);
 		}
 
 		public ICommand PreviousCommand { get; private set; }
@@ -110,6 +112,11 @@ namespace Smallify.Module.Player.ViewModels
 		private async void RefreshCommand_Execute()
 		{
 			var track = await _spotifyService.GetPlaybackStateAsync();
+			if (track == null)
+			{
+				return;
+			}
+
 			TrackName = track.Name;
 			TrackArtist = string.Join(", ", track.Artists.Select(artist => artist.Name));
 			TrackAlbumName = track.Album.Name;
