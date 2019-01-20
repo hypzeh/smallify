@@ -73,6 +73,9 @@
     <Compile Include="Views\SettingsButtonView.xaml.cs">
       <DependentUpon>SettingsButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsShell.xaml.cs">
+      <DependentUpon>SettingsShell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -80,6 +83,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\SettingsButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
