@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using SpotifyAPI.Web.Models;
+using System.Threading.Tasks;
 
 namespace Smallify.Module.Player.Services
 {
@@ -11,5 +12,7 @@ namespace Smallify.Module.Player.Services
 		Task SkipAsync();
 
 		Task PreviousAsync();
+
+		Task<FullTrack> GetPlaybackStateAsync();
 	}
 }

@@ -3,6 +3,7 @@ using Smallify.Module.Core;
 using Smallify.Module.Core.Events.Configuration;
 using Smallify.Module.Core.Events.Notifications;
 using SpotifyAPI.Web;
+using SpotifyAPI.Web.Models;
 using System.Threading.Tasks;
 
 namespace Smallify.Module.Player.Services
@@ -63,6 +64,18 @@ namespace Smallify.Module.Player.Services
 			{
 				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
 			}
+		}
+
+		public async Task<FullTrack> GetPlaybackStateAsync()
+		{
+			var response = await _spotify.GetPlayingTrackAsync();
+			if (response.HasError())
+			{
+				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				return null;
+			}
+
+			return response.Item;
 		}
 
 		private void NewAccessTokenRecieved(string accessToken)
