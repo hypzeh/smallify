@@ -25,11 +25,15 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Row="0">
+                    <Border Grid.Row="0"
+                            Padding="0,0,0,5">
                         <StackPanel>
-                            <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
+                            <TextBlock Margin="0,0,0,5"
+                                       FontSize="16"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"
                                        Text="Access Token" />
-                            <TextBox Text="{Binding Path=AccessToken, Mode=TwoWay, Delay=250}" />
+                            <TextBox FontSize="16"
+                                     Text="{Binding Path=AccessToken, Mode=TwoWay, Delay=250}" />
                         </StackPanel>
                     </Border>
                 </Grid>
