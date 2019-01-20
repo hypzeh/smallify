@@ -22,7 +22,7 @@
                     Padding="5">
                 <UniformGrid Columns="5"
                              FlowDirection="RightToLeft">
-                    <Button>
+                    <Button Command="{Binding Path=SaveCommand}">
                         <TextBlock Text="Save" />
                     </Button>
                 </UniformGrid>

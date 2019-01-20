@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Smallify.Module.Settings.ViewModels;
+using System.Windows.Controls;
 
 namespace Smallify.Module.Settings.Views
 {
@@ -7,6 +8,7 @@ namespace Smallify.Module.Settings.Views
 		public SettingsView()
 		{
 			InitializeComponent();
+			DataContext = new SettingsViewModel();
 		}
 	}
 }

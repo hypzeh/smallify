@@ -64,6 +64,10 @@
                 </Grid>
             </Border>
 
+            <Border x:Name="SettingsContent"
+                    Grid.Row="1">
+                <local:SettingsView />
+            </Border>
         </Grid>
     </Border>
 </Window>
