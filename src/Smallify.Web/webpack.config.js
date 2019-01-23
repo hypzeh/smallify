@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-	entry: ['babel-polyfill', './ClientApp/index.js'],
+	entry: './ClientApp/index.js',
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'wwwroot')
