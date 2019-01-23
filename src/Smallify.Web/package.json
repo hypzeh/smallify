@@ -2,15 +2,17 @@
   "name": "smallify-web",
   "version": "1.0.0",
   "description": "Smallify web client",
-  "scripts": {
-    "start": "webpack-dev-server --hot --open --mode development",
-    "build": "webpack --mode production",
-    "lint": "stylelint './ClientApp/*.js'"
-  },
   "main": "ClientApp/index.js",
   "repository": "https://github.com/hypzeh/smallify",
   "author": "Nick Smirnoff",
   "license": "MIT",
+  "homepage": "http://hypzeh.github.io/smallify",
+  "scripts": {
+    "start": "webpack-dev-server --hot --open --mode development",
+    "build": "webpack --mode production",
+    "lint": "stylelint './ClientApp/*.js'",
+    "deploy": "npm run build && gh-pages -d wwwroot"
+  },
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
