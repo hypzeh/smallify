@@ -18,7 +18,7 @@ namespace Smallify.Web
 		{
 			services.AddSpaStaticFiles(configuration =>
 			{
-				configuration.RootPath = "ClientApp/build";
+				configuration.RootPath = "wwwroot";
 			});
 		}
 
