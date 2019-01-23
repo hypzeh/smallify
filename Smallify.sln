@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Notificatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Settings", "src\Smallify.Module.Settings\Smallify.Module.Settings.csproj", "{167A71C7-F26F-4B84-8BE8-78149BE03FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Web", "src\Smallify.Web\Smallify.Web.csproj", "{2FD2611B-119E-495A-8E51-F54A0479B8EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Web", "src\Smallify.Web\Smallify.Web.csproj", "{2FD2611B-119E-495A-8E51-F54A0479B8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +44,7 @@ Global
 		{167A71C7-F26F-4B84-8BE8-78149BE03FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{167A71C7-F26F-4B84-8BE8-78149BE03FA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FD2611B-119E-495A-8E51-F54A0479B8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FD2611B-119E-495A-8E51-F54A0479B8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FD2611B-119E-495A-8E51-F54A0479B8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FD2611B-119E-495A-8E51-F54A0479B8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

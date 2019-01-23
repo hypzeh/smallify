@@ -8,7 +8,7 @@ queue:
   - visualstudio
 
 variables:
-  solution: '**/Smallify.GUI.csproj'
+  solution: './*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
