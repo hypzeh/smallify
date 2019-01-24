@@ -30,7 +30,7 @@ namespace Smallify.Web
 			app.UseSpaStaticFiles();
 			app.UseSpa(spa =>
 			{
-				spa.Options.SourcePath = "ClientApp";
+				spa.Options.SourcePath = ".";
 			});
 		}
 	}
