@@ -5,7 +5,7 @@ const AuthoriseCallback = ({ location }) => {
   return (
     <label>
       Access Token:
-      <input type="text" value={location.search} />
+      <input type="text" value={location.hash} />
     </label>
   );
 };
