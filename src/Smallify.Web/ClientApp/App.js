@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class App extends Component {
-  render () {
-    return (
-      <h1>Smallify.</h1>
-    );
-  }
-}
+import AppRouter from './routers/AppRouter';
+
+const App = () => (
+  <AppRouter />
+);
+
+export default App;
