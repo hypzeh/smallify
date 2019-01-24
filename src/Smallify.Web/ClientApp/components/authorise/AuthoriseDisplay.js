@@ -1,7 +1,9 @@
 import React from 'react';
 
 const AuthroiseDisplay = () => (
-    <button value="Connect"/>
+    <button>
+        Connect
+    </button>
 );
 
 export default AuthroiseDisplay;
