@@ -1,12 +1,10 @@
 import React from 'react';
 
-const AuthoriseSpotify = () => {
-    const clientID = 'c3e67d4f6ab143ddb876938aece626af';
-    const redirectURI = 'http:%2F%2Flocalhost:5250%2Fcallback';
-    const scopes = 'user-modify-playback-state%20user-read-playback-state%20user-read-currently-playing';
-    const authoriseURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirectURI}&scope=${scopes}&response_type=token`;
+import { Authentication } from '../../lib/authentication';
 
-    window.location = authoriseURL;
+const AuthoriseSpotify = () => {
+    const { ClientID, RedirectURI, Scopes } = Authentication;
+    window.location = `https://accounts.spotify.com/authorize?client_id=${encodeURIComponent(ClientID)}&redirect_uri=${encodeURIComponent(RedirectURI)}&scope=${encodeURIComponent(Scopes)}&response_type=token`;
 }
 
 const AuthroiseDisplay = () => (
