@@ -2,24 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <SpaRoot>ClientApp\</SpaRoot>
-    <DefaultItemExcludes>$(DefaultItemExcludes);node_modules\**</DefaultItemExcludes>
+    <PackageId>Smallify.Web</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Nick Smirnoff</Authors>
+    <Company>Smiosoft</Company>
+    <Product>Smallify</Product>
+    <SpaRoot>.\</SpaRoot>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="package-lock.json" />
-    <None Include="package.json" />
-    <None Include="wwwroot\favicon.ico" />
-    <None Include="wwwroot\index.html" />
-    <None Include="wwwroot\manifest.json" />
-  </ItemGroup>
-
-  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
-    <!-- Ensure Node.js is installed -->
+  <Target Name="DebugInstallModules" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
