@@ -7,30 +7,28 @@ namespace Smallify.Web
 {
 	public class Startup
 	{
+		public readonly IConfiguration _configuration;
+
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			_configuration = configuration;
 		}
-
-		public IConfiguration Configuration { get; }
 
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddSpaStaticFiles(configuration =>
 			{
-				configuration.RootPath = "wwwroot";
+				configuration.RootPath = "./wwwroot/";
 			});
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
-			app.UseHsts();
-			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseSpaStaticFiles();
 			app.UseSpa(spa =>
 			{
-				spa.Options.SourcePath = ".";
+				spa.Options.SourcePath = "./";
 			});
 		}
 	}
