@@ -44,7 +44,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './wwwroot/index.html',
+			template: './ClientApp/template.html',
+			filename: 'index.html',
 			favicon: './wwwroot/favicon.ico',
 			minify: {
 				collapseWhitespace: true,
