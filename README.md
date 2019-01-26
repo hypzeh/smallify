@@ -10,6 +10,12 @@ This is a WPF application using `Prism` & `Unity`, intended to provide a mini Sp
 
 - Spotify Premium required for media controls
 - Smallify is **NOT** a standalone Spotify device, users will need to have an official Spotify device/application on standby
+- Smallify uses [Implicit grant flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow) for authentication, through the [project site](https://smallify.nicksmirnoff.co.uk)
+  - Users are directed to `Spotify Accounts Service` with a request for the following permission scopes:
+    - `user-modify-playback-state`
+    - `user-read-playback-state` 
+    - `user-read-currently-playing`
+  - Granted access generates an `access_token`, which lasts 1 hour
 
 ## Screenshots
 
