@@ -1,4 +1,4 @@
-[![Smallify](.\docs\assets\project-title.png)](#)
+![Smallify](./docs/assets/project-title.png)
 [![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=master)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=master)
 ---
 
@@ -25,7 +25,7 @@ To generate an access token, navigate to the [project website](https://smallify.
 
 ## Screenshots
 
-![player-screenshot](.\docs\assets\screenshots\player-screenshot.png)
+![player-screenshot](./docs/assets/screenshots/player-screenshot.png)
 
 ## Related Projects
 
