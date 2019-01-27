@@ -7,9 +7,9 @@ namespace Smallify.Module.Settings.ViewModels
 {
 	public class SettingsButtonViewModel : BindableBase, ISettingsButtonViewModel
 	{
-		private readonly ISettingsShellViewModel _settingsShellViewModel;
+		private readonly IShellViewModel _settingsShellViewModel;
 
-		public SettingsButtonViewModel(ISettingsShellViewModel settingsShellViewModel)
+		public SettingsButtonViewModel(IShellViewModel settingsShellViewModel)
 		{
 			_settingsShellViewModel = settingsShellViewModel;
 

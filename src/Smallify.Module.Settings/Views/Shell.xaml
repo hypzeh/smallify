@@ -8,7 +8,7 @@
         Title="Settings"
         Width="600"
         Height="300"
-        d:DataContext="{d:DesignInstance Type=samples:SettingsShellViewModelData,
+        d:DataContext="{d:DesignInstance Type=samples:ShellViewModelData,
                                          IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"

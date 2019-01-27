@@ -5,7 +5,7 @@ namespace Smallify.Module.Settings.Views
 {
 	public partial class Shell : Window
 	{
-		public Shell(ISettingsShellViewModel settingsShellViewModel)
+		public Shell(IShellViewModel settingsShellViewModel)
 		{
 			InitializeComponent();
 			DataContext = settingsShellViewModel;

@@ -1,9 +1,12 @@
-﻿using System.Windows.Input;
+﻿using Prism.Regions;
+using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public interface ISettingsShellViewModel
+	public interface IShellViewModel
 	{
 		ICommand ExitCommand { get; }
+
+		IRegionManager RegionManager { get; }
 	}
 }
