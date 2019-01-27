@@ -1,9 +1,11 @@
 ﻿<Window x:Class="Smallify.Module.Settings.Views.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:constants="clr-namespace:Smallify.Module.Settings.Constants"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Smallify.Module.Settings.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
         xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
         Title="Settings"
         Width="600"
@@ -68,7 +70,10 @@
             </Border>
 
             <Border x:Name="SettingsContent"
-                    Grid.Row="1" />
+                    Grid.Row="1">
+                <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
+                                prism:RegionManager.RegionName="{x:Static constants:RegionNames.SECTION_CONTENT_REGION}" />
+            </Border>
         </Grid>
     </Border>
 </Window>
