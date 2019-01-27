@@ -78,13 +78,18 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0">
-                        <StackPanel>
-                            <Button Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
-                                    CommandParameter="Authentication"
-                                    Content="Authentication" />
-                            <Button Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
-                                    CommandParameter="About"
-                                    Content="About" />
+                        <StackPanel Background="Black">
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="Authentication"
+                                         Content="Authentication"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         IsChecked="True"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="About"
+                                         Content="About"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
                         </StackPanel>
                     </Border>
 
