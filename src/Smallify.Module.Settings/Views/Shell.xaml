@@ -71,8 +71,28 @@
 
             <Border x:Name="SettingsContent"
                     Grid.Row="1">
-                <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
-                                prism:RegionManager.RegionName="{x:Static constants:RegionNames.SECTION_CONTENT_REGION}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0">
+                        <StackPanel>
+                            <Button Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                    CommandParameter="Authentication"
+                                    Content="Authentication" />
+                            <Button Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                    CommandParameter="About"
+                                    Content="About" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1">
+                        <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
+                                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.SECTION_CONTENT_REGION}" />
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
     </Border>

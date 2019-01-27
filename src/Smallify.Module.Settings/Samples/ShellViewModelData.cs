@@ -8,6 +8,8 @@ namespace Smallify.Module.Settings.Samples
 	{
 		public ICommand ExitCommand { get; }
 
+		public ICommand SwitchSettingsSection { get; }
+
 		public IRegionManager RegionManager { get; }
 	}
 }

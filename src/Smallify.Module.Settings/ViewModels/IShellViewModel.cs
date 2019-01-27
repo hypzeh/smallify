@@ -7,6 +7,8 @@ namespace Smallify.Module.Settings.ViewModels
 	{
 		ICommand ExitCommand { get; }
 
+		ICommand SwitchSettingsSection { get; }
+
 		IRegionManager RegionManager { get; }
 	}
 }

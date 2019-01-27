@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using Smallify.Module.Settings.Views;
 using System.Windows.Input;
 
@@ -7,11 +8,11 @@ namespace Smallify.Module.Settings.ViewModels
 {
 	public class SettingsButtonViewModel : BindableBase, ISettingsButtonViewModel
 	{
-		private readonly IShellViewModel _settingsShellViewModel;
+		private readonly IRegionManager _regionManager;
 
-		public SettingsButtonViewModel(IShellViewModel settingsShellViewModel)
+		public SettingsButtonViewModel(IRegionManager regionManager)
 		{
-			_settingsShellViewModel = settingsShellViewModel;
+			_regionManager = regionManager;
 
 			ShowSettingsWindowCommand = new DelegateCommand(ShowSettingsWindowCommand_Execute);
 		}
@@ -20,8 +21,8 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var settingsShell = new Shell(_settingsShellViewModel);
-			settingsShell.ShowDialog();
+			var shell = new Shell(_regionManager.CreateRegionManager());
+			shell.Show();
 		}
 	}
 }
