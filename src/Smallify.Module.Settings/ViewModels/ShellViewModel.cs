@@ -5,17 +5,13 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsShellViewModel : BindableBase, ISettingsShellViewModel
+	public class ShellViewModel : BindableBase, IShellViewModel
 	{
-		public SettingsShellViewModel(ISettingsViewModel settingsViewModel)
+		public ShellViewModel()
 		{
-			SettingsViewModel = settingsViewModel;
-
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 		}
 
 		public ICommand ExitCommand { get; }
-
-		public ISettingsViewModel SettingsViewModel { get; }
 	}
 }

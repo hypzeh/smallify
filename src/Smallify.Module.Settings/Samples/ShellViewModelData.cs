@@ -3,10 +3,8 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.Samples
 {
-	public class SettingsShellViewModelData : ISettingsShellViewModel
+	public class ShellViewModelData : IShellViewModel
 	{
 		public ICommand ExitCommand { get; }
-
-		public ISettingsViewModel SettingsViewModel => new SettingsViewModelData();
 	}
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Smallify.Module.Settings.Views.SettingsShell"
+﻿<Window x:Class="Smallify.Module.Settings.Views.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -68,9 +68,7 @@
             </Border>
 
             <Border x:Name="SettingsContent"
-                    Grid.Row="1">
-                <local:SettingsView DataContext="{Binding Path=SettingsViewModel, Mode=OneWay}" />
-            </Border>
+                    Grid.Row="1" />
         </Grid>
     </Border>
 </Window>

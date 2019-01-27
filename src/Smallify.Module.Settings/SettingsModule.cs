@@ -18,8 +18,7 @@ namespace Smallify.Module.Settings
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
 			containerRegistry.Register<ISettingsButtonViewModel, SettingsButtonViewModel>();
-			containerRegistry.Register<ISettingsShellViewModel, SettingsShellViewModel>();
-			containerRegistry.Register<ISettingsViewModel, SettingsViewModel>();
+			containerRegistry.Register<IShellViewModel, ShellViewModel>();
 		}
 	}
 }

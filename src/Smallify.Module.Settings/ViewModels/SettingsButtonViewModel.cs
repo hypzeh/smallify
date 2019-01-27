@@ -20,7 +20,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var settingsShell = new SettingsShell(_settingsShellViewModel);
+			var settingsShell = new Shell(_settingsShellViewModel);
 			settingsShell.ShowDialog();
 		}
 	}
