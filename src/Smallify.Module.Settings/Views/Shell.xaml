@@ -78,7 +78,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0">
-                        <StackPanel Background="Black">
+                        <StackPanel Background="{DynamicResource PrimaryControlBrush}">
                             <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
                                          CommandParameter="Authentication"
                                          Content="Authentication"
