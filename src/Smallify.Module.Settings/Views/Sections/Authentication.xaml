@@ -14,14 +14,16 @@
                 <StackPanel>
                     <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
                                Text="Access Token" />
-                    <TextBox />
+                    <TextBox Text="{Binding Path=AccessToken, Mode=TwoWay}" />
                 </StackPanel>
             </Border>
 
             <Border>
                 <UniformGrid Rows="1">
-                    <Button Content="Get Access Token (Opens in browser)" />
-                    <Button Content="Paste From Clipboard" />
+                    <Button Command="{Binding Path=GetAccessTokenCommand, Mode=OneWay}"
+                            Content="Get Access Token (Opens in browser)" />
+                    <Button Command="{Binding Path=PasteAccessTokenCommand, Mode=OneWay}"
+                            Content="Paste From Clipboard" />
                 </UniformGrid>
             </Border>
         </StackPanel>
