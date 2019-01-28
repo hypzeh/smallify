@@ -1,14 +1,19 @@
 ﻿using Prism.Mvvm;
+using Smallify.Module.Core;
 
 namespace Smallify.Module.Settings.ViewModels
 {
 	public class AuthenticationViewModel : BindableBase
 	{
+		private readonly IConfiguration _configuration;
+
 		private string _accessToken;
 
-		public AuthenticationViewModel()
+		public AuthenticationViewModel(IConfiguration configuration)
 		{
-			_accessToken = string.Empty;
+			_configuration = configuration;
+
+			_accessToken = configuration.AccessToken;
 		}
 
 		public string AccessToken
