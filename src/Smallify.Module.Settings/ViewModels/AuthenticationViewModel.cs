@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class AuthenticationViewModel : BindableBase
+	public class AuthenticationViewModel : BindableBase, IAuthenticationViewModel
 	{
 		private readonly IConfiguration _configuration;
 
