@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="ViewModels\IAboutViewModel.cs" />
     <Compile Include="ViewModels\IAuthenticationViewModel.cs" />
     <Compile Include="ViewModels\ISettingsButtonViewModel.cs" />
     <Compile Include="ViewModels\IShellViewModel.cs" />
