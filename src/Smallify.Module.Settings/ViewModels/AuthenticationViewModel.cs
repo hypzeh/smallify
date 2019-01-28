@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Smallify.Module.Core;
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
@@ -39,7 +40,12 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void PasteAccessTokenCommand_Execute()
 		{
-			throw new NotImplementedException();
+			if (!Clipboard.ContainsText())
+			{
+				return;
+			}
+
+			AccessToken = Clipboard.GetText();
 		}
 	}
 }
