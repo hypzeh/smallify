@@ -29,7 +29,13 @@ namespace Smallify.Module.Settings.ViewModels
 		public string AccessToken
 		{
 			get => _accessToken;
-			set => SetProperty(ref _accessToken, value);
+			set
+			{
+				if (SetProperty(ref _accessToken, value))
+				{
+					_configuration.AccessToken = _accessToken;
+				}
+			}
 		}
 
 		private void GetAccessTokenCommand_Execute()
