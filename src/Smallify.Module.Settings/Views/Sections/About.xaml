@@ -9,8 +9,27 @@
              mc:Ignorable="d">
 
     <Border>
-        <TextBlock FontSize="50"
-                   Foreground="{DynamicResource PrimaryTextBrush}"
-                   Text="About View" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0">
+                <ContentControl Style="{StaticResource SmallifyIconControlStyle}" />
+            </Border>
+
+            <Border Grid.Row="1">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center"
+                               Foreground="{DynamicResource PrimaryTextBrush}">
+                        <Run FontSize="28"
+                             Text="Smallify" />
+                        <Run FontStyle="Italic"
+                             Text="v1.0.0-alpha" />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Border>
 </UserControl>
