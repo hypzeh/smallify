@@ -9,7 +9,7 @@
         Title="Smallify"
         Width="600"
         Height="100"
-        MinWidth="285"
+        MinWidth="295"
         MinHeight="100"
         WindowStyle="None"
         mc:Ignorable="d">
