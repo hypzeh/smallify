@@ -16,7 +16,7 @@ namespace Smallify.GUI
 			_eventAggregator = eventAggregator;
 
 			var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
-			_version = $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}-alpha";
+			_version = $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}-beta";
 		}
 
 		public string ClientID => Settings.Default.ClientID;
