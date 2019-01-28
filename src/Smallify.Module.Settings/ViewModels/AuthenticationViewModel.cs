@@ -19,9 +19,12 @@ namespace Smallify.Module.Settings.ViewModels
 			_accessToken = configuration.AccessToken;
 
 			GetAccessTokenCommand = new DelegateCommand(GetAccessTokenCommand_Execute);
+			PasteAccessTokenCommand = new DelegateCommand(PasteAccessTokenCommand_Execute);
 		}
 
 		public ICommand GetAccessTokenCommand { get; }
+
+		public ICommand PasteAccessTokenCommand { get; }
 
 		public string AccessToken
 		{
@@ -30,6 +33,11 @@ namespace Smallify.Module.Settings.ViewModels
 		}
 
 		private void GetAccessTokenCommand_Execute()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void PasteAccessTokenCommand_Execute()
 		{
 			throw new NotImplementedException();
 		}
