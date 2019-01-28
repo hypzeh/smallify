@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Constants\GroupNames.cs" />
     <Compile Include="Constants\RegionNames.cs" />
+    <Compile Include="Samples\AuthenticationViewModelData.cs" />
     <Compile Include="Samples\SettingsButtonViewModelData.cs" />
     <Compile Include="Samples\ShellViewModelData.cs" />
     <Compile Include="SettingsModule.cs" />
