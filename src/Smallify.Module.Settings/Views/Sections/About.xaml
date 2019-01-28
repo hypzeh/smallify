@@ -4,6 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Smallify.Module.Settings.Views.Sections"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
+             d:DataContext="{d:DesignInstance Type=samples:AboutViewModelData,
+                                              IsDesignTimeCreatable=True}"
              d:DesignHeight="275"
              d:DesignWidth="500"
              mc:Ignorable="d">
@@ -21,13 +24,16 @@
 
             <Border Grid.Row="1">
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Center"
+                    <TextBlock Padding="0,0,0,10"
+                               HorizontalAlignment="Center"
                                Foreground="{DynamicResource PrimaryTextBrush}">
                         <Run FontSize="28"
                              Text="Smallify" />
                         <Run FontStyle="Italic"
-                             Text="v1.0.0-alpha" />
+                             Text="{Binding Path=Version, Mode=OneWay}" />
                     </TextBlock>
+                    <Button Command="{Binding Path=OpenGithubCommand, Mode=OneWay}"
+                            Content="Github" />
                 </StackPanel>
             </Border>
         </Grid>
