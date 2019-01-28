@@ -127,7 +127,7 @@ namespace Smallify.Module.Player.ViewModels
 			TrackName = track.Name;
 			TrackArtist = string.Join(", ", track.Artists.Select(artist => artist.Name));
 			TrackAlbumName = track.Album.Name;
-			TrackAlbumArtURL = track.Album.Images.LastOrDefault()?.Url;
+			TrackAlbumArtURL = track.Album.Images.ElementAt(1)?.Url;
 		}
 	}
 }
