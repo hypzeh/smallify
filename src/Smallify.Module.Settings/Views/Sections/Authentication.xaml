@@ -10,7 +10,7 @@
 
     <Border>
         <StackPanel VerticalAlignment="Center">
-            <Border>
+            <Border Margin="0,2.5">
                 <StackPanel>
                     <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
                                Text="Access Token" />
@@ -18,7 +18,7 @@
                 </StackPanel>
             </Border>
 
-            <Border>
+            <Border Margin="0,2.5">
                 <UniformGrid Rows="1">
                     <Button Command="{Binding Path=GetAccessTokenCommand, Mode=OneWay}"
                             Content="Get Access Token (Opens in browser)" />
