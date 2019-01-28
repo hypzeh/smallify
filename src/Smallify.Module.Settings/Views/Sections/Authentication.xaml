@@ -9,24 +9,21 @@
              mc:Ignorable="d">
 
     <Border>
-        <Grid Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBox Grid.Column="0" />
-                    <Button Grid.Column="1"
-                            Content="Paste From Clipboard" />
-                </Grid>
+        <StackPanel VerticalAlignment="Center">
+            <Border>
+                <StackPanel>
+                    <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
+                               Text="Access Token" />
+                    <TextBox />
+                </StackPanel>
             </Border>
-        </Grid>
+
+            <Border>
+                <UniformGrid Rows="1">
+                    <Button Content="Get Access Token (Opens in browser)" />
+                    <Button Content="Paste From Clipboard" />
+                </UniformGrid>
+            </Border>
+        </StackPanel>
     </Border>
 </UserControl>
