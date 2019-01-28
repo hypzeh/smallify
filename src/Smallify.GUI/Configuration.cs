@@ -2,16 +2,21 @@
 using Smallify.GUI.Properties;
 using Smallify.Module.Core;
 using Smallify.Module.Core.Events.Configuration;
+using System.Reflection;
 
 namespace Smallify.GUI
 {
 	public class Configuration : IConfiguration
 	{
 		private readonly IEventAggregator _eventAggregator;
+		private readonly string _version;
 
 		public Configuration(IEventAggregator eventAggregator)
 		{
 			_eventAggregator = eventAggregator;
+
+			var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+			_version = $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}-alpha";
 		}
 
 		public string ClientID => Settings.Default.ClientID;
@@ -29,5 +34,7 @@ namespace Smallify.GUI
 				}
 			}
 		}
+
+		public string Verion => _version;
 	}
 }

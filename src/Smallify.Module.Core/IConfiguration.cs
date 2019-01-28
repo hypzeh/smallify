@@ -5,5 +5,7 @@
 		string ClientID { get; }
 
 		string AccessToken { get; set; }
+
+		string Verion { get; }
 	}
 }
