@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Smallify.Module.Core;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -40,7 +41,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void GetAccessTokenCommand_Execute()
 		{
-			System.Diagnostics.Process.Start("https://smallify.nicksmirnoff.co.uk/");
+			Process.Start("https://smallify.nicksmirnoff.co.uk/");
 		}
 
 		private void PasteAccessTokenCommand_Execute()
