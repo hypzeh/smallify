@@ -27,7 +27,7 @@
                             <DataTemplate>
                                 <Border Margin="5,2.5">
                                     <Border Padding="5"
-                                            Background="Gray"
+                                            Background="{DynamicResource PrimaryControlBrush}"
                                             BorderBrush="Black"
                                             BorderThickness="1"
                                             CornerRadius="5">
@@ -39,11 +39,13 @@
                                             </Grid.ColumnDefinitions>
 
                                             <Border Grid.Column="0">
-                                                <TextBlock Text="{Binding Path=Message, Mode=OneWay}" />
+                                                <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
+                                                           Text="{Binding Path=Message, Mode=OneWay}" />
                                             </Border>
 
                                             <Border Grid.Column="1">
-                                                <TextBlock Text="{Binding Path=TimeStamp.LocalDateTime, Mode=OneWay}" />
+                                                <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
+                                                           Text="{Binding Path=TimeStamp.LocalDateTime, Mode=OneWay}" />
                                             </Border>
 
                                             <Border Grid.Column="2">

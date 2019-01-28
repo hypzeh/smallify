@@ -8,6 +8,10 @@
         #151515
     </Color>
 
+    <Color x:Key="SecondaryControl">
+        #707070
+    </Color>
+
     <Color x:Key="ControlHighlight">
         #00D66E
     </Color>
@@ -33,6 +37,9 @@
 
     <SolidColorBrush x:Key="PrimaryControlBrush"
                      Color="{StaticResource PrimaryControl}" />
+
+    <SolidColorBrush x:Key="SecondaryControlBrush"
+                     Color="{StaticResource SecondaryControl}" />
 
     <SolidColorBrush x:Key="ControlHighlightBrush"
                      Color="{StaticResource ControlHighlight}" />
