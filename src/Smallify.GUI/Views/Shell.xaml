@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Smallify.GUI"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:notifications="clr-namespace:Smallify.Module.Notifications.Constants;assembly=Smallify.Module.Notifications"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:samples="clr-namespace:Smallify.GUI.Samples"
         Title="Smallify"
@@ -59,7 +60,7 @@
                     <Border Grid.Column="2"
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="2">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.NOTIFICATIONS_BUTTON_REGION}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static notifications:RegionNames.NOTIFICATIONS_BUTTON_REGION}" />
                             <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.SETTINGS_BUTTON_REGION}" />
                         </UniformGrid>
                     </Border>
