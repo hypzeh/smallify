@@ -86,6 +86,11 @@
                                          IsChecked="True"
                                          Style="{StaticResource RadioToggleButtonStyle}" />
                             <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="General"
+                                         Content="General"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
                                          CommandParameter="About"
                                          Content="About"
                                          GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
