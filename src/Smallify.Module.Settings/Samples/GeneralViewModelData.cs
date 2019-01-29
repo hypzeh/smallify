@@ -1,4 +1,4 @@
-﻿using Smallify.Module.Settings.ViewModels;
+﻿using Smallify.Module.Settings.ViewModels.Sections;
 using System;
 
 namespace Smallify.Module.Settings.Samples

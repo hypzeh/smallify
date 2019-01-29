@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Smallify.Module.Settings.ViewModels
+namespace Smallify.Module.Settings.ViewModels.Sections
 {
 	public class AuthenticationViewModel : BindableBase, IAuthenticationViewModel
 	{

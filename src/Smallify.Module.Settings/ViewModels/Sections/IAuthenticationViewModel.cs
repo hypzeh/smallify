@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Smallify.Module.Settings.ViewModels
+namespace Smallify.Module.Settings.ViewModels.Sections
 {
 	public interface IAuthenticationViewModel
 	{

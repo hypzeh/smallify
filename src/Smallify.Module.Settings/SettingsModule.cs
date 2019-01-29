@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Regions;
 using Smallify.Module.Core.Constants;
 using Smallify.Module.Settings.ViewModels;
+using Smallify.Module.Settings.ViewModels.Sections;
 using Smallify.Module.Settings.Views;
 using Smallify.Module.Settings.Views.Sections;
 

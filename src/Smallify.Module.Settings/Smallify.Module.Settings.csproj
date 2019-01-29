@@ -76,12 +76,12 @@
     <Compile Include="Samples\ShellViewModelData.cs" />
     <Compile Include="SettingsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\AuthenticationViewModel.cs" />
-    <Compile Include="ViewModels\GeneralViewModel.cs" />
-    <Compile Include="ViewModels\IAboutViewModel.cs" />
-    <Compile Include="ViewModels\IAuthenticationViewModel.cs" />
-    <Compile Include="ViewModels\IGeneralViewModel.cs" />
+    <Compile Include="ViewModels\Sections\AboutViewModel.cs" />
+    <Compile Include="ViewModels\Sections\AuthenticationViewModel.cs" />
+    <Compile Include="ViewModels\Sections\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\Sections\IAboutViewModel.cs" />
+    <Compile Include="ViewModels\Sections\IAuthenticationViewModel.cs" />
+    <Compile Include="ViewModels\Sections\IGeneralViewModel.cs" />
     <Compile Include="ViewModels\ISettingsButtonViewModel.cs" />
     <Compile Include="ViewModels\IShellViewModel.cs" />
     <Compile Include="ViewModels\SettingsButtonViewModel.cs" />
@@ -98,8 +98,8 @@
     <Compile Include="Views\SettingsButtonView.xaml.cs">
       <DependentUpon>SettingsButtonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
+    <Compile Include="Views\SettingsShell.xaml.cs">
+      <DependentUpon>SettingsShell.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Shell.xaml">
+    <Page Include="Views\SettingsShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
