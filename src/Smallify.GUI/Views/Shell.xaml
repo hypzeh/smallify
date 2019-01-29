@@ -70,6 +70,7 @@
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="2">
                             <Button Command="{Binding Path=MinimiseCommand, Mode=OneWay}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                     Style="{StaticResource TitleBarButtonStyle}">
                                 <TextBlock FontWeight="SemiBold"
                                            Text="🗕" />

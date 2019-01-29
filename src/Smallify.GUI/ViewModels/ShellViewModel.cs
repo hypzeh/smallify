@@ -10,7 +10,7 @@ namespace Smallify.GUI.ViewModels
 		public ShellViewModel()
 		{
 			ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
-			MinimiseCommand = new DelegateCommand(() => Application.Current.MainWindow.WindowState = WindowState.Minimized);
+			MinimiseCommand = new DelegateCommand<Window>(window => window.WindowState = WindowState.Minimized);
 		}
 
 		public ICommand ExitCommand { get; private set; }
