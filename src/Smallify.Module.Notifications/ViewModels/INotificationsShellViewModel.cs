@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using Prism.Regions;
+using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
@@ -6,6 +7,6 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		ICommand ExitCommand { get; }
 
-		INotificationsViewModel NotificationsViewModel { get; }
+		IRegionManager RegionManager { get; }
 	}
 }

@@ -8,15 +8,16 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsShellViewModel : BindableBase, IShellViewModel
+	public class SettingsShellViewModel : BindableBase, ISettingsShellViewModel
 	{
 		public SettingsShellViewModel(IRegionManager regionManager)
 		{
 			RegionManager = regionManager;
-			RegionManager.RegisterViewWithRegion(RegionNames.SECTION_CONTENT_REGION, typeof(Authentication));
 
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 			SwitchSettingsSection = new DelegateCommand<string>(SwitchSettingsSection_Execute);
+
+			RegionManager.RegisterViewWithRegion(RegionNames.SECTION_CONTENT_REGION, typeof(Authentication));
 		}
 
 		public ICommand ExitCommand { get; }

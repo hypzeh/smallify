@@ -1,8 +1,8 @@
-﻿<UserControl x:Class="Smallify.Module.Notifications.Views.NotificationsView"
+﻿<UserControl x:Class="Smallify.Module.Notifications.Views.Sections.NotificationsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
+             xmlns:local="clr-namespace:Smallify.Module.Notifications.Views.Sections"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
              d:DataContext="{d:DesignInstance Type=samples:NotificationsViewModelData,
