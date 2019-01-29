@@ -48,7 +48,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Events\Configuration\ConfigurationChangedEventArgs.cs" />
     <Compile Include="Events\Configuration\OnConfigurationChangedEvent.cs" />
     <Compile Include="Events\Notifications\OnNotificationCreatedEvent.cs" />
