@@ -27,7 +27,8 @@ namespace Smallify.Module.Player.Services
 				AccessToken = configuration.AccessToken
 			};
 
-			_eventAggregator.GetEvent<NewAccessTokenEvent>().Subscribe(NewAccessTokenRecieved);
+			_eventAggregator.GetEvent<OnConfigurationChangedEvent>()
+				?.Subscribe(OnConfigurationChangedEvent_Published);
 		}
 
 		public async Task PlayAsync()
@@ -78,9 +79,14 @@ namespace Smallify.Module.Player.Services
 			return response.Item;
 		}
 
-		private void NewAccessTokenRecieved(string accessToken)
+		private void OnConfigurationChangedEvent_Published(ConfigurationChangedEventArgs configuration)
 		{
-			_spotify.AccessToken = accessToken;
+			if (nameof(IConfiguration.AccessToken) != configuration.Name)
+			{
+				return;
+			}
+
+			_spotify.AccessToken = configuration.Value as string;
 		}
 	}
 }

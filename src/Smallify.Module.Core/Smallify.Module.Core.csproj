@@ -49,7 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\RegionNames.cs" />
-    <Compile Include="Events\Configuration\NewAccessTokenEvent.cs" />
+    <Compile Include="Events\Configuration\ConfigurationChangedEventArgs.cs" />
+    <Compile Include="Events\Configuration\OnConfigurationChangedEvent.cs" />
     <Compile Include="Events\Notifications\NewNotificationEvent.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
