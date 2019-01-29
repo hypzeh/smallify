@@ -36,7 +36,7 @@ namespace Smallify.Module.Player.Services
 			var response = await _spotify.ResumePlaybackAsync(offset: string.Empty);
 			if (response.HasError())
 			{
-				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace Smallify.Module.Player.Services
 			var response = await _spotify.PausePlaybackAsync();
 			if (response.HasError())
 			{
-				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace Smallify.Module.Player.Services
 			var response = await _spotify.SkipPlaybackToNextAsync();
 			if (response.HasError())
 			{
-				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Smallify.Module.Player.Services
 			var response = await _spotify.SkipPlaybackToPreviousAsync();
 			if (response.HasError())
 			{
-				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
 			}
 		}
 
@@ -72,7 +72,7 @@ namespace Smallify.Module.Player.Services
 			var response = await _spotify.GetPlayingTrackAsync();
 			if (response.HasError())
 			{
-				_eventAggregator.GetEvent<NewNotificationEvent>()?.Publish(response.Error.Message);
+				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
 				return null;
 			}
 

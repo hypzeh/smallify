@@ -2,7 +2,7 @@
 
 namespace Smallify.Module.Core.Events.Notifications
 {
-	public class NewNotificationEvent : PubSubEvent<string>
+	public class OnNotificationCreatedEvent : PubSubEvent<string>
 	{
 	}
 }
