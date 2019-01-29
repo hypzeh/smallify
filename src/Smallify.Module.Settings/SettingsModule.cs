@@ -21,9 +21,11 @@ namespace Smallify.Module.Settings
 			containerRegistry.Register<ISettingsButtonViewModel, SettingsButtonViewModel>();
 			containerRegistry.Register<IShellViewModel, ShellViewModel>();
 			containerRegistry.Register<IAuthenticationViewModel, AuthenticationViewModel>();
+			containerRegistry.Register<IGeneralViewModel, GeneralViewModel>();
 			containerRegistry.Register<IAboutViewModel, AboutViewModel>();
 
 			containerRegistry.RegisterForNavigation<Authentication>();
+			containerRegistry.RegisterForNavigation<General>();
 			containerRegistry.RegisterForNavigation<About>();
 		}
 	}
