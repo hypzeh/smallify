@@ -17,7 +17,8 @@ namespace Smallify.Module.Notifications.ViewModels
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
 
-			eventAggregator.GetEvent<OnNotificationCreatedEvent>().Subscribe(NewNotificationReceived);
+			eventAggregator.GetEvent<OnNotificationCreatedEvent>()
+				?.Subscribe(message => Notifications.Add(new Notification(message)));
 		}
 
 		public ICommand ShowNotificationsWindowCommand { get; }
@@ -28,11 +29,6 @@ namespace Smallify.Module.Notifications.ViewModels
 		{
 			var shell = new NotificationsShell(new NotificationsShellViewModel(Notifications));
 			shell.ShowDialog();
-		}
-
-		private void NewNotificationReceived(string message)
-		{
-			Notifications.Add(new Notification(message));
 		}
 	}
 }
