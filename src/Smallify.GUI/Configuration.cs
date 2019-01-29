@@ -9,14 +9,14 @@ namespace Smallify.GUI
 	public class Configuration : IConfiguration
 	{
 		private readonly IEventAggregator _eventAggregator;
-		private readonly string _version;
 
 		public Configuration(IEventAggregator eventAggregator)
 		{
 			_eventAggregator = eventAggregator;
 
+
 			var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
-			_version = $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}-beta";
+			Verion = $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}-beta";
 		}
 
 		public string ClientID => Settings.Default.ClientID;
@@ -35,6 +35,19 @@ namespace Smallify.GUI
 			}
 		}
 
-		public string Verion => _version;
+		public string Verion { get; }
+
+		public bool AlwaysOnTop
+		{
+			get => Settings.Default.AlwaysOnTop;
+			set
+			{
+				if (value != Settings.Default.AlwaysOnTop)
+				{
+					Settings.Default.AlwaysOnTop = value;
+					Settings.Default.Save();
+				}
+			}
+		}
 	}
 }

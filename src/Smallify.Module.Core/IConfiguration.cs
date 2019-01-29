@@ -7,5 +7,7 @@
 		string AccessToken { get; set; }
 
 		string Verion { get; }
+
+		bool AlwaysOnTop { get; set; }
 	}
 }
