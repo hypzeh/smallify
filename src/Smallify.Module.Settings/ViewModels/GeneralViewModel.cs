@@ -3,7 +3,7 @@ using Smallify.Module.Core;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class GeneralViewModel : BindableBase
+	public class GeneralViewModel : BindableBase, IGeneralViewModel
 	{
 		private readonly IConfiguration _configuration;
 
