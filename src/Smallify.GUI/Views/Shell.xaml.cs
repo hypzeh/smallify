@@ -5,10 +5,10 @@ namespace Smallify.GUI.Views
 {
 	public partial class Shell : Window
 	{
-		public Shell()
+		public Shell(IShellViewModel shellViewModel)
 		{
 			InitializeComponent();
-			DataContext = new ShellViewModel();
+			DataContext = shellViewModel;
 		}
 	}
 }
