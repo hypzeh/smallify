@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:Smallify.Module.Notifications.Views.Sections"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
-             d:DataContext="{d:DesignInstance Type=samples:NotificationsViewModelData,
+             d:DataContext="{d:DesignInstance Type=samples:NotificationsShellViewModelData,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="600"
@@ -22,7 +22,7 @@
                     Grid.Row="0">
                 <ScrollViewer Padding="0,2.5"
                               VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Path=Notifications}">
+                    <ItemsControl ItemsSource="{Binding Path=Notifications, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="5,2.5">

@@ -9,6 +9,10 @@ namespace Smallify.Module.Notifications.ViewModels
 	{
 		ICommand ExitCommand { get; }
 
+		ICommand DismissNotificationCommand { get; }
+
+		ICommand ClearNotificationsCommand { get; }
+
 		IRegionManager RegionManager { get; }
 
 		ObservableCollection<INotification> Notifications { get; }

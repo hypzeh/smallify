@@ -20,11 +20,17 @@ namespace Smallify.Module.Notifications.ViewModels
 			Notifications = notifications;
 
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
+			DismissNotificationCommand = new DelegateCommand<INotification>(notification => Notifications.Remove(notification));
+			ClearNotificationsCommand = new DelegateCommand(() => Notifications.Clear());
 
 			RegionManager.RegisterViewWithRegion(RegionNames.NOTIFICATIONS_CONTENT_REGION, typeof(NotificationsView));
 		}
 
 		public ICommand ExitCommand { get; }
+
+		public ICommand DismissNotificationCommand { get; }
+
+		public ICommand ClearNotificationsCommand { get; }
 
 		public IRegionManager RegionManager { get; }
 

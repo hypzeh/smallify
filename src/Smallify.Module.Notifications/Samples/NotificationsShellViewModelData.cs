@@ -10,8 +10,19 @@ namespace Smallify.Module.Notifications.Samples
 	{
 		public ICommand ExitCommand { get; }
 
+		public ICommand DismissNotificationCommand { get; }
+
+		public ICommand ClearNotificationsCommand { get; }
+
 		public IRegionManager RegionManager { get; }
 
-		public ObservableCollection<INotification> Notifications { get; }
+		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
+		{
+			new Notification("fake notification #1"),
+			new Notification("fake notification #2"),
+			new Notification("fake notification #3"),
+			new Notification("fake notification #4"),
+			new Notification("fake notification #5")
+		};
 	}
 }
