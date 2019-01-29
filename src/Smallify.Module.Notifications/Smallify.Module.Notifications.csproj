@@ -75,13 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\NotificationsButtonViewModelData.cs" />
     <Compile Include="Samples\NotificationsShellViewModelData.cs" />
-    <Compile Include="Samples\NotificationsViewModelData.cs" />
     <Compile Include="ViewModels\INotificationsButtonViewModel.cs" />
     <Compile Include="ViewModels\INotificationsShellViewModel.cs" />
-    <Compile Include="ViewModels\INotificationsViewModel.cs" />
     <Compile Include="ViewModels\NotificationsButtonViewModel.cs" />
     <Compile Include="ViewModels\NotificationsShellViewModel.cs" />
-    <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="Views\NotificationsButtonView.xaml.cs">
       <DependentUpon>NotificationsButtonView.xaml</DependentUpon>
     </Compile>

@@ -19,7 +19,6 @@ namespace Smallify.Module.Notifications
 		{
 			containerRegistry.Register<INotificationsButtonViewModel, NotificationsButtonViewModel>();
 			containerRegistry.Register<INotificationsShellViewModel, NotificationsShellViewModel>();
-			containerRegistry.Register<INotificationsViewModel, NotificationsViewModel>();
 		}
 	}
 }

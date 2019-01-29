@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
         xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
         Title="Notifications"
         Width="600"
@@ -66,9 +67,10 @@
                 </Grid>
             </Border>
 
-            <Border x:Name="NotificationsRegion"
+            <Border x:Name="NotificationsContent"
                     Grid.Row="1">
-                <local:NotificationsView DataContext="{Binding Path=NotificationsViewModel, Mode=OneWay}" />
+                <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
+                                prism:RegionManager.RegionName="NotificationsContent" />
             </Border>
         </Grid>
     </Border>
