@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:Smallify.GUI"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:samples="clr-namespace:Smallify.GUI.Samples"
         Title="Smallify"
         Width="600"
         Height="100"
         MinWidth="295"
         MinHeight="100"
+        d:DataContext="{d:DesignInstance Type=samples:ShellViewModelData,
+                                         IsDesignTimeCreatable=True}"
         Topmost="{Binding Path=Configuration.AlwaysOnTop, Mode=OneWay}"
         WindowStyle="None"
         mc:Ignorable="d">
