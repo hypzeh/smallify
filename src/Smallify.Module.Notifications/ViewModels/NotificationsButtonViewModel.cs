@@ -17,7 +17,7 @@ namespace Smallify.Module.Notifications.ViewModels
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
 
-			eventAggregator.GetEvent<NewNotificationEvent>().Subscribe(NewNotificationReceived);
+			eventAggregator.GetEvent<OnNotificationCreatedEvent>().Subscribe(NewNotificationReceived);
 		}
 
 		public ICommand ShowNotificationsWindowCommand { get; }
