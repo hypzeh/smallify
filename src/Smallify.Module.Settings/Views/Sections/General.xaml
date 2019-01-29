@@ -8,5 +8,10 @@
              d:DesignWidth="500"
              mc:Ignorable="d">
 
-    <Border />
+    <Border>
+        <StackPanel>
+            <CheckBox Content="Always on top"
+                      Foreground="{DynamicResource PrimaryTextBrush}" />
+        </StackPanel>
+    </Border>
 </UserControl>
