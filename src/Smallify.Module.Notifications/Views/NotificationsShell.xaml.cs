@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace Smallify.Module.Notifications.Views
 {
-	public partial class Shell : Window
+	public partial class NotificationsShell : Window
 	{
-		public Shell(IRegionManager regionManager)
+		public NotificationsShell(IRegionManager regionManager)
 		{
 			InitializeComponent();
 		}
