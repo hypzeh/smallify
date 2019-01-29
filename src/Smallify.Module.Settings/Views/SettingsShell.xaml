@@ -1,14 +1,16 @@
-﻿<Window x:Class="Smallify.Module.Notifications.Views.NotificationsShell"
+﻿<Window x:Class="Smallify.Module.Settings.Views.SettingsShell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:constants="clr-namespace:Smallify.Module.Settings.Constants"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
+        xmlns:local="clr-namespace:Smallify.Module.Settings.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:samples="clr-namespace:Smallify.Module.Notifications.Samples"
-        Title="Notifications"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
+        Title="Settings"
         Width="600"
         Height="300"
-        d:DataContext="{d:DesignInstance Type=samples:NotificationsShellViewModelData,
+        d:DataContext="{d:DesignInstance Type=samples:ShellViewModelData,
                                          IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
@@ -24,6 +26,7 @@
                       ResizeBorderThickness="0"
                       UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
+
 
     <Border Background="{DynamicResource MainBackgroundBrush}">
         <Grid>
@@ -49,7 +52,7 @@
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                   Text="Notifications" />
+                                   Text="Settings" />
                     </Border>
 
                     <Border Grid.Column="2"
@@ -66,9 +69,41 @@
                 </Grid>
             </Border>
 
-            <Border x:Name="NotificationsRegion"
+            <Border x:Name="SettingsContent"
                     Grid.Row="1">
-                <local:NotificationsView DataContext="{Binding Path=NotificationsViewModel, Mode=OneWay}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0">
+                        <StackPanel Background="{DynamicResource PrimaryControlBrush}">
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="Authentication"
+                                         Content="Authentication"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         IsChecked="True"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="General"
+                                         Content="General"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
+                            <RadioButton Command="{Binding Path=SwitchSettingsSection, Mode=OneWay}"
+                                         CommandParameter="About"
+                                         Content="About"
+                                         GroupName="{x:Static constants:GroupNames.SECTION_GROUP}"
+                                         Style="{StaticResource RadioToggleButtonStyle}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1"
+                            Margin="5">
+                        <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
+                                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.SECTION_CONTENT_REGION}" />
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
     </Border>

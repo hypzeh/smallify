@@ -4,9 +4,9 @@ using System.Windows;
 
 namespace Smallify.Module.Settings.Views
 {
-	public partial class Shell : Window
+	public partial class SettingsShell : Window
 	{
-		public Shell(IRegionManager regionManager)
+		public SettingsShell(IRegionManager regionManager)
 		{
 			InitializeComponent();
 			DataContext = new ShellViewModel(regionManager);

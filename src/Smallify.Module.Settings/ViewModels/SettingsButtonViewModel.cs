@@ -21,7 +21,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var shell = new Shell(_regionManager.CreateRegionManager());
+			var shell = new SettingsShell(_regionManager.CreateRegionManager());
 			shell.Show();
 		}
 	}
