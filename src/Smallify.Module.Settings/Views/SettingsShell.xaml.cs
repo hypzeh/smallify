@@ -9,7 +9,7 @@ namespace Smallify.Module.Settings.Views
 		public SettingsShell(IRegionManager regionManager)
 		{
 			InitializeComponent();
-			DataContext = new ShellViewModel(regionManager);
+			DataContext = new SettingsShellViewModel(regionManager);
 		}
 	}
 }

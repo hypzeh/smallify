@@ -8,9 +8,9 @@ using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class ShellViewModel : BindableBase, IShellViewModel
+	public class SettingsShellViewModel : BindableBase, IShellViewModel
 	{
-		public ShellViewModel(IRegionManager regionManager)
+		public SettingsShellViewModel(IRegionManager regionManager)
 		{
 			RegionManager = regionManager;
 			RegionManager.RegisterViewWithRegion(RegionNames.SECTION_CONTENT_REGION, typeof(Authentication));
