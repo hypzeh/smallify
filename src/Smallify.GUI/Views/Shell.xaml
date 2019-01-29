@@ -8,6 +8,7 @@
         xmlns:notifications="clr-namespace:Smallify.Module.Notifications.Constants;assembly=Smallify.Module.Notifications"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:samples="clr-namespace:Smallify.GUI.Samples"
+        xmlns:settings="clr-namespace:Smallify.Module.Settings.Constants;assembly=Smallify.Module.Settings"
         Title="Smallify"
         Width="600"
         Height="100"
@@ -61,7 +62,7 @@
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <UniformGrid Columns="2">
                             <ContentControl prism:RegionManager.RegionName="{x:Static notifications:RegionNames.NOTIFICATIONS_BUTTON_REGION}" />
-                            <ContentControl prism:RegionManager.RegionName="{x:Static constants:RegionNames.SETTINGS_BUTTON_REGION}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static settings:RegionNames.SETTINGS_BUTTON_REGION}" />
                         </UniformGrid>
                     </Border>
 
