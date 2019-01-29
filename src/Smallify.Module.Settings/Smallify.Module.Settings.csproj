@@ -71,6 +71,7 @@
     <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Samples\AboutViewModelData.cs" />
     <Compile Include="Samples\AuthenticationViewModelData.cs" />
+    <Compile Include="Samples\GeneralViewModelData.cs" />
     <Compile Include="Samples\SettingsButtonViewModelData.cs" />
     <Compile Include="Samples\ShellViewModelData.cs" />
     <Compile Include="SettingsModule.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ViewModels\GeneralViewModel.cs" />
     <Compile Include="ViewModels\IAboutViewModel.cs" />
     <Compile Include="ViewModels\IAuthenticationViewModel.cs" />
+    <Compile Include="ViewModels\IGeneralViewModel.cs" />
     <Compile Include="ViewModels\ISettingsButtonViewModel.cs" />
     <Compile Include="ViewModels\IShellViewModel.cs" />
     <Compile Include="ViewModels\SettingsButtonViewModel.cs" />
