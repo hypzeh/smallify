@@ -11,6 +11,7 @@
         Height="100"
         MinWidth="295"
         MinHeight="100"
+        Topmost="{Binding Path=Configuration.AlwaysOnTop, Mode=OneWay}"
         WindowStyle="None"
         mc:Ignorable="d">
 
