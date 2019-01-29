@@ -30,7 +30,8 @@ namespace Smallify.GUI
 				{
 					Settings.Default.AccessToken = value;
 					Settings.Default.Save();
-					_eventAggregator.GetEvent<NewAccessTokenEvent>()?.Publish(value);
+					_eventAggregator.GetEvent<OnConfigurationChangedEvent>()
+						?.Publish(new ConfigurationChangedEventArgs(nameof(AccessToken), Settings.Default.AccessToken));
 				}
 			}
 		}
@@ -46,6 +47,8 @@ namespace Smallify.GUI
 				{
 					Settings.Default.AlwaysOnTop = value;
 					Settings.Default.Save();
+					_eventAggregator.GetEvent<OnConfigurationChangedEvent>()
+						?.Publish(new ConfigurationChangedEventArgs(nameof(AlwaysOnTop), Settings.Default.AlwaysOnTop));
 				}
 			}
 		}
