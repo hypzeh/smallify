@@ -17,7 +17,7 @@ namespace Smallify.Module.Settings.ViewModels
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 			SwitchSettingsSection = new DelegateCommand<string>(SwitchSettingsSection_Execute);
 
-			RegionManager.RegisterViewWithRegion(RegionNames.SECTION_CONTENT_REGION, typeof(Authentication));
+			RegionManager.RegisterViewWithRegion(RegionNames.SETTINGS_SECTION_REGION, typeof(Authentication));
 		}
 
 		public ICommand ExitCommand { get; }
@@ -28,7 +28,7 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void SwitchSettingsSection_Execute(string sectionName)
 		{
-			RegionManager.RequestNavigate(RegionNames.SECTION_CONTENT_REGION, sectionName);
+			RegionManager.RequestNavigate(RegionNames.SETTINGS_SECTION_REGION, sectionName);
 		}
 	}
 }

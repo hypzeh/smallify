@@ -2,6 +2,6 @@
 {
 	public static class RegionNames
 	{
-		public const string SECTION_CONTENT_REGION = nameof(SECTION_CONTENT_REGION);
+		public const string SETTINGS_SECTION_REGION = nameof(SETTINGS_SECTION_REGION);
 	}
 }

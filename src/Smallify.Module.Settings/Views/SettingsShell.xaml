@@ -101,7 +101,7 @@
                     <Border Grid.Column="1"
                             Margin="5">
                         <ContentControl prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
-                                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.SECTION_CONTENT_REGION}" />
+                                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.SETTINGS_SECTION_REGION}" />
                     </Border>
                 </Grid>
             </Border>
