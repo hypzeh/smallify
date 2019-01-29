@@ -4,6 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Smallify.Module.Settings.Views.Sections"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:samples="clr-namespace:Smallify.Module.Settings.Samples"
+             d:DataContext="{d:DesignInstance Type=samples:GeneralViewModelData,
+                                              IsDesignTimeCreatable=True}"
              d:DesignHeight="275"
              d:DesignWidth="500"
              mc:Ignorable="d">
@@ -11,7 +14,8 @@
     <Border>
         <StackPanel>
             <CheckBox Content="Always on top"
-                      Foreground="{DynamicResource PrimaryTextBrush}" />
+                      Foreground="{DynamicResource PrimaryTextBrush}"
+                      IsChecked="{Binding Path=AlwaysOnTopEnabled, Mode=TwoWay}" />
         </StackPanel>
     </Border>
 </UserControl>
