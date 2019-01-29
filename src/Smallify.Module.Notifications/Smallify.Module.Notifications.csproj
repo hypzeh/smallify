@@ -69,6 +69,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Models\INotification.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="NotificationsModule.cs" />

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Smallify.Module.Notifications.Constants;
 using Smallify.Module.Notifications.Models;
 using Smallify.Module.Notifications.Views.Sections;
 using System.Collections.ObjectModel;
@@ -20,7 +21,7 @@ namespace Smallify.Module.Notifications.ViewModels
 
 			ExitCommand = new DelegateCommand<Window>(window => window.Close());
 
-			RegionManager.RegisterViewWithRegion("", typeof(NotificationsView));
+			RegionManager.RegisterViewWithRegion(RegionNames.NOTIFICATIONS_CONTENT_REGION, typeof(NotificationsView));
 		}
 
 		public ICommand ExitCommand { get; }
