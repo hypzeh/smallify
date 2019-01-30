@@ -12,7 +12,9 @@ namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
 	{
-		public readonly IRegionManager _regionManager;
+		private readonly IRegionManager _regionManager;
+
+		private NotificationsShell _notificationsShell;
 
 		public NotificationsButtonViewModel(
 			IEventAggregator eventAggregator,
@@ -34,8 +36,17 @@ namespace Smallify.Module.Notifications.ViewModels
 
 		private void ShowNotificationsWindowCommand_Execute()
 		{
-			var shell = new NotificationsShell(_regionManager.CreateRegionManager(), Notifications);
-			shell.Show();
+			if (_notificationsShell != null)
+			{
+				return;
+			}
+
+			_notificationsShell = new NotificationsShell(_regionManager.CreateRegionManager(), Notifications);
+			_notificationsShell.Closed += (s, e) =>
+			{
+				_notificationsShell = null;
+			};
+			_notificationsShell.Show();
 		}
 	}
 }

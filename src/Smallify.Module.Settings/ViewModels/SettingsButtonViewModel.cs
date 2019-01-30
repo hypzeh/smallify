@@ -10,6 +10,8 @@ namespace Smallify.Module.Settings.ViewModels
 	{
 		private readonly IRegionManager _regionManager;
 
+		private SettingsShell _settingsShell;
+
 		public SettingsButtonViewModel(IRegionManager regionManager)
 		{
 			_regionManager = regionManager;
@@ -21,8 +23,17 @@ namespace Smallify.Module.Settings.ViewModels
 
 		private void ShowSettingsWindowCommand_Execute()
 		{
-			var shell = new SettingsShell(_regionManager.CreateRegionManager());
-			shell.Show();
+			if (_settingsShell != null)
+			{
+				return;
+			}
+
+			_settingsShell = new SettingsShell(_regionManager.CreateRegionManager());
+			_settingsShell.Closed += (s, e) =>
+			{
+				_settingsShell = null;
+			};
+			_settingsShell.Show();
 		}
 	}
 }
