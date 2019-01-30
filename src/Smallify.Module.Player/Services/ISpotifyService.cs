@@ -5,14 +5,14 @@ namespace Smallify.Module.Player.Services
 {
 	public interface ISpotifyService
 	{
-		Task PlayAsync();
+		Task<bool> TryPlayAsync();
 
-		Task PauseAsync();
+		Task<bool> TryPauseAsync();
 
-		Task SkipAsync();
+		Task<bool> TrySkipAsync();
 
-		Task PreviousAsync();
+		Task<bool> TryPreviousAsync();
 
-		Task<FullTrack> GetPlaybackStateAsync();
+		Task<PlaybackContext> GetPlaybackStateAsync();
 	}
 }

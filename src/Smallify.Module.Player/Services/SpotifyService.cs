@@ -31,43 +31,55 @@ namespace Smallify.Module.Player.Services
 				?.Subscribe(OnConfigurationChangedEvent_Published);
 		}
 
-		public async Task PlayAsync()
+		public async Task<bool> TryPlayAsync()
 		{
 			var response = await _spotify.ResumePlaybackAsync(offset: string.Empty);
 			if (response.HasError())
 			{
 				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
+				return false;
 			}
+
+			return true;
 		}
 
-		public async Task PauseAsync()
+		public async Task<bool> TryPauseAsync()
 		{
 			var response = await _spotify.PausePlaybackAsync();
 			if (response.HasError())
 			{
 				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
+				return false;
 			}
+
+			return true;
 		}
 
-		public async Task SkipAsync()
+		public async Task<bool> TrySkipAsync()
 		{
 			var response = await _spotify.SkipPlaybackToNextAsync();
 			if (response.HasError())
 			{
 				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
+				return false;
 			}
+
+			return true;
 		}
 
-		public async Task PreviousAsync()
+		public async Task<bool> TryPreviousAsync()
 		{
 			var response = await _spotify.SkipPlaybackToPreviousAsync();
 			if (response.HasError())
 			{
 				_eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.Error.Message);
+				return false;
 			}
+
+			return true;
 		}
 
-		public async Task<FullTrack> GetPlaybackStateAsync()
+		public async Task<PlaybackContext> GetPlaybackStateAsync()
 		{
 			var response = await _spotify.GetPlayingTrackAsync();
 			if (response.HasError())
@@ -76,7 +88,7 @@ namespace Smallify.Module.Player.Services
 				return null;
 			}
 
-			return response.Item;
+			return response;
 		}
 
 		private void OnConfigurationChangedEvent_Published(ConfigurationChangedEventArgs configuration)
