@@ -11,19 +11,20 @@
              d:DesignWidth="500"
              mc:Ignorable="d">
 
-    <UserControl.Resources />
-
     <Border>
         <StackPanel>
-            <Border Margin="0,2.5">
+            <Border>
                 <StackPanel>
                     <TextBlock Foreground="{DynamicResource PrimaryTextBrush}"
                                Text="Access Token" />
-                    <TextBox Text="{Binding Path=AccessToken, Mode=TwoWay, Delay=250}" />
+                    <TextBox Background="{DynamicResource PrimaryControlBrush}"
+                             FontSize="18"
+                             Foreground="{DynamicResource PrimaryTextBrush}"
+                             Text="{Binding Path=AccessToken, Mode=TwoWay, Delay=250}" />
                 </StackPanel>
             </Border>
 
-            <Border Margin="0,2.5">
+            <Border>
                 <UniformGrid Rows="1">
                     <Button Command="{Binding Path=GetAccessTokenCommand, Mode=OneWay}"
                             Style="{StaticResource PrimaryButtonStyle}">
