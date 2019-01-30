@@ -4,6 +4,7 @@ using Smallify.Module.Player.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
@@ -11,6 +12,7 @@ namespace Smallify.Module.Player.ViewModels
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
 		private readonly ISpotifyService _spotifyService;
+		private readonly Timer _timer;
 
 		private string _trackName;
 		private string _artistName;
@@ -27,12 +29,15 @@ namespace Smallify.Module.Player.ViewModels
 			_albumName = "Album Name";
 			_albumArtURL = string.Empty;
 			_isPlaying = false;
+			_timer = new Timer();
 
 			PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
 			RefreshCommand = new DelegateCommand<TimeSpan?>(RefreshCommand_Execute);
+
+			_timer.Elapsed += (s, e) => RefreshCommand.Execute(null);
 
 			RefreshCommand.Execute(null);
 		}
@@ -122,6 +127,8 @@ namespace Smallify.Module.Player.ViewModels
 
 		private async void RefreshCommand_Execute(TimeSpan? delay = null)
 		{
+			_timer.Stop();
+
 			if (delay.HasValue)
 			{
 				await Task.Delay(delay.Value);
@@ -138,6 +145,9 @@ namespace Smallify.Module.Player.ViewModels
 			ArtistName = string.Join(", ", context.Item.Artists.Select(artist => artist.Name));
 			AlbumName = context.Item.Album.Name;
 			AlbumArtURL = context.Item.Album.Images.ElementAt(1)?.Url;
+
+			_timer.Interval = (context.Item.DurationMs - context.ProgressMs) + 100;
+			_timer.Start();
 		}
 	}
 }
