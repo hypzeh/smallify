@@ -11,6 +11,8 @@
              d:DesignWidth="500"
              mc:Ignorable="d">
 
+    <UserControl.Resources />
+
     <Border>
         <StackPanel>
             <Border Margin="0,2.5">
@@ -24,9 +26,13 @@
             <Border Margin="0,2.5">
                 <UniformGrid Rows="1">
                     <Button Command="{Binding Path=GetAccessTokenCommand, Mode=OneWay}"
-                            Content="Get Access Token (Opens in browser)" />
+                            Style="{StaticResource SpotifyPrimaryButtonStyle}">
+                        <TextBlock Text="GET ACCESS TOKEN" />
+                    </Button>
                     <Button Command="{Binding Path=PasteAccessTokenCommand, Mode=OneWay}"
-                            Content="Paste From Clipboard" />
+                            Style="{StaticResource SpotifySecondaryButtonStyle}">
+                        <TextBlock Text="PASTE FROM CLIPBOARD" />
+                    </Button>
                 </UniformGrid>
             </Border>
         </StackPanel>
