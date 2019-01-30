@@ -89,7 +89,6 @@ namespace Smallify.Module.Player.ViewModels
 				return;
 			}
 
-
 			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
