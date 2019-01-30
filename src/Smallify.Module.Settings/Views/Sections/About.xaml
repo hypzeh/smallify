@@ -33,7 +33,9 @@
                              Text="{Binding Path=Version, Mode=OneWay}" />
                     </TextBlock>
                     <Button Command="{Binding Path=OpenGithubCommand, Mode=OneWay}"
-                            Content="Github" />
+                            Style="{StaticResource SecondaryButtonStyle}">
+                        <TextBlock Text="GITHUB" />
+                    </Button>
                 </StackPanel>
             </Border>
         </Grid>

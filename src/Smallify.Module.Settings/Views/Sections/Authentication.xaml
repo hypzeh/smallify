@@ -26,11 +26,11 @@
             <Border Margin="0,2.5">
                 <UniformGrid Rows="1">
                     <Button Command="{Binding Path=GetAccessTokenCommand, Mode=OneWay}"
-                            Style="{StaticResource SpotifyPrimaryButtonStyle}">
+                            Style="{StaticResource PrimaryButtonStyle}">
                         <TextBlock Text="GET ACCESS TOKEN" />
                     </Button>
                     <Button Command="{Binding Path=PasteAccessTokenCommand, Mode=OneWay}"
-                            Style="{StaticResource SpotifySecondaryButtonStyle}">
+                            Style="{StaticResource SecondaryButtonStyle}">
                         <TextBlock Text="PASTE FROM CLIPBOARD" />
                     </Button>
                 </UniformGrid>
