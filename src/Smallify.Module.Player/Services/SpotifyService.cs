@@ -98,7 +98,7 @@ namespace Smallify.Module.Player.Services
 				return;
 			}
 
-			_spotify.AccessToken = configuration.Value as string;
+			_spotify.AccessToken = _configuration.AccessToken;
 		}
 	}
 }
