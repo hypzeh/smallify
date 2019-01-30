@@ -18,6 +18,7 @@ namespace Smallify.Module.Notifications.Samples
 
 		public ObservableCollection<INotification> Notifications => new ObservableCollection<INotification>
 		{
+			new Notification("This is a long notification message to test the design of long notifications and how they wrap."),
 			new Notification("fake notification #1"),
 			new Notification("fake notification #2"),
 			new Notification("fake notification #3"),
