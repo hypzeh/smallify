@@ -17,8 +17,9 @@ const AuthoriseSpotify = () => {
 const AuthroiseDisplay = () => (
   <Container>
     <SmallifyIcon />
-    <br />
+    <p>Press the button below to connect to Spotify.</p>
     <Button onClick={AuthoriseSpotify}>CONNECT</Button>
+    <p>This will show your access token.</p>
   </Container>
 );
 
