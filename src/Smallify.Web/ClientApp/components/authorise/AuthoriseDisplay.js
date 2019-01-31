@@ -2,6 +2,7 @@ import React from "react";
 
 import { Authentication } from "../../lib/authentication";
 import Container from "../shared/styled/container";
+import Paragraph from "../shared/styled/paragraph";
 import Button from "../shared/styled/button";
 import SmallifyIcon from "../shared/SmallifyIcon";
 
@@ -18,9 +19,9 @@ const AuthoriseSpotify = () => {
 const AuthroiseDisplay = () => (
   <Container>
     <SmallifyIcon />
-    <p>Press the button below to connect to Spotify.</p>
+    <Paragraph>Press the button below to connect to Spotify.</Paragraph>
     <Button onClick={AuthoriseSpotify}>CONNECT</Button>
-    <p>This will show your access token.</p>
+    <Paragraph>This will show your access token.</Paragraph>
   </Container>
 );
 
