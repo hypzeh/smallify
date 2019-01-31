@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   color: #fff;
@@ -7,8 +7,8 @@ const Button = styled.button`
   line-height: 1;
   border-radius: 500px;
   padding: 18px 48px 16px;
-  transition-property: background-color,border-color,color,box-shadow,filter;
-  transition-duration: .3s;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
   border-width: 0;
   letter-spacing: 2px;
   min-width: 160px;
