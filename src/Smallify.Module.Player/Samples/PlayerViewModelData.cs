@@ -21,19 +21,19 @@ namespace Smallify.Module.Player.Samples
 			set => throw new System.NotImplementedException();
 		}
 
-		public string TrackArtist
+		public string ArtistName
 		{
 			get => "Artist Name";
 			set => throw new System.NotImplementedException();
 		}
 
-		public string TrackAlbumName
+		public string AlbumName
 		{
 			get => "Album Name";
 			set => throw new System.NotImplementedException();
 		}
 
-		public string TrackAlbumArtURL
+		public string AlbumArtURL
 		{
 			get => "http://placekitten.com/150/150";
 			set => throw new System.NotImplementedException();

@@ -28,7 +28,7 @@
                     Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
                 <Grid>
                     <ContentControl Style="{StaticResource SmallifyIconControlStyle}" />
-                    <Image Source="{Binding Path=TrackAlbumArtURL, Mode=OneWay}" />
+                    <Image Source="{Binding Path=AlbumArtURL, Mode=OneWay}" />
                     <Button Command="{Binding Path=RefreshCommand, Mode=OneWay}"
                             Style="{StaticResource RefreshButtonStyle}">
                         <Path Margin="20"
@@ -48,15 +48,18 @@
                     <TextBlock FontSize="16"
                                FontWeight="Normal"
                                Foreground="{DynamicResource PrimaryTextBrush}"
-                               Text="{Binding Path=TrackName, Mode=OneWay, FallbackValue='...'}" />
+                               Text="{Binding Path=TrackName, Mode=OneWay, FallbackValue='...'}"
+                               TextTrimming="CharacterEllipsis" />
                     <TextBlock FontSize="14"
                                FontWeight="Light"
                                Foreground="{DynamicResource SecondaryTextBrush}"
-                               Text="{Binding Path=TrackArtist, Mode=OneWay, FallbackValue='...'}" />
+                               Text="{Binding Path=ArtistName, Mode=OneWay, FallbackValue='...'}"
+                               TextTrimming="CharacterEllipsis" />
                     <TextBlock FontSize="14"
                                FontWeight="Light"
                                Foreground="{DynamicResource SecondaryTextBrush}"
-                               Text="{Binding Path=TrackAlbumName, Mode=OneWay, FallbackValue='...'}" />
+                               Text="{Binding Path=AlbumName, Mode=OneWay, FallbackValue='...'}"
+                               TextTrimming="CharacterEllipsis" />
                 </StackPanel>
             </Border>
 

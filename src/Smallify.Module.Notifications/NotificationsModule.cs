@@ -1,7 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using Smallify.Module.Core.Constants;
+using Smallify.Module.Notifications.Constants;
 using Smallify.Module.Notifications.ViewModels;
 using Smallify.Module.Notifications.Views;
 
@@ -19,7 +19,6 @@ namespace Smallify.Module.Notifications
 		{
 			containerRegistry.Register<INotificationsButtonViewModel, NotificationsButtonViewModel>();
 			containerRegistry.Register<INotificationsShellViewModel, NotificationsShellViewModel>();
-			containerRegistry.Register<INotificationsViewModel, NotificationsViewModel>();
 		}
 	}
 }

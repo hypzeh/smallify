@@ -1,10 +1,7 @@
 ﻿using System.Windows.Controls;
 
-namespace Smallify.Module.Notifications.Views
+namespace Smallify.Module.Notifications.Views.Sections
 {
-	/// <summary>
-	/// Interaction logic for NotificationsView.xaml
-	/// </summary>
 	public partial class NotificationsView : UserControl
 	{
 		public NotificationsView()

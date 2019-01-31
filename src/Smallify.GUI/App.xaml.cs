@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
 using Smallify.Module.Core;
 using Smallify.Module.Notifications;
@@ -20,6 +21,8 @@ namespace Smallify.GUI
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
 			containerRegistry.Register<IConfiguration, Configuration>();
+
+			containerRegistry.Register<IShellViewModel, ShellViewModel>();
 		}
 
 		protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

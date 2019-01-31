@@ -4,6 +4,14 @@
         #2C2C2D
     </Color>
 
+    <Color x:Key="PrimaryControl">
+        #151515
+    </Color>
+
+    <Color x:Key="SecondaryControl">
+        #707070
+    </Color>
+
     <Color x:Key="ControlHighlight">
         #00D66E
     </Color>
@@ -24,8 +32,55 @@
         #808080
     </Color>
 
+    <Color x:Key="PrimaryButtonBackground">
+        #1DB954
+    </Color>
+
+    <Color x:Key="PrimaryButtonBackgroundHover">
+        #1ED760
+    </Color>
+
+    <Color x:Key="PrimaryButtonBorder">
+        #1DB954
+    </Color>
+
+    <Color x:Key="PrimaryButtonBorderHover">
+        #1DB954
+    </Color>
+
+    <Color x:Key="PrimaryButtonForeground">
+        #FFFFFF
+    </Color>
+
+    <Color x:Key="SecondaryButtonBackground">
+        #131313
+    </Color>
+
+    <Color x:Key="SecondaryButtonBackgroundHover">
+        #131313
+    </Color>
+
+    <Color x:Key="SecondaryButtonBorder">
+        #B3B3B3
+    </Color>
+
+    <Color x:Key="SecondaryButtonBorderHover">
+        #FFFFFF
+    </Color>
+
+    <Color x:Key="SecondaryButtonForeground">
+        #FFFFFF
+    </Color>
+
+
     <SolidColorBrush x:Key="MainBackgroundBrush"
                      Color="{StaticResource MainBackground}" />
+
+    <SolidColorBrush x:Key="PrimaryControlBrush"
+                     Color="{StaticResource PrimaryControl}" />
+
+    <SolidColorBrush x:Key="SecondaryControlBrush"
+                     Color="{StaticResource SecondaryControl}" />
 
     <SolidColorBrush x:Key="ControlHighlightBrush"
                      Color="{StaticResource ControlHighlight}" />
@@ -41,4 +96,34 @@
 
     <SolidColorBrush x:Key="PlaybackButtonHoverBrush"
                      Color="{StaticResource PlaybackButtonHover}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonBackgroundBrush"
+                     Color="{StaticResource PrimaryButtonBackground}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonBackgroundHoverBrush"
+                     Color="{StaticResource PrimaryButtonBackgroundHover}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonBorderBrush"
+                     Color="{StaticResource PrimaryButtonBorder}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonBorderHoverBrush"
+                     Color="{StaticResource PrimaryButtonBorderHover}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonForegroundBrush"
+                     Color="{StaticResource PrimaryButtonForeground}" />
+
+    <SolidColorBrush x:Key="SecondaryButtonBackgroundBrush"
+                     Color="{StaticResource SecondaryButtonBackground}" />
+
+    <SolidColorBrush x:Key="SecondaryButtonBackgroundHoverBrush"
+                     Color="{StaticResource SecondaryButtonBackgroundHover}" />
+
+    <SolidColorBrush x:Key="SecondaryButtonBorderBrush"
+                     Color="{StaticResource SecondaryButtonBorder}" />
+
+    <SolidColorBrush x:Key="SecondaryButtonBorderHoverBrush"
+                     Color="{StaticResource SecondaryButtonBorderHover}" />
+
+    <SolidColorBrush x:Key="SecondaryButtonForegroundBrush"
+                     Color="{StaticResource SecondaryButtonForeground}" />
 </ResourceDictionary>

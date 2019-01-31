@@ -1,14 +1,15 @@
-﻿using Smallify.Module.Settings.ViewModels;
+﻿using Prism.Regions;
+using Smallify.Module.Settings.ViewModels;
 using System.Windows;
 
 namespace Smallify.Module.Settings.Views
 {
 	public partial class SettingsShell : Window
 	{
-		public SettingsShell(ISettingsShellViewModel settingsShellViewModel)
+		public SettingsShell(IRegionManager regionManager)
 		{
 			InitializeComponent();
-			DataContext = settingsShellViewModel;
+			DataContext = new SettingsShellViewModel(regionManager);
 		}
 	}
 }

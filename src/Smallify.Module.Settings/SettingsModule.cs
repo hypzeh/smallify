@@ -1,9 +1,11 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using Smallify.Module.Core.Constants;
+using Smallify.Module.Settings.Constants;
 using Smallify.Module.Settings.ViewModels;
+using Smallify.Module.Settings.ViewModels.Sections;
 using Smallify.Module.Settings.Views;
+using Smallify.Module.Settings.Views.Sections;
 
 namespace Smallify.Module.Settings
 {
@@ -19,7 +21,14 @@ namespace Smallify.Module.Settings
 		{
 			containerRegistry.Register<ISettingsButtonViewModel, SettingsButtonViewModel>();
 			containerRegistry.Register<ISettingsShellViewModel, SettingsShellViewModel>();
-			containerRegistry.Register<ISettingsViewModel, SettingsViewModel>();
+
+			containerRegistry.Register<IAuthenticationViewModel, AuthenticationViewModel>();
+			containerRegistry.Register<IGeneralViewModel, GeneralViewModel>();
+			containerRegistry.Register<IAboutViewModel, AboutViewModel>();
+
+			containerRegistry.RegisterForNavigation<Authentication>();
+			containerRegistry.RegisterForNavigation<General>();
+			containerRegistry.RegisterForNavigation<About>();
 		}
 	}
 }

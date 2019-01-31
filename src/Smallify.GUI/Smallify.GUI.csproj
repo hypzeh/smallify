@@ -93,6 +93,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Samples\ShellViewModelData.cs" />
+    <Compile Include="ViewModels\IShellViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>

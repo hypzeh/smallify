@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using Smallify.Module.Core.Events.Notifications;
 using Smallify.Module.Notifications.Models;
 using Smallify.Module.Notifications.Views;
@@ -11,13 +12,22 @@ namespace Smallify.Module.Notifications.ViewModels
 {
 	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
 	{
-		public NotificationsButtonViewModel(IEventAggregator eventAggregator)
+		private readonly IRegionManager _regionManager;
+
+		private NotificationsShell _notificationsShell;
+
+		public NotificationsButtonViewModel(
+			IEventAggregator eventAggregator,
+			IRegionManager regionManager)
 		{
+			_regionManager = regionManager;
+
 			Notifications = new ObservableCollection<INotification>();
 
 			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
 
-			eventAggregator.GetEvent<NewNotificationEvent>().Subscribe(NewNotificationReceived);
+			eventAggregator.GetEvent<OnNotificationCreatedEvent>()
+				?.Subscribe(message => Notifications.Add(new Notification(message)));
 		}
 
 		public ICommand ShowNotificationsWindowCommand { get; }
@@ -26,13 +36,17 @@ namespace Smallify.Module.Notifications.ViewModels
 
 		private void ShowNotificationsWindowCommand_Execute()
 		{
-			var shell = new NotificationsShell(new NotificationsShellViewModel(Notifications));
-			shell.ShowDialog();
-		}
+			if (_notificationsShell != null)
+			{
+				return;
+			}
 
-		private void NewNotificationReceived(string message)
-		{
-			Notifications.Add(new Notification(message));
+			_notificationsShell = new NotificationsShell(_regionManager.CreateRegionManager(), Notifications);
+			_notificationsShell.Closed += (s, e) =>
+			{
+				_notificationsShell = null;
+			};
+			_notificationsShell.Show();
 		}
 	}
 }

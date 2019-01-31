@@ -16,11 +16,11 @@ namespace Smallify.Module.Player.ViewModels
 
 		string TrackName { get; set; }
 
-		string TrackArtist { get; set; }
+		string ArtistName { get; set; }
 
-		string TrackAlbumName { get; set; }
+		string AlbumName { get; set; }
 
-		string TrackAlbumArtURL { get; set; }
+		string AlbumArtURL { get; set; }
 
 		bool IsPlaying { get; set; }
 	}

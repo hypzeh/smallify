@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import AuthoriseDisplay from '../components/authorise/AuthoriseDisplay';
-import AuthoriseCallback from '../components/authorise/AuthoriseCallback';
-import NotFound from '../components/shared/NotFound';
+import AuthoriseDisplay from "../components/authorise/AuthoriseDisplay";
+import AuthoriseCallback from "../components/authorise/AuthoriseCallback";
+import NotFound from "../components/shared/NotFound";
 
 const AppRouter = () => (
   <BrowserRouter>

@@ -1,4 +1,5 @@
-﻿using Smallify.Module.Settings.ViewModels;
+﻿using Prism.Regions;
+using Smallify.Module.Settings.ViewModels;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.Samples
@@ -7,6 +8,8 @@ namespace Smallify.Module.Settings.Samples
 	{
 		public ICommand ExitCommand { get; }
 
-		public ISettingsViewModel SettingsViewModel => new SettingsViewModelData();
+		public ICommand SwitchSettingsSection { get; }
+
+		public IRegionManager RegionManager { get; }
 	}
 }

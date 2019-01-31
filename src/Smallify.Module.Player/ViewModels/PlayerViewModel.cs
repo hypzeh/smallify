@@ -4,6 +4,7 @@ using Smallify.Module.Player.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
@@ -11,11 +12,12 @@ namespace Smallify.Module.Player.ViewModels
 	public class PlayerViewModel : BindableBase, IPlayerViewModel
 	{
 		private readonly ISpotifyService _spotifyService;
+		private readonly Timer _timer;
 
 		private string _trackName;
-		private string _trackArtist;
-		private string _trackAlbumName;
-		private string _trackAlbumArtURL;
+		private string _artistName;
+		private string _albumName;
+		private string _albumArtURL;
 		private bool _isPlaying;
 
 		public PlayerViewModel(ISpotifyService spotifyService)
@@ -23,16 +25,19 @@ namespace Smallify.Module.Player.ViewModels
 			_spotifyService = spotifyService;
 
 			_trackName = "Track Name";
-			_trackArtist = "Artist Name";
-			_trackAlbumName = "Album Name";
-			_trackAlbumArtURL = string.Empty;
+			_artistName = "Artist Name";
+			_albumName = "Album Name";
+			_albumArtURL = string.Empty;
 			_isPlaying = false;
+			_timer = new Timer();
 
 			PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
 			PlayCommand = new DelegateCommand(PlayCommand_Execute);
 			PauseCommand = new DelegateCommand(PauseCommand_Execute);
 			SkipCommand = new DelegateCommand(SkipCommand_Execute);
 			RefreshCommand = new DelegateCommand<TimeSpan?>(RefreshCommand_Execute);
+
+			_timer.Elapsed += (s, e) => RefreshCommand.Execute(null);
 
 			RefreshCommand.Execute(null);
 		}
@@ -53,22 +58,22 @@ namespace Smallify.Module.Player.ViewModels
 			set => SetProperty(ref _trackName, value);
 		}
 
-		public string TrackArtist
+		public string ArtistName
 		{
-			get => _trackArtist;
-			set => SetProperty(ref _trackArtist, value);
+			get => _artistName;
+			set => SetProperty(ref _artistName, value);
 		}
 
-		public string TrackAlbumName
+		public string AlbumName
 		{
-			get => _trackAlbumName;
-			set => SetProperty(ref _trackAlbumName, value);
+			get => _albumName;
+			set => SetProperty(ref _albumName, value);
 		}
 
-		public string TrackAlbumArtURL
+		public string AlbumArtURL
 		{
-			get => _trackAlbumArtURL;
-			set => SetProperty(ref _trackAlbumArtURL, value);
+			get => _albumArtURL;
+			set => SetProperty(ref _albumArtURL, value);
 		}
 
 		public bool IsPlaying
@@ -79,10 +84,9 @@ namespace Smallify.Module.Player.ViewModels
 
 		private async void PreviousCommand_Execute()
 		{
-			await _spotifyService.PreviousAsync();
-			if (!IsPlaying)
+			if (false == await _spotifyService.TryPreviousAsync())
 			{
-				IsPlaying = true;
+				return;
 			}
 
 			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
@@ -90,22 +94,31 @@ namespace Smallify.Module.Player.ViewModels
 
 		private async void PlayCommand_Execute()
 		{
-			await _spotifyService.PlayAsync();
+			if (false == await _spotifyService.TryPlayAsync())
+			{
+				return;
+			}
+
 			IsPlaying = true;
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
 		private async void PauseCommand_Execute()
 		{
-			await _spotifyService.PauseAsync();
+			if (false == await _spotifyService.TryPauseAsync())
+			{
+				return;
+			}
+
 			IsPlaying = false;
+			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
 		}
 
 		private async void SkipCommand_Execute()
 		{
-			await _spotifyService.SkipAsync();
-			if (!IsPlaying)
+			if (false == await _spotifyService.TrySkipAsync())
 			{
-				IsPlaying = true;
+				return;
 			}
 
 			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
@@ -113,21 +126,27 @@ namespace Smallify.Module.Player.ViewModels
 
 		private async void RefreshCommand_Execute(TimeSpan? delay = null)
 		{
+			_timer.Stop();
+
 			if (delay.HasValue)
 			{
 				await Task.Delay(delay.Value);
 			}
 
-			var track = await _spotifyService.GetPlaybackStateAsync();
-			if (track == null)
+			var context = await _spotifyService.GetPlaybackStateAsync();
+			if (context == null)
 			{
 				return;
 			}
 
-			TrackName = track.Name;
-			TrackArtist = string.Join(", ", track.Artists.Select(artist => artist.Name));
-			TrackAlbumName = track.Album.Name;
-			TrackAlbumArtURL = track.Album.Images.LastOrDefault()?.Url;
+			IsPlaying = context.IsPlaying;
+			TrackName = context.Item.Name;
+			ArtistName = string.Join(", ", context.Item.Artists.Select(artist => artist.Name));
+			AlbumName = context.Item.Album.Name;
+			AlbumArtURL = context.Item.Album.Images.ElementAt(1)?.Url;
+
+			_timer.Interval = (context.Item.DurationMs - context.ProgressMs) + 100;
+			_timer.Start();
 		}
 	}
 }
