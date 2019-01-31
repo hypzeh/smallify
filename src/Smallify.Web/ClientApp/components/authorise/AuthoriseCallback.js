@@ -2,6 +2,7 @@ import React from "react";
 import queryString from "query-string";
 
 import Container from "../shared/styled/container";
+import Paragraph from "../shared/styled/paragraph";
 import TextArea from "../shared/styled/textArea";
 import Button from "../shared/styled/button";
 import SmallifyIcon from "../shared/SmallifyIcon";
@@ -17,7 +18,7 @@ const AuthoriseCallback = ({ location }) => {
   return (
     <Container>
       <SmallifyIcon />
-      <p>Copy the access token below and paste it in Smallify.</p>
+      <Paragraph>Copy the access token below and paste it in Smallify.</Paragraph>
       <TextArea id="token" value={access_token} readOnly />
       <br />
       <Button onClick={CopyAccessToken}>COPY</Button>
