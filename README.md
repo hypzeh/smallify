@@ -1,4 +1,4 @@
-![Smallify](./docs/assets/project-title1.png)
+![Smallify](./docs/assets/project-title.png)
 [![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=master)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=master)
 ---
 
