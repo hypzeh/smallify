@@ -1,0 +1,13 @@
+{
+  "name": "smallify.authentication",
+  "version": "1.0.0",
+  "description": "Smallify Authentication client",
+  "main": "ClientApp/index.js",
+  "repository": "https://github.com/hypzeh/smallify",
+  "author": "Nick Smirnoff <nick.smirnoff@live.co.uk> (https://nicksmirnoff.co.uk)",
+  "license": "MIT",
+  "homepage": "https://smallify.nicksmirnoff.co.uk",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
