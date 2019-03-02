@@ -2,12 +2,38 @@
   "name": "smallify.authentication",
   "version": "1.0.0",
   "description": "Smallify Authentication client",
-  "main": "ClientApp/index.js",
+  "main": "ClientApp/index.jsx",
   "repository": "https://github.com/hypzeh/smallify",
   "author": "Nick Smirnoff <nick.smirnoff@live.co.uk> (https://nicksmirnoff.co.uk)",
   "license": "MIT",
   "homepage": "https://smallify.nicksmirnoff.co.uk",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-router-dom": "^4.3.1",
+    "styled-components": "^4.1.3"
   }
 }
