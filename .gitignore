@@ -346,3 +346,5 @@ MigrationBackup/
 
 # Build Output
 **/wwwroot/*
+!**/wwwroot/CNAME
+!**/wwwroot/404.html
