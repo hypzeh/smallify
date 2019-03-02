@@ -35,6 +35,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './ClientApp/template.html',
       filename: './index.html',
+      favicon: '../../docs/assets/favicon.ico',
     }),
   ],
 };
