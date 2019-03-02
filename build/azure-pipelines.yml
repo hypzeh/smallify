@@ -1,3 +1,6 @@
+trigger:
+- master-authentication
+
 pool:
   vmImage: 'win1803'
   demands:
