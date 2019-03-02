@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'Hosted'
+  vmImage: 'win1803'
   demands:
   - msbuild
   - visualstudio
