@@ -3,9 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28527.54
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A0D0EE2-165F-4C2C-8C5C-1E879846DE8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Authentication", "src\Smallify.Authentication\Smallify.Authentication.csproj", "{0CB9C642-4402-47BA-98F7-EFE76FED0FAB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CB9C642-4402-47BA-98F7-EFE76FED0FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB9C642-4402-47BA-98F7-EFE76FED0FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB9C642-4402-47BA-98F7-EFE76FED0FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB9C642-4402-47BA-98F7-EFE76FED0FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0CB9C642-4402-47BA-98F7-EFE76FED0FAB} = {5A0D0EE2-165F-4C2C-8C5C-1E879846DE8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19BCA2CD-7254-4D0D-B4AD-E2C8DEF5FF2B}
