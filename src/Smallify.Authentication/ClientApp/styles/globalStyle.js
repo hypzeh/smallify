@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     color: #fff;
     padding: 1em;
     line-height: 1.8em;
+    font-family: Helvetica, Arial, Sans-Serif;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
