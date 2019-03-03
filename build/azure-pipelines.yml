@@ -1,5 +1,9 @@
 trigger:
-- master
+  branches:
+    include:
+      - master
+    exclude:
+      - master-authentication
 
 pool:
   vmImage: 'VS2017-Win2016'
