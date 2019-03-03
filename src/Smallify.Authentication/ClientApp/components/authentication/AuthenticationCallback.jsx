@@ -2,6 +2,7 @@ import React from 'react';
 
 import SmallifyContainer from '../shared/SmallifyContainer';
 import Button from '../../styles/elements/button';
+import TextArea from '../../styles/elements/textarea';
 
 const handleCopy = () => {
   document.getElementById('token').select();
@@ -11,7 +12,7 @@ const handleCopy = () => {
 const AuthenticationCallback = () => (
   <SmallifyContainer>
     <p>Copy the access token below and paste it in Smallify.</p>
-    <textarea id="token">this is a test...</textarea>
+    <TextArea id="token" value="this is a test" readOnly />
     <br />
     <Button onClick={handleCopy}>COPY</Button>
   </SmallifyContainer>
