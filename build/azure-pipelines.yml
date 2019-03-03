@@ -2,7 +2,7 @@ trigger:
 - master-authentication
 
 pool:
-  vmImage: 'win1803'
+  vmImage: 'VS2017-Win2016'
   demands:
   - msbuild
   - visualstudio
