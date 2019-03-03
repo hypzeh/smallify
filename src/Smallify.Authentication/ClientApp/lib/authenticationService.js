@@ -12,8 +12,8 @@ class AuthenticationService {
   setupURL() {
     this.spotifyURL = 'https://accounts.spotify.com/authorize'
       + `?client_id=${encodeURIComponent(Settings.ClientID)}`
-      + `&redirect_uri=${encodeURIComponent(Settings.RedirectURI)}`
-      + `&scope=${encodeURIComponent(Settings.Scopes)}`
+      + `&redirect_uri=${encodeURIComponent(Settings.Authentication.RedirectURL)}`
+      + `&scope=${encodeURIComponent(Settings.Authentication.Scopes)}`
       + '&response_type=token';
   }
 }
