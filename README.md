@@ -6,7 +6,7 @@ Smallify is a simple WPF application built to provide a small music player for S
 
 ## Usage
 
-Smallify requires an `Access Token`, which can be generated on user request from `Spotify Accounts Service`, by connecting to a Spotify account, see [Smallify authentication site](https://smallify.nicksmirnoff.co.uk).
+Smallify requires an `Access Token`, which can be generated on user request from `Spotify Accounts Service`, by connecting to a Spotify account, see [Smallify authentication site](https://hypzeh.github.io/smallify).
 
 ### Requirements
 
