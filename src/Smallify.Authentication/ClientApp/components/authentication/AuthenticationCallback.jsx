@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string';
 
 import AuthenticationCallbackTypes from '../../types/authentication/authenticationCallback';
 import SmallifyContainer from '../shared/SmallifyContainer';
@@ -13,7 +14,11 @@ const handleCopy = () => {
 const AuthenticationCallback = ({ location }) => (
   <SmallifyContainer>
     <p>Copy the access token below and paste it in Smallify.</p>
-    <TextArea id="token" value={location.hash} readOnly />
+    <TextArea
+      id="token"
+      value={queryString.parse(location.hash).access_token || 'No Access Token - Check URL'}
+      readOnly
+    />
     <br />
     <Button onClick={handleCopy}>COPY</Button>
   </SmallifyContainer>
