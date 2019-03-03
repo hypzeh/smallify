@@ -2,26 +2,27 @@
 [![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=master)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=master)
 ---
 
-# Smallify
-
-This is a WPF application using `Prism` & `Unity`, intended to provide a Spotify mini-player for Windows.
+Smallify is a simple WPF application built to provide a small music player for Spotify.
 
 ## Usage
 
-Smallify requires an `Access Token`, this can be set/updated in the `Settings` menu.
+Smallify requires an `Access Token`, which can be generated on user request from `Spotify Accounts Service`, by connecting to a Spotify account, see [Smallify authentication site](https://smallify.nicksmirnoff.co.uk).
 
-To generate an access token, navigate to the [project website](https://smallify.nicksmirnoff.co.uk), and connect to a Spotify account.
+### Requirements
 
-## Notes
+- Windows 10
+- .NET Framework v4.7.2
+- Spotify Premium
 
-- Spotify Premium is required for media controls
-- Smallify is **NOT** a standalone Spotify device, users will need to have an official Spotify device/application on standby
-- Smallify uses [Implicit grant flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow) for authentication, through the [project website](https://smallify.nicksmirnoff.co.uk)
+### Notes
+
+- Smallify is **NOT** a standalone Spotify device, users will need to have an official Spotify device/application on standby (this will be the audio source)
+- Smallify uses [Implicit grant flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow) for authentication
   - Users are directed to `Spotify Accounts Service` with a request for the following permission scopes:
     - `user-modify-playback-state`
     - `user-read-playback-state` 
     - `user-read-currently-playing`
-  - Granted access generates an `access_token`, which lasts 1 hour
+  - Tokens last one hour
 
 ## Screenshots
 
@@ -29,4 +30,4 @@ To generate an access token, navigate to the [project website](https://smallify.
 
 ## Related Projects
 
-- ['Spofy' by eltoncezar](https://github.com/eltoncezar/Spofy)
+- ['Spofy' by eltoncezar](https://github.com/eltoncezar/Spofy) - A Spotify mini player and notifier for Windows
