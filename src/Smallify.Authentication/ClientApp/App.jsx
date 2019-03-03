@@ -1,11 +1,12 @@
 import React from 'react';
 
 import GlobalStyle from './styles/globalStyle';
+import AppRouter from './routers/AppRouter';
 
 const App = () => (
   <React.Fragment>
     <GlobalStyle/>
-    <h1>Hello World!</h1>
+    <AppRouter />
   </React.Fragment>
 );
 
