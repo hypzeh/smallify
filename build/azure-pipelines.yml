@@ -30,8 +30,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\desktop"'
+    projects: '**/*.GUI.csproj'
+    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\desktop"'
 
 - task: PublishBuildArtifacts@1
   inputs:
