@@ -9,6 +9,6 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Path=Title, Mode=OneWay, FallbackValue=Smallify}" Height="450" Width="800">
     <Grid>
-
+        <TextBlock Text="{Binding Path=TestingText, Mode=OneWay}" />
     </Grid>
 </Window>
