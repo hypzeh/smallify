@@ -7,6 +7,7 @@ pool:
 variables:
   solution: '**/*.sln'
   desktopApplication: '**/*.GUI.csproj'
+  webApplication: '**/*.Web.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -32,6 +33,12 @@ steps:
     command: 'build'
     projects: '$(desktopApplication)'
     arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\desktop"'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '$(webApplication)'
+    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\web"'
 
 - task: PublishBuildArtifacts@1
   inputs:
