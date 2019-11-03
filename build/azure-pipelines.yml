@@ -6,7 +6,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  desktopApplication: 'src/Smallify.GUI/Smallify.GUI.csproj'
+  desktopApplication: '**/*.GUI.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -30,7 +30,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.GUI.csproj'
+    projects: '$(desktopApplication)'
     arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\desktop"'
 
 - task: PublishBuildArtifacts@1
