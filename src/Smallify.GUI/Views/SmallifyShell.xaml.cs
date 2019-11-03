@@ -2,7 +2,7 @@
 
 namespace Smallify.GUI.Views
 {
-    public partial class SmallifyShell : Window
+    internal partial class SmallifyShell : Window
     {
         public SmallifyShell()
         {
