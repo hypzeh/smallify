@@ -10,6 +10,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: replacetokens@3
+  inputs:
+    targetFiles: '**/Resources.resx'
+    encoding: 'auto'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: true
+    tokenPrefix: '#{'
+    tokenSuffix: '}'
+    
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
