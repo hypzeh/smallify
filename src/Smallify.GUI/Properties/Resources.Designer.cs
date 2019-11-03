@@ -68,5 +68,23 @@ namespace Smallify.GUI.Properties {
                 return ResourceManager.GetString("APP_CENTER_CLIENT_ID", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_CLIENT_ID}.
+        /// </summary>
+        internal static string SPOTIFY_CLIENT_ID {
+            get {
+                return ResourceManager.GetString("SPOTIFY_CLIENT_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_CLIENT_SECRET}.
+        /// </summary>
+        internal static string SPOTIFY_CLIENT_SECRET {
+            get {
+                return ResourceManager.GetString("SPOTIFY_CLIENT_SECRET", resourceCulture);
+            }
+        }
     }
 }
