@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using Smallify.GUI.Properties;
 
 namespace Smallify.GUI.ViewModels
 {
@@ -14,7 +15,7 @@ namespace Smallify.GUI.ViewModels
 
         public SmallifyShellViewModel()
         {
-            _title = "Smallify";
+            _title = $"Smallify - {Resources.APP_CENTER_CLIENT_ID}";
         }
     }
 }

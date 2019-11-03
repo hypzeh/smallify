@@ -9,6 +9,9 @@
     <Authors>Nick Smirnoff</Authors>
     <Company>Smiosoft</Company>
     <Product>Smallify</Product>
+    <StartupObject>Smallify.GUI.App</StartupObject>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +25,21 @@
     </PackageReference>
     <PackageReference Include="Prism.Unity" Version="7.2.0.1367" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
