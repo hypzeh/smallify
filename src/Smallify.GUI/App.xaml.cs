@@ -9,7 +9,7 @@ namespace Smallify.GUI
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<Shell>();
+            return Container.Resolve<SmallifyShell>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
