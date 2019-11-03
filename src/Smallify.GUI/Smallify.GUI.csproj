@@ -4,6 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <PackageId>Smallify.WPF</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Nick Smirnoff</Authors>
+    <Company>Smiosoft</Company>
+    <Product>Smallify</Product>
   </PropertyGroup>
 
   <ItemGroup>
