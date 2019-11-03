@@ -6,6 +6,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
+  desktopApplication: '**/*.GUI.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
