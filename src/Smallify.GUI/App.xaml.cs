@@ -1,4 +1,5 @@
 ﻿using Prism.Ioc;
+using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
 using Smallify.GUI.ViewModels;
@@ -24,6 +25,11 @@ namespace Smallify.GUI
             base.ConfigureViewModelLocator();
 
             ViewModelLocationProvider.Register(typeof(SmallifyShell).ToString(), typeof(SmallifyShellViewModel));
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            moduleCatalog.AddModule<Module.Settings.Module>();
         }
     }
 }
