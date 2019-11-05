@@ -1,7 +1,9 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
 using Smallify.Module.Settings.Configuration;
+using Smallify.Module.Settings.ViewModels;
 using Smallify.Module.Settings.Views;
 
 namespace Smallify.Module.Settings
@@ -16,7 +18,7 @@ namespace Smallify.Module.Settings
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            ViewModelLocationProvider.Register(typeof(SettingsButtonView).ToString(), typeof(SettingsButtonViewModel));
         }
     }
 }
