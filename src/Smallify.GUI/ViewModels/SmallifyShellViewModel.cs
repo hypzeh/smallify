@@ -23,7 +23,7 @@ namespace Smallify.GUI.ViewModels
         public SmallifyShellViewModel()
         {
             _title = "Smallify";
-            _testingText = $"app_center_id:{Resources.APP_CENTER_CLIENT_ID}\nspotify_id:{Resources.SPOTIFY_CLIENT_ID}\nspotify_secret:{Resources.SPOTIFY_CLIENT_SECRET}";
+            _testingText = $"app_center_id: {Resources.APP_CENTER_CLIENT_ID}\nspotify_id: {Resources.SPOTIFY_CLIENT_ID}\nspotify_secret: {Resources.SPOTIFY_CLIENT_SECRET}";
         }
     }
 }
