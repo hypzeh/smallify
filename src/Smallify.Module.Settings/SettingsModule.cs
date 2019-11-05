@@ -6,12 +6,12 @@ using Smallify.Module.Settings.Views;
 
 namespace Smallify.Module.Settings
 {
-    public class Module : IModule
+    public class SettingsModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion(RegionNames.SETTINGS_REGION, typeof(SettingsButtonView));
+            regionManager.RegisterViewWithRegion(RegionNames.SettingsRegion, typeof(SettingsButtonView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

@@ -2,6 +2,6 @@
 {
     public static class RegionNames
     {
-        public const string SETTINGS_REGION = nameof(SETTINGS_REGION);
+        public const string SettingsRegion = "SETTINGS_REGION";
     }
 }

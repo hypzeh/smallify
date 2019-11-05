@@ -29,7 +29,7 @@ namespace Smallify.GUI
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<Module.Settings.Module>();
+            moduleCatalog.AddModule<Module.Settings.SettingsModule>();
         }
     }
 }
