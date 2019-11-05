@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2A3FE0C-383
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.GUI", "src\Smallify.GUI\Smallify.GUI.csproj", "{07C9AE95-D5D9-4F94-9198-A7AAFE9B0396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Authentication.Web", "src\Smallify.Authentication.Web\Smallify.Authentication.Web.csproj", "{9F79A448-5AD1-444C-85E4-2903DE8333BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Authentication.Web", "src\Smallify.Authentication.Web\Smallify.Authentication.Web.csproj", "{9F79A448-5AD1-444C-85E4-2903DE8333BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Core", "src\Smallify.Core\Smallify.Core.csproj", "{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{9F79A448-5AD1-444C-85E4-2903DE8333BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F79A448-5AD1-444C-85E4-2903DE8333BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F79A448-5AD1-444C-85E4-2903DE8333BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{07C9AE95-D5D9-4F94-9198-A7AAFE9B0396} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
 		{9F79A448-5AD1-444C-85E4-2903DE8333BB} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
+		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1064F61-12D7-4255-92BC-71BF30D4D828}
