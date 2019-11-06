@@ -2,6 +2,7 @@
 {
     public static class RegionNames
     {
-        public const string SettingsRegion = "SETTINGS_REGION";
+        public const string Launch = "SETTINGS_LAUNCH_REGION";
+        public const string Section = "SETTINGS_SECTION_REGION";
     }
 }

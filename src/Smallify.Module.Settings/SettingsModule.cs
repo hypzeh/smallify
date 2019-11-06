@@ -13,7 +13,7 @@ namespace Smallify.Module.Settings
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion(RegionNames.SettingsRegion, typeof(SettingsButtonView));
+            regionManager.RegisterViewWithRegion(RegionNames.Launch, typeof(SettingsButtonView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

@@ -20,7 +20,7 @@
         <Border
             Grid.Row="0"
             BorderThickness="0,0,0,1">
-            <ContentControl prism:RegionManager.RegionName="{x:Static settings:RegionNames.SettingsRegion}" />
+            <ContentControl prism:RegionManager.RegionName="{x:Static settings:RegionNames.Launch}" />
         </Border>
         <Border
             x:Name="ContentRegion"
