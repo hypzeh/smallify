@@ -14,6 +14,7 @@ namespace Smallify.Module.Settings
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion(RegionNames.Launch, typeof(SettingsButtonView));
+            regionManager.RegisterViewWithRegion(RegionNames.Section, typeof(GeneralSectionView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
