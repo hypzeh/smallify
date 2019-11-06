@@ -24,7 +24,7 @@ Ensure to provide relevant values to the application settings defined in `Resour
 - `SPOTIFY_CLIENT_ID` - _(Required)_ You can get this from [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/) by registering your personal development client
 - `SPOTIFY_CLIENT_SECRET` - _(Required)_ You can get this from [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/) by registering your personal development client
 
-#### Scripts
+### Scripts
 
 Useful scripts can be found in the `/scripts` folder.
 
