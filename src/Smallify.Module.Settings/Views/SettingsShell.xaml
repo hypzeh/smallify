@@ -21,7 +21,7 @@
             <StackPanel>
                 <RadioButton
                     Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
-                    CommandParameter="General"
+                    CommandParameter="{x:Static configuration:SectionNames.General}"
                     Content="General"
                     GroupName="{x:Static configuration:GroupNames.Sections}"
                     IsChecked="True" />
