@@ -20,6 +20,7 @@ namespace Smallify.Module.Settings
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<GeneralSectionView>();
+            containerRegistry.RegisterForNavigation<AuthenticationSectionView>();
 
             ViewModelLocationProvider.Register(typeof(SettingsButtonView).ToString(), typeof(SettingsButtonViewModel));
             ViewModelLocationProvider.Register(typeof(SettingsShell).ToString(), typeof(SettingsShellViewModel));

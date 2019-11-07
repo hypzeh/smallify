@@ -25,6 +25,11 @@
                     Content="General"
                     GroupName="{x:Static configuration:GroupNames.Sections}"
                     IsChecked="True" />
+                <RadioButton
+                    Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
+                    CommandParameter="{x:Static configuration:SectionNames.Authentication}"
+                    Content="Authentication"
+                    GroupName="{x:Static configuration:GroupNames.Sections}" />
             </StackPanel>
         </Border>
 
