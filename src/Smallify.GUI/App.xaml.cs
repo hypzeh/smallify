@@ -2,6 +2,7 @@
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
+using Smallify.Core.Configuration;
 using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace Smallify.GUI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterSingleton<SmallifySettings>();
         }
 
         protected override void ConfigureViewModelLocator()
