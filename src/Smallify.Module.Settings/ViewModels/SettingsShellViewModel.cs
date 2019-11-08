@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Regions;
 using Smallify.Module.Settings.Configuration;
+using Smallify.Module.Settings.Views;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
@@ -9,13 +10,14 @@ namespace Smallify.Module.Settings.ViewModels
     internal class SettingsShellViewModel : BindableBase
     {
         public IRegionManager RegionManager { get; }
-
         public ICommand SetSectionCommand { get; }
 
         public SettingsShellViewModel(IRegionManager regionManager)
         {
-            RegionManager = regionManager;
+            RegionManager = regionManager.CreateRegionManager();
             SetSectionCommand = new DelegateCommand<string>(SetSectionCommand_Execute);
+
+            RegionManager.RegisterViewWithRegion(RegionNames.Section, typeof(GeneralSectionView));
         }
 
         private void SetSectionCommand_Execute(string section)
