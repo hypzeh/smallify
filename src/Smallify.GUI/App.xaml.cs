@@ -5,6 +5,7 @@ using Prism.Unity;
 using Smallify.Core.Configuration;
 using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
+using Smallify.Module.Settings;
 using System.Windows;
 
 namespace Smallify.GUI
@@ -30,7 +31,7 @@ namespace Smallify.GUI
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<Module.Settings.SettingsModule>();
+            moduleCatalog.AddModule<SettingsModule>();
         }
     }
 }
