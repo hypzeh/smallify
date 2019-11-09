@@ -1,7 +1,9 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
 using Smallify.Module.Player.Configuration;
+using Smallify.Module.Player.ViewModels;
 using Smallify.Module.Player.Views;
 
 namespace Smallify.Module.Player
@@ -16,6 +18,7 @@ namespace Smallify.Module.Player
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            ViewModelLocationProvider.Register(typeof(PlayerView).ToString(), typeof(PlayerViewModel));
         }
     }
 }
