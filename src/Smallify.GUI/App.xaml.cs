@@ -19,7 +19,11 @@ namespace Smallify.GUI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<SmallifySettings>();
+            containerRegistry
+                .RegisterInstance(new GeneralSettings())
+                .RegisterInstance(new AuthenticationSettings(
+                    GUI.Properties.Resources.SPOTIFY_CLIENT_ID,
+                    GUI.Properties.Resources.SPOTIFY_CLIENT_SECRET));
         }
 
         protected override void ConfigureViewModelLocator()
