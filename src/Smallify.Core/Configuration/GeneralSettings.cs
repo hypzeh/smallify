@@ -1,8 +1,12 @@
-﻿namespace Smallify.Core.Configuration
+﻿using System.ComponentModel;
+
+namespace Smallify.Core.Configuration
 {
-    public class GeneralSettings
+    public class GeneralSettings : INotifyPropertyChanged
     {
         public bool IsAlwaysOnTop { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public GeneralSettings()
         {
@@ -12,6 +16,7 @@
         public void SetIsAlwaysOnTop(bool isAlwaysOnTop)
         {
             IsAlwaysOnTop = isAlwaysOnTop;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsAlwaysOnTop)));
         }
     }
 }

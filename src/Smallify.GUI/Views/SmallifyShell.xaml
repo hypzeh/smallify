@@ -11,6 +11,7 @@
     Height="450"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
+    Topmost="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -38,7 +39,10 @@
         </Border>
 
         <Border Grid.Row="1">
-            <TextBlock Text="CONTENT" />
+            <StackPanel>
+                <TextBlock Text="CONTENT" />
+                <TextBlock Text="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay, StringFormat='Always on top: {0}'}" />
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

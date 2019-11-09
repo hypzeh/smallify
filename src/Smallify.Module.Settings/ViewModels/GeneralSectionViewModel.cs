@@ -1,5 +1,7 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Events;
+using Prism.Mvvm;
 using Smallify.Core.Configuration;
+using Smallify.Core.Events.Settings;
 using System;
 
 namespace Smallify.Module.Settings.ViewModels
@@ -15,10 +17,21 @@ namespace Smallify.Module.Settings.ViewModels
             set => SetProperty(ref _isAlwaysOnTop, value);
         }
 
-        public GeneralSectionViewModel(GeneralSettings settings)
+        public GeneralSectionViewModel(IEventAggregator eventAggregator, GeneralSettings settings)
         {
             _settings = settings;
             _isAlwaysOnTop = settings?.IsAlwaysOnTop ?? throw new ArgumentNullException(nameof(settings));
+
+            var saveEvent = eventAggregator?.GetEvent<OnSettingsSaveEvent>() ?? throw new ArgumentNullException(nameof(eventAggregator));
+            saveEvent?.Subscribe(OnSettingsSave);
+        }
+
+        private void OnSettingsSave()
+        {
+            if (_settings.IsAlwaysOnTop != _isAlwaysOnTop)
+            {
+                _settings.SetIsAlwaysOnTop(_isAlwaysOnTop);
+            }
         }
     }
 }

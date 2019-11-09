@@ -39,6 +39,11 @@ namespace Smallify.GUI
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<SettingsModule>();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
             AppCenter.Start(
                 GUI.Properties.Resources.APP_CENTER_CLIENT_ID,

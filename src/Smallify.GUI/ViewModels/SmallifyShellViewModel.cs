@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using Smallify.Core.Configuration;
 
 namespace Smallify.GUI.ViewModels
 {
@@ -11,11 +12,15 @@ namespace Smallify.GUI.ViewModels
             get => _title;
             private set => SetProperty(ref _title, value);
         }
+        public GeneralSettings Settings { get; }
 
 
-        public SmallifyShellViewModel()
+        public SmallifyShellViewModel(GeneralSettings settings)
         {
             _title = "Smallify";
+
+            Settings = settings;
+            Settings.PropertyChanged += (s, e) => RaisePropertyChanged(nameof(Settings));
         }
     }
 }
