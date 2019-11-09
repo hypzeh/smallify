@@ -9,6 +9,7 @@ using Smallify.Core.Configuration;
 using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
 using Smallify.Module.Notifications;
+using Smallify.Module.Player;
 using Smallify.Module.Settings;
 using System.Windows;
 
@@ -41,7 +42,8 @@ namespace Smallify.GUI
         {
             moduleCatalog
                 .AddModule<SettingsModule>()
-                .AddModule<NotificationsModule>();
+                .AddModule<NotificationsModule>()
+                .AddModule<PlayerModule>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
