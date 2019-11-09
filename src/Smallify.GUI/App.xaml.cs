@@ -1,4 +1,7 @@
-﻿using Prism.Ioc;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
@@ -36,6 +39,11 @@ namespace Smallify.GUI
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<SettingsModule>();
+
+            AppCenter.Start(
+                GUI.Properties.Resources.APP_CENTER_CLIENT_ID,
+                typeof(Analytics),
+                typeof(Crashes));
         }
     }
 }
