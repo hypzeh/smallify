@@ -11,7 +11,11 @@
     Height="450"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    Topmost="True"
     mc:Ignorable="d">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />

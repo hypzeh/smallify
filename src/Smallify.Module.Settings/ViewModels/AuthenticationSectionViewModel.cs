@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using Smallify.Core.Configuration;
+using System.ComponentModel;
 
 namespace Smallify.Module.Settings.ViewModels
 {
@@ -21,6 +22,16 @@ namespace Smallify.Module.Settings.ViewModels
         {
             _settings = settings;
             _accessToken = settings.AccessToken;
+
+            _settings.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(AuthenticationSettings.AccessToken))
+            {
+                AccessToken = _settings.AccessToken;
+            }
         }
     }
 }
