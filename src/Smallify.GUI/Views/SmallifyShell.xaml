@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:notifications="clr-namespace:Smallify.Module.Notifications.Configuration;assembly=Smallify.Module.Notifications"
+    xmlns:player="clr-namespace:Smallify.Module.Player.Configuration;assembly=Smallify.Module.Player"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:settings="clr-namespace:Smallify.Module.Settings.Configuration;assembly=Smallify.Module.Settings"
     Title="{Binding Path=Title, Mode=OneWay, FallbackValue=Smallify}"
@@ -42,8 +43,7 @@
 
         <Border Grid.Row="1">
             <StackPanel>
-                <TextBlock Text="CONTENT" />
-                <TextBlock Text="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay, StringFormat='Always on top: {0}'}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static player:RegionNames.Content}" />
             </StackPanel>
         </Border>
     </Grid>

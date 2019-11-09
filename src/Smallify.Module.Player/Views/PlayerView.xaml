@@ -9,5 +9,7 @@
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid>
+        <TextBlock Text="PLAYER" />
+    </Grid>
 </UserControl>
