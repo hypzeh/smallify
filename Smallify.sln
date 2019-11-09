@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.GUI", "src\Smallif
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Authentication.Web", "src\Smallify.Authentication.Web\Smallify.Authentication.Web.csproj", "{9F79A448-5AD1-444C-85E4-2903DE8333BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Core", "src\Smallify.Core\Smallify.Core.csproj", "{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Core", "src\Smallify.Core\Smallify.Core.csproj", "{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Settings", "src\Smallify.Module.Settings\Smallify.Module.Settings.csproj", "{DDC591BD-B04C-4D30-851C-60BB8D4455F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Module.Settings", "src\Smallify.Module.Settings\Smallify.Module.Settings.csproj", "{DDC591BD-B04C-4D30-851C-60BB8D4455F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Notifications", "src\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj", "{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{DDC591BD-B04C-4D30-851C-60BB8D4455F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDC591BD-B04C-4D30-851C-60BB8D4455F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDC591BD-B04C-4D30-851C-60BB8D4455F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{9F79A448-5AD1-444C-85E4-2903DE8333BB} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
 		{94E0BA7A-ABC5-4A5A-9BC5-8F71D4BD64F3} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
 		{DDC591BD-B04C-4D30-851C-60BB8D4455F5} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
+		{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB} = {A2A3FE0C-3833-4203-8A56-DE7DBCFA28BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1064F61-12D7-4255-92BC-71BF30D4D828}

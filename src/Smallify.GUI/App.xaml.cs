@@ -8,6 +8,7 @@ using Prism.Unity;
 using Smallify.Core.Configuration;
 using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
+using Smallify.Module.Notifications;
 using Smallify.Module.Settings;
 using System.Windows;
 
@@ -38,7 +39,9 @@ namespace Smallify.GUI
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<SettingsModule>();
+            moduleCatalog
+                .AddModule<SettingsModule>()
+                .AddModule<NotificationsModule>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
