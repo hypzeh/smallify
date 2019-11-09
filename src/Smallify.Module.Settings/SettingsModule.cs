@@ -23,6 +23,7 @@ namespace Smallify.Module.Settings
 
             ViewModelLocationProvider.Register(typeof(SettingsButtonView).ToString(), typeof(SettingsButtonViewModel));
             ViewModelLocationProvider.Register(typeof(SettingsShell).ToString(), typeof(SettingsShellViewModel));
+            ViewModelLocationProvider.Register(typeof(GeneralSectionView).ToString(), typeof(GeneralSectionViewModel));
         }
     }
 }

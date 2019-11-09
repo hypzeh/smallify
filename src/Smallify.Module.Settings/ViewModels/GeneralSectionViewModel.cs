@@ -1,23 +1,24 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Smallify.Core.Configuration;
-using System.Windows.Input;
+using System;
 
 namespace Smallify.Module.Settings.ViewModels
 {
     public class GeneralSectionViewModel : BindableBase
     {
+        private readonly GeneralSettings _settings;
+        private bool _isAlwaysOnTop;
 
-        public ICommand SaveSettingsCommand { get; }
-
-        public GeneralSectionViewModel(SmallifySettings settings)
+        public bool IsAlwaysOnTop
         {
-            SaveSettingsCommand = new DelegateCommand(SaveSettingsCommand_Execute);
+            get => _isAlwaysOnTop;
+            set => SetProperty(ref _isAlwaysOnTop, value);
         }
 
-        private void SaveSettingsCommand_Execute()
+        public GeneralSectionViewModel(GeneralSettings settings)
         {
-
+            _settings = settings;
+            _isAlwaysOnTop = settings?.IsAlwaysOnTop ?? throw new ArgumentNullException(nameof(settings));
         }
     }
 }
