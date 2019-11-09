@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Smallify.Core\Smallify.Core.csproj" />
+    <ProjectReference Include="..\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj" />
     <ProjectReference Include="..\Smallify.Module.Settings\Smallify.Module.Settings.csproj" />
   </ItemGroup>
 
