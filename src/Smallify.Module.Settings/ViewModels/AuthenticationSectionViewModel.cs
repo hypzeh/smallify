@@ -26,9 +26,9 @@ namespace Smallify.Module.Settings.ViewModels
             _settings.PropertyChanged += Settings_PropertyChanged;
         }
 
-        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs args)
         {
-            if (e.PropertyName == nameof(AuthenticationSettings.AccessToken))
+            if (args.PropertyName == nameof(AuthenticationSettings.AccessToken))
             {
                 AccessToken = _settings.AccessToken;
             }

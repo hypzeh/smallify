@@ -20,7 +20,7 @@ namespace Smallify.GUI.ViewModels
             _title = "Smallify";
 
             Settings = settings;
-            Settings.PropertyChanged += (s, e) => RaisePropertyChanged(nameof(Settings));
+            Settings.PropertyChanged += (sender, args) => RaisePropertyChanged(nameof(Settings));
         }
     }
 }

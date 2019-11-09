@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Jot;
+using Jot.Configuration;
+using System.ComponentModel;
 
 namespace Smallify.Core.Configuration
 {
-    public class AuthenticationSettings : INotifyPropertyChanged
+    public class AuthenticationSettings : ITrackingAware<AuthenticationSettings>, INotifyPropertyChanged
     {
         public string ClientID { get; }
         public string ClientSecret { get; }
@@ -15,12 +17,20 @@ namespace Smallify.Core.Configuration
             ClientID = clientId;
             ClientSecret = clientSecret;
             AccessToken = string.Empty;
+
+            new Tracker().Track(this);
         }
 
         public void SetAccessToken(string accessToken)
         {
             AccessToken = accessToken;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AccessToken)));
+        }
+
+        public void ConfigureTracking(TrackingConfiguration<AuthenticationSettings> configuration)
+        {
+            configuration.Properties(settings => new { settings.AccessToken });
+            PropertyChanged += (sender, args) => { configuration.Tracker.Persist(this); };
         }
     }
 }
