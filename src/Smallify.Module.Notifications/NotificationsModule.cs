@@ -18,6 +18,8 @@ namespace Smallify.Module.Notifications
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<NotificationsContentView>();
+
             ViewModelLocationProvider.Register(typeof(NotificationsButtonView).ToString(), typeof(NotificationsButtonViewModel));
             ViewModelLocationProvider.Register(typeof(NotificationsShell).ToString(), typeof(NotificationsShellViewModel));
         }
