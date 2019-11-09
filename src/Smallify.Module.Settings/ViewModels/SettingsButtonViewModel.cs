@@ -25,7 +25,7 @@ namespace Smallify.Module.Settings.ViewModels
             }
 
             _settingsShell = new SettingsShell();
-            _settingsShell.Closed += (s, e) =>
+            _settingsShell.Closed += (sender, args) =>
             {
                 _settingsShell = null;
             };

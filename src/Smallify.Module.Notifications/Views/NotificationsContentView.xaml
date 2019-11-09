@@ -5,13 +5,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     d:DesignHeight="450"
     d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <CollectionViewSource
+            x:Key="NotificationsList"
+            Source="{Binding Path=Notifications, Mode=OneWay}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription
+                    Direction="Descending"
+                    PropertyName="TimeStamp" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="Notifications" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Source={StaticResource NotificationsList}, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <TextBlock
+                                Text="{Binding Path=., Mode=OneWay}"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

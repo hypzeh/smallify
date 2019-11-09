@@ -25,7 +25,7 @@ namespace Smallify.Module.Notifications.ViewModels
             }
 
             _notificationsShell = new NotificationsShell();
-            _notificationsShell.Closed += (s, e) =>
+            _notificationsShell.Closed += (sender, args) =>
             {
                 _notificationsShell = null;
             };
