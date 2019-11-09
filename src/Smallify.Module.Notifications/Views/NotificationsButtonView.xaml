@@ -5,10 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Smallify.Module.Notifications.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="25"
+    d:DesignWidth="40"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Grid />
+    <Button Command="{Binding Path=OpenNotificationsWindowCommand, Mode=OneWay}">
+        <Path
+            Margin="0,4"
+            Data="M16 7a5.38 5.38 0 0 0-4.46-4.85C11.6 1.46 11.53 0 10 0S8.4 1.46 8.46 2.15A5.38 5.38 0 0 0 4 7v6l-2 2v1h16v-1l-2-2zm-6 13a3 3 0 0 0 3-3H7a3 3 0 0 0 3 3z"
+            Fill="Black"
+            Stretch="Uniform" />
+    </Button>
 </UserControl>

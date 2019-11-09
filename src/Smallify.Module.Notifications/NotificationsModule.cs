@@ -1,7 +1,9 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
 using Smallify.Module.Notifications.Configuration;
+using Smallify.Module.Notifications.ViewModels;
 using Smallify.Module.Notifications.Views;
 
 namespace Smallify.Module.Notifications
@@ -16,6 +18,7 @@ namespace Smallify.Module.Notifications
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            ViewModelLocationProvider.Register(typeof(NotificationsButtonView).ToString(), typeof(NotificationsButtonViewModel));
         }
     }
 }

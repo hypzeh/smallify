@@ -10,6 +10,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
     mc:Ignorable="d">
+
     <Button Command="{Binding Path=OpenSettingsWindowCommand, Mode=OneWay}">
         <Path
             Margin="0,4"
