@@ -22,6 +22,7 @@ namespace Smallify.Module.Notifications
 
             ViewModelLocationProvider.Register(typeof(NotificationsButtonView).ToString(), typeof(NotificationsButtonViewModel));
             ViewModelLocationProvider.Register(typeof(NotificationsShell).ToString(), typeof(NotificationsShellViewModel));
+            ViewModelLocationProvider.Register(typeof(NotificationsContentView).ToString(), typeof(NotificationsContentViewModel));
         }
     }
 }
