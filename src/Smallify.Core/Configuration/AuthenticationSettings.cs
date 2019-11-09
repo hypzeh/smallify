@@ -8,6 +8,7 @@ namespace Smallify.Core.Configuration
     {
         public string ClientID { get; }
         public string ClientSecret { get; }
+        public string AuthorisationCode { get; private set; }
         public string AccessToken { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,9 +17,15 @@ namespace Smallify.Core.Configuration
         {
             ClientID = clientId;
             ClientSecret = clientSecret;
+            AuthorisationCode = string.Empty;
             AccessToken = string.Empty;
 
             new Tracker().Track(this);
+        }
+        public void SetAuthorisationCode(string authorisationCode)
+        {
+            AuthorisationCode = authorisationCode;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AuthorisationCode)));
         }
 
         public void SetAccessToken(string accessToken)
@@ -29,7 +36,7 @@ namespace Smallify.Core.Configuration
 
         public void ConfigureTracking(TrackingConfiguration<AuthenticationSettings> configuration)
         {
-            configuration.Properties(settings => new { settings.AccessToken });
+            configuration.Properties(settings => new { settings.AuthorisationCode, settings.AccessToken });
             PropertyChanged += (sender, args) => { configuration.Tracker.Persist(this); };
         }
     }
