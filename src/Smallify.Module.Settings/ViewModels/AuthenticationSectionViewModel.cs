@@ -13,6 +13,9 @@ namespace Smallify.Module.Settings.ViewModels
             get => _accessToken;
             set => SetProperty(ref _accessToken, value);
         }
+        public string ClientID => _settings.ClientID;
+        public string ClientSecret => _settings.ClientSecret;
+
 
         public AuthenticationSectionViewModel(AuthenticationSettings settings)
         {
