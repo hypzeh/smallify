@@ -16,7 +16,7 @@
             <TextBlock
                 FontSize="24"
                 Text="Authentication" />
-            <TextBlock Text="{Binding Path=AccessToken, Mode=OneWay, StringFormat='Access Token: {0}'}" />
+            <TextBlock Text="{Binding Path=AuthorisationCode, Mode=OneWay, StringFormat='Authorisation Code: {0}'}" />
             <TextBlock Text="{Binding Path=ClientID, Mode=OneWay, StringFormat='Client ID: {0}'}" />
             <TextBlock Text="{Binding Path=ClientSecret, Mode=OneWay, StringFormat='Client Secret: {0}'}" />
         </StackPanel>
