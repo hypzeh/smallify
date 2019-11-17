@@ -1,5 +1,6 @@
-﻿using Jot;
+using Jot;
 using Jot.Configuration;
+using System;
 using System.ComponentModel;
 
 namespace Smallify.Core.Configuration
@@ -9,7 +10,7 @@ namespace Smallify.Core.Configuration
         public string ClientID { get; }
         public string ClientSecret { get; }
         public string AuthorisationCode { get; private set; }
-        public string AccessToken { get; private set; }
+        public AuthenticationToken Token { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,7 +19,11 @@ namespace Smallify.Core.Configuration
             ClientID = clientId;
             ClientSecret = clientSecret;
             AuthorisationCode = string.Empty;
-            AccessToken = string.Empty;
+            Token = new AuthenticationToken(
+                accessToken: string.Empty,
+                refreshToken: string.Empty,
+                expiryLength: 0,
+                timestamp: DateTimeOffset.UtcNow);
 
             new Tracker().Track(this);
         }
@@ -28,15 +33,20 @@ namespace Smallify.Core.Configuration
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AuthorisationCode)));
         }
 
-        public void SetAccessToken(string accessToken)
+        public void SetToken(AuthenticationToken token)
         {
-            AccessToken = accessToken;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AccessToken)));
+            Token = token;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Token)));
         }
 
         public void ConfigureTracking(TrackingConfiguration<AuthenticationSettings> configuration)
         {
-            configuration.Properties(settings => new { settings.AuthorisationCode, settings.AccessToken });
+            configuration.Properties(settings =>
+            new
+            {
+                settings.AuthorisationCode,
+                settings.Token,
+            });
             PropertyChanged += (sender, args) => { configuration.Tracker.Persist(this); };
         }
     }
