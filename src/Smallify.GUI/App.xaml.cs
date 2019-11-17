@@ -28,7 +28,8 @@ namespace Smallify.GUI
                 .RegisterInstance(new GeneralSettings())
                 .RegisterInstance(new AuthenticationSettings(
                     GUI.Properties.Resources.SPOTIFY_CLIENT_ID,
-                    GUI.Properties.Resources.SPOTIFY_CLIENT_SECRET));
+                    GUI.Properties.Resources.SPOTIFY_CLIENT_SECRET,
+                    GUI.Properties.Resources.SPOTIFY_REDIRECT_URI));
         }
 
         protected override void ConfigureViewModelLocator()

@@ -86,5 +86,14 @@ namespace Smallify.GUI.Properties {
                 return ResourceManager.GetString("SPOTIFY_CLIENT_SECRET", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_REDIRECT_URI}.
+        /// </summary>
+        internal static string SPOTIFY_REDIRECT_URI {
+            get {
+                return ResourceManager.GetString("SPOTIFY_REDIRECT_URI", resourceCulture);
+            }
+        }
     }
 }

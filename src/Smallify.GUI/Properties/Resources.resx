@@ -126,4 +126,7 @@
   <data name="SPOTIFY_CLIENT_SECRET" xml:space="preserve">
     <value>#{SPOTIFY_CLIENT_SECRET}</value>
   </data>
+  <data name="SPOTIFY_REDIRECT_URI" xml:space="preserve">
+    <value>#{SPOTIFY_REDIRECT_URI}</value>
+  </data>
 </root>

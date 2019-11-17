@@ -9,15 +9,17 @@ namespace Smallify.Core.Configuration
     {
         public string ClientID { get; }
         public string ClientSecret { get; }
+        public string RedirectURI { get; }
         public string AuthorisationCode { get; private set; }
         public AuthenticationToken Token { get; private set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public AuthenticationSettings(string clientId, string clientSecret)
+        public AuthenticationSettings(string clientId, string clientSecret, string redirectURI)
         {
             ClientID = clientId;
             ClientSecret = clientSecret;
+            RedirectURI = redirectURI;
             AuthorisationCode = string.Empty;
             Token = new AuthenticationToken(
                 accessToken: string.Empty,
