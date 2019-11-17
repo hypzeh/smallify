@@ -1,4 +1,4 @@
-using Jot;
+﻿using Jot;
 using Jot.Configuration;
 using System;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ namespace Smallify.Core.Configuration
         public string AuthorisationCode { get; private set; }
         public AuthenticationToken Token { get; private set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public AuthenticationSettings(string clientId, string clientSecret)
         {

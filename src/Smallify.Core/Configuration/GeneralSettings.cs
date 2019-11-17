@@ -8,7 +8,7 @@ namespace Smallify.Core.Configuration
     {
         public bool IsAlwaysOnTop { get; private set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public GeneralSettings()
         {
