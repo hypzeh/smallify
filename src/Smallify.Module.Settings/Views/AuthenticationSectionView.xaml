@@ -16,7 +16,18 @@
             <TextBlock
                 FontSize="24"
                 Text="Authentication" />
-            <TextBlock Text="{Binding Path=AuthorisationCode, Mode=OneWay, StringFormat='Authorisation Code: {0}'}" />
+            <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
+                <TextBlock Text="Get Code" />
+            </Button>
+            <StackPanel>
+                <Label
+                    Content="_Authorisation Code:"
+                    Target="{Binding ElementName=authorisationCode}" />
+                <TextBox
+                    Name="authorisationCode"
+                    Text="{Binding Path=AuthorisationCode, Mode=TwoWay}" />
+            </StackPanel>
+
             <TextBlock Text="{Binding Path=ClientID, Mode=OneWay, StringFormat='Client ID: {0}'}" />
             <TextBlock Text="{Binding Path=ClientSecret, Mode=OneWay, StringFormat='Client Secret: {0}'}" />
         </StackPanel>

@@ -1,12 +1,18 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Events;
+using Prism.Mvvm;
 using Smallify.Core.Configuration;
+using Smallify.Core.Events.Settings;
+using Smallify.Core.Spotify;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
     internal class AuthenticationSectionViewModel : BindableBase
     {
         private readonly AuthenticationSettings _settings;
+        private readonly SpotifyService _spotify;
         private string _authorisationCode;
 
         public string AuthorisationCode
@@ -14,16 +20,30 @@ namespace Smallify.Module.Settings.ViewModels
             get => _authorisationCode;
             set => SetProperty(ref _authorisationCode, value);
         }
-        public string ClientID => _settings.ClientID;
-        public string ClientSecret => _settings.ClientSecret;
+        public string ClientID { get => _settings.ClientID; }
+        public string ClientSecret { get => _settings.ClientSecret; }
+        public ICommand GetAuthenticationCodeCommand { get; }
+        public ICommand GetUserCommand { get; }
 
 
-        public AuthenticationSectionViewModel(AuthenticationSettings settings)
+        public AuthenticationSectionViewModel(IEventAggregator eventAggregator, AuthenticationSettings settings, SpotifyService spotify)
         {
             _settings = settings;
+            _spotify = spotify;
             _authorisationCode = settings.AuthorisationCode;
 
+            eventAggregator.GetEvent<OnSettingsSaveEvent>()?.Subscribe(OnSettingsSaveEvent);
+
             _settings.PropertyChanged += Settings_PropertyChanged;
+
+            GetAuthenticationCodeCommand = new DelegateCommand(GetAuthenticationCodeCommand_Execute);
+            GetUserCommand = new DelegateCommand(GetUserCommand_Execute);
+            GetUserCommand.Execute(null);
+        }
+
+        private void OnSettingsSaveEvent()
+        {
+            _settings.SetAuthorisationCode(AuthorisationCode);
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs args)
@@ -34,6 +54,22 @@ namespace Smallify.Module.Settings.ViewModels
             }
 
             AuthorisationCode = _settings.AuthorisationCode;
+            if (string.IsNullOrEmpty(AuthorisationCode))
+            {
+                return;
+            }
+
+            GetUserCommand.Execute(null);
+        }
+
+        private void GetAuthenticationCodeCommand_Execute()
+        {
+            _spotify.OpenBrowser();
+        }
+
+        private async void GetUserCommand_Execute()
+        {
+            var x = await _spotify.GetCurrentUserAsync().ConfigureAwait(false);
         }
     }
 }
