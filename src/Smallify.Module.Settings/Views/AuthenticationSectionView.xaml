@@ -30,6 +30,9 @@
 
             <TextBlock Text="{Binding Path=ClientID, Mode=OneWay, StringFormat='Client ID: {0}'}" />
             <TextBlock Text="{Binding Path=ClientSecret, Mode=OneWay, StringFormat='Client Secret: {0}'}" />
+            <TextBlock Text="{Binding Path=DisplayName, Mode=OneWay, StringFormat='Display Name: {0}'}" />
+            <TextBlock Text="{Binding Path=Username, Mode=OneWay, StringFormat='Username: {0}'}" />
+
         </StackPanel>
     </Grid>
 </UserControl>

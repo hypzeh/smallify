@@ -14,11 +14,23 @@ namespace Smallify.Module.Settings.ViewModels
         private readonly AuthenticationSettings _settings;
         private readonly SpotifyService _spotify;
         private string _authorisationCode;
+        private string _displayName;
+        private string _username;
 
         public string AuthorisationCode
         {
             get => _authorisationCode;
             set => SetProperty(ref _authorisationCode, value);
+        }
+        public string DisplayName
+        {
+            get => _displayName;
+            set => SetProperty(ref _displayName, value);
+        }
+        public string Username
+        {
+            get => _username;
+            set => SetProperty(ref _username, value);
         }
         public string ClientID { get => _settings.ClientID; }
         public string ClientSecret { get => _settings.ClientSecret; }
@@ -31,6 +43,8 @@ namespace Smallify.Module.Settings.ViewModels
             _settings = settings;
             _spotify = spotify;
             _authorisationCode = settings.AuthorisationCode;
+            _displayName = string.Empty;
+            _username = string.Empty;
 
             eventAggregator.GetEvent<OnSettingsSaveEvent>()?.Subscribe(OnSettingsSaveEvent);
 
@@ -56,6 +70,8 @@ namespace Smallify.Module.Settings.ViewModels
             AuthorisationCode = _settings.AuthorisationCode;
             if (string.IsNullOrEmpty(AuthorisationCode))
             {
+                DisplayName = string.Empty;
+                Username = string.Empty;
                 return;
             }
 
@@ -69,7 +85,14 @@ namespace Smallify.Module.Settings.ViewModels
 
         private async void GetUserCommand_Execute()
         {
-            var x = await _spotify.GetCurrentUserAsync().ConfigureAwait(false);
+            var user = await _spotify.GetCurrentUserAsync().ConfigureAwait(false);
+            if (user.HasError())
+            {
+                return;
+            }
+
+            DisplayName = user.DisplayName;
+            Username = user.Id;
         }
     }
 }
