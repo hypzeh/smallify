@@ -12,7 +12,7 @@ namespace Smallify.Core.Configuration
 
         public GeneralSettings()
         {
-            IsAlwaysOnTop = true;
+            IsAlwaysOnTop = false;
 
             new Tracker().Track(this);
         }
