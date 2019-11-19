@@ -6,6 +6,7 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
 using Smallify.Core.Configuration;
+using Smallify.Core.Spotify;
 using Smallify.GUI.ViewModels;
 using Smallify.GUI.Views;
 using Smallify.Module.Notifications;
@@ -30,6 +31,9 @@ namespace Smallify.GUI
                     GUI.Properties.Resources.SPOTIFY_CLIENT_ID,
                     GUI.Properties.Resources.SPOTIFY_CLIENT_SECRET,
                     GUI.Properties.Resources.SPOTIFY_REDIRECT_URI));
+
+            containerRegistry
+                .Register<SpotifyService>();
         }
 
         protected override void ConfigureViewModelLocator()
