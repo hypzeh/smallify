@@ -2,9 +2,9 @@
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## We Develop with Github
+## Getting started
 
-We use github to host code, to track issues and feature requests, as well as accept pull requests.
+Make sure to check out the [development guide](DEVELOPMENT_GUIDE.md).
 
 ## Create a Pull Request
 
