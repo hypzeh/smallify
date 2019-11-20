@@ -41,13 +41,12 @@ namespace Smallify.Core.Spotify
 
         public async Task<PrivateProfile> GetCurrentUserAsync()
         {
-            var response = await _api.GetPrivateProfileAsync();
-            if (response.HasError())
+            if (_settings.Token.HasExpired())
             {
                 await RefreshTokenAsync();
             }
 
-            return response;
+            return await _api.GetPrivateProfileAsync(); ;
         }
 
         private async Task RefreshTokenAsync()

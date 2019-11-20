@@ -20,17 +20,17 @@
             <StackPanel>
                 <Label
                     Content="_Authorisation Code"
-                    Target="{Binding ElementName=authorisationCode}" />
+                    Target="{Binding ElementName=authenticationCode}" />
                 <TextBox
-                    Name="authorisationCode"
-                    Text="{Binding Path=AuthorisationCode, Mode=TwoWay}" />
+                    Name="authenticationCode"
+                    Text="{Binding Path=AuthenticationCode, Mode=TwoWay}" />
             </StackPanel>
 
             <UniformGrid Columns="2">
-                <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
+                <Button Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
                     <TextBlock Text="Get authentication code" />
                 </Button>
-                <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
+                <Button Command="{Binding Path=GetAuthenticationCodeFromClipboard, Mode=OneWay}">
                     <TextBlock Text="Paste from clipboard" />
                 </Button>
             </UniformGrid>
@@ -39,10 +39,10 @@
                 <TextBlock
                     FontSize="20"
                     FontWeight="Bold"
-                    Text="{Binding Path=DisplayName, Mode=OneWay, FallbackValue=-}" />
+                    Text="{Binding Path=DisplayName, Mode=OneWay}" />
                 <TextBlock
                     FontStyle="Italic"
-                    Text="{Binding Path=Username, Mode=OneWay, FallbackValue=-}" />
+                    Text="{Binding Path=Username, Mode=OneWay}" />
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -1,9 +1,9 @@
 ﻿using Prism.Commands;
-using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Configuration;
 using Smallify.Core.Spotify;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
@@ -12,14 +12,14 @@ namespace Smallify.Module.Settings.ViewModels
     {
         private readonly AuthenticationSettings _settings;
         private readonly SpotifyService _spotify;
-        private string _authorisationCode;
+        private string _authenticationCode;
         private string _displayName;
         private string _username;
 
-        public string AuthorisationCode
+        public string AuthenticationCode
         {
-            get => _authorisationCode;
-            set => SetProperty(ref _authorisationCode, value);
+            get => _authenticationCode;
+            set => SetProperty(ref _authenticationCode, value);
         }
         public string DisplayName
         {
@@ -31,23 +31,23 @@ namespace Smallify.Module.Settings.ViewModels
             get => _username;
             set => SetProperty(ref _username, value);
         }
-        public string ClientID { get => _settings.ClientID; }
-        public string ClientSecret { get => _settings.ClientSecret; }
-        public ICommand GetAuthenticationCodeCommand { get; }
+        public ICommand RequestAuthenticationCodeCommand { get; }
+        public ICommand GetAuthenticationCodeFromClipboard { get; }
         public ICommand GetUserCommand { get; }
 
 
-        public AuthenticationSectionViewModel(IEventAggregator eventAggregator, AuthenticationSettings settings, SpotifyService spotify)
+        public AuthenticationSectionViewModel(AuthenticationSettings settings, SpotifyService spotify)
         {
             _settings = settings;
             _spotify = spotify;
-            _authorisationCode = settings.AuthorisationCode;
+            _authenticationCode = settings.AuthorisationCode;
             _displayName = string.Empty;
             _username = string.Empty;
 
             _settings.PropertyChanged += Settings_PropertyChanged;
 
-            GetAuthenticationCodeCommand = new DelegateCommand(GetAuthenticationCodeCommand_Execute);
+            RequestAuthenticationCodeCommand = new DelegateCommand(RequestAuthenticationCodeCommand_Execute);
+            GetAuthenticationCodeFromClipboard = new DelegateCommand(GetAuthenticationCodeFromClipboard_Execute);
             GetUserCommand = new DelegateCommand(GetUserCommand_Execute);
             GetUserCommand.Execute(null);
         }
@@ -59,8 +59,8 @@ namespace Smallify.Module.Settings.ViewModels
                 return;
             }
 
-            AuthorisationCode = _settings.AuthorisationCode;
-            if (string.IsNullOrEmpty(AuthorisationCode))
+            AuthenticationCode = _settings.AuthorisationCode;
+            if (string.IsNullOrEmpty(AuthenticationCode))
             {
                 DisplayName = string.Empty;
                 Username = string.Empty;
@@ -70,9 +70,20 @@ namespace Smallify.Module.Settings.ViewModels
             GetUserCommand.Execute(null);
         }
 
-        private void GetAuthenticationCodeCommand_Execute()
+        private void RequestAuthenticationCodeCommand_Execute()
         {
             _spotify.OpenBrowser();
+        }
+
+        private void GetAuthenticationCodeFromClipboard_Execute()
+        {
+            var code = Clipboard.GetText();
+            if (string.IsNullOrEmpty(code))
+            {
+                return;
+            }
+
+            _settings.SetAuthorisationCode(code);
         }
 
         private async void GetUserCommand_Execute()

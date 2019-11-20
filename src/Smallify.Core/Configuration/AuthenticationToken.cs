@@ -16,5 +16,10 @@ namespace Smallify.Core.Configuration
             ExpiryLength = expiryLength;
             Timestamp = timestamp;
         }
+
+        public bool HasExpired()
+        {
+            return DateTimeOffset.UtcNow >= Timestamp.AddSeconds(ExpiryLength);
+        }
     }
 }
