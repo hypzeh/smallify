@@ -16,23 +16,34 @@
             <TextBlock
                 FontSize="24"
                 Text="Authentication" />
-            <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
-                <TextBlock Text="Get Code" />
-            </Button>
+
             <StackPanel>
                 <Label
-                    Content="_Authorisation Code:"
+                    Content="_Authorisation Code"
                     Target="{Binding ElementName=authorisationCode}" />
                 <TextBox
                     Name="authorisationCode"
                     Text="{Binding Path=AuthorisationCode, Mode=TwoWay}" />
             </StackPanel>
 
-            <TextBlock Text="{Binding Path=ClientID, Mode=OneWay, StringFormat='Client ID: {0}'}" />
-            <TextBlock Text="{Binding Path=ClientSecret, Mode=OneWay, StringFormat='Client Secret: {0}'}" />
-            <TextBlock Text="{Binding Path=DisplayName, Mode=OneWay, StringFormat='Display Name: {0}'}" />
-            <TextBlock Text="{Binding Path=Username, Mode=OneWay, StringFormat='Username: {0}'}" />
+            <UniformGrid Columns="2">
+                <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
+                    <TextBlock Text="Get authentication code" />
+                </Button>
+                <Button Command="{Binding Path=GetAuthenticationCodeCommand, Mode=OneWay}">
+                    <TextBlock Text="Paste from clipboard" />
+                </Button>
+            </UniformGrid>
 
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="{Binding Path=DisplayName, Mode=OneWay, FallbackValue=-}" />
+                <TextBlock
+                    FontStyle="Italic"
+                    Text="{Binding Path=Username, Mode=OneWay, FallbackValue=-}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

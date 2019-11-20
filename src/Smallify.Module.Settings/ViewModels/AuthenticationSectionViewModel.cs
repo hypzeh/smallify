@@ -2,7 +2,6 @@
 using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Configuration;
-using Smallify.Core.Events.Settings;
 using Smallify.Core.Spotify;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -46,18 +45,11 @@ namespace Smallify.Module.Settings.ViewModels
             _displayName = string.Empty;
             _username = string.Empty;
 
-            eventAggregator.GetEvent<OnSettingsSaveEvent>()?.Subscribe(OnSettingsSaveEvent);
-
             _settings.PropertyChanged += Settings_PropertyChanged;
 
             GetAuthenticationCodeCommand = new DelegateCommand(GetAuthenticationCodeCommand_Execute);
             GetUserCommand = new DelegateCommand(GetUserCommand_Execute);
             GetUserCommand.Execute(null);
-        }
-
-        private void OnSettingsSaveEvent()
-        {
-            _settings.SetAuthorisationCode(AuthorisationCode);
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs args)
