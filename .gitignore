@@ -259,11 +259,3 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-
-# React build outputs
-**/wwwroot/index.html
-**/wwwroot/main.js
-
-# Application settings - user secrets
-**/Resources.Designer.cs
-**/Resources.resx
