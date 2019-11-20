@@ -263,3 +263,7 @@ __pycache__/
 # React build outputs
 **/wwwroot/index.html
 **/wwwroot/main.js
+
+# Application settings - user secrets
+**/Resources.Designer.cs
+**/Resources.resx
