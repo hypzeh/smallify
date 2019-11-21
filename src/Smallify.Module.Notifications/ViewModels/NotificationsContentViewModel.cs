@@ -1,6 +1,5 @@
-﻿using Prism.Events;
-using Prism.Mvvm;
-using Smallify.Core.Events.Notifications;
+﻿using Prism.Mvvm;
+using Smallify.Module.Notifications.Services;
 using System.Collections.ObjectModel;
 
 namespace Smallify.Module.Notifications.ViewModels
@@ -9,11 +8,9 @@ namespace Smallify.Module.Notifications.ViewModels
     {
         public ObservableCollection<string> Notifications { get; }
 
-        public NotificationsContentViewModel(IEventAggregator eventAggregator)
+        public NotificationsContentViewModel(NotificationCollectionService notificationCollectionService)
         {
-            Notifications = new ObservableCollection<string>();
-
-            eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Subscribe(message => Notifications.Add(message));
+            Notifications = notificationCollectionService.Notifications;
         }
     }
 }

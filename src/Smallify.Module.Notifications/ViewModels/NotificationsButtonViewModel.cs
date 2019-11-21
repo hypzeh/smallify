@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Smallify.Module.Notifications.Services;
 using Smallify.Module.Notifications.Views;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
@@ -9,10 +11,13 @@ namespace Smallify.Module.Notifications.ViewModels
     {
         private NotificationsShell _notificationsShell;
 
+        public ObservableCollection<string> Notifications { get; }
         public ICommand OpenNotificationsWindowCommand { get; }
 
-        public NotificationsButtonViewModel()
+        public NotificationsButtonViewModel(NotificationCollectionService notificationCollectionService)
         {
+            Notifications = notificationCollectionService.Notifications;
+
             OpenNotificationsWindowCommand = new DelegateCommand(OpenNotificationsWindowCommand_Execute);
         }
 

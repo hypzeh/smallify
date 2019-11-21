@@ -14,7 +14,7 @@
 
     <UserControl.Resources>
         <CollectionViewSource
-            x:Key="NotificationsList"
+            x:Key="Notifications"
             Source="{Binding Path=Notifications, Mode=OneWay}">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription
@@ -26,7 +26,7 @@
 
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Source={StaticResource NotificationsList}, Mode=OneWay}">
+            <ItemsControl ItemsSource="{Binding Source={StaticResource Notifications}, Mode=OneWay}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border>

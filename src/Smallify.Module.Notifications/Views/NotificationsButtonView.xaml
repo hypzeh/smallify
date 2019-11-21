@@ -13,10 +13,34 @@
     mc:Ignorable="d">
 
     <Button Command="{Binding Path=OpenNotificationsWindowCommand, Mode=OneWay}">
-        <Path
-            Margin="0,4"
-            Data="M16 7a5.38 5.38 0 0 0-4.46-4.85C11.6 1.46 11.53 0 10 0S8.4 1.46 8.46 2.15A5.38 5.38 0 0 0 4 7v6l-2 2v1h16v-1l-2-2zm-6 13a3 3 0 0 0 3-3H7a3 3 0 0 0 3 3z"
-            Fill="Black"
-            Stretch="Uniform" />
+        <Grid>
+            <Path
+                Margin="0,4"
+                Data="M16 7a5.38 5.38 0 0 0-4.46-4.85C11.6 1.46 11.53 0 10 0S8.4 1.46 8.46 2.15A5.38 5.38 0 0 0 4 7v6l-2 2v1h16v-1l-2-2zm-6 13a3 3 0 0 0 3-3H7a3 3 0 0 0 3 3z"
+                Fill="Black"
+                Stretch="Uniform" />
+            <Border
+                Margin="0,0,1,2"
+                Padding="3,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="Green"
+                CornerRadius="5"
+                IsHitTestVisible="False">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=Notifications.Count, Mode=OneWay}"
+                                Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <TextBlock Text="{Binding Path=Notifications.Count}" />
+            </Border>
+        </Grid>
     </Button>
 </UserControl>
