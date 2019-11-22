@@ -13,9 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Core", "src\Smalli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Module.Settings", "src\Smallify.Module.Settings\Smallify.Module.Settings.csproj", "{DDC591BD-B04C-4D30-851C-60BB8D4455F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Notifications", "src\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj", "{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Module.Notifications", "src\Smallify.Module.Notifications\Smallify.Module.Notifications.csproj", "{DF0DCE0F-4297-4DA1-B1EC-7622348CD0DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallify.Module.Player", "src\Smallify.Module.Player\Smallify.Module.Player.csproj", "{21AD1154-2491-4C21-9D12-A7C9CCA687EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smallify.Module.Player", "src\Smallify.Module.Player\Smallify.Module.Player.csproj", "{21AD1154-2491-4C21-9D12-A7C9CCA687EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{74AA8BAB-9651-474B-8A8C-BBCDBC328A87}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\Clean-Outputs.ps1 = scripts\Clean-Outputs.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
