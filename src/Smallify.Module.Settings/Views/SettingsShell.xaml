@@ -7,13 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     Title="Settings"
-    Width="800"
-    Height="450"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
-    ResizeMode="NoResize"
-    ShowInTaskbar="False"
-    Topmost="True"
+    Style="{StaticResource ModalWindowStyle}"
     mc:Ignorable="d">
 
     <Grid>
