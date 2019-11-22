@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Elements/Buttons.xaml" />
+                <ResourceDictionary Source="Elements/Windows.xaml" />
                 <ResourceDictionary Source="Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
