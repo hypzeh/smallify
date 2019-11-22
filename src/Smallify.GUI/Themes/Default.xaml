@@ -7,6 +7,11 @@
         x:Key="MainBackgroundBrush"
         Color="{StaticResource MainBackground}" />
 
+    <Color x:Key="MainBorder">#202021</Color>
+    <SolidColorBrush
+        x:Key="MainBorderBrush"
+        Color="{StaticResource MainBorder}" />
+
     <Color x:Key="PrimaryText">#FFFFFF</Color>
     <SolidColorBrush
         x:Key="PrimaryTextBrush"

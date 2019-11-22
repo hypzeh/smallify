@@ -31,4 +31,13 @@
         <Setter Property="ShowInTaskbar" Value="False" />
         <Setter Property="ResizeMode" Value="NoResize" />
     </Style>
+
+    <Style
+        x:Key="WindowBorderStyle"
+        BasedOn="{StaticResource {x:Type Border}}"
+        TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MainBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
 </ResourceDictionary>
