@@ -19,7 +19,7 @@
     Topmost="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay}"
     mc:Ignorable="d">
 
-    <Border Background="{DynamicResource MainBackgroundBrush}">
+    <Border Style="{StaticResource WindowBorderStyle}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />

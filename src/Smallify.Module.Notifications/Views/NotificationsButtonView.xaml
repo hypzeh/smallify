@@ -26,8 +26,10 @@
                 </Border>
 
                 <Border
-                    Margin="15,0,0,7"
+                    Margin="15,2,0,0"
                     Padding="3,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     Background="{DynamicResource HighlightBrush}"
                     CornerRadius="5">
                     <Border.Style>

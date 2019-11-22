@@ -7,18 +7,69 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     Title="Notifications"
-    Width="800"
-    Height="450"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
-    ResizeMode="NoResize"
-    ShowInTaskbar="False"
-    Topmost="True"
+    Style="{StaticResource ModalWindowStyle}"
     mc:Ignorable="d">
 
-    <Grid>
-        <ContentControl
-            prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
-            prism:RegionManager.RegionName="{x:Static configuration:RegionNames.Content}" />
-    </Grid>
+    <Border Style="{StaticResource WindowBorderStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border
+                Grid.Row="0"
+                BorderBrush="{DynamicResource HighlightBrush}"
+                BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0">
+                        <TextBlock
+                            Padding="5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource PrimaryTextBrush}"
+                            Text="Notifications" />
+                    </Border>
+
+                    <Border
+                        Grid.Column="2"
+                        Width="1"
+                        Margin="0,2"
+                        HorizontalAlignment="Center"
+                        Background="{DynamicResource HighlightBrush}" />
+
+                    <Border
+                        Grid.Column="3"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <UniformGrid Columns="1">
+                            <Button
+                                Command="{Binding Path=ExitCommand, Mode=OneWay}"
+                                Style="{StaticResource TitleBarExitButtonStyle}">
+                                <TextBlock
+                                    FontWeight="SemiBold"
+                                    Text="🗙" />
+                            </Button>
+                        </UniformGrid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1">
+                <ContentControl
+                    prism:RegionManager.RegionManager="{Binding Path=RegionManager, Mode=OneWay}"
+                    prism:RegionManager.RegionName="{x:Static configuration:RegionNames.Content}" />
+            </Border>
+        </Grid>
+    </Border>
 </Window>
