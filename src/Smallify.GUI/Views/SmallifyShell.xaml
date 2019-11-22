@@ -15,19 +15,9 @@
     MinHeight="100"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
+    Style="{StaticResource WindowStyle}"
     Topmost="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay}"
-    WindowStyle="None"
     mc:Ignorable="d">
-
-    <WindowChrome.WindowChrome>
-        <WindowChrome
-            CaptionHeight="15"
-            CornerRadius="0"
-            GlassFrameThickness="0"
-            NonClientFrameEdges="None"
-            ResizeBorderThickness="10"
-            UseAeroCaptionButtons="False" />
-    </WindowChrome.WindowChrome>
 
     <Border Background="{DynamicResource MainBackgroundBrush}">
         <Grid>
