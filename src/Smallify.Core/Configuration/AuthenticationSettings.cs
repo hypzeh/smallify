@@ -10,7 +10,6 @@ namespace Smallify.Core.Configuration
         public string ClientID { get; }
         public string ClientSecret { get; }
         public string RedirectURI { get; }
-        public string AuthorisationCode { get; private set; }
         public AuthenticationToken Token { get; private set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -20,7 +19,6 @@ namespace Smallify.Core.Configuration
             ClientID = clientId;
             ClientSecret = clientSecret;
             RedirectURI = redirectURI;
-            AuthorisationCode = string.Empty;
             Token = new AuthenticationToken(
                 accessToken: string.Empty,
                 refreshToken: string.Empty,
@@ -29,11 +27,6 @@ namespace Smallify.Core.Configuration
 
             new Tracker().Track(this);
         }
-        public void SetAuthorisationCode(string authorisationCode)
-        {
-            AuthorisationCode = authorisationCode;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AuthorisationCode)));
-        }
 
         public void SetToken(AuthenticationToken token)
         {
@@ -41,14 +34,18 @@ namespace Smallify.Core.Configuration
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Token)));
         }
 
+        public void ClearToken()
+        {
+            SetToken(new AuthenticationToken(
+                accessToken: string.Empty,
+                refreshToken: string.Empty,
+                expiryLength: 0,
+                timestamp: DateTimeOffset.UtcNow));
+        }
+
         public void ConfigureTracking(TrackingConfiguration<AuthenticationSettings> configuration)
         {
-            configuration.Properties(settings =>
-            new
-            {
-                settings.AuthorisationCode,
-                settings.Token,
-            });
+            configuration.Properties(settings => new { settings.Token });
             PropertyChanged += (sender, args) => { configuration.Tracker.Persist(this); };
         }
     }

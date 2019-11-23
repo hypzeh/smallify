@@ -49,43 +49,35 @@ namespace Smallify.Core.Spotify
             return await _api.GetPrivateProfileAsync(); ;
         }
 
+        public async Task<Token> ExchangeAccessCodeAsync(string code)
+        {
+            var token = await _authentication.ExchangeCode(code);
+            UpdateToken(token);
+            return token;
+        }
+
         private async Task RefreshTokenAsync()
         {
             if (string.IsNullOrEmpty(_settings.Token.RefreshToken))
             {
-                await ExchangeCodeAsync();
                 return;
             }
 
-            AssignToken(
-                await _authentication.RefreshToken(_settings.Token.RefreshToken),
-                () => _settings.SetToken(new AuthenticationToken(string.Empty, string.Empty, 0, DateTimeOffset.UtcNow)));
+            UpdateToken(await _authentication.RefreshToken(_settings.Token.RefreshToken));
         }
 
-        private async Task ExchangeCodeAsync()
-        {
-            if (string.IsNullOrEmpty(_settings.AuthorisationCode))
-            {
-                return;
-            }
-
-            AssignToken(
-                await _authentication.ExchangeCode(_settings.AuthorisationCode),
-                () => _settings.SetAuthorisationCode(string.Empty));
-        }
-
-        private void AssignToken(Token token, Action onError)
+        private void UpdateToken(Token token)
         {
             if (token.HasError())
             {
-                onError();
+                _settings.ClearToken();
                 return;
             }
 
             _api.AccessToken = token.AccessToken;
             _settings.SetToken(new AuthenticationToken(
                 accessToken: token.AccessToken,
-                refreshToken: token.RefreshToken,
+                refreshToken: token.RefreshToken ?? _settings.Token.RefreshToken,
                 expiryLength: Convert.ToInt32(token.ExpiresIn),
                 timestamp: token.CreateDate));
         }

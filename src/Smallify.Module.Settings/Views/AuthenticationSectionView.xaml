@@ -11,39 +11,66 @@
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Grid>
+    <Border Margin="5,0">
         <StackPanel>
-            <TextBlock
-                FontSize="24"
-                Text="Authentication" />
+            <Border>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock
+                        FontSize="24"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="Profile" />
+                    <Border
+                        Margin="0,5"
+                        BorderBrush="{DynamicResource HighlightBrush}"
+                        BorderThickness="0,0,0,1">
+                        <UniformGrid Columns="2">
+                            <TextBlock
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="Display Name" />
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="{Binding Path=DisplayName, Mode=OneWay, FallbackValue=...}" />
+                        </UniformGrid>
+                    </Border>
+                    <Border
+                        Margin="0,5"
+                        BorderBrush="{DynamicResource HighlightBrush}"
+                        BorderThickness="0,0,0,1">
+                        <UniformGrid Columns="2">
+                            <TextBlock
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="Username" />
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="{Binding Path=Username, Mode=OneWay, FallbackValue=...}" />
+                        </UniformGrid>
+                    </Border>
+                </StackPanel>
+            </Border>
 
-            <StackPanel>
-                <Label
-                    Content="_Authorisation Code"
-                    Target="{Binding ElementName=authenticationCode}" />
-                <TextBox
-                    Name="authenticationCode"
-                    Text="{Binding Path=AuthenticationCode, Mode=TwoWay}" />
-            </StackPanel>
-
-            <UniformGrid Columns="2">
-                <Button Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
-                    <TextBlock Text="Get authentication code" />
-                </Button>
-                <Button Command="{Binding Path=GetAuthenticationCodeFromClipboard, Mode=OneWay}">
-                    <TextBlock Text="Paste from clipboard" />
-                </Button>
-            </UniformGrid>
-
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Text="{Binding Path=DisplayName, Mode=OneWay}" />
-                <TextBlock
-                    FontStyle="Italic"
-                    Text="{Binding Path=Username, Mode=OneWay}" />
-            </StackPanel>
+            <Border>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock
+                        FontSize="24"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="Connection" />
+                    <Border Margin="0,5">
+                        <UniformGrid Columns="3">
+                            <Button Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
+                                <TextBlock Text="Get authentication code" />
+                            </Button>
+                            <Button Command="{Binding Path=GetAuthenticationCodeFromClipboardCommand, Mode=OneWay}">
+                                <TextBlock Text="Paste from clipboard" />
+                            </Button>
+                            <Button Command="{Binding Path=LogoutCommand, Mode=OneWay}">
+                                <TextBlock Text="Logout" />
+                            </Button>
+                        </UniformGrid>
+                    </Border>
+                </StackPanel>
+            </Border>
         </StackPanel>
-    </Grid>
+    </Border>
 </UserControl>
