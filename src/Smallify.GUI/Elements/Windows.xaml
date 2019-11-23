@@ -32,6 +32,7 @@
         <Setter Property="Height" Value="450" />
         <Setter Property="ShowInTaskbar" Value="False" />
         <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="WindowChrome.ResizeBorderThickness" Value="0" />
     </Style>
 
     <Style

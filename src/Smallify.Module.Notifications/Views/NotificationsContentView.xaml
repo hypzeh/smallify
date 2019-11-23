@@ -19,24 +19,76 @@
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription
                     Direction="Descending"
-                    PropertyName="TimeStamp" />
+                    PropertyName="Timestamp" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
 
-    <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Source={StaticResource Notifications}, Mode=OneWay}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <TextBlock
-                                Text="{Binding Path=., Mode=OneWay}"
-                                TextWrapping="Wrap" />
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Source={StaticResource Notifications}, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="0,2.5">
+                                    <Border
+                                        Padding="5,10"
+                                        Background="Gray">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="30" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Grid.Column="0">
+                                                <TextBlock
+                                                    Foreground="{DynamicResource PrimaryTextBrush}"
+                                                    Text="{Binding Path=Message, Mode=OneWay}"
+                                                    TextWrapping="Wrap" />
+                                            </Border>
+
+                                            <Border Grid.Column="1">
+                                                <Border
+                                                    Padding="5,0"
+                                                    VerticalAlignment="Center"
+                                                    BorderBrush="{DynamicResource HighlightBrush}"
+                                                    BorderThickness="1,0">
+                                                    <TextBlock
+                                                        Foreground="{DynamicResource PrimaryTextBrush}"
+                                                        Text="{Binding Path=Timestamp.LocalDateTime, Mode=OneWay}" />
+                                                </Border>
+                                            </Border>
+
+                                            <Border Grid.Column="2">
+                                                <Button
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.DismissNotificationCommand, Mode=OneWay}"
+                                                    CommandParameter="{Binding Path=., Mode=OneWay}">
+                                                    <TextBlock Text="🗙" />
+                                                </Button>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Row="1">
+                <StackPanel FlowDirection="RightToLeft">
+                    <Button Command="{Binding Path=DismissAllNotificationsCommand, Mode=OneWay}">
+                        <TextBlock Text="CLEAR ALL" />
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>
