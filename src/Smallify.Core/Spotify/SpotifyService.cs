@@ -58,11 +58,6 @@ namespace Smallify.Core.Spotify
 
         private async Task RefreshTokenAsync()
         {
-            if (string.IsNullOrEmpty(_settings.Token.RefreshToken))
-            {
-                return;
-            }
-
             UpdateToken(await _authentication.RefreshToken(_settings.Token.RefreshToken));
         }
 

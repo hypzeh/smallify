@@ -4,7 +4,7 @@ using Prism.Mvvm;
 using Smallify.Core.Configuration;
 using Smallify.Core.Events.Notifications;
 using Smallify.Core.Spotify;
-using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -42,11 +42,27 @@ namespace Smallify.Module.Settings.ViewModels
             _displayName = string.Empty;
             _username = string.Empty;
 
+            _settings.PropertyChanged += Settings_PropertyChanged;
+
             RequestAuthenticationCodeCommand = new DelegateCommand(RequestAuthenticationCodeCommand_Execute);
             GetAuthenticationCodeFromClipboardCommand = new DelegateCommand(GetAuthenticationCodeFromClipboardCommand_Execute);
             LogoutCommand = new DelegateCommand(LogoutCommand_Execute);
             GetUserCommand = new DelegateCommand(GetUserCommand_Execute);
             GetUserCommand.Execute(null);
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName != nameof(AuthenticationSettings.Token))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_settings.Token.AccessToken))
+            {
+                DisplayName = string.Empty;
+                Username = string.Empty;
+            }
         }
 
         private void RequestAuthenticationCodeCommand_Execute()
@@ -68,9 +84,7 @@ namespace Smallify.Module.Settings.ViewModels
 
         private void LogoutCommand_Execute()
         {
-            _settings.SetToken(new AuthenticationToken(string.Empty, string.Empty, 0, DateTimeOffset.UtcNow));
-            DisplayName = string.Empty;
-            Username = string.Empty;
+            _settings.ClearToken();
         }
 
         private async void GetUserCommand_Execute()

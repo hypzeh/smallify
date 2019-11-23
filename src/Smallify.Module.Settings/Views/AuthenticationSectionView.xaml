@@ -56,18 +56,51 @@
                         FontSize="24"
                         Foreground="{DynamicResource PrimaryTextBrush}"
                         Text="Connection" />
+
                     <Border Margin="0,5">
-                        <UniformGrid Columns="3">
-                            <Button Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
-                                <TextBlock Text="Get authentication code" />
-                            </Button>
-                            <Button Command="{Binding Path=GetAuthenticationCodeFromClipboardCommand, Mode=OneWay}">
-                                <TextBlock Text="Paste from clipboard" />
-                            </Button>
-                            <Button Command="{Binding Path=LogoutCommand, Mode=OneWay}">
-                                <TextBlock Text="Logout" />
-                            </Button>
-                        </UniformGrid>
+                        <ContentControl>
+                            <ContentControl.Style>
+                                <Style TargetType="{x:Type ContentControl}">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <StackPanel
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    MinWidth="200"
+                                                    Command="{Binding Path=LogoutCommand, Mode=OneWay}">
+                                                    <TextBlock Text="Logout" />
+                                                </Button>
+                                            </StackPanel>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Path=Username, Mode=OneWay, FallbackValue=''}"
+                                            Value="">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <StackPanel
+                                                        HorizontalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <Button
+                                                            MinWidth="200"
+                                                            Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
+                                                            <TextBlock Text="Get authentication code" />
+                                                        </Button>
+                                                        <Button
+                                                            MinWidth="200"
+                                                            Command="{Binding Path=GetAuthenticationCodeFromClipboardCommand, Mode=OneWay}">
+                                                            <TextBlock Text="Paste from clipboard" />
+                                                        </Button>
+                                                    </StackPanel>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
                     </Border>
                 </StackPanel>
             </Border>
