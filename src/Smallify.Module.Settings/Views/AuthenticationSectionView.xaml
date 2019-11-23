@@ -11,17 +11,17 @@
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Border Margin="5,0">
+    <Border>
         <StackPanel>
-            <Border>
-                <StackPanel Margin="0,0,0,10">
+            <Border Padding="10,0,10,10">
+                <StackPanel>
                     <TextBlock
                         FontSize="24"
                         Foreground="{DynamicResource PrimaryTextBrush}"
                         Text="Profile" />
                     <Border
                         Margin="0,5"
-                        BorderBrush="{DynamicResource HighlightBrush}"
+                        BorderBrush="{DynamicResource PrimaryHighlightBrush}"
                         BorderThickness="0,0,0,1">
                         <UniformGrid Columns="2">
                             <TextBlock
@@ -35,7 +35,7 @@
                     </Border>
                     <Border
                         Margin="0,5"
-                        BorderBrush="{DynamicResource HighlightBrush}"
+                        BorderBrush="{DynamicResource PrimaryHighlightBrush}"
                         BorderThickness="0,0,0,1">
                         <UniformGrid Columns="2">
                             <TextBlock
@@ -50,8 +50,8 @@
                 </StackPanel>
             </Border>
 
-            <Border>
-                <StackPanel Margin="0,0,0,10">
+            <Border Padding="10,0,10,10">
+                <StackPanel>
                     <TextBlock
                         FontSize="24"
                         Foreground="{DynamicResource PrimaryTextBrush}"

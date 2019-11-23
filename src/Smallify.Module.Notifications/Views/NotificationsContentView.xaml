@@ -58,7 +58,7 @@
                                                 <Border
                                                     Padding="5,0"
                                                     VerticalAlignment="Center"
-                                                    BorderBrush="{DynamicResource HighlightBrush}"
+                                                    BorderBrush="{DynamicResource PrimaryHighlightBrush}"
                                                     BorderThickness="1,0">
                                                     <TextBlock
                                                         Foreground="{DynamicResource PrimaryTextBrush}"

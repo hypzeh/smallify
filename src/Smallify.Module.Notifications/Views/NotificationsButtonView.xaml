@@ -15,7 +15,7 @@
     <Border>
         <Button
             Command="{Binding Path=OpenNotificationsWindowCommand, Mode=OneWay}"
-            Style="{StaticResource TitleBarButtonStyle}">
+            Style="{StaticResource WindowButtonStyle}">
             <Grid>
                 <Border>
                     <Path
@@ -30,7 +30,7 @@
                     Padding="3,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Background="{DynamicResource HighlightBrush}"
+                    Background="{DynamicResource PrimaryHighlightBrush}"
                     CornerRadius="5">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">

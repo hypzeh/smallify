@@ -11,14 +11,31 @@
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Grid>
+    <Border>
         <StackPanel>
-            <TextBlock
-                FontSize="24"
-                Text="General" />
-            <CheckBox
-                Content="Always on top"
-                IsChecked="{Binding Path=IsAlwaysOnTop, Mode=TwoWay}" />
+            <Border Padding="10,0,10,10">
+                <StackPanel>
+                    <TextBlock
+                        FontSize="24"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="Application" />
+                    <Border
+                        Margin="0,5"
+                        BorderBrush="{DynamicResource PrimaryHighlightBrush}"
+                        BorderThickness="0,0,0,1">
+                        <UniformGrid Columns="2">
+                            <TextBlock
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="Always on top" />
+                            <CheckBox
+                                HorizontalAlignment="Right"
+                                Content="Enabled"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                IsChecked="{Binding Path=IsAlwaysOnTop, Mode=TwoWay}" />
+                        </UniformGrid>
+                    </Border>
+                </StackPanel>
+            </Border>
         </StackPanel>
-    </Grid>
+    </Border>
 </UserControl>

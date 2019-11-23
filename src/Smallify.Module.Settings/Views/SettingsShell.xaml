@@ -62,20 +62,45 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0">
-                        <StackPanel>
-                            <RadioButton
-                                Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
-                                CommandParameter="{x:Static configuration:SectionNames.General}"
-                                Content="General"
-                                GroupName="{x:Static configuration:GroupNames.Sections}"
-                                IsChecked="True" />
-                            <RadioButton
-                                Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
-                                CommandParameter="{x:Static configuration:SectionNames.Authentication}"
-                                Content="Authentication"
-                                GroupName="{x:Static configuration:GroupNames.Sections}" />
-                        </StackPanel>
+                    <Border
+                        Grid.Column="0"
+                        Background="{DynamicResource SecondaryBackgroundBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Orientation="Vertical">
+                                <RadioButton
+                                    Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
+                                    CommandParameter="{x:Static configuration:SectionNames.General}"
+                                    Content="General"
+                                    GroupName="{x:Static configuration:GroupNames.Sections}"
+                                    IsChecked="True"
+                                    Style="{StaticResource RadioToggleButtonStyle}" />
+                                <RadioButton
+                                    Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
+                                    CommandParameter="{x:Static configuration:SectionNames.Authentication}"
+                                    Content="Authentication"
+                                    GroupName="{x:Static configuration:GroupNames.Sections}"
+                                    Style="{StaticResource RadioToggleButtonStyle}" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="2"
+                                Orientation="Vertical">
+                                <RadioButton
+                                    Command="{Binding Path=SetSectionCommand, Mode=OneWay}"
+                                    CommandParameter="{x:Static configuration:SectionNames.About}"
+                                    Content="About"
+                                    GroupName="{x:Static configuration:GroupNames.Sections}"
+                                    Style="{StaticResource RadioToggleButtonStyle}" />
+                            </StackPanel>
+                        </Grid>
                     </Border>
 
                     <Border Grid.Column="1">

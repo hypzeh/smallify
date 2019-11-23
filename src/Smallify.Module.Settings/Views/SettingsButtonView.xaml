@@ -14,7 +14,7 @@
     <Border>
         <Button
             Command="{Binding Path=OpenSettingsWindowCommand, Mode=OneWay}"
-            Style="{StaticResource TitleBarButtonStyle}">
+            Style="{StaticResource WindowButtonStyle}">
             <Border>
                 <Path
                     Margin="0,3"
