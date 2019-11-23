@@ -19,7 +19,7 @@
     Topmost="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay}"
     mc:Ignorable="d">
 
-    <Border Style="{StaticResource WindowBorderStyle}">
+    <Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
@@ -28,8 +28,7 @@
 
             <Border
                 Grid.Row="0"
-                BorderBrush="{DynamicResource HighlightBrush}"
-                BorderThickness="0,0,0,1">
+                Style="{StaticResource WindowTitleStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -41,10 +40,7 @@
 
                     <Border Grid.Column="0">
                         <TextBlock
-                            Padding="5,0,0,0"
-                            VerticalAlignment="Center"
-                            FontWeight="Bold"
-                            Foreground="{DynamicResource PrimaryTextBrush}"
+                            Style="{StaticResource WindowTitleTextStyle}"
                             Text="{Binding Path=Title, Mode=OneWay, FallbackValue=Smallify}" />
                     </Border>
 
@@ -59,10 +55,7 @@
 
                     <Border
                         Grid.Column="3"
-                        Width="1"
-                        Margin="0,2"
-                        HorizontalAlignment="Center"
-                        Background="{DynamicResource HighlightBrush}" />
+                        Style="{StaticResource WindowTitleSeperatorStyle}" />
 
                     <Border
                         Grid.Column="4"
@@ -71,27 +64,17 @@
                             <Button
                                 Command="{Binding Path=MinimiseCommand, Mode=OneWay}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                Style="{StaticResource TitleBarButtonStyle}">
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Text="🗕" />
-                            </Button>
+                                Style="{StaticResource WindowMinimiseButtonStyle}" />
                             <Button
                                 Command="{Binding Path=ExitCommand, Mode=OneWay}"
-                                Style="{StaticResource TitleBarExitButtonStyle}">
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Text="🗙" />
-                            </Button>
+                                Style="{StaticResource WindowExitButtonStyle}" />
                         </UniformGrid>
                     </Border>
                 </Grid>
             </Border>
 
             <Border Grid.Row="1">
-                <StackPanel>
-                    <ContentControl prism:RegionManager.RegionName="{x:Static player:RegionNames.Content}" />
-                </StackPanel>
+                <ContentControl prism:RegionManager.RegionName="{x:Static player:RegionNames.Content}" />
             </Border>
         </Grid>
     </Border>

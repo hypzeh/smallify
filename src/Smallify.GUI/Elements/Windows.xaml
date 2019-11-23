@@ -19,10 +19,12 @@
         </Setter>
         <Setter Property="WindowStyle" Value="None" />
         <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MainBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
     </Style>
 
     <Style
-        x:Key="ModalWindowStyle"
+        x:Key="WindowModalStyle"
         BasedOn="{StaticResource WindowStyle}"
         TargetType="{x:Type Window}">
         <Setter Property="Topmost" Value="True" />
@@ -33,11 +35,101 @@
     </Style>
 
     <Style
-        x:Key="WindowBorderStyle"
-        BasedOn="{StaticResource {x:Type Border}}"
+        x:Key="WindowTitleStyle"
         TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{DynamicResource HighlightBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+
+    <Style
+        x:Key="WindowTitleTextStyle"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="Padding" Value="5,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+
+    <Style
+        x:Key="WindowTitleSeperatorStyle"
+        TargetType="{x:Type Border}">
+        <Setter Property="Width" Value="1" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Background" Value="{DynamicResource HighlightBrush}" />
+    </Style>
+
+    <Style
+        x:Key="WindowButtonStyle"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MainBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Width="40"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkGray" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="WindowMinimiseButtonStyle"
+        BasedOn="{StaticResource WindowButtonStyle}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Width="40"
+                        Background="{TemplateBinding Background}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontWeight="SemiBold"
+                            Text="🗕" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="WindowExitButtonStyle"
+        BasedOn="{StaticResource WindowButtonStyle}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Width="40"
+                        Background="{TemplateBinding Background}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontWeight="SemiBold"
+                            Text="🗙" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Red" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
