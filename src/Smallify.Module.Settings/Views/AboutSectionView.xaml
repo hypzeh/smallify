@@ -13,12 +13,20 @@
 
     <Border>
         <StackPanel Orientation="Vertical">
-            <Border Padding="10,0,10,10">
-                <TextBlock
-                    FontSize="24"
-                    Foreground="{DynamicResource PrimaryTextBrush}"
-                    Text="Smallify"
-                    TextAlignment="Center" />
+            <Border Padding="10">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <ContentControl
+                        Height="50"
+                        Content="{StaticResource SmallifyLogo}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="Smallify" />
+                </StackPanel>
             </Border>
 
             <Border Padding="10,0,10,10">
