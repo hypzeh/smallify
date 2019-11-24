@@ -78,11 +78,12 @@
         TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="Width" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        Width="40"
+                        Width="{TemplateBinding Width}"
                         Background="{TemplateBinding Background}">
                         <ContentPresenter
                             HorizontalAlignment="Center"
@@ -106,7 +107,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        Width="40"
+                        Width="{TemplateBinding Width}"
                         Background="{TemplateBinding Background}">
                         <TextBlock
                             HorizontalAlignment="Center"
@@ -127,7 +128,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        Width="40"
+                        Width="{TemplateBinding Width}"
                         Background="{TemplateBinding Background}">
                         <TextBlock
                             HorizontalAlignment="Center"

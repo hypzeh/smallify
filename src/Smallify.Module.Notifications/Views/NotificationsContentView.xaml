@@ -22,6 +22,53 @@
                     PropertyName="Timestamp" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
+
+        <Style
+            x:Key="NotificationItemButton"
+            BasedOn="{StaticResource {x:Type Button}}"
+            TargetType="{x:Type Button}">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border
+                            Margin="5,5,5,0"
+                            Padding="5,7.5"
+                            Background="{DynamicResource SecondaryBackgroundBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="2"
+                            CornerRadius="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0">
+                                    <TextBlock
+                                        Foreground="{DynamicResource PrimaryTextBrush}"
+                                        Text="{Binding Path=Message, Mode=OneWay}"
+                                        TextWrapping="Wrap" />
+                                </Border>
+
+                                <Border Grid.Column="2">
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Foreground="{DynamicResource PrimaryTextBrush}"
+                                        Text="{Binding Path=Timestamp.LocalDateTime, Mode=OneWay}" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Border>
@@ -32,67 +79,75 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource Notifications}, Mode=OneWay}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Margin="0,2.5">
-                                    <Border
-                                        Padding="5,10"
-                                        Background="Gray">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="30" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Border Grid.Column="0">
-                                                <TextBlock
-                                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                                    Text="{Binding Path=Message, Mode=OneWay}"
-                                                    TextWrapping="Wrap" />
-                                            </Border>
-
-                                            <Border Grid.Column="1">
-                                                <Border
-                                                    Padding="5,0"
-                                                    VerticalAlignment="Center"
-                                                    BorderBrush="{DynamicResource PrimaryHighlightBrush}"
-                                                    BorderThickness="1,0">
-                                                    <TextBlock
-                                                        Foreground="{DynamicResource PrimaryTextBrush}"
-                                                        Text="{Binding Path=Timestamp.LocalDateTime, Mode=OneWay}" />
-                                                </Border>
-                                            </Border>
-
-                                            <Border Grid.Column="2">
-                                                <Button
-                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.DismissNotificationCommand, Mode=OneWay}"
-                                                    CommandParameter="{Binding Path=., Mode=OneWay}">
-                                                    <TextBlock Text="🗙" />
-                                                </Button>
-                                            </Border>
-                                        </Grid>
-                                    </Border>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                <ContentControl>
+                    <ContentControl.Style>
+                        <Style TargetType="{x:Type ContentControl}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl ItemsSource="{Binding Source={StaticResource Notifications}, Mode=OneWay}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.DismissNotificationCommand, Mode=OneWay}"
+                                                        CommandParameter="{Binding Path=., Mode=OneWay}"
+                                                        Style="{StaticResource NotificationItemButton}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Path=Notifications.Count, Mode=OneWay}"
+                                    Value="0">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                FontSize="24"
+                                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                                Text="You have no notifications"
+                                                TextAlignment="Center" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
             </Border>
 
             <Border Grid.Row="1">
-                <StackPanel
-                    Margin="5"
-                    HorizontalAlignment="Right"
-                    FlowDirection="RightToLeft">
-                    <Button
-                        Command="{Binding Path=DismissAllNotificationsCommand, Mode=OneWay}"
-                        Style="{StaticResource DangerButtonStyle}">
-                        <TextBlock Text="DISMISS ALL" />
-                    </Button>
-                </StackPanel>
+                <ContentControl>
+                    <ContentControl.Style>
+                        <Style TargetType="{x:Type ContentControl}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <StackPanel
+                                        Margin="5"
+                                        HorizontalAlignment="Right"
+                                        FlowDirection="RightToLeft">
+                                        <Button
+                                            Command="{Binding Path=DismissAllNotificationsCommand, Mode=OneWay}"
+                                            Style="{StaticResource DangerButtonStyle}">
+                                            <TextBlock Text="DISMISS ALL" />
+                                        </Button>
+                                    </StackPanel>
+
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Path=Notifications.Count, Mode=OneWay}"
+                                    Value="0">
+                                    <Setter Property="Content" Value="{x:Null}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
             </Border>
         </Grid>
     </Border>
