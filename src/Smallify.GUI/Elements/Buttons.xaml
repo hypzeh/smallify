@@ -3,6 +3,94 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style
+        x:Key="PrimaryButtonStyle"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHighlightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="Padding" Value="20,5" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Height="{TemplateBinding Height}"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15">
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Green" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Background" Value="DarkGreen" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="DangerButtonStyle"
+        BasedOn="{StaticResource PrimaryButtonStyle}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Red" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="OrangeRed" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Background" Value="DarkRed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="OutlinedButtonStyle"
+        BasedOn="{StaticResource PrimaryButtonStyle}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15">
+                        <Border
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryTextBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryBackgroundBrush}" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Background" Value="DarkGray" />
+                <Setter Property="BorderBrush" Value="DarkGray" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
         x:Key="RadioToggleButtonStyle"
         BasedOn="{StaticResource {x:Type ToggleButton}}"
         TargetType="{x:Type RadioButton}">
