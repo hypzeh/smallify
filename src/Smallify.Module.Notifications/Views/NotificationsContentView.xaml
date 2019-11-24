@@ -83,9 +83,14 @@
             </Border>
 
             <Border Grid.Row="1">
-                <StackPanel FlowDirection="RightToLeft">
-                    <Button Command="{Binding Path=DismissAllNotificationsCommand, Mode=OneWay}">
-                        <TextBlock Text="CLEAR ALL" />
+                <StackPanel
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    FlowDirection="RightToLeft">
+                    <Button
+                        Command="{Binding Path=DismissAllNotificationsCommand, Mode=OneWay}"
+                        Style="{StaticResource DangerButtonStyle}">
+                        <TextBlock Text="DISMISS ALL" />
                     </Button>
                 </StackPanel>
             </Border>

@@ -10,7 +10,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         <Setter Property="Padding" Value="20,5" />
         <Setter Property="Height" Value="30" />
-        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="MinWidth" Value="200" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">

@@ -67,9 +67,9 @@
                                                 HorizontalAlignment="Center"
                                                 Orientation="Horizontal">
                                                 <Button
-                                                    MinWidth="200"
-                                                    Command="{Binding Path=LogoutCommand, Mode=OneWay}">
-                                                    <TextBlock Text="Logout" />
+                                                    Command="{Binding Path=LogoutCommand, Mode=OneWay}"
+                                                    Style="{StaticResource DangerButtonStyle}">
+                                                    <TextBlock Text="LOGOUT" />
                                                 </Button>
                                             </StackPanel>
                                         </Setter.Value>
@@ -80,19 +80,29 @@
                                             Value="">
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <StackPanel
-                                                        HorizontalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                        <Button
-                                                            MinWidth="200"
-                                                            Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}">
-                                                            <TextBlock Text="Get authentication code" />
-                                                        </Button>
-                                                        <Button
-                                                            MinWidth="200"
-                                                            Command="{Binding Path=GetAuthenticationCodeFromClipboardCommand, Mode=OneWay}">
-                                                            <TextBlock Text="Paste from clipboard" />
-                                                        </Button>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock
+                                                            Margin="0,0,0,5"
+                                                            FontStyle="Italic"
+                                                            Foreground="{DynamicResource PrimaryTextBrush}"
+                                                            Text="Use the buttons below to connect to your Spotify account."
+                                                            TextWrapping="Wrap" />
+                                                        <StackPanel
+                                                            HorizontalAlignment="Center"
+                                                            Orientation="Horizontal">
+                                                            <Button
+                                                                Margin="5,0"
+                                                                Command="{Binding Path=RequestAuthenticationCodeCommand, Mode=OneWay}"
+                                                                Style="{StaticResource PrimaryButtonStyle}">
+                                                                <TextBlock Text="GET ACCESS CODE" />
+                                                            </Button>
+                                                            <Button
+                                                                Margin="5,0"
+                                                                Command="{Binding Path=GetAuthenticationCodeFromClipboardCommand, Mode=OneWay}"
+                                                                Style="{StaticResource OutlinedButtonStyle}">
+                                                                <TextBlock Text="USE CODE FROM CLIPBOARD" />
+                                                            </Button>
+                                                        </StackPanel>
                                                     </StackPanel>
                                                 </Setter.Value>
                                             </Setter>
