@@ -20,11 +20,13 @@ namespace Smallify.Module.Settings
         {
             containerRegistry.RegisterForNavigation<GeneralSectionView>();
             containerRegistry.RegisterForNavigation<AuthenticationSectionView>();
+            containerRegistry.RegisterForNavigation<AboutSectionView>();
 
             ViewModelLocationProvider.Register(typeof(SettingsButtonView).ToString(), typeof(SettingsButtonViewModel));
             ViewModelLocationProvider.Register(typeof(SettingsShell).ToString(), typeof(SettingsShellViewModel));
             ViewModelLocationProvider.Register(typeof(GeneralSectionView).ToString(), typeof(GeneralSectionViewModel));
             ViewModelLocationProvider.Register(typeof(AuthenticationSectionView).ToString(), typeof(AuthenticationSectionViewModel));
+            ViewModelLocationProvider.Register(typeof(AboutSectionView).ToString(), typeof(AboutSectionViewModel));
         }
     }
 }

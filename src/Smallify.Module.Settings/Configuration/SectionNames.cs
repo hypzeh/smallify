@@ -6,6 +6,6 @@ namespace Smallify.Module.Settings.Configuration
     {
         public const string General = nameof(GeneralSectionView);
         public const string Authentication = nameof(AuthenticationSectionView);
-        public const string About = "About";
+        public const string About = nameof(AboutSectionView);
     }
 }
