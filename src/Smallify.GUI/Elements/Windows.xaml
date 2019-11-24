@@ -94,7 +94,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="DarkGray" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundLighterBrush}" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundDarkerBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -141,7 +144,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Red" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryDangerLighterBrush}" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryDangerDarkerBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
