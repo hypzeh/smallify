@@ -5,13 +5,121 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="75"
+    d:DesignWidth="600"
     prism:ViewModelLocator.AutoWireViewModel="True"
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
-    <Grid>
-        <TextBlock Text="PLAYER" />
-    </Grid>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0">
+                <Grid Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Mode=OneWay}">
+                    <ContentControl
+                        Margin="5"
+                        Content="{StaticResource SmallifyLogo}" />
+                    <Image Source="{Binding Path=AlbumArt, Mode=OneWay}" />
+                    <Button Command="{Binding Path=GetPlaybackCommand, Mode=OneWay}">
+                        <Button.Style>
+                            <Style
+                                BasedOn="{StaticResource {x:Type Button}}"
+                                TargetType="{x:Type Button}">
+                                <Setter Property="Opacity" Value="0" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="1" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Grid>
+                                                        <Border
+                                                            Background="Black"
+                                                            Opacity="0.6" />
+                                                        <TextBlock
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="30"
+                                                            Foreground="White"
+                                                            Text="R" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1">
+                <StackPanel
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="Normal"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="{Binding Path=Name, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Light"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="{Binding Path=Artist, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Light"
+                        Foreground="{DynamicResource PrimaryTextDarkerBrush}"
+                        Text="{Binding Path=Album, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2">
+                <UniformGrid Columns="3">
+                    <Button Command="{Binding Path=PreviousCommand, Mode=OneWay}">
+                        <TextBlock Text="Prev" />
+                    </Button>
+                    <Button>
+                        <Button.Style>
+                            <Style
+                                BasedOn="{StaticResource {x:Type Button}}"
+                                TargetType="{x:Type Button}">
+                                <Setter Property="Command" Value="{Binding Path=PlayCommand, Mode=OneWay}" />
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <TextBlock Text="Play" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Path=IsPlaying, Mode=OneWay}"
+                                        Value="True">
+                                        <Setter Property="Command" Value="{Binding Path=PauseCommand, Mode=OneWay}" />
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <TextBlock Text="Pause" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding Path=SkipCommand, Mode=OneWay}">
+                        <TextBlock Text="Skip" />
+                    </Button>
+                </UniformGrid>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>

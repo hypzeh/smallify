@@ -49,6 +49,56 @@ namespace Smallify.Core.Spotify
             return await _api.GetPrivateProfileAsync(); ;
         }
 
+        public async Task<PlaybackContext> GetPlaybackAsync()
+        {
+            if (_settings.Token.HasExpired())
+            {
+                await RefreshTokenAsync();
+            }
+
+            return await _api.GetPlaybackAsync(); ;
+        }
+
+        public async Task<ErrorResponse> ResumePlaybackAsync()
+        {
+            if (_settings.Token.HasExpired())
+            {
+                await RefreshTokenAsync();
+            }
+
+            return await _api.ResumePlaybackAsync(offset: string.Empty);
+        }
+
+        public async Task<ErrorResponse> PausePlaybackAsync()
+        {
+            if (_settings.Token.HasExpired())
+            {
+                await RefreshTokenAsync();
+            }
+
+            return await _api.PausePlaybackAsync();
+        }
+
+        public async Task<ErrorResponse> SkipPlaybackAsync()
+        {
+            if (_settings.Token.HasExpired())
+            {
+                await RefreshTokenAsync();
+            }
+
+            return await _api.SkipPlaybackToNextAsync();
+        }
+
+        public async Task<ErrorResponse> PreviousPlaybackAsync()
+        {
+            if (_settings.Token.HasExpired())
+            {
+                await RefreshTokenAsync();
+            }
+
+            return await _api.SkipPlaybackToPreviousAsync();
+        }
+
         public async Task<Token> ExchangeAccessCodeAsync(string code)
         {
             var token = await _authentication.ExchangeCode(code);
