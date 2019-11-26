@@ -12,7 +12,11 @@ namespace Smallify.Module.Settings.ViewModels
         public bool IsAlwaysOnTop
         {
             get => _isAlwaysOnTop;
-            set => SetProperty(ref _isAlwaysOnTop, value);
+            set
+            {
+                SetProperty(ref _isAlwaysOnTop, value);
+                _settings.SetIsAlwaysOnTop(value);
+            }
         }
 
         public GeneralSectionViewModel(GeneralSettings settings)

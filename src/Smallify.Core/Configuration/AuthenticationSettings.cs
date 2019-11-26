@@ -12,7 +12,7 @@ namespace Smallify.Core.Configuration
         public string RedirectURI { get; }
         public AuthenticationToken Token { get; private set; }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public AuthenticationSettings(string clientId, string clientSecret, string redirectURI)
         {
