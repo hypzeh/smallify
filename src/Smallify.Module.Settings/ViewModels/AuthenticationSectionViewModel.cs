@@ -72,7 +72,7 @@ namespace Smallify.Module.Settings.ViewModels
 
         private async void GetAuthenticationCodeFromClipboardCommand_Execute()
         {
-            var token = await _spotify.ExchangeAccessCodeAsync(Clipboard.GetText()).ConfigureAwait(false);
+            var token = await _spotify.ExchangeAccessCodeAsync(Clipboard.GetText()).ConfigureAwait(true);
             if (token.HasError())
             {
                 _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(token.ErrorDescription);
@@ -89,7 +89,7 @@ namespace Smallify.Module.Settings.ViewModels
 
         private async void GetUserCommand_Execute()
         {
-            var user = await _spotify.GetCurrentUserAsync().ConfigureAwait(false);
+            var user = await _spotify.GetCurrentUserAsync().ConfigureAwait(true);
             if (user.HasError())
             {
                 _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(user.Error.Message);

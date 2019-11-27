@@ -49,6 +49,7 @@
                                 BasedOn="{StaticResource {x:Type Button}}"
                                 TargetType="{x:Type Button}">
                                 <Setter Property="Opacity" Value="0" />
+                                <Setter Property="Foreground" Value="White" />
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Opacity" Value="1" />
@@ -59,12 +60,7 @@
                                                         <Border
                                                             Background="Black"
                                                             Opacity="0.6" />
-                                                        <TextBlock
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center"
-                                                            FontSize="30"
-                                                            Foreground="White"
-                                                            Text="R" />
+                                                        <ContentControl Content="{StaticResource RefreshIcon}" />
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -105,38 +101,32 @@
 
             <Border Grid.Column="2">
                 <UniformGrid Columns="3">
-                    <Button Command="{Binding Path=PreviousCommand, Mode=OneWay}">
-                        <TextBlock Text="Prev" />
-                    </Button>
+                    <Button
+                        Command="{Binding Path=PreviousCommand, Mode=OneWay}"
+                        Content="{StaticResource PreviousIcon}"
+                        Style="{StaticResource PlaybackButtonStyle}" />
                     <Button>
                         <Button.Style>
                             <Style
-                                BasedOn="{StaticResource {x:Type Button}}"
+                                BasedOn="{StaticResource PlaybackButtonStyle}"
                                 TargetType="{x:Type Button}">
                                 <Setter Property="Command" Value="{Binding Path=PlayCommand, Mode=OneWay}" />
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <TextBlock Text="Play" />
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="Content" Value="{StaticResource PlayIcon}" />
                                 <Style.Triggers>
                                     <DataTrigger
                                         Binding="{Binding Path=IsPlaying, Mode=OneWay}"
                                         Value="True">
                                         <Setter Property="Command" Value="{Binding Path=PauseCommand, Mode=OneWay}" />
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <TextBlock Text="Pause" />
-                                            </Setter.Value>
-                                        </Setter>
+                                        <Setter Property="Content" Value="{StaticResource PauseIcon}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Command="{Binding Path=SkipCommand, Mode=OneWay}">
-                        <TextBlock Text="Skip" />
-                    </Button>
+                    <Button
+                        Command="{Binding Path=SkipCommand, Mode=OneWay}"
+                        Content="{StaticResource SkipIcon}"
+                        Style="{StaticResource PlaybackButtonStyle}" />
                 </UniformGrid>
             </Border>
         </Grid>
