@@ -21,10 +21,28 @@
 
             <Border Grid.Column="0">
                 <Grid Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Mode=OneWay}">
-                    <ContentControl
-                        Margin="5"
-                        Content="{StaticResource SmallifyLogo}" />
-                    <Image Source="{Binding Path=AlbumArt, Mode=OneWay}" />
+                    <ContentControl>
+                        <ContentControl.Style>
+                            <Style
+                                BasedOn="{StaticResource {x:Type ContentControl}}"
+                                TargetType="{x:Type ContentControl}">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Border>
+                                            <Image Source="{Binding Path=AlbumArt, Mode=OneWay}" />
+                                        </Border>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Path=AlbumArt, Mode=OneWay, FallbackValue=''}"
+                                        Value="">
+                                        <Setter Property="Content" Value="{StaticResource SmallifyLogo}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
                     <Button Command="{Binding Path=GetPlaybackCommand, Mode=OneWay}">
                         <Button.Style>
                             <Style
@@ -61,6 +79,7 @@
 
             <Border Grid.Column="1">
                 <StackPanel
+                    Margin="5,0"
                     VerticalAlignment="Center"
                     Orientation="Vertical">
                     <TextBlock

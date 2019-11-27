@@ -3,7 +3,9 @@ using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Events.Notifications;
 using Smallify.Core.Spotify;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 
@@ -65,7 +67,7 @@ namespace Smallify.Module.Player.ViewModels
             _albumArt = string.Empty;
             _isPlaying = false;
 
-            GetPlaybackCommand = new DelegateCommand(GetPlaybackCommand_Execute);
+            GetPlaybackCommand = new DelegateCommand<TimeSpan?>(GetPlaybackCommand_Execute);
             PlayCommand = new DelegateCommand(PlayCommand_Execute);
             PauseCommand = new DelegateCommand(PauseCommand_Execute);
             SkipCommand = new DelegateCommand(SkipCommand_Execute);
@@ -76,8 +78,13 @@ namespace Smallify.Module.Player.ViewModels
             GetPlaybackCommand.Execute(null);
         }
 
-        private async void GetPlaybackCommand_Execute()
+        private async void GetPlaybackCommand_Execute(TimeSpan? delay)
         {
+            if (delay.HasValue)
+            {
+                await Task.Delay(delay.Value).ConfigureAwait(true);
+            }
+
             var response = await _spotify.GetPlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
@@ -106,7 +113,11 @@ namespace Smallify.Module.Player.ViewModels
             if (response.HasError())
             {
                 DispatchNotification(response.Error.Message);
+                return;
             }
+
+            IsPlaying = true;
+            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void PauseCommand_Execute()
@@ -115,7 +126,11 @@ namespace Smallify.Module.Player.ViewModels
             if (response.HasError())
             {
                 DispatchNotification(response.Error.Message);
+                return;
             }
+
+            IsPlaying = false;
+            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void SkipCommand_Execute()
@@ -124,7 +139,11 @@ namespace Smallify.Module.Player.ViewModels
             if (response.HasError())
             {
                 DispatchNotification(response.Error.Message);
+                return;
             }
+
+            IsPlaying = true;
+            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void PreviousCommand_Execute()
@@ -133,12 +152,16 @@ namespace Smallify.Module.Player.ViewModels
             if (response.HasError())
             {
                 DispatchNotification(response.Error.Message);
+                return;
             }
+
+            IsPlaying = true;
+            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private void Playback_Elapsed(object sender, ElapsedEventArgs args)
         {
-            GetPlaybackCommand.Execute(null);
+            GetPlaybackCommand.Execute(TimeSpan.Zero);
         }
 
         private void DispatchNotification(string notification)
