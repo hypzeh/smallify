@@ -1,4 +1,5 @@
 ﻿using Smallify.Core.Configuration;
+using Smallify.Core.Spotify.Models;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
@@ -41,62 +42,38 @@ namespace Smallify.Core.Spotify
 
         public async Task<PrivateProfile> GetCurrentUserAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
+            await RefreshTokenAsync();
             return await _api.GetPrivateProfileAsync(); ;
         }
 
-        public async Task<PlaybackContext> GetPlaybackAsync()
+        public async Task<PlaybackResponse> GetPlaybackAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
-            return await _api.GetPlaybackAsync(); ;
+            await RefreshTokenAsync();
+            return Mapping.MapContext(await _api.GetPlaybackAsync());
         }
 
-        public async Task<ErrorResponse> ResumePlaybackAsync()
+        public async Task<PlaybackResponse> ResumePlaybackAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
-            return await _api.ResumePlaybackAsync(offset: string.Empty);
+            await RefreshTokenAsync();
+            return await GetPlaybackWithActionAsync(_api.ResumePlaybackAsync(offset: string.Empty));
         }
 
-        public async Task<ErrorResponse> PausePlaybackAsync()
+        public async Task<PlaybackResponse> PausePlaybackAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
-            return await _api.PausePlaybackAsync();
+            await RefreshTokenAsync();
+            return await GetPlaybackWithActionAsync(_api.PausePlaybackAsync());
         }
 
-        public async Task<ErrorResponse> SkipPlaybackAsync()
+        public async Task<PlaybackResponse> SkipPlaybackAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
-            return await _api.SkipPlaybackToNextAsync();
+            await RefreshTokenAsync();
+            return await GetPlaybackWithActionAsync(_api.SkipPlaybackToNextAsync());
         }
 
-        public async Task<ErrorResponse> PreviousPlaybackAsync()
+        public async Task<PlaybackResponse> PreviousPlaybackAsync()
         {
-            if (_settings.Token.HasExpired())
-            {
-                await RefreshTokenAsync();
-            }
-
-            return await _api.SkipPlaybackToPreviousAsync();
+            await RefreshTokenAsync();
+            return await GetPlaybackWithActionAsync(_api.SkipPlaybackToPreviousAsync());
         }
 
         public async Task<Token> ExchangeAccessCodeAsync(string code)
@@ -106,8 +83,25 @@ namespace Smallify.Core.Spotify
             return token;
         }
 
+        private async Task<PlaybackResponse> GetPlaybackWithActionAsync(Task<ErrorResponse> action)
+        {
+            var response = await action;
+            if (response.HasError())
+            {
+                return new PlaybackResponse(response.Error.Message);
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(1d));
+            return await GetPlaybackAsync();
+        }
+
         private async Task RefreshTokenAsync()
         {
+            if (!_settings.Token.HasExpired())
+            {
+                return;
+            }
+
             UpdateToken(await _authentication.RefreshToken(_settings.Token.RefreshToken));
         }
 

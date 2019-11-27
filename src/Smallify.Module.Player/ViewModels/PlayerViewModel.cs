@@ -3,9 +3,6 @@ using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Events.Notifications;
 using Smallify.Core.Spotify;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 
@@ -67,7 +64,7 @@ namespace Smallify.Module.Player.ViewModels
             _albumArt = string.Empty;
             _isPlaying = false;
 
-            GetPlaybackCommand = new DelegateCommand<TimeSpan?>(GetPlaybackCommand_Execute);
+            GetPlaybackCommand = new DelegateCommand(GetPlaybackCommand_Execute);
             PlayCommand = new DelegateCommand(PlayCommand_Execute);
             PauseCommand = new DelegateCommand(PauseCommand_Execute);
             SkipCommand = new DelegateCommand(SkipCommand_Execute);
@@ -78,32 +75,22 @@ namespace Smallify.Module.Player.ViewModels
             GetPlaybackCommand.Execute(null);
         }
 
-        private async void GetPlaybackCommand_Execute(TimeSpan? delay)
+        private async void GetPlaybackCommand_Execute()
         {
-            if (delay.HasValue)
-            {
-                await Task.Delay(delay.Value).ConfigureAwait(true);
-            }
-
             var response = await _spotify.GetPlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
-                DispatchNotification(response.Error.Message);
-                return;
-            }
-            if (response.Item == null)
-            {
-                DispatchNotification("No playback queued");
+                DispatchNotification(response.ErrorMessage);
                 return;
             }
 
-            Name = response.Item.Name;
-            Artist = string.Join(", ", response.Item.Artists.Select(artist => artist.Name));
-            Album = response.Item.Album.Name;
-            AlbumArt = response.Item.Album.Images.FirstOrDefault()?.Url;
+            Name = response.Track.Name;
+            Artist = response.Track.Artist;
+            Album = response.Track.Album;
+            AlbumArt = response.Track.AlbumArt;
             IsPlaying = response.IsPlaying;
 
-            _playback.Interval = (response.Item.DurationMs - response.ProgressMs) + 100;
+            _playback.Interval = (response.Track.Duration - response.Progress) + 100;
             _playback.Start();
         }
 
@@ -112,12 +99,11 @@ namespace Smallify.Module.Player.ViewModels
             var response = await _spotify.ResumePlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
-                DispatchNotification(response.Error.Message);
+                DispatchNotification(response.ErrorMessage);
                 return;
             }
 
             IsPlaying = true;
-            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void PauseCommand_Execute()
@@ -125,12 +111,11 @@ namespace Smallify.Module.Player.ViewModels
             var response = await _spotify.PausePlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
-                DispatchNotification(response.Error.Message);
+                DispatchNotification(response.ErrorMessage);
                 return;
             }
 
             IsPlaying = false;
-            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void SkipCommand_Execute()
@@ -138,12 +123,11 @@ namespace Smallify.Module.Player.ViewModels
             var response = await _spotify.SkipPlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
-                DispatchNotification(response.Error.Message);
+                DispatchNotification(response.ErrorMessage);
                 return;
             }
 
             IsPlaying = true;
-            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private async void PreviousCommand_Execute()
@@ -151,17 +135,16 @@ namespace Smallify.Module.Player.ViewModels
             var response = await _spotify.PreviousPlaybackAsync().ConfigureAwait(true);
             if (response.HasError())
             {
-                DispatchNotification(response.Error.Message);
+                DispatchNotification(response.ErrorMessage);
                 return;
             }
 
             IsPlaying = true;
-            GetPlaybackCommand.Execute(TimeSpan.FromSeconds(1d));
         }
 
         private void Playback_Elapsed(object sender, ElapsedEventArgs args)
         {
-            GetPlaybackCommand.Execute(TimeSpan.Zero);
+            GetPlaybackCommand.Execute(null);
         }
 
         private void DispatchNotification(string notification)
