@@ -1,7 +1,8 @@
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Configuration;
+using Smallify.Core.Events.Authentication;
 using Smallify.Core.Events.Notifications;
 using Smallify.Core.Spotify;
 using System.ComponentModel;
@@ -42,12 +43,13 @@ namespace Smallify.Module.Settings.ViewModels
             _displayName = string.Empty;
             _username = string.Empty;
 
-            _settings.PropertyChanged += Settings_PropertyChanged;
-
             RequestAuthenticationCodeCommand = new DelegateCommand(RequestAuthenticationCodeCommand_Execute);
             GetAuthenticationCodeFromClipboardCommand = new DelegateCommand(GetAuthenticationCodeFromClipboardCommand_Execute);
             LogoutCommand = new DelegateCommand(LogoutCommand_Execute);
             GetUserCommand = new DelegateCommand(GetUserCommand_Execute);
+
+            _settings.PropertyChanged += Settings_PropertyChanged;
+
             GetUserCommand.Execute(null);
         }
 
@@ -75,29 +77,31 @@ namespace Smallify.Module.Settings.ViewModels
             var token = await _spotify.ExchangeAccessCodeAsync(Clipboard.GetText()).ConfigureAwait(true);
             if (token.HasError())
             {
-                _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(token.ErrorDescription);
+                _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(token.ErrorMessage);
                 return;
             }
 
+            _eventAggregator.GetEvent<OnLoginEvent>()?.Publish();
             GetUserCommand.Execute(null);
         }
 
         private void LogoutCommand_Execute()
         {
+            _eventAggregator.GetEvent<OnLogoutEvent>()?.Publish();
             _settings.ClearToken();
         }
 
         private async void GetUserCommand_Execute()
         {
-            var user = await _spotify.GetCurrentUserAsync().ConfigureAwait(true);
-            if (user.HasError())
+            var response = await _spotify.GetCurrentUserAsync().ConfigureAwait(true);
+            if (response.HasError())
             {
-                _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(user.Error.Message);
+                _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(response.ErrorMessage);
                 return;
             }
 
-            DisplayName = user.DisplayName;
-            Username = user.Id;
+            DisplayName = response.DisplayName;
+            Username = response.Username;
         }
     }
 }

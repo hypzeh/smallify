@@ -13,10 +13,10 @@ namespace Smallify.Module.Notifications.Services
         {
             Notifications = new ObservableCollection<Notification>();
 
-            eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Subscribe(OnNotificationCreatedEvent);
+            eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Subscribe(OnNotificationCreatedEvent_Published);
         }
 
-        private void OnNotificationCreatedEvent(string notification)
+        private void OnNotificationCreatedEvent_Published(string notification)
         {
             Notifications.Add(new Notification(notification));
         }
