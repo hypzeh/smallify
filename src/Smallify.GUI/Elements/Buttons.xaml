@@ -123,11 +123,16 @@
         x:Key="PlaybackButtonStyle"
         BasedOn="{StaticResource {x:Type Button}}"
         TargetType="{x:Type Button}">
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="Width" Value="50" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="Transparent">
+                    <Border
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Width}"
+                        Padding="{TemplateBinding Padding}"
+                        Background="Transparent">
                         <ContentPresenter />
                     </Border>
                 </ControlTemplate>
@@ -135,7 +140,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Green" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextDarkerBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>

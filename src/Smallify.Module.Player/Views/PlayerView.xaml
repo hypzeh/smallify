@@ -29,7 +29,11 @@
                                 <Setter Property="Content">
                                     <Setter.Value>
                                         <Border>
-                                            <Image Source="{Binding Path=AlbumArt, Mode=OneWay}" />
+                                            <Image
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Source="{Binding Path=AlbumArt, Mode=OneWay}"
+                                                Stretch="UniformToFill" />
                                         </Border>
                                     </Setter.Value>
                                 </Setter>
@@ -49,7 +53,7 @@
                                 BasedOn="{StaticResource {x:Type Button}}"
                                 TargetType="{x:Type Button}">
                                 <Setter Property="Opacity" Value="0" />
-                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Opacity" Value="1" />
@@ -60,7 +64,10 @@
                                                         <Border
                                                             Background="Black"
                                                             Opacity="0.6" />
-                                                        <ContentControl Content="{StaticResource RefreshIcon}" />
+                                                        <ContentControl
+                                                            Width="50"
+                                                            Height="50"
+                                                            Content="{StaticResource RefreshIcon}" />
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -100,8 +107,11 @@
             </Border>
 
             <Border Grid.Column="2">
-                <UniformGrid Columns="3">
+                <UniformGrid
+                    Margin="0,0,10,0"
+                    Columns="3">
                     <Button
+                        Padding="15"
                         Command="{Binding Path=PreviousCommand, Mode=OneWay}"
                         Content="{StaticResource PreviousIcon}"
                         Style="{StaticResource PlaybackButtonStyle}" />
@@ -124,6 +134,7 @@
                         </Button.Style>
                     </Button>
                     <Button
+                        Padding="15"
                         Command="{Binding Path=SkipCommand, Mode=OneWay}"
                         Content="{StaticResource SkipIcon}"
                         Style="{StaticResource PlaybackButtonStyle}" />

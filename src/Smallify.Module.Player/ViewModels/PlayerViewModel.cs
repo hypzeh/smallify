@@ -1,14 +1,17 @@
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Smallify.Core.Events.Authentication;
 using Smallify.Core.Events.Notifications;
 using Smallify.Core.Spotify;
+using Smallify.Core.Spotify.Models;
+using System;
 using System.Timers;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
-    internal class PlayerViewModel : BindableBase
+    internal class PlayerViewModel : BindableBase, IDisposable
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly ISpotifyService _spotify;
@@ -71,80 +74,93 @@ namespace Smallify.Module.Player.ViewModels
             PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
 
             _playback.Elapsed += Playback_Elapsed;
+            _eventAggregator.GetEvent<OnLoginEvent>()?.Subscribe(OnLoginEvent_Published);
+            _eventAggregator.GetEvent<OnLogoutEvent>()?.Subscribe(OnLogoutEvent_Published);
 
             GetPlaybackCommand.Execute(null);
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _playback.Elapsed -= Playback_Elapsed;
+                _playback.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         private async void GetPlaybackCommand_Execute()
         {
-            var response = await _spotify.GetPlaybackAsync().ConfigureAwait(true);
-            if (response.HasError())
-            {
-                DispatchNotification(response.ErrorMessage);
-                return;
-            }
-
-            Name = response.Track.Name;
-            Artist = response.Track.Artist;
-            Album = response.Track.Album;
-            AlbumArt = response.Track.AlbumArt;
-            IsPlaying = response.IsPlaying;
-
-            _playback.Interval = (response.Track.Duration - response.Progress) + 100;
-            _playback.Start();
+            UpdatePlayback(await _spotify.GetPlaybackAsync().ConfigureAwait(true));
         }
 
         private async void PlayCommand_Execute()
         {
-            var response = await _spotify.ResumePlaybackAsync().ConfigureAwait(true);
-            if (response.HasError())
-            {
-                DispatchNotification(response.ErrorMessage);
-                return;
-            }
-
-            IsPlaying = true;
+            UpdatePlayback(await _spotify.ResumePlaybackAsync().ConfigureAwait(true));
         }
 
         private async void PauseCommand_Execute()
         {
-            var response = await _spotify.PausePlaybackAsync().ConfigureAwait(true);
-            if (response.HasError())
-            {
-                DispatchNotification(response.ErrorMessage);
-                return;
-            }
-
-            IsPlaying = false;
+            UpdatePlayback(await _spotify.PausePlaybackAsync().ConfigureAwait(true));
         }
 
         private async void SkipCommand_Execute()
         {
-            var response = await _spotify.SkipPlaybackAsync().ConfigureAwait(true);
-            if (response.HasError())
-            {
-                DispatchNotification(response.ErrorMessage);
-                return;
-            }
-
-            IsPlaying = true;
+            UpdatePlayback(await _spotify.SkipPlaybackAsync().ConfigureAwait(true));
         }
 
         private async void PreviousCommand_Execute()
         {
-            var response = await _spotify.PreviousPlaybackAsync().ConfigureAwait(true);
-            if (response.HasError())
+            UpdatePlayback(await _spotify.PreviousPlaybackAsync().ConfigureAwait(true));
+        }
+
+        private void UpdatePlayback(PlaybackResponse playback)
+        {
+            if (playback.HasError())
             {
-                DispatchNotification(response.ErrorMessage);
+                DispatchNotification(playback.ErrorMessage);
                 return;
             }
 
-            IsPlaying = true;
+            Name = playback.Track.Name;
+            Artist = playback.Track.Artist;
+            Album = playback.Track.Album;
+            AlbumArt = playback.Track.AlbumArt;
+            IsPlaying = playback.IsPlaying;
+
+            if (!playback.IsPlaying)
+            {
+                return;
+            }
+
+            _playback.Interval = (playback.Track.Duration - playback.Progress) + 100;
+            _playback.Start();
         }
 
         private void Playback_Elapsed(object sender, ElapsedEventArgs args)
         {
             GetPlaybackCommand.Execute(null);
+        }
+
+        private void OnLoginEvent_Published()
+        {
+            GetPlaybackCommand.Execute(null);
+        }
+
+        private void OnLogoutEvent_Published()
+        {
+            _playback.Stop();
+            Name = string.Empty;
+            Artist = string.Empty;
+            Album = string.Empty;
+            AlbumArt = string.Empty;
+            IsPlaying = false;
         }
 
         private void DispatchNotification(string notification)
