@@ -1,4 +1,4 @@
-﻿using Prism.Commands;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Configuration;
@@ -14,7 +14,7 @@ namespace Smallify.Module.Settings.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly AuthenticationSettings _settings;
-        private readonly SpotifyService _spotify;
+        private readonly ISpotifyService _spotify;
         private string _displayName;
         private string _username;
 
@@ -34,7 +34,7 @@ namespace Smallify.Module.Settings.ViewModels
         public ICommand GetUserCommand { get; }
 
 
-        public AuthenticationSectionViewModel(IEventAggregator eventAggregator, AuthenticationSettings settings, SpotifyService spotify)
+        public AuthenticationSectionViewModel(IEventAggregator eventAggregator, AuthenticationSettings settings, ISpotifyService spotify)
         {
             _eventAggregator = eventAggregator;
             _settings = settings;

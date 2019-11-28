@@ -33,7 +33,7 @@ namespace Smallify.GUI
                     GUI.Properties.Resources.SPOTIFY_REDIRECT_URI));
 
             containerRegistry
-                .RegisterSingleton<SpotifyService>();
+                .RegisterSingleton<ISpotifyService, SpotifyService>();
         }
 
         protected override void ConfigureViewModelLocator()

@@ -33,5 +33,39 @@ namespace Smallify.Core.Spotify
                     albumArt: context.Item.Album.Images.FirstOrDefault()?.Url,
                     duration: context.Item.DurationMs));
         }
+
+        internal static ProfileResponse MapProfile(PrivateProfile profile)
+        {
+            if (profile == null)
+            {
+                return new ProfileResponse("Could not reach Spotify services");
+            }
+
+            if (profile.HasError())
+            {
+                return new ProfileResponse(profile.Error.Message);
+            }
+
+            return new ProfileResponse(
+                displayName: profile.DisplayName,
+                username: profile.Id);
+        }
+
+        internal static TokenResponse MapToken(Token token)
+        {
+            if (token == null)
+            {
+                return new TokenResponse("Could not reach Spotify service");
+            }
+
+            if (token.HasError())
+            {
+                return new TokenResponse(token.ErrorDescription);
+            }
+
+            return new TokenResponse(
+                accessToken: token.AccessToken,
+                refreshToken: token.RefreshToken);
+        }
     }
 }

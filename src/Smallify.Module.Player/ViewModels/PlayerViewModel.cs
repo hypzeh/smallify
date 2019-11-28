@@ -1,4 +1,4 @@
-﻿using Prism.Commands;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Smallify.Core.Events.Notifications;
@@ -11,7 +11,7 @@ namespace Smallify.Module.Player.ViewModels
     internal class PlayerViewModel : BindableBase
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly SpotifyService _spotify;
+        private readonly ISpotifyService _spotify;
         private readonly Timer _playback;
         private string _name;
         private string _artist;
@@ -50,7 +50,7 @@ namespace Smallify.Module.Player.ViewModels
         public ICommand SkipCommand { get; }
         public ICommand PreviousCommand { get; }
 
-        public PlayerViewModel(IEventAggregator eventAggregator, SpotifyService spotify)
+        public PlayerViewModel(IEventAggregator eventAggregator, ISpotifyService spotify)
         {
             _eventAggregator = eventAggregator;
             _spotify = spotify;

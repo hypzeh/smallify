@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Smallify.Core.Spotify
 {
-    public class SpotifyService
+    public class SpotifyService : ISpotifyService
     {
         private readonly AuthenticationSettings _settings;
         private readonly AuthorizationCodeAuth _authentication;
@@ -40,10 +40,10 @@ namespace Smallify.Core.Spotify
             _authentication.OpenBrowser();
         }
 
-        public async Task<PrivateProfile> GetCurrentUserAsync()
+        public async Task<ProfileResponse> GetCurrentUserAsync()
         {
             await RefreshTokenAsync();
-            return await _api.GetPrivateProfileAsync(); ;
+            return Mapping.MapProfile(await _api.GetPrivateProfileAsync());
         }
 
         public async Task<PlaybackResponse> GetPlaybackAsync()
@@ -76,11 +76,11 @@ namespace Smallify.Core.Spotify
             return await GetPlaybackWithActionAsync(_api.SkipPlaybackToPreviousAsync());
         }
 
-        public async Task<Token> ExchangeAccessCodeAsync(string code)
+        public async Task<TokenResponse> ExchangeAccessCodeAsync(string code)
         {
             var token = await _authentication.ExchangeCode(code);
             UpdateToken(token);
-            return token;
+            return Mapping.MapToken(token);
         }
 
         private async Task<PlaybackResponse> GetPlaybackWithActionAsync(Task<ErrorResponse> action)
