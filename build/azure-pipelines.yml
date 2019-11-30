@@ -15,9 +15,7 @@ steps:
 - task: replacetokens@3
   displayName: 'Replace Tokens'
   inputs:
-    targetFiles: |
-      '**/Resources.resx'
-      '**/appsettings.json'
+    targetFiles: '**/Resources.resx, **/appsettings.json'
     encoding: 'auto'
     writeBOM: true
     actionOnMissing: 'warn'
