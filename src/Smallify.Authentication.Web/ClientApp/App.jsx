@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
+import history from './utils/history';
 import { PRIMARY } from './utils/style/variables';
 import GlobalStyle from './utils/style/GlobalStyle';
 import AppLayout from './components/layout/AppLayout';
@@ -36,7 +37,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Helmet titleTemplate="%s / Smallify" defaultTitle="Smallify" />
       <GlobalStyle />
       <Wrapper>
@@ -44,7 +45,7 @@ const App = () => {
           <AppRouter />
         </AppLayout>
       </Wrapper>
-    </BrowserRouter>
+    </Router>
   );
 };
 

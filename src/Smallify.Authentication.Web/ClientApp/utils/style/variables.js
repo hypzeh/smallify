@@ -1,9 +1,9 @@
 export const PRIMARY = {
   background: '#212121',
   colour: '#fff',
+  highlight: '#1aa34a',
+  highlightLighter: '#1db954',
+  highlightDarker: '#14823a',
 };
 
-export const SECONDARY = {
-  background: '#424242',
-  colour: '#e6e6e6',
-};
+export default { PRIMARY };
