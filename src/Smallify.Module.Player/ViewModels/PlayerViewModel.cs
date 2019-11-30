@@ -78,7 +78,6 @@ namespace Smallify.Module.Player.ViewModels
             _eventAggregator.GetEvent<OnLogoutEvent>()?.Subscribe(OnLogoutEvent_Published);
 
             GetPlaybackCommand.Execute(null);
-            _spotify.OpenBrowser();
         }
 
         protected virtual void Dispose(bool disposing)
