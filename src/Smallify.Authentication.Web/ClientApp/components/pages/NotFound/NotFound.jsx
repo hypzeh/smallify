@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import history from '../../utils/history';
-import PrimaryButton from '../shared/PrimaryButton';
+import history from '../../../utils/history';
+import PrimaryButton from '../../shared/PrimaryButton';
 
 const Wrapper = styled.section`
   flex-grow: 1;

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import spotify from '../../lib/spotify';
-import PrimaryButton from '../shared/PrimaryButton';
+import ConnectButton from '../../shared/ConnectButton';
+import Text from '../../shared/Text';
 
 const Wrapper = styled.section`
   flex-grow: 1;
@@ -14,8 +14,8 @@ const Wrapper = styled.section`
 const Home = () => (
   <Wrapper>
     <h1>Connect to Spotify</h1>
-    <PrimaryButton id="connect" text="CONNECT" onClick={() => spotify.connect()} />
-    <p>This will redirect you to Spotify for permission.</p>
+    <ConnectButton />
+    <Text value="This will redirect you to Spotify, please check the requested permissions." />
   </Wrapper>
 );
 

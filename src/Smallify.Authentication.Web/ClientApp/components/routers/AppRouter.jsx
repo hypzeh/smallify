@@ -12,12 +12,12 @@ const AppRouter = () => (
   <Suspense fallback={(<Loader />)}>
     <Switch>
       <Route exact path="/">
-        <Helmet title="Home" />
+        <Helmet title="Connect" />
         <Home />
       </Route>
 
       <Route exact path="/callback">
-        <Helmet title="Authentication" />
+        <Helmet title="Authentication code" />
         <Callback />
       </Route>
 
