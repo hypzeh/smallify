@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-import woff2 from '../../assets/fonts/open-sans-v16-latin-regular.woff2';
-import woff from '../../assets/fonts/open-sans-v16-latin-regular.woff';
+import woff2 from '../../../wwwroot/fonts/open-sans-v16-latin-regular.woff2';
+import woff from '../../../wwwroot/fonts/open-sans-v16-latin-regular.woff';
 import { PRIMARY } from './variables';
 
 import 'modern-normalize/modern-normalize.css';
@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: Open Sans, Segoe UI, Tahoma, sans-serif !important;
     background: ${PRIMARY.background};
     color: ${PRIMARY.colour};
+    margin: 0;
+    padding: 0;
     line-height: 1.8em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -164,6 +165,7 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, 'ClientApp/template.html'),
         filename: 'index.html',
         output: path.resolve(__dirname, 'wwwroot'),
+        favicon: path.resolve(__dirname, 'ClientApp/assets/images/favicon.png'),
         minify: {
           removeComments: true,
           collapseWhitespace: true,
@@ -193,6 +195,12 @@ module.exports = (env, argv) => {
         hashFunction: 'sha256',
         hashDigest: 'hex',
         hashDigestLength: 20,
+      }),
+      new GenerateSW({
+        swDest: 'sw.js',
+        importWorkboxFrom: 'local',
+        clientsClaim: true,
+        skipWaiting: true,
       }),
       new HardSourceWebpackPlugin(),
       new FriendlyErrorsWebpackPlugin(),

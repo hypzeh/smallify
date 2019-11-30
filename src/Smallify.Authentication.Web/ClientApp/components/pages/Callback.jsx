@@ -7,7 +7,7 @@ const Callback = () => {
   const { code } = qs.parse(search);
 
   return (
-    <div>
+    <>
       <h1>Callback</h1>
       {!!code && (
         <section>
@@ -17,7 +17,7 @@ const Callback = () => {
           </label>
         </section>
       )}
-    </div>
+    </>
   );
 };
 
