@@ -13,6 +13,7 @@ variables:
 
 steps:
 - task: replacetokens@3
+  displayName: 'Replace Tokens'
   inputs:
     targetFiles: |
       '**/Resources.resx'
@@ -25,24 +26,29 @@ steps:
     tokenSuffix: '}'
     
 - task: NuGetToolInstaller@1
+  displayName: 'Install NuGet tool'
 
 - task: NuGetCommand@2
+  displayName: 'Restore solution'
   inputs:
     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Build desktop application'
   inputs:
     command: 'build'
     projects: '$(desktopApplication)'
-    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\desktop"'
+    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/desktop'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Publish web application'
   inputs:
     command: 'publish'
     projects: '$(webApplication)'
-    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)\web"'
+    arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/web'
 
 - task: PublishBuildArtifacts@1
+  displayName: 'Save build artifacts'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
