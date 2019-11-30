@@ -14,7 +14,9 @@ variables:
 steps:
 - task: replacetokens@3
   inputs:
-    targetFiles: '**/Resources.resx'
+    targetFiles: |
+      '**/Resources.resx'
+      '**/appsettings.json'
     encoding: 'auto'
     writeBOM: true
     actionOnMissing: 'warn'
