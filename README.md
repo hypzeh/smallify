@@ -10,9 +10,11 @@ _Smallify is a WPF application built with .NET Core 3, aiming to provide a simpl
 
 ## Usage
 
-## [Contributing](docs/CONTRIBUTING.md)
+## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please reference the [contributing](docs/CONTRIBUTING.md) docs for more information.
 
 ## Similar Projects
 

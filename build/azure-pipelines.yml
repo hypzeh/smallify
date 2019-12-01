@@ -32,11 +32,12 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build desktop application'
+  displayName: 'Publish desktop application'
   inputs:
-    command: 'build'
+    command: 'publish'
     projects: '$(desktopApplication)'
     arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/desktop'
+    zipAfterPublish: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish web application'
@@ -44,6 +45,7 @@ steps:
     command: 'publish'
     projects: '$(webApplication)'
     arguments: '--nologo --no-restore --configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/web'
+    zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Save build artifacts'
