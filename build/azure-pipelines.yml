@@ -6,8 +6,8 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  desktopApplication: '**/*.GUI.csproj'
-  webApplication: '**/*.Web.csproj'
+  desktopApplication: '**/Smallify.GUI.csproj'
+  webApplication: '**/Smallify.Authentication.Web.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
