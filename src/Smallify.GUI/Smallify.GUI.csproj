@@ -13,6 +13,7 @@
     <StartupObject>Smallify.GUI.App</StartupObject>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ApplicationIcon>Resources\smallify-icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

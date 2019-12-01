@@ -70,6 +70,16 @@ namespace Smallify.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] smallify_icon {
+            get {
+                object obj = ResourceManager.GetObject("smallify_icon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #{SPOTIFY_CLIENT_ID}.
         /// </summary>
         internal static string SPOTIFY_CLIENT_ID {

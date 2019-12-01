@@ -108,7 +108,7 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="{DynamicResource PrimaryTextBrush}"
-                                                Text="You have no notifications"
+                                                Text="You have no notifications :)"
                                                 TextAlignment="Center" />
                                         </Setter.Value>
                                     </Setter>
