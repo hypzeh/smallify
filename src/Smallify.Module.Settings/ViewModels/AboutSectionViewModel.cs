@@ -15,7 +15,7 @@ namespace Smallify.Module.Settings.ViewModels
         public AboutSectionViewModel()
         {
             var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-            Version = $"v{version.InformationalVersion}-beta";
+            Version = $"v{version.InformationalVersion}";
             GithubCommand = new DelegateCommand(GithubCommand_Execute);
             ReportIssueCommand = new DelegateCommand(ReportIssueCommand_Execute);
         }
