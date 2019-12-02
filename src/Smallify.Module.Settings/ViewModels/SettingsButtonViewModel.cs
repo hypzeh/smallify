@@ -1,39 +1,35 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 using Smallify.Module.Settings.Views;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsButtonViewModel : BindableBase, ISettingsButtonViewModel
-	{
-		private readonly IRegionManager _regionManager;
+    internal class SettingsButtonViewModel : BindableBase
+    {
+        private SettingsShell _settingsShell;
 
-		private SettingsShell _settingsShell;
+        public ICommand OpenSettingsWindowCommand { get; }
 
-		public SettingsButtonViewModel(IRegionManager regionManager)
-		{
-			_regionManager = regionManager;
+        public SettingsButtonViewModel()
+        {
+            OpenSettingsWindowCommand = new DelegateCommand(OpenSettingsWindowCommand_Execute);
+        }
 
-			ShowSettingsWindowCommand = new DelegateCommand(ShowSettingsWindowCommand_Execute);
-		}
+        private void OpenSettingsWindowCommand_Execute()
+        {
+            if (_settingsShell != null)
+            {
+                _settingsShell.Activate();
+                return;
+            }
 
-		public ICommand ShowSettingsWindowCommand { get; }
-
-		private void ShowSettingsWindowCommand_Execute()
-		{
-			if (_settingsShell != null)
-			{
-				return;
-			}
-
-			_settingsShell = new SettingsShell(_regionManager.CreateRegionManager());
-			_settingsShell.Closed += (s, e) =>
-			{
-				_settingsShell = null;
-			};
-			_settingsShell.Show();
-		}
-	}
+            _settingsShell = new SettingsShell();
+            _settingsShell.Closed += (sender, args) =>
+            {
+                _settingsShell = null;
+            };
+            _settingsShell.Show();
+        }
+    }
 }

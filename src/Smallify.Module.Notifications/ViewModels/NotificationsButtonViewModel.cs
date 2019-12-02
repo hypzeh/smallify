@@ -1,52 +1,41 @@
 ﻿using Prism.Commands;
-using Prism.Events;
 using Prism.Mvvm;
-using Prism.Regions;
-using Smallify.Module.Core.Events.Notifications;
 using Smallify.Module.Notifications.Models;
+using Smallify.Module.Notifications.Services;
 using Smallify.Module.Notifications.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
-	public class NotificationsButtonViewModel : BindableBase, INotificationsButtonViewModel
-	{
-		private readonly IRegionManager _regionManager;
+    internal class NotificationsButtonViewModel : BindableBase
+    {
+        private NotificationsShell _notificationsShell;
 
-		private NotificationsShell _notificationsShell;
+        public ObservableCollection<Notification> Notifications { get; }
+        public ICommand OpenNotificationsWindowCommand { get; }
 
-		public NotificationsButtonViewModel(
-			IEventAggregator eventAggregator,
-			IRegionManager regionManager)
-		{
-			_regionManager = regionManager;
+        public NotificationsButtonViewModel(NotificationCollectionService notificationCollectionService)
+        {
+            Notifications = notificationCollectionService.Notifications;
 
-			Notifications = new ObservableCollection<INotification>();
+            OpenNotificationsWindowCommand = new DelegateCommand(OpenNotificationsWindowCommand_Execute);
+        }
 
-			ShowNotificationsWindowCommand = new DelegateCommand(ShowNotificationsWindowCommand_Execute);
+        private void OpenNotificationsWindowCommand_Execute()
+        {
+            if (_notificationsShell != null)
+            {
+                _notificationsShell.Activate();
+                return;
+            }
 
-			eventAggregator.GetEvent<OnNotificationCreatedEvent>()
-				?.Subscribe(message => Notifications.Add(new Notification(message)));
-		}
-
-		public ICommand ShowNotificationsWindowCommand { get; }
-
-		public ObservableCollection<INotification> Notifications { get; }
-
-		private void ShowNotificationsWindowCommand_Execute()
-		{
-			if (_notificationsShell != null)
-			{
-				return;
-			}
-
-			_notificationsShell = new NotificationsShell(_regionManager.CreateRegionManager(), Notifications);
-			_notificationsShell.Closed += (s, e) =>
-			{
-				_notificationsShell = null;
-			};
-			_notificationsShell.Show();
-		}
-	}
+            _notificationsShell = new NotificationsShell();
+            _notificationsShell.Closed += (sender, args) =>
+            {
+                _notificationsShell = null;
+            };
+            _notificationsShell.Show();
+        }
+    }
 }

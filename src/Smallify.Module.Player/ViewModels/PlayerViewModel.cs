@@ -1,152 +1,171 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
-using Smallify.Module.Player.Services;
+using Smallify.Core.Events.Authentication;
+using Smallify.Core.Events.Notifications;
+using Smallify.Core.Spotify;
+using Smallify.Core.Spotify.Models;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 
 namespace Smallify.Module.Player.ViewModels
 {
-	public class PlayerViewModel : BindableBase, IPlayerViewModel
-	{
-		private readonly ISpotifyService _spotifyService;
-		private readonly Timer _timer;
+    internal class PlayerViewModel : BindableBase, IDisposable
+    {
+        private readonly IEventAggregator _eventAggregator;
+        private readonly ISpotifyService _spotify;
+        private readonly Timer _playback;
+        private string _name;
+        private string _artist;
+        private string _album;
+        private string _albumArt;
+        private bool _isPlaying;
 
-		private string _trackName;
-		private string _artistName;
-		private string _albumName;
-		private string _albumArtURL;
-		private bool _isPlaying;
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
+        public string Artist
+        {
+            get => _artist;
+            set => SetProperty(ref _artist, value);
+        }
+        public string Album
+        {
+            get => _album;
+            set => SetProperty(ref _album, value);
+        }
+        public string AlbumArt
+        {
+            get => _albumArt;
+            set => SetProperty(ref _albumArt, value);
+        }
+        public bool IsPlaying
+        {
+            get => _isPlaying;
+            set => SetProperty(ref _isPlaying, value);
+        }
+        public ICommand GetPlaybackCommand { get; }
+        public ICommand PlayCommand { get; }
+        public ICommand PauseCommand { get; }
+        public ICommand SkipCommand { get; }
+        public ICommand PreviousCommand { get; }
 
-		public PlayerViewModel(ISpotifyService spotifyService)
-		{
-			_spotifyService = spotifyService;
+        public PlayerViewModel(IEventAggregator eventAggregator, ISpotifyService spotify)
+        {
+            _eventAggregator = eventAggregator;
+            _spotify = spotify;
+            _playback = new Timer
+            {
+                AutoReset = false
+            };
+            _name = string.Empty;
+            _artist = string.Empty;
+            _album = string.Empty;
+            _albumArt = string.Empty;
+            _isPlaying = false;
 
-			_trackName = "Track Name";
-			_artistName = "Artist Name";
-			_albumName = "Album Name";
-			_albumArtURL = string.Empty;
-			_isPlaying = false;
-			_timer = new Timer();
+            GetPlaybackCommand = new DelegateCommand(GetPlaybackCommand_Execute);
+            PlayCommand = new DelegateCommand(PlayCommand_Execute);
+            PauseCommand = new DelegateCommand(PauseCommand_Execute);
+            SkipCommand = new DelegateCommand(SkipCommand_Execute);
+            PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
 
-			PreviousCommand = new DelegateCommand(PreviousCommand_Execute);
-			PlayCommand = new DelegateCommand(PlayCommand_Execute);
-			PauseCommand = new DelegateCommand(PauseCommand_Execute);
-			SkipCommand = new DelegateCommand(SkipCommand_Execute);
-			RefreshCommand = new DelegateCommand<TimeSpan?>(RefreshCommand_Execute);
+            _playback.Elapsed += Playback_Elapsed;
+            _eventAggregator.GetEvent<OnLoginEvent>()?.Subscribe(OnLoginEvent_Published);
+            _eventAggregator.GetEvent<OnLogoutEvent>()?.Subscribe(OnLogoutEvent_Published);
 
-			_timer.Elapsed += (s, e) => RefreshCommand.Execute(null);
+            GetPlaybackCommand.Execute(null);
+        }
 
-			RefreshCommand.Execute(null);
-		}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _playback.Elapsed -= Playback_Elapsed;
+                _playback.Dispose();
+            }
+        }
 
-		public ICommand PreviousCommand { get; private set; }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		public ICommand PlayCommand { get; private set; }
+        private async void GetPlaybackCommand_Execute()
+        {
+            UpdatePlayback(await _spotify.GetPlaybackAsync().ConfigureAwait(true));
+        }
 
-		public ICommand PauseCommand { get; private set; }
+        private async void PlayCommand_Execute()
+        {
+            UpdatePlayback(await _spotify.ResumePlaybackAsync().ConfigureAwait(true));
+        }
 
-		public ICommand SkipCommand { get; private set; }
+        private async void PauseCommand_Execute()
+        {
+            UpdatePlayback(await _spotify.PausePlaybackAsync().ConfigureAwait(true));
+        }
 
-		public ICommand RefreshCommand { get; private set; }
+        private async void SkipCommand_Execute()
+        {
+            UpdatePlayback(await _spotify.SkipPlaybackAsync().ConfigureAwait(true));
+        }
 
-		public string TrackName
-		{
-			get => _trackName;
-			set => SetProperty(ref _trackName, value);
-		}
+        private async void PreviousCommand_Execute()
+        {
+            UpdatePlayback(await _spotify.PreviousPlaybackAsync().ConfigureAwait(true));
+        }
 
-		public string ArtistName
-		{
-			get => _artistName;
-			set => SetProperty(ref _artistName, value);
-		}
+        private void UpdatePlayback(PlaybackResponse playback)
+        {
+            if (playback.HasError())
+            {
+                DispatchNotification(playback.ErrorMessage);
+                return;
+            }
 
-		public string AlbumName
-		{
-			get => _albumName;
-			set => SetProperty(ref _albumName, value);
-		}
+            Name = playback.Track.Name;
+            Artist = playback.Track.Artist;
+            Album = playback.Track.Album;
+            AlbumArt = playback.Track.AlbumArt;
+            IsPlaying = playback.IsPlaying;
 
-		public string AlbumArtURL
-		{
-			get => _albumArtURL;
-			set => SetProperty(ref _albumArtURL, value);
-		}
+            if (!playback.IsPlaying)
+            {
+                return;
+            }
 
-		public bool IsPlaying
-		{
-			get => _isPlaying;
-			set => SetProperty(ref _isPlaying, value);
-		}
+            _playback.Interval = (playback.Track.Duration - playback.Progress) + 100;
+            _playback.Start();
+        }
 
-		private async void PreviousCommand_Execute()
-		{
-			if (false == await _spotifyService.TryPreviousAsync())
-			{
-				return;
-			}
+        private void Playback_Elapsed(object sender, ElapsedEventArgs args)
+        {
+            GetPlaybackCommand.Execute(null);
+        }
 
-			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
-		}
+        private void OnLoginEvent_Published()
+        {
+            GetPlaybackCommand.Execute(null);
+        }
 
-		private async void PlayCommand_Execute()
-		{
-			if (false == await _spotifyService.TryPlayAsync())
-			{
-				return;
-			}
+        private void OnLogoutEvent_Published()
+        {
+            _playback.Stop();
+            Name = string.Empty;
+            Artist = string.Empty;
+            Album = string.Empty;
+            AlbumArt = string.Empty;
+            IsPlaying = false;
+        }
 
-			IsPlaying = true;
-			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
-		}
-
-		private async void PauseCommand_Execute()
-		{
-			if (false == await _spotifyService.TryPauseAsync())
-			{
-				return;
-			}
-
-			IsPlaying = false;
-			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
-		}
-
-		private async void SkipCommand_Execute()
-		{
-			if (false == await _spotifyService.TrySkipAsync())
-			{
-				return;
-			}
-
-			RefreshCommand.Execute(TimeSpan.FromSeconds(1d));
-		}
-
-		private async void RefreshCommand_Execute(TimeSpan? delay = null)
-		{
-			_timer.Stop();
-
-			if (delay.HasValue)
-			{
-				await Task.Delay(delay.Value);
-			}
-
-			var context = await _spotifyService.GetPlaybackStateAsync();
-			if (context == null)
-			{
-				return;
-			}
-
-			IsPlaying = context.IsPlaying;
-			TrackName = context.Item.Name;
-			ArtistName = string.Join(", ", context.Item.Artists.Select(artist => artist.Name));
-			AlbumName = context.Item.Album.Name;
-			AlbumArtURL = context.Item.Album.Images.ElementAt(1)?.Url;
-
-			_timer.Interval = (context.Item.DurationMs - context.ProgressMs) + 100;
-			_timer.Start();
-		}
-	}
+        private void DispatchNotification(string notification)
+        {
+            _eventAggregator.GetEvent<OnNotificationCreatedEvent>()?.Publish(notification);
+        }
+    }
 }

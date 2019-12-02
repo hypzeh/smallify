@@ -1,34 +1,36 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using Smallify.Module.Settings.Constants;
-using Smallify.Module.Settings.Views.Sections;
+using Smallify.Module.Settings.Configuration;
+using Smallify.Module.Settings.Views;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Smallify.Module.Settings.ViewModels
 {
-	public class SettingsShellViewModel : BindableBase, ISettingsShellViewModel
-	{
-		public SettingsShellViewModel(IRegionManager regionManager)
-		{
-			RegionManager = regionManager;
+    internal class SettingsShellViewModel : BindableBase
+    {
+        public IRegionManager RegionManager { get; }
+        public ICommand SetSectionCommand { get; }
+        public ICommand ExitCommand { get; }
 
-			ExitCommand = new DelegateCommand<Window>(window => window.Close());
-			SwitchSettingsSection = new DelegateCommand<string>(SwitchSettingsSection_Execute);
+        public SettingsShellViewModel(IRegionManager regionManager)
+        {
+            RegionManager = regionManager.CreateRegionManager();
+            SetSectionCommand = new DelegateCommand<string>(SetSectionCommand_Execute);
+            ExitCommand = new DelegateCommand<Window>(ExitCommand_Execute);
 
-			RegionManager.RegisterViewWithRegion(RegionNames.SETTINGS_SECTION_REGION, typeof(Authentication));
-		}
+            RegionManager.RegisterViewWithRegion(RegionNames.Section, typeof(GeneralSectionView));
+        }
 
-		public ICommand ExitCommand { get; }
+        private void SetSectionCommand_Execute(string section)
+        {
+            RegionManager.RequestNavigate(RegionNames.Section, section);
+        }
 
-		public ICommand SwitchSettingsSection { get; }
-
-		public IRegionManager RegionManager { get; }
-
-		private void SwitchSettingsSection_Execute(string sectionName)
-		{
-			RegionManager.RequestNavigate(RegionNames.SETTINGS_SECTION_REGION, sectionName);
-		}
-	}
+        public void ExitCommand_Execute(Window window)
+        {
+            window.Close();
+        }
+    }
 }

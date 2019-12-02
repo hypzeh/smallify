@@ -1,39 +1,29 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using Smallify.Module.Notifications.Constants;
-using Smallify.Module.Notifications.Models;
-using Smallify.Module.Notifications.Views.Sections;
-using System.Collections.ObjectModel;
+using Smallify.Module.Notifications.Configuration;
+using Smallify.Module.Notifications.Views;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Smallify.Module.Notifications.ViewModels
 {
-	public class NotificationsShellViewModel : BindableBase, INotificationsShellViewModel
-	{
-		public NotificationsShellViewModel(
-			IRegionManager regionManager,
-			ObservableCollection<INotification> notifications)
-		{
-			RegionManager = regionManager;
-			Notifications = notifications;
+    internal class NotificationsShellViewModel : BindableBase
+    {
+        public IRegionManager RegionManager { get; }
+        public ICommand ExitCommand { get; }
 
-			ExitCommand = new DelegateCommand<Window>(window => window.Close());
-			DismissNotificationCommand = new DelegateCommand<INotification>(notification => Notifications.Remove(notification));
-			ClearNotificationsCommand = new DelegateCommand(() => Notifications.Clear());
+        public NotificationsShellViewModel(IRegionManager regionManager)
+        {
+            RegionManager = regionManager.CreateRegionManager();
+            ExitCommand = new DelegateCommand<Window>(ExitCommand_Execute);
 
-			RegionManager.RegisterViewWithRegion(RegionNames.NOTIFICATIONS_CONTENT_REGION, typeof(NotificationsView));
-		}
+            RegionManager.RegisterViewWithRegion(RegionNames.Content, typeof(NotificationsContentView));
+        }
 
-		public ICommand ExitCommand { get; }
-
-		public ICommand DismissNotificationCommand { get; }
-
-		public ICommand ClearNotificationsCommand { get; }
-
-		public IRegionManager RegionManager { get; }
-
-		public ObservableCollection<INotification> Notifications { get; }
-	}
+        public void ExitCommand_Execute(Window window)
+        {
+            window.Close();
+        }
+    }
 }

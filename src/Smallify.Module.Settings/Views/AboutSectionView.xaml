@@ -1,0 +1,71 @@
+﻿<UserControl
+    x:Class="Smallify.Module.Settings.Views.AboutSectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="275"
+    d:DesignWidth="475"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    x:ClassModifier="internal"
+    mc:Ignorable="d">
+
+    <Border>
+        <StackPanel Orientation="Vertical">
+            <Border Padding="10">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <ContentControl
+                        Height="50"
+                        Content="{StaticResource SmallifyLogo}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="{DynamicResource PrimaryTextBrush}"
+                        Text="Smallify" />
+                </StackPanel>
+            </Border>
+
+            <Border Padding="10,0,10,10">
+                <StackPanel Orientation="Vertical">
+                    <Border
+                        Margin="0,5"
+                        BorderBrush="{DynamicResource PrimaryHighlightBrush}"
+                        BorderThickness="0,0,0,1">
+                        <UniformGrid Columns="2">
+                            <TextBlock
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="Version" />
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                Text="{Binding Path=Version, Mode=OneWay}" />
+                        </UniformGrid>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Border Padding="10,0,10,10">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical">
+                    <Button
+                        Margin="0,2.5"
+                        Command="{Binding Path=GithubCommand, Mode=OneWay}"
+                        Style="{StaticResource OutlinedButtonStyle}">
+                        <TextBlock Text="GITHUB" />
+                    </Button>
+                    <Button
+                        Margin="0,2.5"
+                        Command="{Binding Path=ReportIssueCommand, Mode=OneWay}"
+                        Style="{StaticResource DangerButtonStyle}">
+                        <TextBlock Text="REPORT AN ISSUE" />
+                    </Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>

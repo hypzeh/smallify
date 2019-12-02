@@ -260,6 +260,8 @@ paket-files/
 __pycache__/
 *.pyc
 
-# React build outputs
-**/wwwroot/index.html
-**/wwwroot/main.js
+# wwwroot output
+**/wwwroot/
+!**/wwwroot/fonts/
+!**/wwwroot/404.html
+!**/wwwroot/CNAME

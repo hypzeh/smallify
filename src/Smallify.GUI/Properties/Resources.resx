@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APP_CENTER_CLIENT_ID" xml:space="preserve">
+    <value>#{APP_CENTER_CLIENT_ID}</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="smallify_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smallify-icon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SPOTIFY_CLIENT_ID" xml:space="preserve">
+    <value>#{SPOTIFY_CLIENT_ID}</value>
+  </data>
+  <data name="SPOTIFY_CLIENT_SECRET" xml:space="preserve">
+    <value>#{SPOTIFY_CLIENT_SECRET}</value>
+  </data>
+  <data name="SPOTIFY_REDIRECT_URI" xml:space="preserve">
+    <value>#{SPOTIFY_REDIRECT_URI}</value>
   </data>
 </root>

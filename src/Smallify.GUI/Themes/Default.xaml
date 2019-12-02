@@ -1,0 +1,74 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="PrimaryBackground">#2C2C2D</Color>
+    <SolidColorBrush
+        x:Key="PrimaryBackgroundBrush"
+        Color="{StaticResource PrimaryBackground}" />
+
+    <Color x:Key="PrimaryBackgroundLighter">#3e3e40</Color>
+    <SolidColorBrush
+        x:Key="PrimaryBackgroundLighterBrush"
+        Color="{StaticResource PrimaryBackgroundLighter}" />
+
+    <Color x:Key="PrimaryBackgroundDarker">#1e1e1f</Color>
+    <SolidColorBrush
+        x:Key="PrimaryBackgroundDarkerBrush"
+        Color="{StaticResource PrimaryBackgroundDarker}" />
+
+    <Color x:Key="SecondaryBackground">#161617</Color>
+    <SolidColorBrush
+        x:Key="SecondaryBackgroundBrush"
+        Color="{StaticResource SecondaryBackground}" />
+
+    <Color x:Key="PrimaryBorder">#202021</Color>
+    <SolidColorBrush
+        x:Key="PrimaryBorderBrush"
+        Color="{StaticResource PrimaryBorder}" />
+
+    <Color x:Key="PrimaryText">#FFFFFF</Color>
+    <SolidColorBrush
+        x:Key="PrimaryTextBrush"
+        Color="{StaticResource PrimaryText}" />
+
+    <Color x:Key="PrimaryTextLighter">#FFFFFF</Color>
+    <SolidColorBrush
+        x:Key="PrimaryTextLighterBrush"
+        Color="{StaticResource PrimaryTextLighter}" />
+
+    <Color x:Key="PrimaryTextDarker">#e8e8e8</Color>
+    <SolidColorBrush
+        x:Key="PrimaryTextDarkerBrush"
+        Color="{StaticResource PrimaryTextDarker}" />
+
+    <Color x:Key="PrimaryHighlight">#00D66E</Color>
+    <SolidColorBrush
+        x:Key="PrimaryHighlightBrush"
+        Color="{StaticResource PrimaryHighlight}" />
+
+    <Color x:Key="PrimaryHighlightLighter">#00f57e</Color>
+    <SolidColorBrush
+        x:Key="PrimaryHighlightLighterBrush"
+        Color="{StaticResource PrimaryHighlightLighter}" />
+
+    <Color x:Key="PrimaryHighlightDarker">#00b85e</Color>
+    <SolidColorBrush
+        x:Key="PrimaryHighlightDarkerBrush"
+        Color="{StaticResource PrimaryHighlightDarker}" />
+
+    <Color x:Key="PrimaryDanger">#d60000</Color>
+    <SolidColorBrush
+        x:Key="PrimaryDangerBrush"
+        Color="{StaticResource PrimaryDanger}" />
+
+    <Color x:Key="PrimaryDangerLighter">#f50000</Color>
+    <SolidColorBrush
+        x:Key="PrimaryDangerLighterBrush"
+        Color="{StaticResource PrimaryDangerLighter}" />
+
+    <Color x:Key="PrimaryDangerDarker">#b80000</Color>
+    <SolidColorBrush
+        x:Key="PrimaryDangerDarkerBrush"
+        Color="{StaticResource PrimaryDangerDarker}" />
+</ResourceDictionary>

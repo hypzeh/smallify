@@ -1,34 +1,32 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
-using Smallify.Module.Settings.Constants;
+using Smallify.Module.Settings.Configuration;
 using Smallify.Module.Settings.ViewModels;
-using Smallify.Module.Settings.ViewModels.Sections;
 using Smallify.Module.Settings.Views;
-using Smallify.Module.Settings.Views.Sections;
 
 namespace Smallify.Module.Settings
 {
-	public class SettingsModule : IModule
-	{
-		public void OnInitialized(IContainerProvider containerProvider)
-		{
-			var regionManager = containerProvider.Resolve<IRegionManager>();
-			regionManager.RegisterViewWithRegion(RegionNames.SETTINGS_BUTTON_REGION, typeof(SettingsButtonView));
-		}
+    public class SettingsModule : IModule
+    {
+        public void OnInitialized(IContainerProvider containerProvider)
+        {
+            var regionManager = containerProvider.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion(RegionNames.Launch, typeof(SettingsButtonView));
+        }
 
-		public void RegisterTypes(IContainerRegistry containerRegistry)
-		{
-			containerRegistry.Register<ISettingsButtonViewModel, SettingsButtonViewModel>();
-			containerRegistry.Register<ISettingsShellViewModel, SettingsShellViewModel>();
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<GeneralSectionView>();
+            containerRegistry.RegisterForNavigation<AuthenticationSectionView>();
+            containerRegistry.RegisterForNavigation<AboutSectionView>();
 
-			containerRegistry.Register<IAuthenticationViewModel, AuthenticationViewModel>();
-			containerRegistry.Register<IGeneralViewModel, GeneralViewModel>();
-			containerRegistry.Register<IAboutViewModel, AboutViewModel>();
-
-			containerRegistry.RegisterForNavigation<Authentication>();
-			containerRegistry.RegisterForNavigation<General>();
-			containerRegistry.RegisterForNavigation<About>();
-		}
-	}
+            ViewModelLocationProvider.Register(typeof(SettingsButtonView).ToString(), typeof(SettingsButtonViewModel));
+            ViewModelLocationProvider.Register(typeof(SettingsShell).ToString(), typeof(SettingsShellViewModel));
+            ViewModelLocationProvider.Register(typeof(GeneralSectionView).ToString(), typeof(GeneralSectionViewModel));
+            ViewModelLocationProvider.Register(typeof(AuthenticationSectionView).ToString(), typeof(AuthenticationSectionViewModel));
+            ViewModelLocationProvider.Register(typeof(AboutSectionView).ToString(), typeof(AboutSectionViewModel));
+        }
+    }
 }

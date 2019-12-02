@@ -1,0 +1,81 @@
+﻿<Window
+    x:Class="Smallify.GUI.Views.SmallifyShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notifications="clr-namespace:Smallify.Module.Notifications.Configuration;assembly=Smallify.Module.Notifications"
+    xmlns:player="clr-namespace:Smallify.Module.Player.Configuration;assembly=Smallify.Module.Player"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:settings="clr-namespace:Smallify.Module.Settings.Configuration;assembly=Smallify.Module.Settings"
+    Title="{Binding Path=Title, Mode=OneWay, FallbackValue=Smallify}"
+    Width="600"
+    Height="100"
+    MinWidth="295"
+    MinHeight="100"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    x:ClassModifier="internal"
+    Style="{StaticResource WindowStyle}"
+    Topmost="{Binding Path=Settings.IsAlwaysOnTop, Mode=OneWay}"
+    mc:Ignorable="d">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border
+                Grid.Row="0"
+                Style="{StaticResource WindowTitleStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0">
+                        <TextBlock
+                            Style="{StaticResource WindowTitleTextStyle}"
+                            Text="{Binding Path=Title, Mode=OneWay, FallbackValue=Smallify}" />
+                    </Border>
+
+                    <Border
+                        Grid.Column="2"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <UniformGrid Columns="2">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static notifications:RegionNames.Launch}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static settings:RegionNames.Launch}" />
+                        </UniformGrid>
+                    </Border>
+
+                    <Border
+                        Grid.Column="3"
+                        Style="{StaticResource WindowTitleSeperatorStyle}" />
+
+                    <Border
+                        Grid.Column="4"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <UniformGrid Columns="2">
+                            <Button
+                                Command="{Binding Path=MinimiseCommand, Mode=OneWay}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                Style="{StaticResource WindowMinimiseButtonStyle}" />
+                            <Button
+                                Command="{Binding Path=ExitCommand, Mode=OneWay}"
+                                Style="{StaticResource WindowExitButtonStyle}" />
+                        </UniformGrid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1">
+                <ContentControl prism:RegionManager.RegionName="{x:Static player:RegionNames.Content}" />
+            </Border>
+        </Grid>
+    </Border>
+</Window>

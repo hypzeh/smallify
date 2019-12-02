@@ -19,7 +19,7 @@ namespace Smallify.GUI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,12 +61,48 @@ namespace Smallify.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized string similar to #{APP_CENTER_CLIENT_ID}.
         /// </summary>
-        internal static System.Drawing.Icon icon {
+        internal static string APP_CENTER_CLIENT_ID {
             get {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ResourceManager.GetString("APP_CENTER_CLIENT_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] smallify_icon {
+            get {
+                object obj = ResourceManager.GetObject("smallify_icon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_CLIENT_ID}.
+        /// </summary>
+        internal static string SPOTIFY_CLIENT_ID {
+            get {
+                return ResourceManager.GetString("SPOTIFY_CLIENT_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_CLIENT_SECRET}.
+        /// </summary>
+        internal static string SPOTIFY_CLIENT_SECRET {
+            get {
+                return ResourceManager.GetString("SPOTIFY_CLIENT_SECRET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{SPOTIFY_REDIRECT_URI}.
+        /// </summary>
+        internal static string SPOTIFY_REDIRECT_URI {
+            get {
+                return ResourceManager.GetString("SPOTIFY_REDIRECT_URI", resourceCulture);
             }
         }
     }

@@ -2,16 +2,15 @@
 
 namespace Smallify.Module.Notifications.Models
 {
-	public class Notification : INotification
-	{
-		public Notification(string message)
-		{
-			TimeStamp = DateTimeOffset.UtcNow;
-			Message = message;
-		}
+    internal class Notification
+    {
+        public string Message { get; }
+        public DateTimeOffset Timestamp { get; }
 
-		public DateTimeOffset TimeStamp { get; }
-
-		public string Message { get; }
-	}
+        public Notification(string message)
+        {
+            Message = message;
+            Timestamp = DateTimeOffset.UtcNow;
+        }
+    }
 }
