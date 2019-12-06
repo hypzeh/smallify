@@ -6,7 +6,7 @@ _Smallify is a WPF application built with .NET Core 3, aiming to provide a simpl
 
 ![Smallify](./docs/.assets/project-title.png)
 
-![Smallify Screenshot](./docs/.assets/smallify-screenshot.png)
+![Screenshot](./docs/.assets/smallify-screenshot.png)
 
 ## Installation
 
