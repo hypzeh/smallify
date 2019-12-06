@@ -10,7 +10,7 @@ _Smallify is a WPF application built with .NET Core 3, aiming to provide a simpl
 
 ## Installation
 
-Download the latest [Smallify release](https://github.com/hypzeh/smallify/releases/latest).
+Smallify is packaged as a single `.exe` with all its dependencies - [Download latest release](https://github.com/hypzeh/smallify/releases/latest).
 
 ## Usage
 
