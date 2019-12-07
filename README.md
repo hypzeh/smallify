@@ -1,16 +1,16 @@
-![Smallify](./docs/.assets/project-title.png)
+# Smallify
 
-[![Build Status](https://nick-smirnoff.visualstudio.com/smallify/_apis/build/status/build/smallify-CI?branchName=master)](https://nick-smirnoff.visualstudio.com/smallify/_build/latest?definitionId=13?branchName=master)
-
----
+[![Build Status](https://dev.azure.com/nick-smirnoff/smallify/_apis/build/status/hypzeh.smallify?branchName=master)](https://dev.azure.com/nick-smirnoff/smallify/_build/latest?definitionId=20&branchName=master)
 
 _Smallify is a WPF application built with .NET Core 3, aiming to provide a simple and minimalistic Spotify experience._
 
-![Smallify Screenshot](./docs/.assets/smallify-screenshot.png)
+![Smallify](./docs/.assets/project-title.png)
+
+![Screenshot](./docs/.assets/smallify-screenshot.png)
 
 ## Installation
 
-Download the latest [Smallify release](https://github.com/hypzeh/smallify/releases/latest).
+Smallify is packaged as a single `.exe` with all its dependencies - [Download latest release](https://github.com/hypzeh/smallify/releases/latest).
 
 ## Usage
 
